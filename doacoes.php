@@ -43,8 +43,6 @@
     color: black;
   } 
 
-
-  
 </style>
 </body>
 
