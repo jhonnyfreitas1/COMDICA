@@ -10,38 +10,12 @@
 
   <title>COMDICA - Conselho municipal dos direitos da criança e do adolescente.</title>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Alterna navegação">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="index.php"><img src="comdica3.png" style="width: 150px;"></a>
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link btn btn-light" href="doacoes.php">Doações <span class="sr-only">(Página atual)</span></a>
-      </li>
-                                        <!-- modelo de teste -->
-      <li class="nav-item active">  
-        <a class="nav-link btn btn-light" href="#">Contato</a>
-      </li>
-    <!--  <li class="nav-item active">
-        <a class="nav-link btn btn-light" href="#"></a>
-      </li> -->
-      <li class="nav-item active">
-        <a class="nav-link btn btn-light" href="#">Calculo do imposto de renda</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-    </form>
-  </div>
-</nav>  
+
+<?php 
+    include 'nav.php';
+?>
+
 <body>
-
-
-
-
   <div id="carouselExampleIndicators" class="centered carousel slide col-md-10" data-ride="carousel">
     <ol class="carousel-indicators ">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -284,9 +258,6 @@
               <a href="doacoes.php">Como doar</a>
             </p>
             <p>
-              <a href="#!">Contato</a>
-            </p>
-            <p>
               <a href="#!">Cálculo do imposto de renda</a>
             </p>
 
@@ -297,7 +268,7 @@
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-10">
 
             <!-- Links -->
-            <h6 class="text-uppercase font-weight-bold">Contact</h6>
+            <h6 class="text-uppercase font-weight-bold">Contato</h6>
             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; ">
             <p>
               <i class="fas fa-home mr-3"></i> Araçoiaba, n 10012, PE</p>
