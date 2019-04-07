@@ -8,7 +8,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  <title>COMDICA - Conselho municipal dos direitos da criança e do adolescente.</title>
+  <title>Doações</title>
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Alterna navegação">
@@ -18,7 +18,7 @@
     <a class="navbar-brand" href="index.php"><img src="comdica3.png" style="width: 150px;"></a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link btn btn-light" href="doacoes.php">Doações <span class="sr-only">(Página atual)</span></a>
+        <a class="nav-link btn btn-light" href="#">Doações <span class="sr-only">(Página atual)</span></a>
       </li>
                                         <!-- modelo de teste -->
       <li class="nav-item active">  
@@ -39,134 +39,17 @@
 </nav>  
 <body>
 
-
-
-
-  <div id="carouselExampleIndicators" class="centered carousel slide col-md-10" data-ride="carousel">
-    <ol class="carousel-indicators ">
-      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" style="">
-      <div class="carousel-item active">
-        <img src="comdica3.jpg" style='' class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5 style=" ">primeira postagem</h5>
-          <p></p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="comdica3.jpg" style='' class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Segunda postagem</h5>
-          <p></p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="comdica3.jpg" class="d-block w-100" alt="...">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>terceira</h5>
-          <p></p>
-        </div>
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
+<center>
+  <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Valor:</span>
+  </div>
+  <input type="text" class="form-control">
+  <div class="input-group-append">
+    <span class="input-group-text">.00</span>
   </div>
 </div>
-
-<!-- Optional JavaScript --><center>
-<div style="margin-top: 5em;">
- <div  class='row' style="float: right;">
-  <div class="col-md-3 col-sm-6">
-    <div class='report-module' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.3)">
-      <div class='thumbnail' >
-        <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
-          <img class="card-img-top" style="max-height: 11em;" src="comdica3.png">
-        </a>
-      </div>
-      <div class='post-content'>
-        <div class='category'></div>  
-        <h2 class='title' style="height: 2.5em;">Comdica Araçoiaba</h2>
-        <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
-        <div class='post-meta'>
-          <span class='comments'>
-            <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="view_visualizar_pontos.php?id=<?=$linha['id']?>">Saiba mas</a>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-3 col-sm-6">
-    <div class='report-module' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.3)">
-      <div class='thumbnail' >
-        <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
-          <img class="card-img-top" style="max-height: 11em;" src="comdica3.png">
-        </a>
-      </div>
-      <div class='post-content'>
-        <div class='category'></div>  
-        <h2 class='title' style="height: 2.5em;">Comdica Araçoiaba abre novo chamado...</h2>
-        <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
-        <div class='post-meta'>
-          <span class='comments'>
-            <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="view_visualizar_pontos.php?id=<?=$linha['id']?>">Saiba mas</a>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3 col-sm-6">
-    <div class='report-module' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.3)">
-      <div class='thumbnail' >
-        <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
-          <img class="card-img-top" style="max-height: 11em;" src="comdica3.png">
-        </a>
-      </div>
-      <div class='post-content'>
-        <div class='category'></div>  
-        <h2 class='title' style="height: 2.5em;">Jovens criam projeto de doaçoes  </h2>
-        <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
-        <div class='post-meta'>
-          <span class='comments'>
-            <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="view_visualizar_pontos.php?id=<?=$linha['id']?>">Saiba mas</a>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3 col-sm-6">
-    <div class='report-module' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.3)">
-      <div class='thumbnail' >
-        <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
-          <img class="card-img-top" style="max-height: 11em;" src="comdica3.png">
-        </a>
-      </div>
-      <div class='post-content'>
-        <div class='category'></div>  
-        <h2 class='title' style="height: 2.5em;">Faça uma doação</h2>
-        <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
-        <div class='post-meta'>
-          <span class='comments'>
-            <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="view_visualizar_pontos.php?id=<?=$linha['id']?>">Saiba mas</a>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
 </center>
-
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -259,13 +142,19 @@
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" >
 
             <!-- Links -->
-            <h6 class="text-uppercase font-weight-bold">Redes sociais</h6>
+            <h6 class="text-uppercase font-weight-bold">Products</h6>
             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
             <p>
-              <a href="https://www.facebook.com/cmdcaaracoiabape/">Facebook</a>
+              <a href="#!">MDBootstrap</a>
             </p>
             <p>
-              <a href="#!">Twitter</a>
+              <a href="#!">MDWordPress</a>
+            </p>
+            <p>
+              <a href="#!">BrandFlow</a>
+            </p>
+            <p>
+              <a href="#!">Bootstrap Angular</a>
             </p>
 
           </div>
@@ -275,19 +164,19 @@
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
             <!-- Links -->
-            <h6 class="text-uppercase font-weight-bold">Links úteis</h6>
+            <h6 class="text-uppercase font-weight-bold">Useful links</h6>
             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
             <p>
             <a href="#!">Administrador</a>
             </p>
             <p>
-              <a href="doacoes.php">Como doar</a>
+              <a href="#!">Become an Affiliate</a>
             </p>
             <p>
-              <a href="#!">Contato</a>
+              <a href="#!">Shipping Rates</a>
             </p>
             <p>
-              <a href="#!">Cálculo do imposto de renda</a>
+              <a href="#!">Help</a>
             </p>
 
           </div>
@@ -302,10 +191,11 @@
             <p>
               <i class="fas fa-home mr-3"></i> Araçoiaba, n 10012, PE</p>
               <p>
-                <i class="fas fa-envelope mr-3"></i>cmdcaaracoiabape@gmail.com</p>
+                <i class="fas fa-envelope mr-3"></i>comdica@gmail.com</p>
                 <p>
                   <i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
-                 
+                  <p>
+                    <i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
 
                   </div>
                   <!-- Grid column -->
