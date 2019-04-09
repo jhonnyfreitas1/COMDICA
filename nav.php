@@ -3,7 +3,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="index.php"><img src="comdica3.png" style="width: 150px;"></a>
+    <a class="navbar-brand" href="index.php"><img src="assets/img/comdica3.png" style="width: 150px;"></a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
         <a class="nav-link btn btn-light" href="doacoes.php">Doações <span class="sr-only">(Página atual)</span></a>
@@ -24,4 +24,5 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
     </form>
   </div>
+
 </nav>  

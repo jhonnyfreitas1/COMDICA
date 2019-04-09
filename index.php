@@ -7,38 +7,59 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 
   <title>COMDICA - Conselho municipal dos direitos da criança e do adolescente.</title>
 </head>
 
 <?php 
     include 'nav.php';
-?>
+?>  
 
 <body>
-  <div id="carouselExampleIndicators" class="centered carousel slide col-md-10" data-ride="carousel">
-    <ol class="carousel-indicators ">
+   <div class="section">
+    <img src="assets/img/p4.png" class="img-fluid rounded" alt="Responsive image" style="margin-top:30em; height: 40em; ">
+        <div class="container mb-8  col-md-8  " style="float:right; margin-top:32em; background-color:rgba(0, 0, 0, 0.1); max-width:40em;">
+          <div class="row">
+            <div class=" col-md-12  text-dark position-top ">
+              <h2 class="title">FUMDECA</h2>
+              <h5 class="text-muted">
+                O Fundo Municipal dos Direitos da Criança e do Adolescente (FUMDECA) é um Fundo especial, criado por lei municipal, segundo determinação do Estatuto da Criança e do Adolescente em seu art. 260 com o objetivo de financiar programas e projetos que atuem na garantia da promoção, proteção e defesa dos direitos da criança e do adolescente. 
+              </h5>
+              <!-- <div class="nucleo-container">
+              <img src="assets/img/nucleo.svg" alt="">
+            </div> -->
+
+              <a href="nucleo-icons.html" class="btn btn-info" target="_blank">Saiba mas</a>
+            </div>
+          </div>
+       
+      
+      <hr>
+  <div id="carouselExampleIndicators" class="carousel slide col-lg-5-10 position-relative p-5" data-ride="carousel" style="">
+    <ol class="carousel-indicators " >
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
       <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
     </ol>
-    <div class="carousel-inner" style="">
+    <div class="carousel-inner"  style="margin-top: " >
       <div class="carousel-item active">
-        <img src="comdica3.jpg" style='' class="d-block w-100" alt="...">
+        <img src="assets/img/comdica3.jpg" style='' class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5 style=" ">primeira postagem</h5>
           <p></p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="comdica3.jpg" style='' class="d-block w-100" alt="...">
+        <img src="assets/img/comdica3.jpg" style='' class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5>Segunda postagem</h5>
           <p></p>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="comdica3.jpg" class="d-block w-100" alt="...">
+        <img src="assets/img/comdica3.jpg" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
           <h5>terceira</h5>
           <p></p>
@@ -55,7 +76,8 @@
     </a>
   </div>
 </div>
-
+ </div>
+</div>
 <!-- Optional JavaScript --><center>
 <div style="margin-top: 5em;">
  <div  class='row' style="float: right;">
@@ -63,7 +85,7 @@
     <div class='report-module' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.3)">
       <div class='thumbnail' >
         <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
-          <img class="card-img-top" style="max-height: 11em;" src="comdica3.png">
+          <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
         </a>
       </div>
       <div class='post-content'>
@@ -83,7 +105,7 @@
     <div class='report-module' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.3)">
       <div class='thumbnail' >
         <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
-          <img class="card-img-top" style="max-height: 11em;" src="comdica3.png">
+          <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
         </a>
       </div>
       <div class='post-content'>
@@ -102,7 +124,7 @@
     <div class='report-module' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.3)">
       <div class='thumbnail' >
         <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
-          <img class="card-img-top" style="max-height: 11em;" src="comdica3.png">
+          <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
         </a>
       </div>
       <div class='post-content'>
@@ -121,7 +143,7 @@
     <div class='report-module' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.3)">
       <div class='thumbnail' >
         <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
-          <img class="card-img-top" style="max-height: 11em;" src="comdica3.png">
+          <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
         </a>
       </div>
       <div class='post-content'>
@@ -156,6 +178,14 @@
   h5{
     color: black;
   } 
+  body{
+    background-image: url('assets/img/fundeca.png');
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position:100% 4%;
+    background-attachment:inherit; 
+    
+  }
 
 </style>
 </body>
