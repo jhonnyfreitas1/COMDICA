@@ -1,8 +1,8 @@
 <!-- Footer -->
 <!-- Footer -->
-<footer class="page-footer font-small unique-color-dark d-inline-block"  style="margin-top: 20em; width: 100%;">
+<footer class="page-footer font-small unique-color-dark  d-inline-block"  style="margin-top: 20em; width: 100%;">
 
-  <div style="background-color:#DCDCDC;">
+  <div style="background-color:#DCDCDC;" class="bg-success">
 
     <div class="container" >
 
