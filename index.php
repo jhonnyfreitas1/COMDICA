@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/index-css.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>COMDICA - Conselho municipal dos direitos da criança e do adolescente.</title>
   </head>
 
@@ -20,19 +20,27 @@ include 'nav.php';
 <body>
 
  
-<div style="margin-top:20em; padding-bottom:6em;"> </div>
+<div style="margin-top:30em; padding-bottom:6em; "> </div>
   <div class="section">
-
-    <div class="row"> 
-     <div id="logo-icon" class="row col-md-6 col-12 mr-12 p-10">
-      <img src="assets/img/mc2.png" class="img-fluid rounded col-10 m-6" alt="Responsive image">
+    <div class="row ml-12"> 
+     <div id="logo-icon" class="col-md-6 col-12 ml-12 p-10" style="">
+      <div class="card border- mb-3 text-white" style="max-width: 28rem; background-image: linear-gradient(to bottom right,#00BFFF, palegreen);">
+  <div class="card-header bg-success border-success text-white"><h4>Calculadora de imposto de renda</h></div>
+  <div class="card-body text-success">
+    <h5 class="card-title text-white">Calcule seu imposto de renda aqui no nosso site, e veja quanto você pode doar, esse valor pode ser revertido ao seu favor.</h5>
+    <img src="assets/img/calculado-low.png">
+  </div>
+  <div class="card-footer bg-transparent border-success"><button type="button" class="btn btn-primary btn-lg btn-block">Veja Agora</button>
+</div>
+</div>
+      
     </div>
 
-    <div class="container float-right col-md-5 p-12" id="card-fundo" style="background-color: #F6A4B4;">
+    <div class="container col-md-6 col-12 p-10" id="card-fundo" style="">
       <div class="row">
         <div class=" col-md-12 text-dark position-top">
-          <h2 class="title">FUMDECA</h2>
-          <h5 class="text-muted">
+         <div class=" card-header bg-success  col-12  text-white"><h4>FUNDECA</h></div>
+          <h5 class="card-body text-white description">
             O Fundo Municipal dos Direitos da Criança e do Adolescente (FUMDECA) é um Fundo especial, criado por lei municipal, segundo determinação do Estatuto da Criança e do Adolescente em seu art. 260 com o objetivo de financiar programas e projetos que atuem na garantia da promoção, proteção e defesa dos direitos da criança e do adolescente. 
           </h5>
             <a href="nucleo-icons.html" class="btn btn-info" target="_blank">Saiba mas</a>
@@ -43,34 +51,29 @@ include 'nav.php';
 
         <hr>
         <h2 class="title">Novidades</h2>
-        <div id="carouselExampleIndicators" class="carousel slide col-lg-5-10 col-12 m-2 p-5" data-ride="carousel" style="">
+        <div id="carouselExampleIndicators" class="carousel slide col-lg-5-12 col-12 p-10" data-ride="carousel" style="">
           <ol class="carousel-indicators " >
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           </ol>
-          <div class="carousel-inner"   >
+          <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="assets/img/comdica3.jpg" style='' class="d-block w-100" alt="...">
+              <img src="assets/img/comdica3.jpg" style='height: 27em;' class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h5 style=" ">primeira postagem</h5>
                 <p></p>
               </div>
             </div>
             <div class="carousel-item">
-              <img src="assets/img/comdica3.jpg" style='' class="d-block w-100" alt="...">
+              <img src="assets/img/comdica3.jpg" style='height: 27em;' class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
                 <h5>Segunda postagem</h5>
                 <p></p>
               </div>
             </div>
-            <div class="carousel-item">
-              <img src="assets/img/comdica3.jpg" class="d-block w-100" alt="...">
-              <div class="carousel-caption d-none d-md-block">
-                <h5>terceira</h5>
-                <p></p>
-              </div>
-            </div>
+      
+
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -81,9 +84,9 @@ include 'nav.php';
             <span class="sr-only">Next</span>
           </a>
         </div>
+
       </div>
-    </div>
-  </div>
+  
   <!-- Optional JavaScript --><center>
     <div style="margin-top: 5em;">
      <div  class='row' style="float: right;">
@@ -111,7 +114,7 @@ include 'nav.php';
         <div class='report-module' style="">
           <div class='thumbnail' >
             <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
-              <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
+              <img class="card-img-top" style="max-height: 11em;" src="assets/img/calculado-low.png">
             </a>
           </div>
           <div class='post-content'>

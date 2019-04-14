@@ -1,9 +1,7 @@
  .centered {
     
   }
-  h5{
-    color: black;
-  } 
+
   html,body{
     background-image: url('../img/fundeca.png');
     background-repeat: no-repeat;
@@ -11,17 +9,15 @@
     background-position:100% 3%;
     background-attachment:inherit; 
     width: 100%;
-     overflow-x: hidden; 
-     font-family: geometric;
-     src: url('../fonts/Geometric 415 Black BT.ttf');
+    overflow-x: hidden; 
+    font-family: geometric;
+    src: url('../fonts/Geometric 415 Black BT.ttf');
 
   }
   #card-fundo{
- 
   position: center;
-    margin-top: 1em; 
-    background-color:rgba(0, 0, 0, 0.1);
-     box-shadow: 10px 10px 5px grey;
+  background-image: linear-gradient(to bottom right,#00BFFF, palegreen);
+  box-shadow: 10px 10px 5px grey;
   }
 .report-module{
   border-style: ridge;
@@ -36,12 +32,9 @@
    background-color: rgba(214, 224, 226, 0.3);
 }
 #logo-icon{
-  margin-left: 1em;
-   position: center;
+position: center;
 margin-top: 1em;
-box-shadow: 10px 10px  5px grey;
-
 }
-@font-face {
-     
+.container:hover .overlay {
+  opacity: 1;
 }
