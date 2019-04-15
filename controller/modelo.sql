@@ -50,3 +50,4 @@
 			CONSTRAINT fk_post_id FOREIGN KEY (fk_id_post)
 			REFERENCES posts (id_post)
 		);
+			INSERT INTO users(name,email,password,admin) values ('admin','comdica@admin','adminadmin',true);
