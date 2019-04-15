@@ -8,7 +8,7 @@
       <li class="nav-item active">
         <a class="btn btn-outline-warning my-2 my-sm-0 m-1" href="doacoes.php">Doações <span class="sr-only">(Página atual)</span></a>
       </li>
-                                        <!-- modelo de teste -->
+           <!-- modelo de teste -->
       <li class="nav-item active">  
         <a class="btn btn-outline-warning my-2 my-sm-0 m-1" href="#">Contato</a>
       </li>
