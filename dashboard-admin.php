@@ -24,7 +24,7 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading"><img src="assets/img/comdica3.png" style="width: 10em;"> </div>
       <div class="list-group list-group-flush">
-        <a href="#" class="list-group-item list-group-item-action bg-light">Nova postagem</a>
+        <a href="nova-postagem.php" id='postagem' class="list-group-item list-group-item-action bg-light">Nova postagem</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Lista de postagens</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Doações Livres</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Doações do imposto de renda</a>
@@ -64,7 +64,7 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
         </div>
       </nav>
 
-      <div class="container-fluid">
+      <div class="container-fluid" id="area-principal">
         <h1 class="mt-4">Área do administrador COMDICA</h1>
     
     </div>
@@ -83,11 +83,24 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+    $("#postagem").click(function(e) {
+      e.preventDefault();
+        $.ajax({
+                type:'get',
+                url:'/controller/Retornos.php',
+                datatype:'json',
+                data:{postagem:'postagem'},
+            success: function(response){
+                  $('#area-principal').html(response);
+            }
+           }) 
+      
+    });
   </script>
 
 </body>
 
 </html>
 <?php }else{
-  header('location:login-admin.html');
+  header('location:login-admin.php');
 }?>
