@@ -25,7 +25,7 @@
   				Dados incorretos!
 				</div><?php }?>
             <h4>Faça login na área do administrador</h4>
-            <form class="form-signin" method="post" action="controller/auth-login.php">
+            <form class="form-signin" method="post" action="/controller/auth-login.php">
               E-Mail
               <div class="form-label-group">
               	 <label for="inputPassword"></label>
