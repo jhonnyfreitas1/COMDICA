@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -50,7 +50,7 @@ include 'nav.php';
 
 
         <hr>
-        <h2 class="title">Novidades</h2>
+        <h2 class="title text-white">Novidades</h2>
         <div id="carouselExampleIndicators" class="carousel slide col-lg-5-12 col-12 p-10" data-ride="carousel" style="">
           <ol class="carousel-indicators " >
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
