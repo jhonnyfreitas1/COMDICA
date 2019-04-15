@@ -1,6 +1,6 @@
 <!-- Footer -->
 <!-- Footer -->
-<footer class="page-footer font-small unique-color-dark  d-inline-block"  style="margin-top: 20em; width: 100%;">
+<footer class="page-footer font-small unique-color-dark  d-inline-block"  style="margin-top: 10em; width: 100%;">
 
   <div style="background-color:#DCDCDC;" class="bg-success">
 
@@ -75,7 +75,7 @@
             <h6 class="text-uppercase font-weight-bold">Links úteis</h6>
             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
             <p>
-            <a href="#!">Administrador</a>
+            <a href="dashboard-admin.php">Administrador</a>
             </p>
             <p>
               <a href="doacoes.php">Como doar</a>
@@ -111,8 +111,8 @@
               <!-- Footer Links -->
 
               <!-- Copyright -->
-              <div class="footer-copyright text-center py-3">© 2018 Copyright:
-                <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
+              <div class="footer-copyright text-center py-3">© 2019 Copyright:
+                <a href="https://mdbootstrap.com/education/bootstrap/"> IFPE</a>
               </div>
               <!-- Copyright -->
 
