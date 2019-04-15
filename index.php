@@ -93,7 +93,7 @@ include 'nav.php';
       <div class="col-md-3 col-sm-6">
         <div class='report-module'>
           <div class='thumbnail' >
-            <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
+            <a href="">
               <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
             </a>
           </div>
@@ -103,7 +103,7 @@ include 'nav.php';
             <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
             <div class='post-meta'>
               <span class='comments'>
-                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="view_visualizar_pontos.php?id=<?=$linha['id']?>">Saiba mas</a>
+                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mas</a>
               </span>
             </div>
           </div>
@@ -113,7 +113,7 @@ include 'nav.php';
       <div class="col-md-3 col-sm-6">
         <div class='report-module' style="">
           <div class='thumbnail' >
-            <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
+            <a href="">
               <img class="card-img-top" style="max-height: 11em;" src="assets/img/calculado-low.png">
             </a>
           </div>
@@ -123,7 +123,7 @@ include 'nav.php';
             <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
             <div class='post-meta'>
               <span class='comments'>
-                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="view_visualizar_pontos.php?id=<?=$linha['id']?>">Saiba mas</a>
+                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mas</a>
               </span>
             </div>
           </div>
@@ -132,7 +132,7 @@ include 'nav.php';
       <div class="col-md-3 col-sm-6">
         <div class='report-module' >
           <div class='thumbnail' >
-            <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
+            <a href="">
               <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
             </a>
           </div>
@@ -142,7 +142,7 @@ include 'nav.php';
             <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
             <div class='post-meta'>
               <span class='comments'>
-                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="view_visualizar_pontos.php?id=<?=$linha['id']?>">Saiba mas</a>
+                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mas</a>
               </span>
             </div>
           </div>
@@ -151,7 +151,7 @@ include 'nav.php';
       <div class="col-md-3 col-sm-6">
         <div class='report-module' >
           <div class='thumbnail' >
-            <a href="view_visualizar_pontos.php?id=<?=$linha['id']?>">
+            <a href="">
               <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
             </a>
           </div>
@@ -161,7 +161,7 @@ include 'nav.php';
             <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
             <div class='post-meta'>
               <span class='comments'>
-                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="view_visualizar_pontos.php?id=<?=$linha['id']?>">Saiba mas</a>
+                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mas</a>
               </span>
             </div>
           </div>

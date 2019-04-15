@@ -1,46 +1,52 @@
-
-drop database if exists comdica;
+	drop database if exists comdica;
 	create database if not exists comdica;
 	
     use comdica;
 
 	CREATE TABLE `users` (
-	 `id` int(11) NOT NULL AUTO_INCREMENT,
+	 `id_user` int(11) NOT NULL AUTO_INCREMENT,
 	 `name` varchar(255) NOT NULL,
 	 `email` varchar(100) NOT NULL,
 	 `password` varchar(255) NOT NULL,
-	 `admin` boolean default null,
-     PRIMARY KEY (`id`)
+	 `admin` boolean default NULL,
+     PRIMARY KEY (`id_user`)
 	);
 
-		CREATE TABLE `posts` (
-		 `id` int(11) NOT NULL AUTO_INCREMENT,
+	CREATE TABLE `posts` (
+		 `id_post` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		 `user_id` int(11) NOT NULL,
 		 `nome_post` varchar(200) NOT NULL,
 		 `descricao_post` text NOT NULL,
 		 `imagem` varchar(100) NOT NULL,
-		 `categoria` enum('Post educativo', 'Tutorial', 'Notícias', 'Vídeos', 'Entrevistas', 'Pesquisas','Atas') NOT NULL,
-		 PRIMARY KEY (`id`),
-		 CONSTRAINT `pk_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+		 `categoria` enum('Post educativo', 'Tutorial', 'Notícia', 'Vídeo', 'Entrevista', 'Pesquisa','Ata','Evento') NOT NULL,
+		 CONSTRAINT `pk_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`)
+         ON DELETE CASCADE
 		);
 
-			CREATE TABLE `avaliacoes` (
-				`id` int not null AUTO_INCREMENT,
-			  `user_id` int(11) NOT NULL,
-			  `qnt_estrela` int(11) NOT NULL,
-			  `ponto_id` int(11) NOT NULL,
-			  `modified` datetime DEFAULT NULL,
-			   PRIMARY KEY (id),
-			   CONSTRAINT `pk_av_ponto` FOREIGN KEY (`ponto_id`) REFERENCES `pontos_turisticos` (`id`) ON DELETE CASCADE,
-			   CONSTRAINT `pk_av_users` FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`) 
+	CREATE TABLE 
+    `doacoes_avulsas` (
+			  `id_doa_av` int(11) not null primary key AUTO_INCREMENT,
+              `doador` varchar(255) not null,
+			  `valor` int(15) NOT NULL,
+			  `metodo`  enum('boleto','cartao') NULL, 
+              `data` DATETIME NOT NULL,
+              `status` enum('pago','cancelado','aguardando pagamento','processando')
+              );
+
+
+     CREATE TABLE  `doacoes_imposto`(
+		`id_doa_im` int not null primary key auto_increment,
+        `doador` varchar(255) not null,
+		`valor` int(15) NOT NULL, 
+        `metodo` enum('boleto','cartao') not null, 
+        `data` DATETIME NOT NULL,
+		`status` enum('pago','cancelado','aguardando pagamento','processando') 
 		);
 
-		CREATE TABLE imagens(
-			img varchar(100) NOT NULL,
-			imagens_id INT(11) NOT NULL AUTO_INCREMENT,
-			post_id INT NOT NULL,
-			PRIMARY KEY (imagens_id),
-			CONSTRAINT fk_post FOREIGN KEY (post_id) REFERENCES posts (id)
-			ON DELETE CASCADE
+		CREATE TABLE `imagens`(
+			`img` varchar(100) NOT NULL,
+			`imagens_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			`fk_id_post` INT(11) NOT NULL,
+			CONSTRAINT fk_post_id FOREIGN KEY (fk_id_post)
+			REFERENCES posts (id_post)
 		);
-
