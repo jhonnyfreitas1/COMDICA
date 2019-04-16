@@ -9,8 +9,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/index-css.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>COMDICA - Conselho municipal dos direitos da criança e do adolescente.</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ 
+ 
+ 
+      <title>COMDICA - Conselho municipal dos direitos da criança e do adolescente.</title>
+
+  <!-- Barra superior -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   </head>
 
 <?php 
@@ -18,7 +28,7 @@
 ?>  
 
 <body>
- 
+        <!-- IMAGEM DA CALCULADORA--> 
 <div style="margin-top:30em; padding-bottom:6em;"></div>
   <div class="section">
     <div class="row ml-12"> 
@@ -48,8 +58,11 @@
         </div>
 
 
-        <hr>
+        <hr>    <!-- AQUI VAI SER OS SLIDES DE NOVIDADES DOS ULTIMOS 3 POSTS MAS RECENTES--> 
         <h2 class="title text-white" style="margin-left: 30px">Novidades</h2>
+        <?php $consulta = $conn -> query("SELECT id_post, nome_post, imagem,categoria from posts LIMIT 3"); 
+              $consulta -> fetch(PDO::FETCH_ASSOC);
+            ?>
         <div id="carouselExampleIndicators" class="carousel slide col-lg-5-12 col-12 p-10" data-ride="carousel" style="">
           <ol class="carousel-indicators " >
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -85,92 +98,126 @@
         </div>
       </div>
   
-  <!-- Optional JavaScript -->
-  <center>
-    <div style="margin-top: 5em;">
-     <div  class='row' style="float: right;">
-      <div class="col-md-3 col-sm-6" style="padding: 0px;">
-        <div class='report-module' style="margin-left: 5%; margin-right: 5%">
-          <div class='thumbnail'  >
-            <a href="">
-              <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
-            </a>
-          </div>
-          <div class='post-content'>
-            <div class='category'></div>  
-            <h2 class='title' style="height: 2.5em;">Comdica Araçoiaba</h2>
-            <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
-            <div class='post-meta'>
-              <span class='comments'>
-                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mais</a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- ///PARTE DE LISTAGEM DE POSTS -->
 
-      <div class="col-md-3 col-sm-6" style="padding: 0px;">
-        <div class='report-module' style="margin-left: 5%; margin-right: 5%">
-          <div class='thumbnail' >
-            <a href="">
-              <img class="card-img-top" style="max-height: 11em;" src="assets/img/calculado-low.png">
-            </a>
-          </div>
-          <div class='post-content'>
-            <div class='category'></div>  
-            <h2 class='title' style="height: 2.5em;">Comdica Araçoiaba abre novo chamado...</h2>
-            <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
-            <div class='post-meta'>
-              <span class='comments'>
-                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mais</a>
-              </span>
-            </div>
-          </div>
-        </div>
+        <?php $v = 0;     ///POSTAGENS DE ENTREVISTAS !!
+      $consultei = $conn -> query("SELECT * FROM posts WHERE categoria='Entrevista' ORDER BY id_post DESC;");
+        if ($consultei->rowCount() >= 1): ?>
+    <div class="container" id="listagem_pontos" >         
+      <div class="page-header">
+    
+      <hr>
+        <h2>Ultimas Entrevistas</h2>
       </div>
-      <div class="col-md-3 col-sm-6" style="padding: 0px;">
-        <div class='report-module' style="margin-left: 5%; margin-right: 5%">
-          <div class='thumbnail' >
-            <a href="">
-              <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
-            </a>
-          </div>
-          <div class='post-content'>
-            <div class='category'></div>  
-            <h2 class='title' style="height: 2.5em;">Jovens criam projeto de doaçoes  </h2>
-            <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
-            <div class='post-meta'>
-              <span class='comments'>
-                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mais</a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 col-sm-6" style="padding: 0px;">
-        <div class='report-module' style="margin-left: 5%; margin-right: 5%">
-          <div class='thumbnail' >
-            <a href="">
-              <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
-            </a>
-          </div>
-          <div class='post-content'>
-            <div class='category'></div>  
-            <h2 class='title' style="height: 2.5em;">Faça uma doação</h2>
-            <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
-            <div class='post-meta'>
-              <span class='comments'>
-                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mais</a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="row" style="width: 100%;">
+    <?php while($linha1 = $consultei -> fetch(PDO::FETCH_ASSOC)):
+        if ($v <= 2 ):?>
+        <a href="view_post.php?id=<?=$linha1['id_post']?>">
+          <div class="col-md-4 col-sm-6">
+                  <div class='report-module ' style=" border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.3)">
+                    <div class='thumbnail' >
+                      <a href="view_posts.php?id=<?=$linha1['id_post']?>">
+                        <img class="card-img-top " style="max-height: 11em;" src="upload/<?=$linha1['imagem'];?>">
+                      </a>
+                    </div>
+                    <div class='post-content'>
+                      <h2 class='title' style="height: 1.5em;"><?=$linha1['nome_post']?></h2>
+                      <p class='description' style="height: 2em;"><?= substr($linha1['descricao_post']."...",0 , 300); ?></p>
+                      <div class='post-meta float-right'>
+                        <span class='comments'>
+                          <a class="btn btn-success  btn-block" id="but" style="border:1px solid black;" href="view_post.php?id=<?=$linha1['id_post']?>">Ver Postagem</a>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+        </a>
+      <?php $v++;
+        endif;
+      endwhile ?>
+      </div>  
     </div>
-  </div>
+<?php endif ?>
+<br>  
+        
+    <?php $v = 0;///PARTE DE POSTS COM A CATEGORIA ATA 3 ULTIMAS
+      $consultei = $conn -> query("SELECT * FROM posts WHERE categoria='Ata' ORDER BY id_post DESC;");
+        if ($consultei->rowCount() >= 1): ?>
+          
+    <div class="container" id="listagem_pontos" >         
+      <div class="page-header">
+        <hr>
+        <h2> Ultimas Atas da Comdica</h2>
+      </div>
+      <div class="row">
+  <?php while($linha1 = $consultei -> fetch(PDO::FETCH_ASSOC)):
+          if ($v <= 2 ):?>
+          <a href="view_visualizar_pontos.php?id=<?=$linha1['id_post']?>">
+          <div class="col-md-4 col-sm-6">
+                  <div class='report-module' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.3)">
+                    <div class='thumbnail'>
+                      <a href="view_visualizar_pontos.php?id=<?=$linha1['id_post']?>">
+                        <img style="height: 11em;" src="upload/<?=$linha1['imagem'];?>">
+                      </a>
+                    </div>
+                    <div class='post-content'>
+                  <h2 class='title'><?=$linha1['nome_post']?></h2>
+                      <p class='description' style="height: 2em; margin-bottom: 5em;"><?= substr($linha1['descricao_post']."...",0 , 100); ?></p>
+                      <div class='post-meta float-right'>
+                        <span class='comments'>
+                          <a class="btn btn-success  btn-block" id="but" style="position:relative; border:1px solid black;" href="view_visualizar_pontos.php?id=<?=$linha1['id_post']?>">Ver Postagem</a>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+        </a>
+      <?php $v++;
+        endif;
+      endwhile ?>
+      </div>  
+    </div>
+<?php endif ?>  
 
-</center>
-
+  <?php $v = 0; //POSTAGEM DE PESQUISAS 
+      $consultei = $conn -> query("SELECT * FROM posts WHERE categoria='Pesquisa' ORDER BY id_post DESC;");
+        if ($consultei->rowCount() >= 1): ?>
+          
+    <div class="container" id="listagem_pontos" >         
+      <div class="page-header">
+        <hr>
+        <h2> Ultimas Pesquisas</h2>
+      </div>
+      <div class="row">
+  <?php while($linha1 = $consultei -> fetch(PDO::FETCH_ASSOC)):
+          if ($v <= 2 ):?>
+          <a href="view_visualizar_pontos.php?id=<?=$linha1['id_post']?>">
+          <div class="col-md-4 col-sm-6">
+                  <div class='report-module' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.3)">
+                    <div class='thumbnail'>
+                      <a href="view_visualizar_pontos.php?id=<?=$linha1['id_post']?>">
+                        <img style="height: 11em;" src="upload/<?=$linha1['imagem'];?>">
+                      </a>
+                    </div>
+                    <div class='post-content'>
+                  <h1 class='title'><?=$linha1['nome_post']?></h1>
+                      <p class='description' style="height: 2em;"><?= substr($linha1['descricao_post']."..",0 , 100); ?></p>
+                      <div class='post-meta'>
+                        <span class='comments'>
+                          <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="view_visualizar_pontos.php?id=<?=$linha1['id_post']?>">Ver Postagem</a>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+        </a>
+      <?php $v++;
+        endif;
+      endwhile ?>
+      </div>  
+    </div>
+<?php endif ?>  
+    
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
