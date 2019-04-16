@@ -35,21 +35,21 @@
       
     </div>
 
-    <div class="container col-md-6 col-12 p-10" id="card-fundo" style="margin-right: 10%;max-width: 65rem;">
+    <div class="container col-md-6 col-12 p-10" id="card-fundo" style="margin-right: 10%;max-width: 65rem;padding-right: 0px;padding-left: 0px;">
       <div class="row">
-        <div class=" col-md-12 text-dark position-top" >
+        <div class=" col-md-12 text-dark position-top">
          <div class=" card-header bg-success  col-12  text-white"><h4>FUNDECA</h></div>
           <h5 class="card-body text-white description">
             O Fundo Municipal dos Direitos da Criança e do Adolescente (FUMDECA) é um Fundo especial, criado por lei municipal, segundo determinação do Estatuto da Criança e do Adolescente em seu art. 260 com o objetivo de financiar programas e projetos que atuem na garantia da promoção, proteção e defesa dos direitos da criança e do adolescente. 
           </h5>
-            <a href="nucleo-icons.html" class="btn btn-info" target="_blank">Saiba mas</a>
+            <a href="nucleo-icons.html" class="btn btn-info" target="_blank" style="margin-left: 30px">Saiba mas</a>
 
           </div>
         </div>
 
 
         <hr>
-        <h2 class="title text-white">Novidades</h2>
+        <h2 class="title text-white" style="margin-left: 30px">Novidades</h2>
         <div id="carouselExampleIndicators" class="carousel slide col-lg-5-12 col-12 p-10" data-ride="carousel" style="">
           <ol class="carousel-indicators " >
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -83,15 +83,15 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-
       </div>
   
-  <!-- Optional JavaScript --><center>
+  <!-- Optional JavaScript -->
+  <center>
     <div style="margin-top: 5em;">
      <div  class='row' style="float: right;">
-      <div class="col-md-3 col-sm-6">
-        <div class='report-module'>
-          <div class='thumbnail' >
+      <div class="col-md-3 col-sm-6" style="padding: 0px;">
+        <div class='report-module' style="margin-left: 5%; margin-right: 5%">
+          <div class='thumbnail'  >
             <a href="">
               <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
             </a>
@@ -109,8 +109,8 @@
         </div>
       </div>
 
-      <div class="col-md-3 col-sm-6">
-        <div class='report-module' style="">
+      <div class="col-md-3 col-sm-6" style="padding: 0px;">
+        <div class='report-module' style="margin-left: 5%; margin-right: 5%">
           <div class='thumbnail' >
             <a href="">
               <img class="card-img-top" style="max-height: 11em;" src="assets/img/calculado-low.png">
@@ -128,8 +128,8 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 col-sm-6">
-        <div class='report-module' >
+      <div class="col-md-3 col-sm-6" style="padding: 0px;">
+        <div class='report-module' style="margin-left: 5%; margin-right: 5%">
           <div class='thumbnail' >
             <a href="">
               <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
@@ -147,8 +147,8 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 col-sm-6">
-        <div class='report-module' >
+      <div class="col-md-3 col-sm-6" style="padding: 0px;">
+        <div class='report-module' style="margin-left: 5%; margin-right: 5%"">
           <div class='thumbnail' >
             <a href="">
               <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
