@@ -7,6 +7,7 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/calc.css">
 
   <title>Doações</title>
 </head>
@@ -16,17 +17,46 @@
  ?>
 
 <body>
-<center>
-  <div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text">Valor:</span>
-  </div>
-  <input type="text" class="form-control">
-  <div class="input-group-append">
-    <span class="input-group-text">.00</span>
+
+<form>
+  <div class="inputCalc" style="margin-top: 2%;">
+  <div class="form-row" >
+    <div class="form-group col-md-6" >
+      <label for="inputEmail4" >Renda bruta</label>
+      <input type="number" class="form-control radius" id="inputEmail4" placeholder="R$ 0,00">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Número de dependentes</label>
+      <input type="number" class="form-control radius" id="inputPassword4" placeholder="0">
+    </div>
   </div>
 </div>
-</center>
+
+<div class="form-row inputCalc">
+    <div class="form-group col-md-6" >
+      <label for="inputEmail4">Despesa anual com ensino</label>
+      <input type="number" class="form-control radius" id="inputEmail4" placeholder="R$ 0,00">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Despesa anual com pensão alimentícia</label>
+      <input type="number" class="form-control radius" id="inputPassword4" placeholder="R$ 0,00">
+    </div>
+  </div>
+
+<div class="form-row inputCalc" style="margin-bottom: 1%">
+    <div class="form-group col-md-6" >
+      <label for="inputEmail4">Despesa anual médica</label>
+      <input type="number" class="form-control radius" id="inputEmail4" placeholder="R$ 0,00">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Previdência social (INSS)</label>
+      <input type="number" class="form-control radius" id="inputPassword4" placeholder="R$ 0,00">
+    </div>
+  </div>
+
+ <button type="submit" class="btn btn-success" style="width: 10%; display: block; margin: auto;">Calcular</button>
+
+</form>
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -36,7 +66,6 @@
   .centered {
     margin: 0 auto !important;
     float: none !important;
-
 
   }
   h5{
