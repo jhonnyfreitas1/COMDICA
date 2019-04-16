@@ -14,17 +14,16 @@
   </head>
 
 <?php 
-include 'nav.php';
+  include 'nav.php';
 ?>  
 
 <body>
-
  
-<div style="margin-top:30em; padding-bottom:6em; "> </div>
+<div style="margin-top:30em; padding-bottom:6em;"></div>
   <div class="section">
     <div class="row ml-12"> 
-     <div id="logo-icon" class="col-md-6 col-12 ml-12 p-10" style="">
-      <div class="card border- mb-3 text-white" style="max-width: 28rem; background-image: linear-gradient(to bottom right,#00BFFF, palegreen);">
+     <div id="logo-icon" class="col-md-6 col-12 ml-12 p-10" style="padding:0px;margin: 0px;flex: 0 0 30%;">
+      <div class="card border- mb-3 text-white" style="margin-left: 15%; max-width: 28rem; background-image: linear-gradient(to bottom right,#00BFFF, palegreen);">
   <div class="card-header bg-success border-success text-white"><h4>Calculadora de imposto de renda</h></div>
   <div class="card-body text-success">
     <h5 class="card-title text-white">Calcule seu imposto de renda aqui no nosso site, e veja quanto você pode doar, esse valor pode ser revertido ao seu favor.</h5>
@@ -36,9 +35,9 @@ include 'nav.php';
       
     </div>
 
-    <div class="container col-md-6 col-12 p-10" id="card-fundo" style="">
+    <div class="container col-md-6 col-12 p-10" id="card-fundo" style="margin-right: 10%;max-width: 65rem;">
       <div class="row">
-        <div class=" col-md-12 text-dark position-top">
+        <div class=" col-md-12 text-dark position-top" >
          <div class=" card-header bg-success  col-12  text-white"><h4>FUNDECA</h></div>
           <h5 class="card-body text-white description">
             O Fundo Municipal dos Direitos da Criança e do Adolescente (FUMDECA) é um Fundo especial, criado por lei municipal, segundo determinação do Estatuto da Criança e do Adolescente em seu art. 260 com o objetivo de financiar programas e projetos que atuem na garantia da promoção, proteção e defesa dos direitos da criança e do adolescente. 
