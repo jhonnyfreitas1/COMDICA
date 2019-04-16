@@ -81,15 +81,15 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
   <script>
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
+      $("#wrapper").toggleClass("toggled"); // metodo jquery que faz desaparecer a coluna da esquerda
     });
     $("#postagem").click(function(e) {
       e.preventDefault();
         $.ajax({
-                type:'get',
+                type:'post',
                 url:'/controller/Retornos.php',
                 datatype:'json',
-                data:{postagem:'postagem'},
+                data:{quero:'postagem'},     //metodo ajax que busca arquivo de formulario do post e coloca em uma div '#area-principal'
             success: function(response){
                   $('#area-principal').html(response);
             }
