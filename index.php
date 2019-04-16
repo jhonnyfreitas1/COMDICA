@@ -29,7 +29,7 @@
     <h5 class="card-title text-white">Calcule seu imposto de renda aqui no nosso site, e veja quanto você pode doar, esse valor pode ser revertido ao seu favor.</h5>
     <img src="assets/img/calculado-low.png">
   </div>
-  <div class="card-footer bg-transparent border-success"><button type="button" class="btn btn-primary btn-lg btn-block">Veja Agora</button>
+  <div class="card-footer bg-transparent border-success"><a href="calculo.php" style="text-decoration: none"><button type="button" class="btn btn-primary btn-lg btn-block">Veja Agora</button></a>
 </div>
 </div>
       
@@ -40,9 +40,9 @@
         <div class=" col-md-12 text-dark position-top">
          <div class=" card-header bg-success  col-12  text-white"><h4>FUNDECA</h></div>
           <h5 class="card-body text-white description">
-            O Fundo Municipal dos Direitos da Criança e do Adolescente (FUMDECA) é um Fundo especial, criado por lei municipal, segundo determinação do Estatuto da Criança e do Adolescente em seu art. 260 com o objetivo de financiar programas e projetos que atuem na garantia da promoção, proteção e defesa dos direitos da criança e do adolescente. 
+            O Fundo Municipal dos Direitos da Criança e do Adolescente (FUNDECA) é um Fundo especial, criado por lei municipal, segundo determinação do Estatuto da Criança e do Adolescente em seu art. 260 com o objetivo de financiar programas e projetos que atuem na garantia da promoção, proteção e defesa dos direitos da criança e do adolescente. 
           </h5>
-            <a href="nucleo-icons.html" class="btn btn-info" target="_blank" style="margin-left: 30px">Saiba mas</a>
+            <a href="nucleo-icons.html" class="btn btn-info" target="_blank" style="margin-left: 30px">Saiba mais</a>
 
           </div>
         </div>
@@ -102,7 +102,7 @@
             <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
             <div class='post-meta'>
               <span class='comments'>
-                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mas</a>
+                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mais</a>
               </span>
             </div>
           </div>
@@ -122,7 +122,7 @@
             <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
             <div class='post-meta'>
               <span class='comments'>
-                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mas</a>
+                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mais</a>
               </span>
             </div>
           </div>
@@ -141,14 +141,14 @@
             <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
             <div class='post-meta'>
               <span class='comments'>
-                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mas</a>
+                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mais</a>
               </span>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-3 col-sm-6" style="padding: 0px;">
-        <div class='report-module' style="margin-left: 5%; margin-right: 5%"">
+        <div class='report-module' style="margin-left: 5%; margin-right: 5%">
           <div class='thumbnail' >
             <a href="">
               <img class="card-img-top" style="max-height: 11em;" src="assets/img/comdica3.png">
@@ -160,7 +160,7 @@
             <p class='description' style="height: 2em;">Comdica Araçoiaba está com um novo site para...</p>
             <div class='post-meta'>
               <span class='comments'>
-                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mas</a>
+                <a class="btn btn-primary  btn-block" id="but" style="border:1px solid black;" href="">Saiba mais</a>
               </span>
             </div>
           </div>

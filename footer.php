@@ -1,3 +1,13 @@
+<style type="text/css">
+  a{
+    color:#212529;
+    font-weight: bolder;
+  }
+  a:hover{
+    color:#212529;
+  }
+</style>
+
 <!-- Footer -->
 <!-- Footer -->
 <footer class="page-footer font-small unique-color-dark  d-inline-block"  style="margin-top: 10em; width: 100%;">
@@ -12,9 +22,9 @@
         <!-- Grid column -->
         <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
 
-          <h6 class="mb-0"> 
+          <h6 class="mb-0 footer"> 
             <!-- Facebook -->
-            <a class="fb-ic">
+            <a class="fb-ic" >
               <i class="fab fa-facebook-f white-text mr-4"> </i>
             </a>
      
@@ -81,7 +91,7 @@
               <a href="doacoes.php">Como doar</a>
             </p>
             <p>
-              <a href="#!">Cálculo do imposto de renda</a>
+              <a href="calculo.php">Cálculo do imposto de renda</a>
             </p>
 
           </div>
