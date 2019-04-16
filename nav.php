@@ -23,5 +23,5 @@
       <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Pesquisar</button>
     </form>
   </div>
-
 </nav>  
+<?php include 'controller/bd-conection.php';?>

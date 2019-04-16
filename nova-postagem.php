@@ -1,4 +1,4 @@
-<form action="/controller/action-post-update.php" method="post" name="form-postagem">
+<form action="/controller/action-post.php" method="post" name="form-postagem" enctype="multipart/form-data">
 <div class="form-group col-md-6">
     <label for="">Titulo do post</label>
     <input class="form-control col-md-6" type="text" name="titulo">
@@ -8,7 +8,7 @@
 		<div class="file-field">   
 		    <div class="btn btn-success btn-sm float-left">
 		      <span>Choose file</span>
-		      <input type="file">
+		      <input type="file" name='imagem'>
 		    </div>	
 		  </div>
 	</div>
@@ -27,7 +27,7 @@
 			
 <div class="form-group col-md-6">
 	<label for="">Categoria do post</label>
-	<select name="user_funcao" class="form-control">
+	<select name="categoria" class="form-control">
 		<option></option>
 		<option>Post educativo</option>
 		<option>Tutorial</option>
