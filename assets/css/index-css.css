@@ -6,7 +6,8 @@
     background-image: url('../img/fundeca.png');
     background-repeat: no-repeat;
     background-size: 80%;
-    background-position:100% 5%;
+    margin: auto;
+    background-position:50% 3%;
     background-attachment:inherit; 
     width: 100%;
     overflow-x: hidden; 
