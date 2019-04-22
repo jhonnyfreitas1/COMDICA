@@ -2,8 +2,6 @@ drop database if exists comdica;
 	create database if not exists comdica;
 	
     use comdica;
-
-
     	
 	CREATE TABLE `users` (
 	 `id_user` int(11) NOT NULL AUTO_INCREMENT,
