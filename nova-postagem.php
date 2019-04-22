@@ -39,14 +39,8 @@
 		<option>Evento</option>
 	</select>
 </div>
-	<label>Selecione um arquivo <b>*.jpg, .gif, .pdf, .mp3, .mp4</b></label>
-<div class="file-field">
-   
-    <div class="btn btn-primary btn-sm float-left">
-      <span>Choose file</span>
-      <input type="file">
-    </div>	
-  </div>
+	<label>Selecione um arquivo para anexar (Não funciona ainda...s) <b>*.jpg, .gif, .pdf, .mp3, .mp4</b></label>
+
 </br>
 	<input type="submit" name="enviar"  style='margin-left: 5em; 'class="col-md-2 btn-success">
 </form>
