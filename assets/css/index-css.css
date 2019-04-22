@@ -1,38 +1,32 @@
- .centered {
-    
-  }
-
   html,body{
-    background-image: url('../img/fundeca.png');
+    background-image: url('../img/COR1.png');
     background-repeat: no-repeat;
-    background-size: 80%;
+    background-size: 70%;
     margin: auto;
-    background-position:50% 3%;
-    background-attachment:inherit; 
+    background-position:40% 30%;
+    background-attachment:fixed; 
     width: 100%;
     overflow-x: hidden; 
     font-family: geometric;
     src: url('../fonts/Geometric 415 Black BT.ttf');
-
+    background-color: #ebeced;
   }
+
+
   #card-fundo{
   position: center;
   background-image: linear-gradient(to bottom right,#00BFFF, palegreen);
   box-shadow: 10px 10px 5px grey;
   }
-.report-module{
-  border-style: ridge;
-  border-radius:0.4em;
-  padding: 1em; 
-  background-color: rgba(214, 224, 226, 0.3);
-}
+
 .report-module{
   border-style: ridge;
   border-radius:0.4em;
   padding: 1em;
-   background-color: rgba(214, 224, 226, 0.3);
+   background-color: rgba(214, 224, 226, 0.9);
 }
 #logo-icon{
+
 position: center;
 margin-top: 1em;
 }
