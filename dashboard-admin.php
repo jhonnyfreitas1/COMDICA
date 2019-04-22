@@ -1,4 +1,5 @@
-<?php 
+<?php
+use Retornos as Retornos;
 session_start();
 if ($_SESSION['name'] && $_SESSION['id_user']){
 ?>
@@ -25,7 +26,7 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
       <div class="sidebar-heading"><img src="assets/img/comdica3.png" style="width: 10em;"> </div>
       <div class="list-group list-group-flush">
         <a href="nova-postagem.php" id='postagem' class="list-group-item list-group-item-action bg-light">Nova postagem</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Lista de postagens</a>
+        <a href="#" id='minhas_postagens'class="list-group-item list-group-item-action bg-light">Minhas postagens</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Doações Livres</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Doações do imposto de renda</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Adicionar Usuarios</a>
@@ -37,7 +38,7 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
     <div id="page-content-wrapper">
 
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary" id="menu-toggle">Menu</button>
+        <button class="btn btn-primary fechar-abrir" id="menu-toggle">Fechar Menu</button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -78,25 +79,7 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
   <script src="assets/js/bootstrap.bundle.min.js"></script>
 
   <!-- Menu Toggle Script -->
-  <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled"); // metodo jquery que faz desaparecer a coluna da esquerda
-    });
-    $("#postagem").click(function(e) {
-      e.preventDefault();
-        $.ajax({
-                type:'post',
-                url:'/controller/Retornos.php',
-                datatype:'json',
-                data:{quero:'postagem'},     //metodo ajax que busca arquivo de formulario do post e coloca em uma div '#area-principal'
-            success: function(response){
-                  $('#area-principal').html(response);
-            }
-           }) 
-      
-    });
-  </script>
+  <script src="assets/js/dashboard.js"></script>
 
 </body>
 
