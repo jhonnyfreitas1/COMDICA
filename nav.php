@@ -15,7 +15,7 @@
       </li>
 
       <li class="nav-item active">  
-        <a class="btn btn-outline-warning my-2 my-sm-0 m-1" href="#">Contato</a>
+        <a class="btn btn-outline-warning my-2 my-sm-0 m-1" href="contato.php">Contato</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
