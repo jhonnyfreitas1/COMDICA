@@ -73,7 +73,28 @@
 
 <!-- jQuery first, then Popperjs, then Bootstrap JS -->
 
-
+<div style="display:none;" class="alert alert-success row" role="alert">
+ <div>
+  <h4 class="alert-heading">Antes de doar</h4>
+  <p id="seuinss">Inss: <b>201111</b></p>
+  <p id="suarendaanual">Renda anual:<b> 240000</b></p>
+  <p id="seusdebitos">Debitos da base:<b> 20000</b></p>
+  <p id="basedecalculo">Base de calculo:<b> 200000</b></p>
+   <p id="eliquota">Eliquota:<b> 7%</b></p>
+  <hr>
+  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+</div>
+ <div>
+  <h4 class="alert-heading">Doando</h4>
+  <p id="seuinss">Inss: <b>201111</b></p>
+  <p id="suarendaanual">Renda anual:<b> 240000</b></p>
+  <p id="seusdebitos">Debitos da base:<b> 20000</b></p>
+  <p id="basedecalculo">Base de calculo:<b> 200000</b></p>
+   <p id="eliquota">Eliquota:<b> 7%</b></p>
+  <hr>
+  <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+</div>
+</div>
 <style type="text/css">
   .centered {
     margin: 0 auto !important;
