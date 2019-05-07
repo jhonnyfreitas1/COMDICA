@@ -31,12 +31,12 @@
 
 <body>
 
-<form>
+<form class="col-md-12">
   <div class="inputCalc" style="margin-top: 2%;">
   <div class="form-row" >
     <div class="form-group col-md-6" >
-      <label for="inputEmail4"  >Renda mensal bruta</label>
-      <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" id="renda-bruta" placeholder="R$ 0,00">
+      <label for="inputEmail4">Renda mensal bruta</label>
+      <input type="text" require data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" id="renda-bruta" placeholder="R$ 0,00">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Número de dependentes</label>
@@ -51,7 +51,7 @@
       <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" id="desp-ensino" placeholder="R$ 0,00">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Despesa anual com pensão alimentícia</label>
+      <label class="row " for="inputPassword4">Despesa anual com pensão alimentícia</label>
       <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" id="desp-alim" placeholder="R$ 0,00">
     </div>
   </div>
@@ -67,7 +67,7 @@
     </div>
   </div>
 
- <button type="submit" class="btn btn-success" id='calcular' style="width: 10%; display: block; margin: auto;">Calcular</button>
+ <button type="submit" class="btn btn-success " id='calcular' style="width: 20%; display: block; margin: auto;">Calcular</button>
 
 </form>
 
@@ -102,6 +102,8 @@
 </div>
 </div>
 </div>
+
+<p id="isento"> </p>
 <style type="text/css">
   .centered {
     margin: 0 auto !important;

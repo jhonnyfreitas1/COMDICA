@@ -27,7 +27,7 @@
 include 'nav.php';
 ?>  
 
-  <body>
+  <body class="fadeIn">
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicadores do Carousel -->
         <ol class="carousel-indicators">
@@ -109,7 +109,7 @@ include 'nav.php';
         <div class="card-header bg-success border-success text-white"><h4>Calculadora de imposto de renda</h4></div>
           <div class="card-body text-success">
             <h5 class="card-title text-white">Calcule seu imposto de renda aqui no nosso site, e veja quanto você pode doar, esse valor pode ser revertido ao seu favor.</h5>
-            <img src="assets/img/calculado-low.png">
+            <img src="assets/img/calculado-low.png" class='pulse'>
           </div>
           <div class="card-footer bg-transparent border-success"><a href="calculo.php" style="text-decoration: none"><button type="button" class="btn btn-primary btn-lg btn-block">Veja Agora</button></a>
           </div>
@@ -126,13 +126,23 @@ include 'nav.php';
 
           </div>
         </div>
+        
+
       </div>
-  
+  <div id="loader"></div>
 
       <!-- ///PARTE DE LISTAGEM DE POSTS -->
 <div class="container" id="listagem_posts" > 
 </div>
+
 <script type="text/javascript">
+
+        // Este evendo é acionado após o carregamento da página
+        $(window).on('load', function() {
+            //Após a leitura da pagina o evento fadeOut do loader é acionado, esta com delay para ser perceptivo em ambiente fora do servidor.
+            $("#loader").delay(2000).fadeOut("slow");
+        });
+
   $(document).ready(function() {
     $.ajax({
         type:'get',
