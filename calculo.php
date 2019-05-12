@@ -20,9 +20,10 @@
   <script type="text/javascript" src="assets/js/jquery.maskMoney.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="assets/css/calc.css">
- 
  <script src="assets/js/calculo.js"></script>
   <title>Cálculo do imposto de renda</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 <?php 
@@ -34,9 +35,14 @@
 <form class="col-md-12">
   <div class="inputCalc" style="margin-top: 2%;">
   <div class="form-row" >
-    <div class="form-group col-md-6" >
-      <label for="inputEmail4">Renda mensal bruta</label>
-      <input type="text" require data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" id="renda-bruta" placeholder="R$ 0,00">
+    
+    <div class="form-group col-md-12">
+      <label for="inputEmail4"  class="d-flex justify-content-center">Renda anual bruta</label> 
+      <input type="text" require data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius "  data-toggle="tooltip" data-placement="top" title="Salário, Férias, Ganhos Tributaveis no ano " id="renda-bruta" placeholder="R$ 0,00">
+    </div>
+     <div class="form-group col-md-6" >
+      <label for="inputEmail4">13º Salário</label>
+      <input type="text" require data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" id="13salario" placeholder="R$ 0,00">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Número de dependentes</label>

@@ -5,21 +5,59 @@ $(document).ready(function(){
     $('#desp-medic').maskMoney();
     $('#desp-ensino').maskMoney();
     $("#resultados").hide();
-   
+    $('#inss').maskMoney();
+
+  $('#renda-bruta').tooltip();
+
+    $('#renda-bruta').blur(function(){
+
+    var rendabrutaanual =  $("#renda-bruta").maskMoney('unmasked')[0];
+   var rendamensalbruta  =  rendabrutaanual / 12;
+
+    var inssmensal = Math.round(inss(rendamensalbruta));
+
+
+    $('#inss').val(12 * inssmensal);
+
+      function inss(num){ //verifica o inss referente ao salario do usuario.
+            
+            if (num < 100) {
+            salarioL = false;
+        }
+        else if (num < 1751.81) {
+            var inss = (8/100) * num;
+            
+
+           return inss;
+        }else if (num >= 1751.81 && num <= 2919.72) {
+            var inss =  (9/100) * num ;
+       
+            return inss;
+        }else if(num >= 2919.72 && num <= 5839.45){
+            var inss = (11/100) * num;
+            
+            return inss;
+        }else if (num > 5839.46){
+            var inss = 608.44;
+    
+           return inss;
+        }
+        }   
+    });
+
+
+
   $("#calcular").click(function(e) {
 
         e.preventDefault(); 
 
         var dependentes = $("#dependentes").val(); //variavel dos dependentes pego input
 
-        var rendabruta = 12 *  $("#renda-bruta").maskMoney('unmasked')[0];//variavel da renda bruta retirando pontos/virgulas anual
+        var rendabruta =   $("#renda-bruta").maskMoney('unmasked')[0];//variavel da renda bruta retirando pontos/virgulas anual
 
         var rendamensal = $("#renda-bruta").maskMoney('unmasked')[0]; // variavel renda mensal
         
-        var inssmensal = Math.round(12 * inss(rendamensal));
-        
-        $('#inss').val(inssmensal); // está mensal mas é anual.
-        $('#inss').maskMoney();
+        var inssmensal = $("#inss").maskMoney('unmasked')[0];
 
         var despmedic =$('#desp-medic').maskMoney('unmasked')[0];
 
@@ -77,7 +115,7 @@ $(document).ready(function(){
             $('#basedecalculo').html('Base para Calculo:<b>'+rendabase+'</b>');
             $('#eliquota').html('Eliquota:<b>'+aliquota+'</b>');
             $('#impostoir').html('Imposto de Renda:<b>'+imposto+'</b>');
-            var porcentagem = rendabase * (6/100);     //tira os 6% da para doação 
+            var porcentagem = imposto * (6/100);     //tira os 6% da para doação 
             porcentagem = Math.round(porcentagem);
             var rendabase2 = rendabase - porcentagem;
             var aliquota2 = rendabase2 * (aliquota/100);
@@ -144,49 +182,27 @@ $(document).ready(function(){
             }
 
         }
-        function inss(num){ //verifica o inss referente ao salario do usuario.
-            if (num < 100) {
-            salarioL = false;
-            return salarioL;
-        }
-        else if (num < 1751.81) {
-            var inss = (8/100) * num;
-            salarioL =  inss;
-            return salarioL;
-        }else if (num >= 1751.81 && num <= 2919.72) {
-            var inss =  (9/100) * num ;
-            salarioL =  inss;
-            return salarioL;
-        }else if(num >= 2919.72 && num <= 5839.45){
-            var inss = (11/100) * num;
-            salarioL =  inss;
-            return salarioL;
-        }else if (num > 5839.46){
-            var inss = 608.44;
-            return inss;
-        }
-        }   
         function Aliquota(rendabruta){  //vê a porcentagem do eliquota do usuario com base no seu salario mensal.
-            var  rendabruta = rendabruta / 12;
+            var  rendabruta = rendabruta;
 
 
-            if (rendabruta < 1903.98) {
+            if (rendabruta < 22847.76 ) {
             alert('Sua renda menos as despesas é inferior para a base de calculo, vocẽ está icento');
             var aliquota = 'Isento';
             return aliquota;
-            }else if (rendabruta >= 1903.99 && rendabruta <= 2826.65 ) {
+            }else if (rendabruta >= 22847.77 && rendabruta <= 33919.80 ) {
             var  aliquota = 7.5;
             return aliquota;
-            }else if (rendabruta >= 2826.66 && rendabruta <= 3751.05 ) {
+            }else if (rendabruta >= 33919.81 && rendabruta <= 45012.60 ) {
 
             var  aliquota = 15;
             return aliquota;
             alert('renda é '+rendabruta+'e a aliquota é de '+aliquota+'%');
-            }else if (rendabruta >= 3751.06 && rendabruta <= 4664.68 ) {
+            }else if (rendabruta >= 45012.61 && rendabruta <= 55976.16) {
 
             var  aliquota = 22.50;
             return aliquota;
-            }else if (rendabruta > 4664.68 ) {
+            }else if (rendabruta > 55976.16) {
 
             var  aliquota = 27.50;
             return aliquota;
