@@ -27,6 +27,7 @@ jhonny:
 	sed -i 's/$username=.*/$username="root";/' controller/bd-conection.php
 	sed -i 's/$password=.*/$password="jhonny522";/' controller/bd-conection.php
 bd-renisson:
+
 	mysql -u renisson -p < controller/modelo.sql
 bd-jhonny: 
 	mysql -u root -p < controller/modelo.sql
