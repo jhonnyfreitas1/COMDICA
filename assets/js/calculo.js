@@ -5,6 +5,7 @@ $(document).ready(function(){
         $('#desp-medic').maskMoney();
         $('#desp-ensino').maskMoney();
         $("#resultados").hide();
+        $("#gerarpdf").hide();
         $('#inss').maskMoney();
         $('#nafonte').maskMoney();
         $('#renda-bruta').tooltip();
@@ -138,6 +139,7 @@ $(document).ready(function(){
                var target_offset = $("#ancora1").offset();
                 var target_top = target_offset.top;
                 $('html, body').animate({ scrollTop: target_top }, 2500);
+                $("#gerarpdf").show("slow",'linear');
                $("#resultados").show("slow",'linear');  //faz aparecer a div de mostrar valores com uma animação
              }
 

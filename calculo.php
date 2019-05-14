@@ -20,11 +20,13 @@
   <script type="text/javascript" src="assets/js/jquery.maskMoney.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="assets/css/calc.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
  <script src="assets/js/calculo.js"></script>
   <title>Cálculo do imposto de renda</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
+
 
 <?php 
     include 'nav.php';
@@ -93,7 +95,9 @@
 </div>
    
 </div> -->
+<div id="tabela">
 <center>
+
 <table class="fixed-center  table table-hover col-md-10 border border-dark m-2" id='resultados'>
   <thead class="thead-dark">
 
@@ -103,6 +107,7 @@
     </tr>
     <tbody> 
     <tr>
+   
       <th class="border border-dark" scope="row">Renda Anual Bruta</th>
       <td id="suarendaanual">Calcule</td>  
     </tr>
@@ -142,7 +147,7 @@
   
     </tr>
     <tr class="table-light">
-      <th class="border border-dark table-active bg-success" scope="row">Doe 6% do seu imposto</th>
+      <th class="border border-dark table-active bg-success" scope="row">Doe 6% do seu imposto para a fundeca</th>
       <td  class='table-active border border-dark bg-success' id="valor7"></td>  
     </tr>
     
@@ -151,11 +156,34 @@
 
 </table>
 
- </center>
+ </center>  
+</div>
 
+<script>
+    function CriaPDF() {
+        var minhaTabela = document.getElementById('tabela').innerHTML;
 
+         var style = "<style>";
+        style = style + "table {width: 100%;font: 20px Calibri;}";
+        style = style + "table, th, td {border: solid 10px #DDD; border-collapse: collapse;";
+        style = style + "padding: 2px 3px;text-align: center;}";
+         style = style + "</style>";
 
+        // CRIA UM OBJETO WINDOW
+        var win = window.open('', '', 'height=700,width=700');
 
+        win.document.write('<html><head>');
+        win.document.write("<title>Resultados da calculadora COMDICA </title>");   // <title> CABEÇALHO DO PDF.
+        win.document.write(style);                       // INCLUI UM ESTILO NA TAB HEAD
+        win.document.write('</head>');
+        win.document.write('<body>');
+        win.document.write(minhaTabela);                   // O CONTEUDO DA TABELA DENTRO DA TAG BODY
+        win.document.write('</body></html>');
+        win.document.close();                               // FECHA A JANELA
+
+        win.print();                                        // IMPRIME O CONTEUDO
+    }
+</script>
 
 
 </div>
@@ -180,28 +208,31 @@
 @-webkit-keyframes pulse {
   0% {
     -webkit-transform: scale(1);
-    -webkit-filter: brightness(80%);
+    -webkit-filter: brightness(100%);
   }
   100% {
     -webkit-transform: scale(1.1);
-    -webkit-filter: brightness(100%);
+    -webkit-filter: brightness(110%);
   }
 }
 
 @keyframes pulse {
   0% {
-    transform: scale(1.0);
-    filter: brightness(100%);
+    transform: scale(1.1);
+    filter: brightness(125%);
   }
   100% {
     transform: scale(1.0);
-    filter: brightness(150%);
+    filter: brightness(100%);
   }
-}
-
 </style>
 </body>
- 
+<div>
+<i class="far fa-file-pdf"></i>
+<button class='button' id="gerarpdf" onclick="CriaPDF()" style="color: red; size: 120%; float: right; margin-right: 9em;">Gerar pdf</br>
+ <i class="fa  fa-file-pdf-o" aria-hidden="true"
+ value="Criar PDF" id="btnImprimir" "></i></button>
+ </div>
 <?php 
     include 'footer.php';
 ?>
