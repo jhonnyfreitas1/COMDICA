@@ -113,7 +113,7 @@ $(document).ready(function(){
                 $('#impostoir').html(imposto.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 $('#deducao').html(deducao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 var irrfvspg = impostopg - irrf;
-                alert(irrf - impostopg);
+                
                 if (irrf <= impostopg){
                     $('#impostopagar').html((impostopg - irrf).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                     $('#impostorest').html(0);
