@@ -38,11 +38,11 @@
     
     <div class="form-group col-md-12">
       <label for="inputEmail4"  class="d-flex justify-content-center">Renda anual bruta</label> 
-      <input type="text" require data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius "  data-toggle="tooltip" data-placement="top" title="Salário, Férias, Ganhos Tributaveis no ano " id="renda-bruta" placeholder="R$ 0,00">
+      <input type="text" require data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius "  data-toggle="tooltip" data-placement="top" title="Salário, Férias, Ganhos Tributaveis no ano,13º Salário etc..." id="renda-bruta" placeholder="R$ 0,00">
     </div>
      <div class="form-group col-md-6" >
-      <label for="inputEmail4">13º Salário</label>
-      <input type="text" require data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" id="13salario" placeholder="R$ 0,00">
+      <label for="inputEmail4">IRRF (Imposto retido na fonte)</label>
+      <input type="text" require data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" id="nafonte" placeholder="R$ 0,00">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Número de dependentes</label>
@@ -78,11 +78,11 @@
 </form>
 
 <!-- jQuery first, then Popperjs, then Bootstrap JS -->
-<div class="row col-md-12 m-2" style=""  id='resultados' >
+<!-- <div class="row col-md-12 m-2" style=""   >
 <div   class="alert alert-warning col-md-6" role="alert">
 
   <h4 class="alert-heading">Antes de doar</h4>
-  <p id="seuinss">Inss: <b>201111</b></p>
+  <td id="seuinss">Inss: <b>201111</b></td>
   <p id="suarendaanual">Renda anual:<b> 240000</b></p>
   <p id="seusdebitos">Debitos da base:<b> 20000</b></p>
   <p id="basedecalculo">Base de calculo:<b> 200000</b></p>
@@ -91,22 +91,73 @@
   <hr>
   <p class="mb-0">O nosso simulador não deve ser substituido pela calculadora oficial da Receita da Fazenda</p>
 </div>
+   
+</div> -->
+<center>
+<table class="fixed-center  table table-hover col-md-10 border border-dark m-2" id='resultados'>
+  <thead class="thead-dark">
 
-<div    class="alert alert-success col-md-6 " role="alert">
-  <h4 class="alert-heading">Doando 6%</h4>
-  <p id="seuinss2">Inss: <b>201111</b></p>
-  <p id="suarendaanual2">Renda anual:<b> 240000</b></p>
-  <p id="seusdebitos2">Debitos da base:<b> 20000</b></p>
-  <p id="basedecalculo2">Base de calculo:<b> 200000</b></p>
-   <p id="eliquota2">Eliquota:<b> 7%</b></p>
-   <p id="impostoir2">IR:<b> 7%</b></p>
-   <p id="valor7"></p>
-   <button class="btn-success" id="doar"></button>
-  <hr>
-  <p class="mb-0">Alguma informação que seja de grande importancia.</p>
+    <tr>
+      <th class="border border-dark" scope="">Dados</th>
+      <th class="border border-dark" class="col-md-8" scope="col">Valores resultantes do calculo</th>
+    </tr>
+    <tbody> 
+    <tr>
+      <th class="border border-dark" scope="row">Renda Anual Bruta</th>
+      <td id="suarendaanual">Calcule</td>  
+    </tr>
+    <tr>
+      <th class="border border-dark" scope="row">IRRF (Imposto de renda retido na fonte)</th>
+      <td  id="irrf"></td>  
+    </tr>
+    <tr>
+      <th class="border border-dark" scope="row"> Rendimentos Debitaveis (-)</th>
+      <td id="seusdebitos">Calcule</td>  
+    </tr>
 
-</div>
-</div>
+    <tr>
+      <th class="border border-dark" scope="row">Base para calculo</th>
+      <td id="basedecalculo">Calcule</td>  
+    </tr>
+    <tr>
+      <th  class="border border-dark" scope="row">Alíquota Aplicada</th>
+      <td id="eliquota">Calcule</td>  
+    </tr>
+    <tr>
+      <th class="border border-dark" scope="row">Imposto de renda</th>
+      <td  id="impostoir">Calcule</td>  
+    </tr>
+     <tr>
+      <th class="border border-dark" scope="row">Valor a deduzir (-)</th>
+      <td  id="deducao">Calcule</td>  
+    </tr>
+      <tr>
+      <th class="border border-dark table-active" scope="row">Imposto de renda a restituir</th>
+      <td  class=' table-active border border-dark' id="impostorest">Calcule </td>  
+      <a name="ancora1" id="ancora1"></a>
+    </tr>
+    <tr>
+      <th class="border border-dark table-active" scope="row">Imposto de renda a pagar</th>
+      <td  class=' table-active border border-dark ' id="impostopagar">Calcule </td>  
+  
+    </tr>
+    <tr class="table-light">
+      <th class="border border-dark table-active bg-success" scope="row">Doe 6% do seu imposto</th>
+      <td  class='table-active border border-dark bg-success' id="valor7"></td>  
+    </tr>
+    
+  </thead>
+ </tbody>
+
+</table>
+
+ </center>
+
+
+
+
+
+
 </div>
 
 <p id="isento"> </p>
@@ -119,6 +170,34 @@
   h5{
     color: black;
   } 
+#pulse{
+  animation: pulse 0.7s infinite;
+  animation-direction: alternate;
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1);
+    -webkit-filter: brightness(80%);
+  }
+  100% {
+    -webkit-transform: scale(1.1);
+    -webkit-filter: brightness(100%);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1.0);
+    filter: brightness(100%);
+  }
+  100% {
+    transform: scale(1.0);
+    filter: brightness(150%);
+  }
+}
 
 </style>
 </body>
