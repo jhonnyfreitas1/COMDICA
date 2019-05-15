@@ -114,31 +114,30 @@ $(document).ready(function(){
                 $('#impostoir').html(imposto.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 $('#deducao').html(deducao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 var irrfvspg = impostopg - irrf;
-                
-                if (irrf <= impostopg){
-                    $('#impostopagar').html((impostopg - irrf).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
-                    $('#impostorest').html(0);
-                }else{
-                    $('#impostopagar').html(0);
-                     $('#impostorest').html("<b>"+(irrf - impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
-                }
-
-            
-
-                var porcentagem = impostopg * (6/100);     //tira os 6% da para doação 
+                 var porcentagem = impostopg * (6/100);     //tira os 6% da para doação 
                 
                 porcentagem = Math.round(porcentagem);
                 var rendabase2 = rendabase - porcentagem;
                 var aliquota2 = rendabase2 * (aliquota/100);
                 
                 var imposto =  aliquota2.toFixed(2); 
+
+                if (irrf <= impostopg){
+                    $('#impostopagar').html((impostopg - irrf).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
+                    $('#impostorest').html(0);        
+                    $('#valor7').html("<b><button id='pulse' class='btn btn-info'>A vista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a></button> Ou <button id='pulse' class='btn btn-info m-2'>Em 6 vezes de "+(porcentagem / 6).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+ "</button></b> <a href='#' class='btn btn-outline-dark col-md-2 '>Porque doar ?</a>");
+            
+                }else{
+                    $('#impostopagar').html(0);
+                     $('#impostorest').html("<b>"+(irrf - impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
+                        $('#valor7').html('<p>Você não tem imposto a pagar e sim a restituir.</p>');
+                }
+
                 $("#irrf").html(irrf.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                
-                $('#valor7').html("<b><button id='pulse' class='btn btn-info'>A vista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a></button> Ou <button id='pulse' class='btn btn-info m-2'>Em 6 vezes de "+(porcentagem / 6).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+ "</button></b> <a href='#' class='btn btn-outline-dark col-md-2 '>Porque doar ?</a>");
-            
                var target_offset = $("#ancora1").offset();
                 var target_top = target_offset.top;
-                $('html, body').animate({ scrollTop: target_top }, 2500);
+                $('html, body').animate({ scrollTop: target_top }, 3000);
                 $("#gerarpdf").show("slow",'linear');
                $("#resultados").show("slow",'linear');  //faz aparecer a div de mostrar valores com uma animação
              }

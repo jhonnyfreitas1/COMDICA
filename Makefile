@@ -1,6 +1,6 @@
 conf:
 	sudo apt-get install php7.2 php7.2-mbstring php7.2-mysql php7.2-intl php7.2-xml composer
-	#composer install --no-scripts comentando por enquanto jaja ativo depois do gerencianet
+	composer install --no-scripts 
 	sudo apt-get install mysql-server-5.7
 	#$(MAKE) bd-conf
 

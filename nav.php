@@ -1,3 +1,4 @@
+ <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <nav class="navbar navbar-expand-lg navbar-light bg-success" >
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Alterna navegação">
     <span class="navbar-toggler-icon"></span>

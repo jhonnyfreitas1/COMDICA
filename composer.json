@@ -1,0 +1,16 @@
+{
+    "name": "jf/comdica",
+    "description": "comdica",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jhonnyfreitas1",
+            "email": "jhonnyfarias87@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "gerencianet/gerencianet-sdk-php": "dev-master"
+    }
+}
