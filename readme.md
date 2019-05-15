@@ -8,10 +8,9 @@
 <!-- <a href="#"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a> -->
 </p>
 
-	## Conselho Municipal de Defesa e Promoção dos Direitos da Criança e do Adolescente
-	 Um sistema web que tem como objetivos incentivar as doacoes para a comdica, e manter sempre informado o publico alvo, também gerenciando os arquivos e informacoes necessarias para a os vinculados a comdica, sistema já está disponivel em  
+ Conselho Municipal de Defesa e Promoção dos Direitos da Criança e do Adolescente
+ Um sistema web que tem como objetivos incentivar as doacoes para a comdica, e manter sempre informado o publico alvo, também gerenciando os arquivos e informacoes necessárias para os vinculados a comdica, o site em si possui uma calculadora totalmente feita em javascript que calcula o imposto de renda e informa o valor a ser doado, realiza postagens, possui área do administrador, possui 3 formas de pagamentos, com o auxílio da Api do gerencianet, e entre outros plugins e Apis.. sistema já está disponivel em  https://comdica.site
 
-<a href="https://comdica.site">LInk para o site</a>
 		
 ## Protótipo do site em 
 
