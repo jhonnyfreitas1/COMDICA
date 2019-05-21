@@ -9,7 +9,7 @@
 
 
   <body class="fadeIn">
-  <div style="background-color: #ebeced;"> 
+  <div style="background-image: linear-gradient(to bottom right,#00BFFF, palegreen);"> 
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicadores do Carousel -->
         <ol class="carousel-indicators">
@@ -81,17 +81,15 @@
       </div>    
     </div>
     </div>
-     </div>
-      <div style="background-color: #ebeced; height: 3em;">
-  
-      </div>
+
+    
 
 
 
     <div class="container col-md-12 col-12" id="card-fundo" >
         <div class="row" >
           <div class=" col-md-12  position-top" >
-           <div class="  col-12 text-white" style="width: 100%; text-shadow: 2px 2px 4px #000111;"><h4>FUNDECA</h4>
+           <div class="  col-12 text-white" style="width: 100%;  text-shadow: 2px 2px 4px #000111;"><h4>FUNDECA</h4>
             <h5 class=" text-white description">
               O Fundo Municipal dos Direitos da Criança e do Adolescente (FUNDECA) é um Fundo especial, criado por lei municipal, segundo determinação do Estatuto da Criança e do Adolescente em seu art. 260 com o objetivo de financiar programas e projetos que atuem na garantia da promoção, proteção e defesa dos direitos da criança e do adolescente. 
               
@@ -101,20 +99,18 @@
         </div>
         </div>
     </div>
-  <div style="background-color: #ebeced; height: 3em;">
-  
-      </div>
+ </div>
 
       
   <!-- IMAGEM DA CALCULADORA--> 
 
  
-     <div id="logo-icon" class="col-md-4 col-12" style="float:right;">
+     <div id="logo-icon" class="col-md-4   col-12" style="float:right;">
       <div class="card  text-white col-md-12" style=" background-image: linear-gradient(to bottom right,#00BFFF, palegreen);">
-        <div class="card-header bg-success border-success text-white"><h4>Calculadora de imposto de renda</h4></div>
+        <div class="card-header  text-white"><h4>Calculadora de imposto de renda</h4></div>
           <div class="card-body text-success">
             <h5 class="card-title text-white">Calcule seu imposto de renda aqui no nosso site, e veja quanto você pode doar, esse valor pode ser revertido ao seu favor.</h5>
-            <a href="calculo.php"> <img src="assets/img/calculado-low.png" class='pulse col-md-12 col-12'> </a>
+            <a href="calculo.php"> <img src="assets/img/calculado-low.png" class='pulse col-md-10 col-12'> </a>
           </div>
         </div>
       </div>
@@ -122,7 +118,7 @@
   <div id="loader"></div>
 
       <!-- ///PARTE DE LISTAGEM DE POSTS -->
-    <div style="background-color: #ebeced; height: 120%;  margin-top: 38em;">
+    <div style="background-image: linear-gradient(to bottom right,#00BFFF, palegreen); height: 120%;  margin-top: 38em;">
   
      
     <div class="container" id="listagem_posts" > 
