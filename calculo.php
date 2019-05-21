@@ -1,7 +1,12 @@
 <!doctype html>
 <html lang="en">
-<head>
+
   <!-- Required meta tags -->
+
+<?php 
+    include 'nav.php';
+ ?>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
@@ -14,23 +19,17 @@
     color:#212529;
   }
 </style>
- <meta name="viewport" content="width=device-width, initial-scale=1">    
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-  <script type="text/javascript" src="assets/js/jquery.maskMoney.min.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="assets/css/calc.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
  <script src="assets/js/calculo.js"></script>
   <title>Cálculo do imposto de renda</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/js/jquery.maskMoney.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/css/calc.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 
 
-<?php 
-    include 'nav.php';
- ?>
 
 <body>
 
@@ -79,22 +78,7 @@
 
 </form>
 
-<!-- jQuery first, then Popperjs, then Bootstrap JS -->
-<!-- <div class="row col-md-12 m-2" style=""   >
-<div   class="alert alert-warning col-md-6" role="alert">
 
-  <h4 class="alert-heading">Antes de doar</h4>
-  <td id="seuinss">Inss: <b>201111</b></td>
-  <p id="suarendaanual">Renda anual:<b> 240000</b></p>
-  <p id="seusdebitos">Debitos da base:<b> 20000</b></p>
-  <p id="basedecalculo">Base de calculo:<b> 200000</b></p>
-   <p id="eliquota">Eliquota:<b> 7%</b></p>
-   <p id="impostoir">IR:<b> 7%</b></p>
-  <hr>
-  <p class="mb-0">O nosso simulador não deve ser substituido pela calculadora oficial da Receita da Fazenda</p>
-</div>
-   
-</div> -->
 <div id="tabela">
 <center>
 
@@ -228,7 +212,7 @@
 </style>
 </body>
 <div>
-<i class="far fa-file-pdf"></i>
+
 <button class='button' id="gerarpdf" onclick="CriaPDF()" style="color: red; size: 120%; float: right; margin-right: 9em;">Gerar pdf</br>
  <i class="fa  fa-file-pdf-o" aria-hidden="true"
  value="Criar PDF" id="btnImprimir" "></i></button>

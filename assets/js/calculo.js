@@ -1,6 +1,6 @@
 $(document).ready(function(){
-        $('#renda-bruta').maskMoney();
-        $('#desp-ensino').maskMoney();
+    $('#renda-bruta').maskMoney();
+    $('#desp-ensino').maskMoney();
         $('#desp-alim').maskMoney();          //adiciona mascaramento a todos os inputs na lista;
         $('#desp-medic').maskMoney();
         $('#desp-ensino').maskMoney();
@@ -13,41 +13,39 @@ $(document).ready(function(){
 
         $('#renda-bruta').keypress(function(){
 
-        var rendabrutaanual =  $("#renda-bruta").maskMoney('unmasked')[0];
-        var rendamensalbruta  =  rendabrutaanual;
+            var rendabrutaanual =  $("#renda-bruta").maskMoney('unmasked')[0];
+            var rendamensalbruta  =  rendabrutaanual;
+            var inssmensal = Math.round(inss(rendamensalbruta));
 
-        var inssmensal = Math.round(inss(rendamensalbruta));
+            $('#inss').val(inssmensal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
 
-
-        $('#inss').val(inssmensal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
-
-          function inss(num){ //verifica o inss referente ao salario do usuario.
+              function inss(num){ //verifica o inss referente ao salario do usuario.
 
                 if (num < 100) {
-                salarioL = false;
-            }
-            else if (num < 21021.72) {
-                var inss = (8/100) * num;
+                    salarioL = false;
+                }
+                else if (num < 21021.72) {
+                    var inss = (8/100) * num;
 
-               return inss;
-            }else if (num >= 21021.72 && num <= 35036.64) {
-                var inss =  (9/100) * num ;
-           
-                return inss;
-            }else if(num >= 35036.64 && num <= 70073.51){
-                var inss = (11/100) * num;
-                
-                return inss;
-            }else if (num > 70073.52){
-                var inss = 7301.28;
-               return inss;
-            }
+                    return inss;
+                }else if (num >= 21021.72 && num <= 35036.64) {
+                    var inss =  (9/100) * num ;
+
+                    return inss;
+                }else if(num >= 35036.64 && num <= 70073.51){
+                    var inss = (11/100) * num;
+                    
+                    return inss;
+                }else if (num > 70073.52){
+                    var inss = 7301.28;
+                    return inss;
+                }
             }   
         });
 
 
 
-      $("#calcular").click(function(e) {
+        $("#calcular").click(function(e) {
 
             e.preventDefault(); 
             var irrf = $("#nafonte").maskMoney('unmasked')[0];
@@ -73,32 +71,32 @@ $(document).ready(function(){
             var rendacalcSujo =  rendabruta  - (inssmensal + valordepentes + despesasensino + pensao + despmedic); // renda anualmenos o inss anual 
             
             var debitos = (inssmensal + valordepentes + despesasensino + pensao + despmedic); 
-          
+
 
             var aliquota = Aliquota(rendacalcSujo);
 
             var imposto = rendacalcSujo * (aliquota/100);
             
             if (aliquota =='Isento') {
-                 $("#isento").html('<h5>Você está Isento do imposto de renda, pós seu salario é inferior a 1903.98 após as deduções.</h5>');
-                 setTimeout(function(){ 
-                 $("#isento").empty();
-                 }, 3000);    
-                var aliquota = false;
-            }else{
-                     var deducao =  parDeduzir(aliquota);
+               $("#isento").html('<h5>Você está Isento do imposto de renda, pós seu salario é inferior a 1903.98 após as deduções.</h5>');
+               setTimeout(function(){ 
+                   $("#isento").empty();
+               }, 3000);    
+               var aliquota = false;
+           }else{
+               var deducao =  parDeduzir(aliquota);
                      mostrar(inssmensal, rendabruta, debitos, rendacalcSujo, aliquota, imposto, deducao,irrf); // chama a função mostrar 
-            }
+                 }
              if (Number.isNaN(imposto)) { //verifica se o imposto de renda é igual a NAN para dizer que deu errado.
-               var  imposto = 'Sem IR.</br>Há erros na digitação dos valores na calculadora ?';
+                 var  imposto = 'Sem IR.</br>Há erros na digitação dos valores na calculadora ?';
              }       
-            console.log('imposto>'+imposto);
-            console.log('renda base'+rendacalcSujo);
+             console.log('imposto>'+imposto);
+             console.log('renda base'+rendacalcSujo);
             console.log('ensino >'+despesasensino);     //só pra teste;
             console.log('pensao>'+pensao);
 
             
-       
+
             function Dependentes(num){
                 var valordepentes = num * 2275.08;
                 return valordepentes;
@@ -115,32 +113,32 @@ $(document).ready(function(){
                 $('#deducao').html(deducao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 var irrfvspg = impostopg - irrf;
                  var porcentagem = impostopg * (6/100);     //tira os 6% da para doação 
-                
-                porcentagem = Math.round(porcentagem);
-                var rendabase2 = rendabase - porcentagem;
-                var aliquota2 = rendabase2 * (aliquota/100);
-                
-                var imposto =  aliquota2.toFixed(2); 
 
-                if (irrf <= impostopg){
+                 porcentagem = Math.round(porcentagem);
+                 var rendabase2 = rendabase - porcentagem;
+                 var aliquota2 = rendabase2 * (aliquota/100);
+
+                 var imposto =  aliquota2.toFixed(2); 
+
+                 if (irrf <= impostopg){
                     $('#impostopagar').html((impostopg - irrf).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                     $('#impostorest').html(0);        
-                    $('#valor7').html("<b><button id='pulse' class='btn btn-info'>A vista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a></button> Ou <button id='pulse' class='btn btn-info m-2'>Em 6 vezes de "+(porcentagem / 6).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+ "</button></b> <a href='#' class='btn btn-outline-dark col-md-2 '>Porque doar ?</a>");
-            
+                    $('#valor7').html("<b><a id='pulse' href='doacao/index.php?valor="+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"&forma=boleto&avista=1' class='btn btn-info'>Avista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> Ou <a id='pulse' class='btn btn-info m-2'>Em 6 vezes de "+(porcentagem / 6).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+ "</a></s></b> <a href='#' class='btn btn-outline-dark col-md-2 '>Por que doar ?</a>");
+
                 }else{
                     $('#impostopagar').html(0);
-                     $('#impostorest').html("<b>"+(irrf - impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
-                        $('#valor7').html('<p>Você não tem imposto a pagar e sim a restituir.</p>');
+                    $('#impostorest').html("<b>"+(irrf - impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
+                    $('#valor7').html('<p>Você não tem imposto a pagar e sim a restituir.</p>');
                 }
 
                 $("#irrf").html(irrf.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
-               
-               var target_offset = $("#ancora1").offset();
+
+                var target_offset = $("#ancora1").offset();
                 var target_top = target_offset.top;
                 $('html, body').animate({ scrollTop: target_top }, 3000);
                 $("#gerarpdf").show("slow",'linear');
                $("#resultados").show("slow",'linear');  //faz aparecer a div de mostrar valores com uma animação
-             }
+           }
 
 
            function  despPensao(pensao , rendabruta){    //vê se a pensão é maior que 35% do salario comforme a lei. se nao deixa passar
@@ -160,7 +158,7 @@ $(document).ready(function(){
                 return 0;
             }
 
-            }
+        }
             function despEnsino(ensino , dependentes){  //verifica se o valor de limite para despesas com ensino ultrapassa, se nao, deixa passar
                 var depententes = dependentes;
                 var ensino = ensino;
@@ -174,7 +172,7 @@ $(document).ready(function(){
                     var despesasEnsino = ensino;
                     return despesasEnsino;
                 }
-                 }   
+            }   
 
             else{
                 if (ensino > limite) {
@@ -184,15 +182,15 @@ $(document).ready(function(){
                     var despesasEnsino =  ensino;
                     return despesasEnsino;
 
-                    }
-            
                 }
 
             }
-            function parDeduzir(aliquota){
-                if (aliquota == 7.5) {
-                        var deducao =   142.80 * 12;
-                       return  deducao;
+
+        }
+        function parDeduzir(aliquota){
+            if (aliquota == 7.5) {
+                var deducao =   142.80 * 12;
+                return  deducao;
             }else if (aliquota == 15) {
                 var deducao = 354.80 *  12;
                 return deducao;
@@ -206,29 +204,29 @@ $(document).ready(function(){
                 alert('erro com aliquota, verificar valores ou contate-nos');
             }
 
-            }
+        }
             function Aliquota(rendabruta){  //vê a porcentagem do eliquota do usuario com base no seu salario mensal.
                 var  rendabruta = rendabruta;
                 if (rendabruta < 22847.76 ) {
-                alert('Sua renda menos as despesas é inferior para a base de calculo, vocẽ está icento');
-                var aliquota = 'Isento';
-                return aliquota;
+                    alert('Sua renda menos as despesas é inferior para a base de calculo, vocẽ está icento');
+                    var aliquota = 'Isento';
+                    return aliquota;
                 }else if (rendabruta >= 22847.77 && rendabruta <= 33919.80 ) {
-                var  aliquota = 7.5;
-                return aliquota;
+                    var  aliquota = 7.5;
+                    return aliquota;
                 }else if (rendabruta >= 33919.81 && rendabruta <= 45012.60 ) {
 
-                var  aliquota = 15;
-                return aliquota;
-                alert('renda é '+rendabruta+'e a aliquota é de '+aliquota+'%');
+                    var  aliquota = 15;
+                    return aliquota;
+                    alert('renda é '+rendabruta+'e a aliquota é de '+aliquota+'%');
                 }else if (rendabruta >= 45012.61 && rendabruta <= 55976.16) {
 
-                var  aliquota = 22.50;
-                return aliquota;
+                    var  aliquota = 22.50;
+                    return aliquota;
                 }else if (rendabruta > 55976.16) {
 
-                var  aliquota = 27.50;
-                return aliquota;
+                    var  aliquota = 27.50;
+                    return aliquota;
                 }
 
 

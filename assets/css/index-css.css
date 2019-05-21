@@ -15,8 +15,7 @@
 
   #card-fundo{
   position: center;
-  background-image: linear-gradient(to bottom right,#00BFFF, palegreen);
-  box-shadow: 10px 10px 5px grey;
+ text-align: center;
   }
 
 .report-module{
@@ -26,8 +25,7 @@
    background-color: rgba(214, 224, 226, 0.9);
 }
 #logo-icon{
-
-position: center;
+  float: right;
 margin-top: 1em;
 }
 .container:hover .overlay {
@@ -40,10 +38,10 @@ margin-top: 1em;
   box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
 }
 .pulse{
+  float: right;
   animation: pulse 0.7s infinite;
   margin: 0 auto;
   display: table;
-  margin-top: 50px;
   animation-direction: alternate;
   -webkit-animation-name: pulse;
   animation-name: pulse;

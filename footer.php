@@ -1,6 +1,6 @@
 <style type="text/css">
   a{
-    color:black;
+    color:#1766D5;
     font-weight: bolder;
   }
   a:hover{
@@ -16,7 +16,7 @@
 <!-- Footer -->
 <footer class="page-footer font-small unique-color-dark  d-inline-block"  style="margin-top: 10em; width: 100%;">
 
-  <div style="" class="bg-success">
+  <div style="" class="bg-info">
 
     <div class="container" >
 
@@ -28,9 +28,7 @@
 
           <h6 class="mb-0 footer"> 
             <!-- Facebook -->
-            <a class="fb-ic" >
-              <i class="fab fa-facebook-f white-text mr-4"> </i>
-            </a>
+           
      
     
           </div >
@@ -59,7 +57,7 @@
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" >
 
             <!-- Content -->
-            <h6 class="text-uppercase font-weight-bold text">COMDICA - Conselho Municipal dos Direitos da Criança e do Adolescente</h6>
+            <h6 class="text-uppercase font-weight-bold text " style="color: #058624;">COMDICA - Conselho Municipal dos Direitos da Criança e do Adolescente</h6>
             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto " style="width: 60px;">
             <p class="text">O Conselho Municipal dos Direitos da Criança e do Adolescente - COMDICA é um órgão controlador das ações relativas ao atendimento dos direitos da criança e do adolescente.</p>
 
@@ -70,14 +68,15 @@
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" >
 
             <!-- Links -->
-            <h6 class="text-uppercase font-weight-bold text">Redes sociais</h6>
+            <h6 class="text-uppercase font-weight-bold text" style="color:#058624;">Redes sociais</h6>
             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <p>
-              <a href="https://www.facebook.com/cmdcaaracoiabape/">Facebook</a>
+
+            <p >
+              <a   href="https://www.facebook.com/cmdcaaracoiabape/" > 
+              <i style="font-size: 25px;" class="fab fa-facebook-f col-md-2 mr-4"> </i>  </a>
+            
             </p>
-            <p>
-              <a href="#!">Twitter</a>
-            </p>
+         
 
           </div>
           <!-- Grid column -->
@@ -86,7 +85,7 @@
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
             <!-- Links -->
-            <h6 class="text-uppercase font-weight-bold  text">Links úteis</h6>
+            <h6 class="text-uppercase font-weight-bold  text" style=" color:#058624;">Links úteis</h6>
             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
             <p>
             <a  href="dashboard-admin.php" class="">Administrador</a>
@@ -105,7 +104,7 @@
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-10">
 
             <!-- Links -->
-            <h6 class="text-uppercase font-weight-bold text">Contato</h6>
+            <h6 class="text-uppercase font-weight-bold text" style=" color:#058624;">Contato</h6>
             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; ">
             <p class="text">
               <i class="fas fa-home mr-3 text"></i > Araçoiaba, n 10012, PE</p>
@@ -126,7 +125,7 @@
 
               <!-- Copyright -->
               <div class="footer-copyright text-center py-3">© 2019 Copyright:
-                <a href="https://mdbootstrap.com/education/bootstrap/"> IFPE</a>
+                <a href="#"> IFPE</a>
               </div>
               <!-- Copyright -->
 
