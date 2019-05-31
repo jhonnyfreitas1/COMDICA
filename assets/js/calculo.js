@@ -1,25 +1,28 @@
 $(document).ready(function(){
     $('#renda-bruta').maskMoney();
     $('#desp-ensino').maskMoney();
-        $('#desp-alim').maskMoney();          //adiciona mascaramento a todos os inputs na lista;
-        $('#desp-medic').maskMoney();
-        $('#desp-ensino').maskMoney();
-        $("#resultados").hide();
-        $("#gerarpdf").hide();
-        $('#inss').maskMoney();
-        $('#nafonte').maskMoney();
-        $('#renda-bruta').tooltip();
-        
+    $('#desp-alim').maskMoney();          //adiciona mascaramento a todos os inputs na lista;
+    $('#desp-medic').maskMoney();
+    $('#desp-ensino').maskMoney();
+    $('#13').maskMoney();
+    $("#resultados").hide();
+    $("#gerarpdf").hide();
+    $('#inss').maskMoney();
+    $('#nafonte').maskMoney();
 
-        $('#renda-bruta').keypress(function(){
+    $('#renda-bruta').tooltip();
+    $('#desp-ensino').tooltip();        
+    $('#desp-medic').tooltip();        
 
-            var rendabrutaanual =  $("#renda-bruta").maskMoney('unmasked')[0];
-            var rendamensalbruta  =  rendabrutaanual;
-            var inssmensal = Math.round(inss(rendamensalbruta));
+    $('#renda-bruta').keypress(function(){
 
-            $('#inss').val(inssmensal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
+        var rendabrutaanual =  $("#renda-bruta").maskMoney('unmasked')[0];
+        var rendamensalbruta  =  rendabrutaanual;
+        var inssmensal = Math.round(inss(rendamensalbruta));
 
-              function inss(num){ //verifica o inss referente ao salario do usuario.
+        $('#inss').val(inssmensal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
+
+          function inss(num){ //verifica o inss referente ao salario do usuario.
 
                 if (num < 100) {
                     salarioL = false;
@@ -41,7 +44,7 @@ $(document).ready(function(){
                     return inss;
                 }
             }   
-        });
+    });
 
 
 
@@ -64,6 +67,12 @@ $(document).ready(function(){
             
             var pensao = despPensao($('#desp-alim').maskMoney('unmasked')[0], rendabruta);
 
+            var salario13 = $("#13").maskMoney('unmasked')[0];
+
+
+            rendabruta += salario13;
+            alert(salario13);
+
             var valordepentes = Dependentes(dependentes);
 
             var despesasensino = despEnsino(despensino, dependentes);
@@ -83,19 +92,17 @@ $(document).ready(function(){
                    $("#isento").empty();
                }, 3000);    
                var aliquota = false;
-           }else{
+            }else{
                var deducao =  parDeduzir(aliquota);
-                     mostrar(inssmensal, rendabruta, debitos, rendacalcSujo, aliquota, imposto, deducao,irrf); // chama a função mostrar 
-                 }
+                mostrar(inssmensal, rendabruta, debitos, rendacalcSujo, aliquota, imposto, deducao,irrf); // chama a função mostrar 
+            }
              if (Number.isNaN(imposto)) { //verifica se o imposto de renda é igual a NAN para dizer que deu errado.
                  var  imposto = 'Sem IR.</br>Há erros na digitação dos valores na calculadora ?';
              }       
              console.log('imposto>'+imposto);
              console.log('renda base'+rendacalcSujo);
-            console.log('ensino >'+despesasensino);     //só pra teste;
-            console.log('pensao>'+pensao);
-
-            
+             console.log('ensino >'+despesasensino);     //só pra teste;
+             console.log('pensao>'+pensao);
 
             function Dependentes(num){
                 var valordepentes = num * 2275.08;
@@ -123,7 +130,7 @@ $(document).ready(function(){
                  if (irrf <= impostopg){
                     $('#impostopagar').html((impostopg - irrf).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                     $('#impostorest').html(0);        
-                    $('#valor7').html("<b><a id='pulse' href='doacao/index.php?valor="+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"&forma=boleto&avista=1' class='btn btn-info'>Avista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> Ou <a id='pulse' class='btn btn-info m-2'>Em 6 vezes de "+(porcentagem / 6).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+ "</a></s></b> <a href='#' class='btn btn-outline-dark col-md-2 '>Por que doar ?</a>");
+                    $('#valor7').html("<b><a id='pulse' href='doacao_boleto.php?valor="+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"&forma=boleto&avista=1' class='btn btn-info'>Avista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> Ou <a id='pulse' class='btn btn-info m-2'>Em 6 vezes de "+(porcentagem / 6).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+ "</a></s></b> <a href='#' class='btn btn-outline-dark col-md-2 '>Por que doar ?</a>");
 
                 }else{
                     $('#impostopagar').html(0);
@@ -142,69 +149,64 @@ $(document).ready(function(){
 
 
            function  despPensao(pensao , rendabruta){    //vê se a pensão é maior que 35% do salario comforme a lei. se nao deixa passar
-            if (pensao > 1) {
-                var pensao = pensao;
-                var renda = rendabruta;
-                var limite = (35/100) * renda;
-                if (pensao >  limite) {
-                    alert('pensao maior que o limite de 35%');
-                    var pensao = limite;
-                    return pensao;
-                }else {
-                    return pensao;
+                if (pensao > 1) {
+                    var pensao = pensao;
+                    var renda = rendabruta;
+                    var limite = (35/100) * renda;
+                    if (pensao >  limite) {
+                        alert('pensao maior que o limite de 35%');
+                        var pensao = limite;
+                        return pensao;
+                    }else {
+                        return pensao;
+                    }
+
+                }else{
+                    return 0;
                 }
-
-            }else{
-                return 0;
             }
-
-        }
             function despEnsino(ensino , dependentes){  //verifica se o valor de limite para despesas com ensino ultrapassa, se nao, deixa passar
                 var depententes = dependentes;
                 var ensino = ensino;
                 var limite = 3561.50;
                 if (dependentes >= 1) {
-                  if (ensino > (parseInt(1) + parseInt(dependentes)) * parseInt(limite)){
-                    alert('Lei 11.482 de 2007, o limite anual para dedução de despesas com educação é de R$ 3.561,50 por pessoa, tanto para o declarante quanto seus dependentes. Como você tem'+dependentes+'dependentes, o valor máximo para dedução é de R$'+(parseInt(1)+parseInt(dependentes)) * parseInt(limite)+'. Para esta simulação foi utilizado esse valor, porém caso prefira, refaça a simulação com os valores atualizados.');
-                    var despesasEnsino = 'Limite atingido';
-                    return despesasEnsino;    
-                }else{
-                    var despesasEnsino = ensino;
-                    return despesasEnsino;
+                      if (ensino > (parseInt(1) + parseInt(dependentes)) * parseInt(limite)){
+                        alert('Lei 11.482 de 2007, o limite anual para dedução de despesas com educação é de R$ 3.561,50 por pessoa, tanto para o declarante quanto seus dependentes. Como você tem'+dependentes+'dependentes, o valor máximo para dedução é de R$'+(parseInt(1)+parseInt(dependentes)) * parseInt(limite)+'. Para esta simulação foi utilizado esse valor, porém caso prefira, refaça a simulação com os valores atualizados.');
+                        var despesasEnsino = 'Limite atingido';
+                        return despesasEnsino;    
+                    }else{
+                        var despesasEnsino = ensino;
+                        return despesasEnsino;
+                    }
+                }   
+                else{
+                    if (ensino > limite) {
+                        alert('Lei 11.482 de 2007, o limite anual para dedução de despesas com educação é de R$ 3.561,50 por pessoa, tanto para o declarante quanto seus dependentes. Como você tem 0 dependentes, o valor máximo para dedução é de R$'+3561.50+'. Para esta simulação foi utilizado esse valor, porém caso prefira, refaça a simulação com os valores atualizados.');
+                        var despesasEnsino = 'Limite atingido';
+                    }else{
+                        var despesasEnsino =  ensino;
+                        return despesasEnsino;
+                    }
                 }
-            }   
-
-            else{
-                if (ensino > limite) {
-                    alert('Lei 11.482 de 2007, o limite anual para dedução de despesas com educação é de R$ 3.561,50 por pessoa, tanto para o declarante quanto seus dependentes. Como você tem 0 dependentes, o valor máximo para dedução é de R$'+3561.50+'. Para esta simulação foi utilizado esse valor, porém caso prefira, refaça a simulação com os valores atualizados.');
-                    var despesasEnsino = 'Limite atingido';
-                }else{
-                    var despesasEnsino =  ensino;
-                    return despesasEnsino;
-
+            }
+            function parDeduzir(aliquota){
+                if (aliquota == 7.5) {
+                    var deducao =   142.80 * 12;
+                    return  deducao;
+                }else if (aliquota == 15) {
+                    var deducao = 354.80 *  12;
+                    return deducao;
+                }else if (aliquota == 22.50) {
+                    var deducao = 636.13 * 12;
+                    return deducao;                 
+                }else if (aliquota == 27.50) {
+                    var deducao = 869.36 * 12;
+                    return deducao;
+                }else {
+                    alert('erro com aliquota, verificar valores ou contate-nos');
                 }
 
             }
-
-        }
-        function parDeduzir(aliquota){
-            if (aliquota == 7.5) {
-                var deducao =   142.80 * 12;
-                return  deducao;
-            }else if (aliquota == 15) {
-                var deducao = 354.80 *  12;
-                return deducao;
-            }else if (aliquota == 22.50) {
-                var deducao = 636.13 * 12;
-                return deducao;                 
-            }else if (aliquota == 27.50) {
-                var deducao = 869.36 * 12;
-                return deducao;
-            }else {
-                alert('erro com aliquota, verificar valores ou contate-nos');
-            }
-
-        }
             function Aliquota(rendabruta){  //vê a porcentagem do eliquota do usuario com base no seu salario mensal.
                 var  rendabruta = rendabruta;
                 if (rendabruta < 22847.76 ) {
