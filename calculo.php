@@ -37,9 +37,13 @@
   <div class="inputCalc" style="margin-top: 2%;">
   <div class="form-row" >
     
-    <div class="form-group col-md-12">
+    <div class="form-group col-md-6">
       <label for="inputEmail4"  class="d-flex justify-content-center">Renda anual bruta</label> 
-      <input type="text" require data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius "  data-toggle="tooltip" data-placement="top" title="Salário, Férias, Ganhos Tributaveis no ano,13º Salário etc..." id="renda-bruta" placeholder="R$ 0,00">
+      <input type="text" require data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius "  data-toggle="tooltip" data-placement="top" title="Salário, Férias, Ganhos Tributaveis no ano etc..." id="renda-bruta" placeholder="R$ 0,00">
+    </div>
+     <div class="form-group col-md-6" >
+      <label>13º Salário</label>
+      <input type="text" require data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" id="13" placeholder="R$ 0,00">
     </div>
      <div class="form-group col-md-6" >
       <label for="inputEmail4">IRRF (Imposto retido na fonte)</label>
@@ -55,7 +59,7 @@
 <div class="form-row inputCalc">
     <div class="form-group col-md-6" >
       <label for="inputEmail4">Despesa anual com ensino</label>
-      <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" id="desp-ensino" placeholder="R$ 0,00">
+      <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" id="desp-ensino"  data-toggle="tooltip" data-placement="top" title="O limite de dedução é de R$3.561,50 por dependentes ano"   placeholder="R$ 0,00">
     </div>
     <div class="form-group col-md-6">
       <label class="row " for="inputPassword4">Despesa anual com pensão alimentícia</label>
@@ -66,7 +70,7 @@
 <div class="form-row inputCalc" style="margin-bottom: 1%">
     <div class="form-group col-md-6" >
       <label for="inputEmail4">Despesa anual médica</label>
-      <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" id="desp-medic" placeholder="R$ 0,00">
+      <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius" data-toggle="tooltip" data-placement="top" title="Valor de dedução ilimitada" id="desp-medic" placeholder="R$ 0,00">
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Previdência social (INSS)</label>
@@ -78,7 +82,10 @@
 
 </form>
 
-
+<button type="button" class="btn btn-primary fixed-bottom" disabled>
+    Ano de Atuação <span class="badge badge-light"><?= date('Y'); ?></span>
+  <span class="sr-only">unread messages</span>
+</button>
 <div id="tabela">
 <center>
 

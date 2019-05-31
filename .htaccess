@@ -1,0 +1,6 @@
+
+RewriteEngine On 
+RewriteCond %{REQUEST_FILENAME} i-f
+RewriteCond %{REQUEST_FILENAME} i-d
+
+RewriteRule . /index.php [L] 

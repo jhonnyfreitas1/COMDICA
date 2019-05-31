@@ -1,33 +1,15 @@
 <!doctype html>
 <html lang="pt-br">
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <?php 
+    include 'nav.php';
+  ?>  
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="assets/css/index-css.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="assets/js/jquery.min.js"></script>
-
-
-  <title>COMDICA - Conselho municipal dos direitos da criança e do adolescente.</title>
-
-  <!-- Barra superior -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
 </head>
 
-<?php 
-include 'nav.php';
-?>  
 
   <body class="fadeIn">
+  <div style="background-image: linear-gradient(to bottom right,#00BFFF, palegreen);"> 
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicadores do Carousel -->
         <ol class="carousel-indicators">
@@ -100,40 +82,48 @@ include 'nav.php';
     </div>
     </div>
 
+    
+
+
+
+    <div class="container col-md-12 col-12" id="card-fundo" >
+        <div class="row" >
+          <div class=" col-md-12  position-top" >
+           <div class="  col-12 text-white" style="width: 100%;  text-shadow: 2px 2px 4px #000111;"><h4>COMDICA ARAÇOIABA</h4>
+            <h5 class=" text-white description">
+                O Conselho Municipal de Defesa e Promoção dos Direitos da Criança e do Adolescente -COMDICA - é um órgão permanente, previsto no artigo 88 da lei n° 8.069/1990 – Estatuto da Criança e do Adolescente. É autônomo nas suas deliberações e vinculado administrativamente a Secretaria de Desenvolvimento Social, Juventude, Política sobre Drogas e Direitos Humanos da Prefeitura do Araçoiaba.
+
+            </h5>
+              
+          </div>
+        </div>
+        </div>
+    </div>
+ </div>
+
+      
   <!-- IMAGEM DA CALCULADORA--> 
-  <div style="margin-top:2em;"></div>
-  <div class="section">
-    <div class="row ml-12"> 
-     <div id="logo-icon" class="col-md-6 col-12 ml-12 p-10" style="padding:0px;margin: 0px;flex: 0 0 30%;">
-      <div class="card border- mb-3 text-white" style=" margin:auto; max-width: 80%; background-image: linear-gradient(to bottom right,#00BFFF, palegreen);">
-        <div class="card-header bg-success border-success text-white"><h4>Calculadora de imposto de renda</h4></div>
+
+ 
+     <div id="logo-icon" class="col-md-4   col-12" style="float:right;">
+      <div class="card  text-white col-md-12" style=" background-image: linear-gradient(to bottom right,#00BFFF, palegreen);">
+        <div class="card-header  text-white"><h4>Calculadora de imposto de renda</h4></div>
           <div class="card-body text-success">
             <h5 class="card-title text-white">Calcule seu imposto de renda aqui no nosso site, e veja quanto você pode doar, esse valor pode ser revertido ao seu favor.</h5>
-            <img src="assets/img/calculado-low.png" class='pulse'>
-          </div>
-          <div class="card-footer bg-transparent border-success"><a href="calculo.php" style="text-decoration: none"><button type="button" class="btn btn-primary btn-lg btn-block">Veja Agora</button></a>
+            <a href="calculo.php"> <img src="assets/img/calculado-low.png" class='pulse col-md-10  col-12'> </a>
           </div>
         </div>
       </div>
-      <div class="container col-md-6 col-12 p-10" id="card-fundo" style="margin-right: 10%;max-width: 65rem;padding-right: 0px;padding-left: 0px;">
-        <div class="row">
-          <div class=" col-md-12 text-dark position-top">
-           <div class=" card-header bg-success  col-12  text-white"><h4>FUNDECA</h4></div>
-            <h5 class="card-body text-white description">
-              O Fundo Municipal dos Direitos da Criança e do Adolescente (FUNDECA) é um Fundo especial, criado por lei municipal, segundo determinação do Estatuto da Criança e do Adolescente em seu art. 260 com o objetivo de financiar programas e projetos que atuem na garantia da promoção, proteção e defesa dos direitos da criança e do adolescente. 
-            </h5>
-            <a href="nucleo-icons.html" class="btn btn-info" target="_blank" style="margin-left: 30px">Saiba mais</a>
-            <img style="width:90%;" src="assets/img/fundeca1.png">
-          </div>
-        </div>
-        
-
-      </div>
+      
   <div id="loader"></div>
 
       <!-- ///PARTE DE LISTAGEM DE POSTS -->
-<div class="container" id="listagem_posts" > 
+    <div style="background-image: linear-gradient(to bottom right,#00BFFF, palegreen); height: 120%;  margin-top: 38em;">
+  
+     
+    <div class="container" id="listagem_posts" > 
 </div>
+
 
 <script type="text/javascript">
 
@@ -143,7 +133,6 @@ include 'nav.php';
             $("#loader").delay(2000).fadeOut("slow");
         });
 
-  $(document).ready(function() {
     $.ajax({
         type:'get',
         url:'../pagina.php',
@@ -154,7 +143,6 @@ include 'nav.php';
         }
     })
 
-});
   function pagina(e){
     alert('Ainda vou modificar essa parte de paginação');
 }
@@ -169,5 +157,5 @@ include 'nav.php';
 <?php 
 include 'footer.php';
 ?>
-
+ </div>
 </html>
