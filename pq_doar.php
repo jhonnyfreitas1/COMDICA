@@ -19,13 +19,15 @@
 
 <body>
 
-<div class="pq_doar" style="height: 500px">
+<div class="img_fundo"></div>
+
 <h5 class="texto_doacao">
+  <p class="titulo">Por que doar?</p>
   Sua doação faz a diferença, e ela pode ser feita a partir da destinação de um percentual do imposto que você paga , sendo redirecionada à ajuda de crianças carentes de araçoiaba , tudo isso sem pagar à mais , pois o dinheiro já seria recolhido pela receita federal.
-Pessoas físicas podem deduzir até 6% do imposto de renda, para verificar quanto você pode destinar para a fundação , basta simular na calculadora, ela pode ser acessada por aqui.
+Pessoas físicas podem deduzir até 6% do imposto de renda, para verificar quanto você pode destinar para a fundação , basta simular na calculadora, ela pode ser acessada <a href="calculo.php" class="link">por aqui.</a>
 Realizando a contribuiçao você estará mudando o destino de diversas crianças araçoiabenses.
 </h5>
-</div>
+
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
