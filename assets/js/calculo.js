@@ -130,7 +130,7 @@ $(document).ready(function(){
                  if (irrf <= impostopg){
                     $('#impostopagar').html((impostopg - irrf).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                     $('#impostorest').html(0);        
-                    $('#valor7').html("<b><a id='pulse' href='doacao_boleto.php?valor="+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"&forma=boleto&avista=1' class='btn btn-info'>Avista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> Ou <a id='pulse' class='btn btn-info m-2'>Em 6 vezes de "+(porcentagem / 6).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+ "</a></s></b> <a href='#' class='btn btn-outline-dark col-md-2 '>Por que doar ?</a>");
+                    $('#valor7').html("<b><a id='pulse' href='doacao_boleto.php?valor="+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"&forma=boleto&avista=1' class='btn btn-info'>Avista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> Ou <a id='pulse' class='btn btn-info m-2'>Em 6 vezes de "+(porcentagem / 6).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+ "</a></s></b> <a href='../../pq_doar.php' class='btn btn-outline-dark col-md-2 '>Por que doar ?</a>");
 
                 }else{
                     $('#impostopagar').html(0);

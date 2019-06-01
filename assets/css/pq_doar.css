@@ -1,0 +1,24 @@
+  @font-face {
+  font-family: Lovelo_Black;
+  src: url(../fonts/Lovelo_Black.otf);
+  }
+
+  a{
+    color:#212529;
+    font-weight: bolder;
+  }
+  a:hover{
+    color:#212529;
+  }
+  .pq_doar{
+    background-image: url('../img/fundo_criancas.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    opacity: 0.5;
+  }
+  .texto_doacao{
+    color:white;
+    padding: 15%;
+    font-family: Lovelo_Black;
+    text-shadow: 2px 2px #000;
+  }

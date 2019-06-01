@@ -5,33 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-<style type="text/css">
-  @font-face {
-  font-family: Lovelo_Black;
-  src: url(assets/fonts/Lovelo_Black.otf);
-}
-  a{
-    color:#212529;
-    font-weight: bolder;
-  }
-  a:hover{
-    color:#212529;
-  }
-  .pq_doar{
-    background-image: url('assets/img/fundo_criancas.jpg');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    opacity: 0.5;
-  }
-  .texto_doacao{
-    color:white;
-    padding: 15%;
-    font-family: Lovelo_Black;
-    text-shadow: 2px 2px #000;
-  }
-
-</style>
+  <link rel="stylesheet" type="text/css" href="assets/css/pq_doar.css">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
