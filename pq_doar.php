@@ -19,7 +19,7 @@
 
 <body>
 
-<div class="img_fundo"></div>
+<div class="img_fundo "></div>
 
 <h5 class="texto_doacao">
   <p class="titulo">Por que doar?</p>

@@ -17,6 +17,11 @@
       <li class="nav-item active">  
         <a class="btn btn-success my-2 my-sm-0 m-1 " style="background-color:#006400;" href="contato.php">Contato</a>
       </li>
+
+      <li class="nav-item active">  
+        <a class="btn btn-success my-2 my-sm-0 m-1 " style="background-color:#006400;" href="pq_doar.php">Porque doar?</a>
+      </li>
+
     </ul>
    <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">

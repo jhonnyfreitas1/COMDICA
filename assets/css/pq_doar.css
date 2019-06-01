@@ -14,10 +14,12 @@
   .img_fundo{
     background-image: url('../img/fundo_criancas.jpg');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    background-position: center;
     width: 100%;
     height: 100vh;
     opacity: 0.4;
+    position: absolute;
   }
 
   .titulo{
@@ -33,8 +35,8 @@
     margin-top:5%; 
     top: 0;
     font-family: Lovelo_Black;
-    position: absolute;
-    font-size: 30px;
+    position: relative;
+    text-align: center;
     text-shadow: 1px 1px 2px #303030, 0 0 1em #303030, 0 0 0.2em #303030;
   }
 
@@ -46,3 +48,64 @@
     text-decoration: none;
     text-shadow: 1px 1px 2px #146d2c, 0 0 1em #146d2c, 0 0 0.2em #146d2c;
   }
+
+  @media (min-width: 0px) and (max-width: 520px) {
+    .texto_doacao{
+      font-size: 15px;
+    }
+    .titulo{
+      font-size: 50px;
+    }
+
+  }
+
+  /*@media (min-width: 1430px) {
+    .texto_doacao{
+      font-size: 30px;
+    }
+    .img_fundo{
+        background-size: 120%;
+        height: 105vh;
+    }
+  }
+
+ 
+
+  @media (min-width: 1000px) and (max-width: 1199.98px) {
+    .texto_doacao{
+      font-size: 25px;
+    }
+    .img_fundo{
+        background-size: 100%;
+        height: 70vh;
+    }
+    .titulo{
+      font-size: 60px;
+    }
+  }
+
+  @media (min-width: 720px) and (max-width: 999.98px) {
+    .texto_doacao{
+      font-size: 20px;
+    }
+    .img_fundo{
+        background-size: 100%;
+        height: 50vh;
+    }
+    .titulo{
+      font-size: 40px;
+    }
+  }
+
+  @media (min-width: 0px) and (max-width: 719.98px) {
+    .texto_doacao{
+      font-size: 11px;
+    }
+    .img_fundo{
+        background-size: 100%;
+        height: 30vh;
+    }
+    .titulo{
+      font-size: 17px;
+    }
+  }*/
