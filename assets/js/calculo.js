@@ -9,11 +9,9 @@ $(document).ready(function(){
     $("#gerarpdf").hide();
     $('#inss').maskMoney();
     $('#nafonte').maskMoney();
-
     $('#renda-bruta').tooltip();
     $('#desp-ensino').tooltip();        
     $('#desp-medic').tooltip();        
-
     $('#renda-bruta').keypress(function(){
 
         var rendabrutaanual =  $("#renda-bruta").maskMoney('unmasked')[0];
@@ -46,8 +44,6 @@ $(document).ready(function(){
             }   
     });
 
-
-
         $("#calcular").click(function(e) {
 
             e.preventDefault(); 
@@ -69,9 +65,7 @@ $(document).ready(function(){
 
             var salario13 = $("#13").maskMoney('unmasked')[0];
 
-
             rendabruta += salario13;
-            alert(salario13);
 
             var valordepentes = Dependentes(dependentes);
 
