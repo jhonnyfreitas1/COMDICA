@@ -17,13 +17,15 @@ CREATE TABLE `posts` (
 `nome_post` varchar(200) NOT NULL,
 `descricao_post` text NOT NULL,
 `imagem` varchar(100) NOT NULL,
-`categoria` enum('Post educativo', 'Tutorial', 'Notícia', 'Vídeo', 'Entrevista', 'Pesquisa','Ata','Evento') NOT NULL,
+`link_yt` varchar(2048),
+`pdf` varchar(100),
+`pdf2` varchar(100),
+`created_at` timestamp,
 CONSTRAINT `pk_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`)
 ON DELETE CASCADE
 );
 
-CREATE TABLE 
-`doacoes_avulsas` (
+CREATE TABLE `doacoes_avulsas` (
 `id_doa_av` int(11) not null primary key AUTO_INCREMENT,
 `doador` varchar(255) not null,
 `valor` int(15) NOT NULL,
@@ -39,11 +41,4 @@ CREATE TABLE  `doacoes_imposto`(
 `data` DATETIME NOT NULL,
 `status` enum('pago','cancelado','aguardando pagamento','processando') 
 );
-CREATE TABLE `imagens`(
-`img` varchar(100) NOT NULL,
-`imagens_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-`fk_id_post` INT(11) NOT NULL,
-CONSTRAINT fk_post_id FOREIGN KEY (fk_id_post)
-REFERENCES posts (id_post)
-);
-INSERT INTO users(name,email,password,admin) values ('admin','comdica@admin','adminadmin',true);
+INSERT INTO users(name,email,password,admin) values ('admin','comdica@admin','$2y$10$LzMSd7SBEaNlv.H4m86MYu0IQefyFpRQa/TWBDS12nfiq6cORaZ6O',true);
