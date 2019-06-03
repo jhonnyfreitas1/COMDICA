@@ -15,7 +15,7 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
 
   <title>Admin</title>
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/css/simple-sidebar.css" rel="stylesheet">
@@ -70,7 +70,7 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
 
       <div class="container-fluid" id="area-principal">
         <h1 class="mt-4">Área do administrador COMDICA</h1>
-    
+   
     </div>
     <!-- /#page-content-wrapper -->
 
@@ -85,7 +85,9 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
   <script src="assets/js/dashboard.js"></script>
 
 </body>
+<style type="text/css">
 
+</style>
 </html>
 <?php }else{
   header('location:login-admin.php');

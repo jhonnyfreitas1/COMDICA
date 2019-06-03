@@ -9,13 +9,14 @@ $("#menu-toggle").click(function(e) {
 });
 $("#postagem").click(function(e) {
     e.preventDefault();
+     $('#area-principal').html("<center><progress style='width:80%; margin-top:8em;'></progress> </center>");
     $.ajax({
         type:'post',
         url:'/controller/Retornos.php',
         datatype:'json',
         data:{quero:'postagem'},     //metodo ajax que busca arquivo de formulario do post e coloca em uma div '#area-principal'
         success: function(response){
-            $('#area-principal').html(response);
+            $('#area-principal').html(response).fadeIn(1500);
         }
     })
 
@@ -23,6 +24,7 @@ $("#postagem").click(function(e) {
 
 $("#minhas_postagens").click(function(e) {
     e.preventDefault();
+    $('#area-principal').html("<center><progress style='width:80%; margin-top:8em;'></progress> </center>");
     $.ajax({
         type: 'post',
         url: '/controller/Retornos.php',
