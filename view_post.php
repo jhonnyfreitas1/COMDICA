@@ -20,23 +20,70 @@ $resultado = $query -> fetch(PDO::FETCH_ASSOC);
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	
 </head>
+<body>	
+	<div id='texto-centro' class="col-12 mb-3 container col-md-10" style="box-shadow: 0px 0px 5px rgba(0, 0, 0, .3); margin-top: 3.5em;">	
+		<div class="row">
+		<div class="col-12 col-md-12 ">
+		<span class="card-text "><small class="text-muted"><?= date("d/m/Y", strtotime($resultado['created_at'])); ?></small></span>
+		<center>
+		<div style="max-height: 30em;" class=" col-12  col-md-6 card-img-top d-flex justify-content-center" >
+				<img src="upload/<?=$resultado['imagem'];?>" class="card-img-top img-thumbnail" alt="Imagem responsiva">
+				</div>
+				</center>
+				<div style="" class="col-12 col-md-4 d-flex align-content-stretch flex-wrap">
+				<h3 class="card-title text-justify"><?=$resultado['nome_post'];?></h3>
+				</div>
+				<div class="card-body row container">
+				<span class="m-3 card-text text-justify d-flex m-3"><?php echo $resultado['descricao_post'];?></span>
+				<?php if (isset($resultado['pdf'])){?> 
+				<a class='' href="upload/<?=$resultado['pdf']?>"><i class="fas fa-file-pdf fa-2">Pdf Anexo 1</i></a>
+				<?php }
+				?>
+				<?php if (isset($resultado['pdf2'])){?> 
+				<a  class='ml-3'  href="upload/<?=$resultado['pdf2']?>"><i class="fas fa-file-pdf fa-2">Pdf Anexo 2</i></a>
+				<?php }
+				?> 	
+				</div>
+				
+				</div>
 
-		
-<div id='texto-centro' class="card mb-3 container" style="box-shadow: 0px 0px 5px rgba(0, 0, 0, .3); margin-top: 3.5em;">
-	<img src="upload/<?=$resultado['imagem'];?>" alt="...">
-	<div class="card-body">
-		<h5 class="card-title"><?php echo $resultado['nome_post'];?></h5>
-		<p class="card-text"><?php echo $resultado['descricao_post'];?></p>
-		<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-	</div>
-<a href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://www.example.com&p[images][0]=&p[title]=Title%20Goes%20Here&p[summary]=Description%20goes%20here!" target="_blank" onclick="window.open(this.href,'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250'); return false"><button style="width:100%; margin-top:10px;" type="button" class="btn btn-facebook btn-lg"><i class="fa fa-facebook fa-2"></i> Share on Facebook</button></a>
+				<?php if(isset($resultado['link_yt'])){
+					?>
+					 <div class="col-md-12 embed-responsive embed-responsive-16by9">
+	 				 <iframe class="embed-responsive-item" src="<?=$resultado['link_yt']?>" allowfullscreen></iframe>
+					</div>
+				<?php }?>
+
+				<a class="m-4 mb-2 float-left" href="https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://www.example.com&p[images][0]=&p[title]=Title%20Goes%20Here&p[summary]=Description%20goes%20here!" target="_blank" onclick="window.open(this.href,'targetWindow','toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250'); return false"><button style="width:100	%; margin-top:10px;" type="button" class="btn btn-facebook btn-lg"><i class="fa fa-facebook fa-2"></i> Compartilhar</button></a>
+
+				
+					
+			</div>
+		</div>
 	</div>
 
-<?php
+</body>
+
+<?php 
 include 'footer.php';
 ?>
 <style>
 
+	h3{
+        font-family:x-locale-heading-primary,zillaslab,Palatino,"Palatino Linotype",x-locale-heading-secondary,serif;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: arial, sans-serif;
+    line-height: 1.2;
+    margin:20px;
+    }
+    span{
+    font-style: italic;
+    font-family: arial, sans-serif;
+    }
+	i.fas {
+    font-size: 1.2em;
+	}
 	body {
 		padding-top: 54px;
 		background-color: #ebeced;
