@@ -5,6 +5,8 @@
 
 <?php 
     include 'nav.php';
+
+
  ?>
 
   <meta charset="utf-8">
@@ -29,7 +31,6 @@
 <body>
   <div class="inputCalc" style="margin-top: 3%;">
   <div class="form-row" >
-    
     <div class="form-group col-md-6">
       <label for="inputEmail4"  class="d-flex justify-content-center">Renda anual bruta</label> 
       <input type="text" require data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius "  data-toggle="tooltip" data-placement="top" title="Salário, Férias, Ganhos Tributaveis no ano etc..." id="renda-bruta" placeholder="R$ 0,00">
@@ -80,6 +81,15 @@
   <span class="sr-only">unread messages</span>
 </button>
 <div id="tabela">
+
+    <div class="btn-group dropleft float-right">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fas fa-info"></i>
+    </button>
+  <div class="dropdown-menu">
+      faça uma doação com os dados da calculadora e receba após a comfirmação da doação o documento comprovatorio de doação
+  </div>
+</div>
 <center>
 
 <table class="fixed-center  table table-hover col-md-10 border border-dark m-2" id='resultados'>
