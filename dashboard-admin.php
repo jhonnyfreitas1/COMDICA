@@ -26,10 +26,10 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading"><img src="assets/img/comdica3.png" style="width: 10em;"> </div>
+      <div class="sidebar-heading"><a href="index.php"><img src="assets/img/comdica3.png" style="width: 10em;"></a></div>
       <div class="list-group list-group-flush">
         <a href="nova-postagem.php" id='postagem' class="list-group-item list-group-item-action bg-light">Nova postagem</a>
-        <a href="#" id='minhas_postagens'class="list-group-item list-group-item-action bg-light">Minhas postagens</a>
+        <a href="#" id='minhas_postagens' class="list-group-item list-group-item-action bg-light">Minhas postagens</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Doações Livres</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Doações do imposto de renda</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Adicionar Usuarios</a>
@@ -49,10 +49,6 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
-            </li>
-           
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <?php echo $_SESSION['name']; ?>
