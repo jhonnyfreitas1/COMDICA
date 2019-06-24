@@ -20,7 +20,7 @@
 				$_SESSION['name'] = $response['name'];
 				$_SESSION['user-admin'] = $response['admin'];
 				header('location:../dashboard-admin.php');
-		} else {
+			}else {
 		   header("location:../login-admin.php?error=erro_dados");
 		}
 			}

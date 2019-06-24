@@ -16,13 +16,19 @@ function is_exists($titulo, $conn){ //verifica se o poste já existe
  	}	
 
 
- 	if(isset($_POST['titulo']) && isset($_POST['hidden']) && isset($_POST['descricao']) && isset($_FILES['imagem'])) { 				//vê se todas as variaveis estão setadas e chama o is_exists para ver se existe o post ja criado
+ 	if($_POST['titulo'] != false && $_POST['hidden'] != false && $_POST['descricao']  != false && $_FILES['imagem'] != false)
+ 		{ 		//vê se todas as variaveis estão setadas e chama o is_exists para ver se existe o post ja criado
  		
 		$nome = htmlspecialchars($_POST['titulo'], ENT_QUOTES);
 		$hidden=filter_var($_POST['hidden']);
-		$descricao = htmlspecialchars($_POST['descricao'], ENT_QUOTES);
+		$descricao = $_POST['descricao'];
 		$imagem = $_FILES['imagem']; //arquivo enviado
-				
+		
+		if ($nome == "" || $descricao == "" || $imagem == "") {
+ 		
+ 			header("location:../dashboard-admin.php?sucess=dados_not_found");
+ 	
+		}
 		if ($_FILES['pdf']['name']) {
 			$pdf = $_FILES['pdf'];
 		}
@@ -70,6 +76,7 @@ function is_exists($titulo, $conn){ //verifica se o poste já existe
 		$query->bindParam(7, $nome_pdf2);
  		$stmt = $query->execute();
 		header("location:../dashboard-admin.php?sucess=sim");
+
 	} else {
  		header("location:../dashboard-admin.php?sucess=erro");
  	}
