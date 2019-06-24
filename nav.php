@@ -23,11 +23,7 @@
       </li>
 
     </ul>
-   <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-      <button class="btn btn-success my-2 my-sm-0" style="background-color:#006400; -webkit-transition-duration: 0.4s; /* Safari */
-  transition-duration: 0.4s;" type="submit">Pesquisar</button>
-    </form>
+  
   </div>
 </nav>  
 

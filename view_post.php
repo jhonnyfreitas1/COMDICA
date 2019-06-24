@@ -27,14 +27,13 @@ $resultado = $query -> fetch(PDO::FETCH_ASSOC);
 		<span class="card-text "><small class="text-muted"><?= date("d/m/Y", strtotime($resultado['created_at'])); ?></small></span>
 		<center>
 		<div style="max-height: 30em;" class=" col-12  col-md-6 card-img-top d-flex justify-content-center" >
+				
 				<img src="upload/<?=$resultado['imagem'];?>" class="card-img-top img-thumbnail" alt="Imagem responsiva">
 				</div>
 				</center>
-				<div style="" class="col-12 col-md-4 d-flex align-content-stretch flex-wrap">
-				<h3 class="card-title text-justify"><?=$resultado['nome_post'];?></h3>
-				</div>
+				<p style="display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;" ><h3 class="card-title text-justify"><?=$resultado['nome_post'];?></h3></p>
 				<div class="card-body row container">
-				<span class="m-3 card-text text-justify d-flex m-3"><?php echo $resultado['descricao_post'];?></span>
+				<p style="display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;"><?php echo $resultado['descricao_post'];?></p>
 				<?php if (isset($resultado['pdf'])){?> 
 				<a class='' href="upload/<?=$resultado['pdf']?>"><i class="fas fa-file-pdf fa-2">Pdf Anexo 1</i></a>
 				<?php }

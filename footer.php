@@ -14,7 +14,7 @@
 
 <!-- Footer -->
 <!-- Footer -->
-<footer class="page-footer font-small unique-color-dark  d-inline-block"  style="position: relative; width: 100%;">
+<footer class="page-footer font-small unique-color-dark  d-inline-block"  style="position: relative; width: 100%; margin-top: 3em;">
 
   <div style="" class="bg-success">
 

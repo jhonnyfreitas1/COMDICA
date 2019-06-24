@@ -10,12 +10,10 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="assets/css/index-css.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="assets/js/jquery.min.js"></script>
-
-
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <title>COMDICA - Conselho municipal dos direitos da criança e do adolescente.</title>
 
   <!-- Barra superior -->
@@ -87,7 +85,6 @@ include 'nav.php';
           <span class="glyphicon glyphicon-chevron-right"></span>
           <span class="sr-only">Próximo</span>
         </a>
-        </a>
          <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -101,68 +98,183 @@ include 'nav.php';
     </div>
 
   <!-- IMAGEM DA CALCULADORA--> 
-  <div style="margin-top:2em;"></div>
-  <div class="section">
-    <div class="row ml-12"> 
-     <div id="logo-icon" class="col-md-6 col-12 ml-12 p-10" style="padding:0px;margin: 0px;flex: 0 0 30%;">
-      <div class="card border- mb-3 text-white" style=" margin:auto; max-width: 80%; background-image: linear-gradient(to bottom right,#00BFFF, palegreen);">
-        <div class="card-header bg-success border-success text-white"><h4>Calculadora de imposto de renda</h4></div>
-          <div class="card-body text-success">
-            <h5 class="card-title text-white">Calcule seu imposto de renda aqui no nosso site, e veja quanto você pode doar, esse valor pode ser revertido ao seu favor.</h5>
-            <img src="assets/img/calculado-low.png" class='pulse'>
-          </div>
-          <div class="card-footer bg-transparent border-success"><a href="calculo.php" style="text-decoration: none"><button type="button" class="btn btn-primary btn-lg btn-block">Veja Agora</button></a>
+  <center>
+    <div class="row m-4" style="margin: auto; "> 
+    <!--  <div id="logo-icon" class="col-md-5 col-6 ml-12 p-10" style=" ">
+      <div class="card border mb-3 text-white col-md-6 col-12"   style="  background-image: linear-gradient(to bottom right,#00BFFF, palegreen);">
+          <div class=" bg-success border-success text-white col-12 text-justify w-auto"><h4 >Calculadora</h4></div>
+
+              <h5 style="   " class="card-title text-white text-justify w-auto ">Calcule seu imposto de renda aqui no nosso site, veja quanto pode doar, e muito mais</h5>
+             
+       
+            <img src="assets/img/calculado-low.png" style=" margin-top: -3em;  max-height: 20em;" class='pulse col-12 col-md-12 rounded '> 
+         </div>
+      </div> -->
+
+ 
+      <div class=" col-md-3 col-12 m-2 center" id="card-fundo" style="">
+        <div class="row">
+         <div class=" col-md-12 text-dark position-top">
+           <div class=" card-header bg-success  col-12  text-white"><h4>Calculadora </h4></div>
+            <h5 class="card-body text-white description">
+             Calcule seu imposto de renda aqui no nosso site, exporte seus dados da calculadora e veja quanto você pode doar e muito mais
+            </h5>
+           <a href="calculo.php">   <img style="width:100%; margin-top: -3em;"  class='pulse ml-3' src="assets/img/calculado-low.png">
+          </div></a>
+        </div>
+      </div>
+ 
+      <div class=" col-md-5 col-12 m-2" id="card-fundo" style="">
+        <div class="row">
+          <div class=" col-md-12 text-dark position-top">
+           <div class=" card-header bg-success  col-12  text-white"><h4>COMDICA ARAÇOIABA-PE</h4></div>
+            <h5 class="card-body text-white description">
+                O Conselho Municipal de Defesa e Promoção dos Direitos da Criança e do Adolescente -COMDICA  é um órgão regido no artigo 88 da lei n° 8.069/1990 – Estatuto da Criança e do Adolescente
+            </h5>
+            <img style="width:90%;" src="assets/img/mc2.png">
           </div>
         </div>
       </div>
-      <div class="container col-md-6 col-12 p-10" id="card-fundo" style="margin-right: 10%;max-width: 65rem;padding-right: 0px;padding-left: 0px;">
+      
+      <div class=" m-2 col-md-3 col-12 float-right " id="card-fundo" style="">
         <div class="row">
           <div class=" col-md-12 text-dark position-top">
            <div class=" card-header bg-success  col-12  text-white"><h4>FUNDECA</h4></div>
             <h5 class="card-body text-white description">
-              O Fundo Municipal dos Direitos da Criança e do Adolescente (FUNDECA) é um Fundo especial, criado por lei municipal, segundo determinação do Estatuto da Criança e do Adolescente em seu art. 260 com o objetivo de financiar programas e projetos que atuem na garantia da promoção, proteção e defesa dos direitos da criança e do adolescente. 
+             O Fundo Municipal dos Direitos da Criança e do Adolescente, é captador e
+                aplicador de recursos a serem utilizados, segundo as deliberações do Conselho dos
+                Direitos, ao qual é órgão vinculado.
+                Os critérios para liberação de recursos do Fundo Municipal dos Direitos da
+                Criança e do Adolescente, e por meio desse site visa captar recursos para serem
+                aplicados na COMDICA 
+                
+            <img style="width:110%;" src="assets/img/fundeca-mini.png">
             </h5>
-            <a href="nucleo-icons.html" class="btn btn-info" target="_blank" style="margin-left: 30px">Saiba mais</a>
-            <img style="width:90%;" src="assets/img/fundeca1.png">
           </div>
         </div>
-        
-
-      </div>
-  <div id="loader"></div>
+      </div>  
+       </div>
+    </div>
+   </center> 
+    <div id="loader">
+    </div>
 
       <!-- ///PARTE DE LISTAGEM DE POSTS -->
-<div class="container" id="listagem_posts" > 
-</div>
+    <div class="container" id="listagem_posts" > 
+  <?php 
+      include 'controller/bd-conection.php';
+      $busca = "SELECT * FROM posts  ORDER BY id_post DESC";
+      $total_reg = "4";
+      $pagina=$_GET['pagina'];
+      if (!$pagina) {
+        $pc = "1";
+      }else {
+        $pc = $pagina;
+      }
+      $inicio = $pc - 1;
+      $inicio = $inicio * $total_reg;
 
+
+      $limite = $conn -> query("$busca LIMIT $inicio,$total_reg");
+      $todos = $conn -> query("$busca");
+      $todos -> execute();
+      $tr =  $todos-> rowCount(); // verifica o número total de registros
+      $tp = $tr / $total_reg; // verifica o número total de páginas
+  ?>
+            
+               <div class="page-header">
+
+          <h2>Postagens recentes</h2>
+        </div>
+        <div class="row" style="">
+          <?php
+    // vamos criar a visualização
+    while ($linha1= $limite->fetch(PDO::FETCH_ASSOC)) {
+      ?>
+          <a href="view_post.php?id=<?=base64_encode($linha1['id_post']);?>">
+            <div class="col-md-6 col-sm-6">
+              <div class='report-module ' style=" border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.9)">
+                <div class='thumbnail' >
+                  <a href="view_posts.php?id=<?=base64_encode($linha1['id_post']);?>">
+                    <img class="card-img-top " style="max-height: 11em;" src="upload/<?=$linha1['imagem'];?>">
+                  </a>
+                </div>
+                <div class='post-content'>
+                  <h3 class='title' style=""><?=$linha1['nome_post']?></h3>
+                  <p class='description' style=""><?= substr($linha1['descricao_post']."...",0 ,80); ?></p>
+                  <div class='post-meta float-right'>
+                    <span class='comments'>
+                      <a class="btn btn-success  btn-block" id="but" style="border:1px solid black;" href="view_post.php?id=<?=base64_encode($linha1['id_post']);?>">Ver Postagem</a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+
+      <?php 
+    }
+    ?>
+    <nav aria-label="...">
+      <ul class="pagination">
+
+
+        <?php
+
+    // agora vamos criar os botões "Anterior e próximo"
+        $anterior = $pc -1;
+        $proximo = $pc +1;
+        if ($pc>1) {
+          ?>
+          <li class="page-item" >
+            <a class="page-link" onclick='pagination(this);' id='click' value='<?php echo $anterior?>' href='?pagina=<?php echo $anterior?>' tabindex="-1">Previous</a>
+             
+          </li>
+          <?php 
+        }?> 
+        <?php 
+        for($i=1; $i<=$tp+1; $i++){
+
+          if($pc == $i){
+            echo "<li class='page-item   active'><a  onclick='pagination(this);' id='click' value='".$i."' class='page-link' href='?pagina=".$i."'>".$i."<span class='sr-only'>(current)</span></a></li>";
+          }else{
+            echo "<li class='page-item'><a onclick='pagination(this);' class='page-link' value='".$i."' id='click' href='?pagina=".$i."'>".$i."</a></li>";
+            
+          }
+        }
+        ?>
+
+        <?php 
+        if ($pc<$tp) {
+          ?>
+          <li class="page-item"  >
+            <a class="page-link"  onclick='pagination(this); this.preventDefault();'  value='<?php echo $proximo?>' href='?pagina=<?php echo $proximo?>' >Proximo</a>
+          </li>     
+ 
+          <?php
+        }
+        ?>
+      </ul>
+    </nav>
+  </div>
+    </div>
 <script type="text/javascript">
 
+          function pagination(e){
+                  e.preventDefault();
+                  alert(e.val());
+                  
+                }
         // Este evendo é acionado após o carregamento da página
         $(window).on('load', function() {
             //Após a leitura da pagina o evento fadeOut do loader é acionado, esta com delay para ser perceptivo em ambiente fora do servidor.
-            $("#loader").delay(2000).fadeOut("slow");
-        });
+           
+        }); 
 
-  $(document).ready(function() {
-    $.ajax({
-        type:'get',
-        url:'../pagina.php',
-        datatype:'json',
-        data:{pagina:'1'},     //metodo ajax que busca arquivo de formulario do post e coloca em uma div '#area-principal'
-        success: function(response){
-            $('#listagem_posts').html(response);
-        }
-    })
 
-});
-  function pagina(e){
-    alert('Ainda vou modificar essa parte de paginação');
-}
 </script>
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
      <script type="text/javascript" src="assets/js/index_js.js"></script>
- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 

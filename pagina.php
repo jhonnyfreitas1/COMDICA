@@ -26,7 +26,7 @@
 				<div class="row" style="">
 					<?php
 		// vamos criar a visualização
-		while ($linha1= $limite->fetch(PDO::FETCH_ASSOC)) {
+		while ($linha1= $limite->fetch(PDO::FETCH_ASSOC)) {S
 			?>
 					<a href="view_post.php?id=<?=base64_encode($linha1['id_post']);?>">
 						<div class="col-md-6 col-sm-6">
@@ -72,9 +72,9 @@
 				for($i=1; $i<=$tp+1; $i++){
 
 					if($pc == $i){
-						echo "<li class='page-item  active'><a class='page-link' href='?pagina=".$i."'>".$i."<span class='sr-only'>(current)</span></a></li>";
+						echo "<li class='page-item   active'><a onclick='pagina(".$i."); this.preventDefault();' class='page-link' href='?pagina=".$i."'>".$i."<span class='sr-only'>(current)</span></a></li>";
 					}else{
-						echo "<li class='page-item'><a class='page-link'  href='?pagina=".$i."'>".$i."</a></li>";
+						echo "<li class='page-item'><a class='page-link' onclick='pagina(".$i."); this.preventDefault();' href='?pagina=".$i."'>".$i."</a></li>";
 					}
 				}
 				?>
@@ -90,4 +90,6 @@
 				?>
 			</ul>
 		</nav>
+	</div>
+
 		
