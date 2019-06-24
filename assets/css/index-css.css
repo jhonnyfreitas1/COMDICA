@@ -14,9 +14,8 @@
   
 
   #card-fundo{
-  position: center;
   background-image: linear-gradient(to bottom right,#00BFFF, palegreen);
-  box-shadow: 10px 10px 5px grey;
+  height: 50%;
   }
 
 .report-module{
@@ -41,9 +40,6 @@ margin-top: 1em;
 }
 .pulse{
   animation: pulse 0.7s infinite;
-  margin: 0 auto;
-  display: table;
-  margin-top: 50px;
   animation-direction: alternate;
   -webkit-animation-name: pulse;
   animation-name: pulse;
@@ -87,8 +83,8 @@ margin-top: 1em;
 100% { opacity: 1; }
 }
 .fadeIn {
--webkit-animation: fadeIn 4s ease-in-out;
--moz-animation: fadeIn 4s ease-in-out;
--o-animation: fadeIn 4s ease-in-out;
-animation: fadeIn 4s ease-in-out;
+-webkit-animation: fadeIn 2s ease-in-out;
+-moz-animation: fadeIn 2s ease-in-out;
+-o-animation: fadeIn 2s ease-in-out;
+animation: fadeIn 2s ease-in-out;
 }
