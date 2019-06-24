@@ -2,13 +2,21 @@ drop database if exists comdica;
 create database if not exists comdica;
 	
 use comdica;    	
+
 CREATE TABLE `users` (
 `id_user` int(11) NOT NULL AUTO_INCREMENT,
 `name` varchar(255) NOT NULL,
 `email` varchar(100) NOT NULL,
 `password` varchar(255) NOT NULL,
 `admin` boolean default NULL,
+`created_at` timestamp,
+`verified_at` date default NULL
 PRIMARY KEY (`id_user`)
+);
+CREATE TABLE `password_reset` (
+`user_email`varchar(191) not null,
+`token` varchar(191) not null,
+`created_at` timestamp not null
 );
 
 CREATE TABLE `posts` (
@@ -34,11 +42,22 @@ CREATE TABLE `doacoes_avulsas` (
 `status` enum('pago','cancelado','aguardando pagamento','processando')
 );
 CREATE TABLE  `doacoes_imposto`(
-`id_doa_im` int not null primary key auto_increment,
-`doador` varchar(255) not null,
-`valor` int(15) NOT NULL, 
-`metodo` enum('boleto','cartao') not null, 
-`data` DATETIME NOT NULL,
-`status` enum('pago','cancelado','aguardando pagamento','processando') 
+`id_doacao` int not null primary key auto_increment,
+`valor_parcelado` int NOT NULL,
+`doador_nome` varchar(255) not null,
+`doador_cpf` varchar(14) not null,
+`doador_telefone` varchar(16) NOT NULL,
+`doador_email` varchar(255) NOT NULL,
+`num_transacao` int NOT NULL,
+`link_boleto` varchar(255) NOT NULL,
+`valor_total` int(15) NOT NULL, 
+`quantidade` int NOT NULL,
+`parcelas` int NOT NULL,
+`parcelas_pagas` int,
+`metodo_pagamento` enum('boleto','carne') NOT NULL, 
+`vencimento` date NOT NULL,
+`data_criacao` timestamp,
+`cod_barra` varchar(255) NOT NULL,
+`status` varchar(50) NOT NULL 
 );
 INSERT INTO users(name,email,password,admin) values ('admin','comdica@admin','$2y$10$LzMSd7SBEaNlv.H4m86MYu0IQefyFpRQa/TWBDS12nfiq6cORaZ6O',true);
