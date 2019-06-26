@@ -20,6 +20,8 @@ $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76';
 	$instructions = ['Seus dados foram guardados no sistema para que você possa vir .','Você receberá um email no final do pagamentos de todas as parcelas com todos os dados ', 'asdasd', 'asdasdsadsads'];
 
     $valor_parcelado = $_POST['valor'] / $_POST['repeticoes'];
+  
+
     $item_1 = [
         'name' => $_POST["descricao"],
         'amount' => (int) $_POST["quantidade"],
@@ -51,30 +53,56 @@ $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76';
     $um = 1;
     $zero = 0;
     $vencimento = $_POST['vencimento'];
+    if ($_POST['repeticoes'] > 1 && $_POST['repeticoes'] <= 6 ) {
+        $boleto = 'carne';
+    }else if ($_POST['repeticoes'] == 1){
+        $boleto = 'boleto';
+    }else{
+        header('location:calculo.php?Error');
+    }
     try {
         $api = new Gerencianet($options);
         $charge = $api->createCarnet([], $body);
-         $insert = $conn -> prepare('INSERT INTO doacoes_imposto (doador_nome,doador_cpf,doador_telefone,doador_email,num_transacao,link_boleto,valor_total, quantidade,parcelas,metodo_pagamento,vencimento,cod_barra,status,valid,parcelas_pagas valor_parcelado) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
-		 if ($charge['code'] == 200) {
-            
-                $insert -> bindParam(1,$_POST['nome_cliente']);
-                $insert -> bindParam(2,$_POST['cpf']);
-                $insert -> bindParam(3,$_POST['telefone']);
-                $insert -> bindParam(4,$_POST['email']);
-                $insert -> bindParam(5,$charge['data']['charge_id']);
-                $insert -> bindParam(6,$charge['data']['link']);
-                $insert -> bindParam(7,$_POST['valor']);
-                $insert -> bindParam(8,$um);
-                $insert -> bindParam(9,$um); 
-                $insert -> bindParam(10,$boleto);
-                $insert -> bindParam(11,$vencimento);
-                $insert -> bindParam(12,$charge['data']['barcode']);
-                $insert -> bindParam(13,$charge['data']['status']); 
-                $insert -> bindParam(14,$um);
-                $insert -> bindParam(15,$zero);
-                $insert -> bindParam(16,$valor_parcelado);
+        if ($charge['code'] == 200) {
+            //inserindo em tabela de doacoes de carne 
+                $insert_carne = $conn -> prepare('INSERT INTO doacoes_carne (carnet_id,doador_nome,valor_total,valor_parcelado,
+                link,numero_parcelas,status) VALUES (?,?,?,?,?,?,?)');
+                $insert_carne -> bindValue(1,$charge['data']['carnet_id']);
+                $insert_carne -> bindValue(2,$_POST['nome_cliente']);
+                $insert_carne -> bindValue(3,$_POST['valor']);
+                $insert_carne -> bindValue(4,$valor_parcelado);
+                $insert_carne -> bindValue(5,$charge['data']['link']);
+                $insert_carne -> bindValue(6,$_POST['repeticoes']);
+                $insert_carne -> bindValue(7,$charge['data']['status']);
+                $resultado_carne = $insert_carne -> execute();
+                //inserindo   em tabela de doacoes imposto e passando uma chave estrangeira do carne. 
+              
+
+           for($i= 0; $i < sizeof($charge['data']['charges']); $i++){
+                $insert = $conn -> prepare('INSERT INTO doacoes_imposto (doador_nome,doador_cpf,doador_telefone,doador_email,num_transacao,link_boleto,valor_total, quantidade,parcelas,metodo_pagamento,vencimento,cod_barra,status,parcelas_pagas,valor_parcelado,fk_carnet_id) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+                $insert -> bindValue(1,$_POST['nome_cliente']);
+                $insert -> bindValue(2,$_POST['cpf']);
+                $insert -> bindValue(3,$_POST['telefone']);
+                $insert -> bindValue(4,$_POST['email']);
+                $insert -> bindValue(5,$charge['data']['charges'][$i]['charge_id']);
+                $insert -> bindValue(6,$charge['data']['charges'][$i]['pdf']['charge']);
+                $insert -> bindValue(7,$_POST['valor']);
+                $insert -> bindValue(8,$um);
+                $insert -> bindValue(9,$_POST["repeticoes"]); 
+                $insert -> bindValue(10,$boleto);
+                $insert -> bindValue(11,$date);
+                $insert -> bindValue(12,$charge['data']['charges'][$i]['barcode']);
+                $insert -> bindValue(13,$charge['data']['charges'][$i]['status']); 
+                $insert -> bindValue(14,$zero);
+                $insert -> bindValue(15,$valor_parcelado);
+                $insert -> bindValue(16,$charge['data']['carnet_id']);
+           
                 $resultado = $insert -> execute();
-                echo json_encode($charge);
+           
+                
+                
+            }
+            echo json_encode($charge);
             }
 	} catch (GerencianetException $e) {
         print_r($e->code);
