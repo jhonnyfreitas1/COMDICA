@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-    To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <?php 
     include 'nav.php';
@@ -27,8 +22,6 @@ and open the template in the editor.
         <title>Emita seu boleto de Doação</title>
         
     </head>
-
-    
     <body>
 
             <!-- Este componente é utilizando para exibir um alerta(modal) para o usuário aguardar as consultas via API.  -->
@@ -245,6 +238,7 @@ and open the template in the editor.
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Data de vencimento da primeira parcela:</label>
                                     <input type="text" disabled="disabled"  class="form-control" value="<?php echo date('d/m/y', strtotime('+1 month'));?>"  id="vencimento_carne" placeholder="Data de vencimento">
+                                    <input type="hidden" value='carne' disabled="disabled"  class="form-control">
                                 </div>
 
                             </div>
@@ -271,47 +265,45 @@ and open the template in the editor.
  </div>
 <a href="../calculo.php" class="btn btn-dark"><i class="fas fa-calculator">Voltar</i></a>
 <div id="boleto" >
- <table class="fixed-center table-striped   table table-hover table table-sm  col-md-10 border border-dark m-2"  style="background-image: url(../assets/img/p1.png); background-repeat: no-repeat; background-position: center; background-size:40%;">
-  <thead class="thead-dark">
-  <tr>
-      <th class="border border-dark bg-dark" scope="">Retorno da emissão.</th>
-        <th class="border border-dark" scope="">Dados</th>
-    </tr>
-    <tbody> 
-    <tr>
-   
-      <th class="border border-dark " scope="row">Numero da transação</th>
-      <td id="transacao" class="text-light bg-dark border border-dark "></td>  
-    </tr>
-    <tr>
-      <th class="border border-dark " scope="row">Código de Barras</th>
-      <td  id="codbarra" class="text-light bg-dark border border-dark "></td>  
-    </tr>
-    <tr>
-      <th class="border border-dark" scope="row">Link do Boleto </th>
-      <td id="boleto1" style="color:blue;" class="is-valid bg-dark text-primary"></td>  
-    </tr>
+    <table class="fixed-center table-striped   table table-hover table table-sm  col-md-10 border border-dark m-2"  style="background-image: url(../assets/img/p1.png); background-repeat: no-repeat; background-position: center; background-size:40%;">
+        <thead class="thead-dark">
+            <tr>
+                <th class="border border-dark bg-dark" scope="">Retorno da emissão.</th>
+                    <th class="border border-dark" scope="">Dados</th>
+                </tr>
+                <tbody> 
+                    <tr>
+                
+                    <th class="border border-dark " scope="row">Numero da transação</th>
+                    <td id="transacao" class="text-light bg-dark border border-dark "></td>  
+                    </tr>
+                    <tr>
+                    <th class="border border-dark " scope="row">Código de Barras</th>
+                    <td  id="codbarra" class="text-light bg-dark border border-dark "></td>  
+                    </tr>
+                    <tr>
+                    <th class="border border-dark" scope="row">Link do Boleto </th>
+                    <td id="boleto1" style="color:blue;" class="is-valid bg-dark text-primary"></td>  
+                    </tr>
 
-    <tr>
-      <th class="border border-dark " scope="row">Vencimento</th>
-       <td id="vencimento1" class="text-light bg-dark border border-dark"></td>   
-    </tr>
-    <tr>
-      <th  class="border border-dark " scope="row">Status</th>
-      <td id="status" class="text-light bg-dark border border-dark "></td>  
-    </tr>
-    <tr>
-      <th class="border border-dark " scope="row">Total</th>
-      <td  id="total" class="text-light bg-dark border border-dark "></td>  
-    </tr>
-     <tr>
-      <th class="border border-dark "  scope="row">Método de pagamento</th>
-      <td  id="metpagamento" class="text-light bg-dark border border-dark "></td>  
-    
-  </thead>
- </tbody>
-
-</table> 
+                    <tr>
+                    <th class="border border-dark " scope="row">Vencimento</th>
+                    <td id="vencimento1" class="text-light bg-dark border border-dark"></td>   
+                    </tr>
+                    <tr>
+                    <th  class="border border-dark " scope="row">Status</th>
+                    <td id="status" class="text-light bg-dark border border-dark "></td>  
+                    </tr>
+                    <tr>
+                    <th class="border border-dark " scope="row">Total</th>
+                    <td  id="total" class="text-light bg-dark border border-dark "></td>  
+                    </tr>
+                    <tr>
+                    <th class="border border-dark "  scope="row">Método de pagamento</th>
+                    <td  id="metpagamento" class="text-light bg-dark border border-dark "></td>  
+                </tbody>
+        </thead>
+    </table> 
 
 
  </center>  
