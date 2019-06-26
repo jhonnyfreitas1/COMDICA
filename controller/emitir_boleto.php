@@ -58,14 +58,16 @@ if (isset($_POST['valor']) && isset($_POST['nome_cliente']) && isset($_POST['cpf
 
             $api = new Gerencianet($options);
             $pay_charge = $api->payCharge($params, $body);
-           
+            $date =  date('Y-m-d', strtotime('+1 month'));
           $data_banco = $data_brasil->format('Y-m-d');
             $um = 1;
             $boleto = 'boleto';
             $zero = 0;
-            $insert =  $conn -> prepare('INSERT INTO doacoes_imposto (doador_nome,doador_cpf,doador_telefone,doador_email,num_transacao,link_boleto,valor_total, quantidade,parcelas,metodo_pagamento,vencimento,cod_barra,status,valid,parcelas_pagas) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+            $insert =  $conn -> prepare('INSERT INTO doacoes_imposto (doador_nome,doador_cpf,
+            doador_telefone,doador_email,num_transacao,link_boleto,valor_total,
+            quantidade,parcelas,metodo_pagamento,vencimento,cod_barra,status,
+            parcelas_pagas) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
             if ($pay_charge['code'] == 200) {
-            
             $insert -> bindParam(1,$_POST['nome_cliente']);
             $insert -> bindParam(2,$_POST['cpf']);
             $insert -> bindParam(3,$_POST['telefone']);
@@ -76,17 +78,15 @@ if (isset($_POST['valor']) && isset($_POST['nome_cliente']) && isset($_POST['cpf
             $insert -> bindParam(8,$um);
             $insert -> bindParam(9,$um); 
             $insert -> bindParam(10,$boleto);
-            $insert -> bindParam(11,$data_banco);
+            $insert -> bindParam(11,$date);
             $insert -> bindParam(12,$pay_charge['data']['barcode']);
             $insert -> bindParam(13,$pay_charge['data']['status']); 
-            $insert -> bindParam(14,$um);
-            $insert -> bindParam(15,$zero);
+            $insert -> bindParam(14,$zero);
             $resultado = $insert -> execute();
 
             echo json_encode($pay_charge);
-              
             }else{
-                echo 'code nao eh 200';
+                echo 'code nao é 200';
             }
         }else {
             echo "Algum dado passado esta errado!";
