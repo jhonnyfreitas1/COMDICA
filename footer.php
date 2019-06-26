@@ -125,7 +125,7 @@
 
               <!-- Copyright -->
               <div class="footer-copyright text-center py-3">© 2019 Copyright:
-                <a href="#"> IFPE</a>
+                <a href="#"> FUNDECA</a>
               </div>
               <!-- Copyright -->
 
