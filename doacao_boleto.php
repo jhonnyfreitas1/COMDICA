@@ -265,11 +265,11 @@
  </div>
 <a href="../calculo.php" class="btn btn-dark"><i class="fas fa-calculator">Voltar</i></a>
 <div id="boleto" >
-    <table class="fixed-center table-striped   table table-hover table table-sm  col-md-10 border border-dark m-2"  style="background-image: url(../assets/img/p1.png); background-repeat: no-repeat; background-position: center; background-size:40%;">
+    <table class="fixed-center table-striped   table table-hover table table-sm  col-md-5 border border-dark">
         <thead class="thead-dark">
             <tr>
-                <th class="border border-dark bg-dark" scope="">Retorno da emissão.</th>
-                    <th class="border border-dark" scope="">Dados</th>
+                <th class="border border-dark bg-success " scope="">Retorno da emissão.</th>
+                    <th class="border border-dark  bg-success col-md-1" scope="">Dados</th>
                 </tr>
                 <tbody> 
                     <tr>
@@ -279,7 +279,7 @@
                     </tr>
                     <tr>
                     <th class="border border-dark " scope="row">Código de Barras</th>
-                    <td  id="codbarra" class="text-light bg-dark border border-dark "></td>  
+                    <td  id="codbarra" class="text-light bg-dark border border-dark "> </td>  
                     </tr>
                     <tr>
                     <th class="border border-dark" scope="row">Link do Boleto </th>
@@ -288,7 +288,7 @@
 
                     <tr>
                     <th class="border border-dark " scope="row">Vencimento</th>
-                    <td id="vencimento1" class="text-light bg-dark border border-dark"></td>   
+                    <td id="vencimento1" class="text-light bg-dark border border-dark"> </td>   
                     </tr>
                     <tr>
                     <th  class="border border-dark " scope="row">Status</th>
