@@ -10,7 +10,7 @@ CREATE TABLE `users` (
 `password` varchar(255) NOT NULL,
 `admin` boolean default NULL,
 `created_at` timestamp,
-`verified_at` date default NULL
+`verified_at` date default NULL,
 PRIMARY KEY (`id_user`)
 );
 CREATE TABLE `password_reset` (
@@ -33,17 +33,19 @@ CONSTRAINT `pk_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id_user`)
 ON DELETE CASCADE
 );
 
-CREATE TABLE `doacoes_avulsas` (
-`id_doa_av` int(11) not null primary key AUTO_INCREMENT,
-`doador` varchar(255) not null,
-`valor` int(15) NOT NULL,
-`metodo`  enum('boleto','cartao') NULL, 
-`data` DATETIME NOT NULL,
-`status` enum('pago','cancelado','aguardando pagamento','processando')
+CREATE TABLE `doacoes_carne` (
+`carnet_id` int(11)  primary key,
+`doador_nome` varchar(255) not null,
+`valor_total` int not null,
+`valor_parcelado` int(15) not null,
+`link` varchar(191) NOT NULL,
+`numero_parcelas`  int not null, 
+`created_at` timestamp not null,
+`status` VARCHAR(20) not null
 );
 CREATE TABLE  `doacoes_imposto`(
 `id_doacao` int not null primary key auto_increment,
-`valor_parcelado` int NOT NULL,
+`valor_parcelado` int(15),
 `doador_nome` varchar(255) not null,
 `doador_cpf` varchar(14) not null,
 `doador_telefone` varchar(16) NOT NULL,
@@ -56,8 +58,11 @@ CREATE TABLE  `doacoes_imposto`(
 `parcelas_pagas` int,
 `metodo_pagamento` enum('boleto','carne') NOT NULL, 
 `vencimento` date NOT NULL,
+`fk_carnet_id` int ,
 `data_criacao` timestamp,
 `cod_barra` varchar(255) NOT NULL,
-`status` varchar(50) NOT NULL 
+`status` varchar(50) NOT NULL,
+CONSTRAINT `pk_carnet` FOREIGN KEY (`fk_carnet_id`) REFERENCES `doacoes_carne` (`carnet_id`)
+ON DELETE CASCADE
 );
 INSERT INTO users(name,email,password,admin) values ('admin','comdica@admin','$2y$10$LzMSd7SBEaNlv.H4m86MYu0IQefyFpRQa/TWBDS12nfiq6cORaZ6O',true);
