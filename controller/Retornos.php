@@ -21,4 +21,7 @@ session_start();
             islogged();
             return include '../minhas_postagens.php';
         }
+        function adicionar_usuarios(){
 
+            return include '../adicionar_usuario.php';
+        }
