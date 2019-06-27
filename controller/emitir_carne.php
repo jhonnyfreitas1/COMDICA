@@ -24,7 +24,7 @@ $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76';
 
     $item_1 = [
         'name' => $_POST["descricao"],
-        'amount' => (int) $_POST["quantidade"],
+        'amount' => (int) 1,
         'value' => (int) $valor_parcelado
 
     ];
