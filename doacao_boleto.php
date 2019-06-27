@@ -124,7 +124,7 @@
                         </div>
                      </div>
         </nav>
-        <div  class="tab-content nav-tabs col-md-12  border">
+        <div  class="tab-content nav-tabs col-md-12  border bg-white">
             <div  class=" tab-pane fade show active nav-tabs " id="home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div style='' class=" mx-auto col-lg-12 col-md-12 col-sm-12 col-12 nav-tabs ">
                     <div class="col-lg-12 well ">
@@ -245,7 +245,7 @@
                               <div class="form-group col-lg-8">
                                 <label for="exampleInputPassword1">Número de parcelas<span style="color: red;">*</span>:</label></label>
                                 <select required id="repeticoes" class="form-control">
-                                    <?php for ($i = 1; $i < 6; $i++): ?>
+                                    <?php for ($i = 2; $i < 6; $i++): ?>
                                         <option><?= $i ?></option>
                                     <?php endfor; ?>
                                 </select>
@@ -263,51 +263,99 @@
     </div>  
  </center>
  </div>
+
 <a href="../calculo.php" class="btn btn-dark"><i class="fas fa-calculator">Voltar</i></a>
-<div id="boleto" >
-    <table class="fixed-center table-striped   table table-hover table table-sm  col-md-5 border border-dark">
+ <center>
+<div id="boleto" style="">
+    <table id="resultados" class="fixed-center table-striped   table table-hover table table-sm  col-md-5 border border-dark">
         <thead class="thead-dark">
             <tr>
-                <th class="border border-dark bg-success " scope="">Retorno da emissão.</th>
-                    <th class="border border-dark  bg-success col-md-1" scope="">Dados</th>
+                <th class="border border-dark bg-success " style="width: 50%;" scope="">Retorno da emissão.</th>
+                    <th class="border border-dark  bg-success col-md-1" scope="">Dados do Boleto <i class="fas fa-donate float-right"></i></th>
                 </tr>
                 <tbody> 
                     <tr>
-                
+                 <a href="" id="ancora1"></a>
                     <th class="border border-dark " scope="row">Numero da transação</th>
-                    <td id="transacao" class="text-light bg-dark border border-dark "></td>  
+                    <td id="transacao"  class="  border border-dark "></td>  
                     </tr>
                     <tr>
-                    <th class="border border-dark " scope="row">Código de Barras</th>
-                    <td  id="codbarra" class="text-light bg-dark border border-dark "> </td>  
+                    <th class="border border-dark" id="resultado_cod" scope="row">Código de Barras</th>
+                    <td  id="codbarra"  class="  border border-dark "> </td>  
                     </tr>
                     <tr>
                     <th class="border border-dark" scope="row">Link do Boleto </th>
-                    <td id="boleto1" style="color:blue;" class="is-valid bg-dark text-primary"></td>  
+                    <td id="boleto1" style="color:blue;" class="is-valid  text-primary"></td>  
                     </tr>
 
                     <tr>
-                    <th class="border border-dark " scope="row">Vencimento</th>
-                    <td id="vencimento1" class="text-light bg-dark border border-dark"> </td>   
+                    <th class="border border-dark " id="resultado_vencimento" scope="row">Vencimento</th>
+                    <td id="vencimento1" class="  border border-dark"> </td>   
                     </tr>
                     <tr>
                     <th  class="border border-dark " scope="row">Status</th>
-                    <td id="status" class="text-light bg-dark border border-dark "></td>  
+                    <td id="status" class="  border border-dark "></td>  
                     </tr>
                     <tr>
-                    <th class="border border-dark " scope="row">Total</th>
-                    <td  id="total" class="text-light bg-dark border border-dark "></td>  
+                    <th class="border border-dark " id="resultado_total" scope="row">Total</th>
+                    <td  id="total" class="  border border-dark "></td>  
                     </tr>
                     <tr>
-                    <th class="border border-dark "  scope="row">Método de pagamento</th>
-                    <td  id="metpagamento" class="text-light bg-dark border border-dark "></td>  
+                    <th class="border border-dark "   scope="row">Método de pagamento</th>
+                    <td  id="metpagamento" class="  border border-dark "></td>  
+
                 </tbody>
         </thead>
     </table> 
 
 
- </center>  
-</div>   
+ </center> 
+         <center>
+                <table id="resultados_carne" class="fixed-center table-striped  table table-hover table table-sm  col-md-5 border border-dark">
+                    <thead class="thead-dark">
+                        <tr>
+                                <th class="border border-dark bg-success "  style="width: 50%;" scope="">Retorno da emissão.</th>
+                                <th class="border border-dark  bg-success col-md-1" scope="">Dados do Carnê<i class="fas fa-donate float-right"></i></th>
+                        </tr>
+                            <tbody> 
+                                <tr>
+                                    <a href="" id="ancora1"></a>
+                                    <th class="border border-dark " scope="row">Numero do carnê</th>
+                                    <td id="num_carne"  class=" border border-dark "></td>  
+                                </tr>
+                                <tr>
+                                    <th class="border border-dark" id="resultado_cod" scope="row">Valor  da primeira parcela</th>
+                                    <td  id="carne_parcelado"  class=" border border-dark "> </td>  
+                                </tr>
+                                <tr>
+                                    <th class="border border-dark" scope="row">Link do carnê </th>
+                                    <td id="link_carne" style="color:blue;" class="is-valid text-primary"></td>  
+                                </tr>
+                                <tr>
+                                    <th class="border border-dark " id="resultado_vencimento" scope="row">Vencimento da primeira parcela</th>
+                                    <td id="venc_carne" class=" border border-dark"> </td>   
+                                </tr>
+                                <tr>
+                                    <th  class="border border-dark " scope="row">Status do carnê</th>
+                                    <td id="status_carne" class=" border border-dark ">Gerado Agora</td>  
+                                </tr>
+                                <tr>
+                                    <th class="border border-dark " id="resultado_total" scope="row">Total</th>
+                                    <td  id="total_carne" class=" border border-dark"></td>  
+                                </tr>
+                                <tr>
+                                    <th class="border border-dark "   scope="row">Forma de pagamento </th>
+                                    <td  id="metodo_carne" class=" border border-dark">Boleto bancário parcelado</td>  
+                                </tr>
+                                <tr>
+                                    <th class="border border-dark "   scope="row">Carnê Enviado para o e-mail</th>
+                                    <td  id="enviado_email" class=" border border-dark"></td>  
+                                </tr>
+                            </tbody>
+                    </thead>
+                </table> 
+             </center>  
+ 
         <style type="text/css">
             #form-boleto{
                 font-family:italic;
@@ -325,97 +373,117 @@
             }
             #btn_emitir_boleto{
            
+            }
+            body{
+                background-image: url('assets/img/p4.png');
+                background-repeat: no-repeat;
+                background-position: 100% 10%;
+                
             }   
         </style>
 
     </body>
     <script type="text/javascript">
-        $(document).ready(function(){
-            $(".nav-tabs a").click(function(){
-                $(this).tab('show');
-            });
-                $('e-mail').tooltip();
-        });
-    
+        
         $(document).ready(function(){
      //Aplicando as mascaras nos inputs cpf, valor e vencimento.
-    $("#btn_emitir_carne").click(function (e){
-        e.preventDefault();
-         if($('#form-carne')[0].checkValidity()) {    
-         $("#myModal").modal('show');
-         $("#boleto").addClass("hide");
-         var descricao = $("#descricao").val();
-         
-        $('#valor_carne').mask('000.000.000.000.000,00');
-         $("#valor_carne").unmask();
-         var valor = escapeHtml($("#valor_carne").val() );
-         var repeticoes = $("#repeticoes").val(); 
-         var quantidade = 1;
-         var nome_cliente = escapeHtml($("#nome_cliente_carne").val());
-          var cpf = $("#cpf_carne").val();
-         var telefone = $("#telefone_carne").val();
-         var email = escapeHtml($('#email_carne').val());
-         var vencimento = $("#vencimento_carne").val();
-        
-
-    
-            function escapeHtml(text) {
-             return text
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-            }
-            if(parseInt(nome_cliente)=="NaN" || parseInt(valor)=="NaN"){
-                $("#myModal").modal('hide');
-                alert("Dados inválidos.");
-                return false;
-            }   
-           
-       
-            $.ajax({
-          url: "controller/emitir_carne.php",
-          data:{descricao:descricao,email:email,valor:valor,quantidade:quantidade,nome_cliente:nome_cliente,cpf:cpf,telefone:telefone,vencimento:vencimento,repeticoes:repeticoes},
-          type:'post',
-          dataType:'json',
-          success: function(resposta){
+   
+            $(".nav-tabs a").click(function(){
+                 $(this).tab('show');
+            });
+            $('#resultados_carne').hide();
+            $('email_carne').tooltip();
+            $('#cpf_carne').mask('000.000.000-00');
+            $('#valor_carne').mask('000.000.000.000.000,00');
+            $('#telefone_carne').mask('(00)0000-0000');
+            $('email_carne').tooltip();
+            $("#btn_emitir_carne").click(function (e){
+                e.preventDefault();
+                 $('#valor_carne').unmask();
+                 $('#telefone_carne').unmask();
+                 $('#cpf_carne').unmask();
+                
+                if($('#form-carne')[0].checkValidity()) {    
+                     $("#myModal").modal('show');
+                     $("#boleto").addClass("hide");
+                     $('#valor_carne').mask('000.000.000.000.000,00');
+                     $("#valor_carne").unmask();
+                     var descricao = $("#descricao").val();                 
+                     var valor = escapeHtml($("#valor_carne").val() );
+                     var repeticoes = $("#repeticoes").val(); 
+                     var quantidade = 1;
+                     var nome_cliente = escapeHtml($("#nome_cliente_carne").val());
+                      var cpf = $("#cpf_carne").val();
+                     var telefone = $("#telefone_carne").val();
+                     var email = escapeHtml($('#email_carne').val());
+                     var vencimento = $("#vencimento_carne").val();
                     
-                    $("#myModal").modal('hide');
-                      console.log(resposta)
-            if(resposta.code == 200){
-              
-                             $("#myModalResult").modal('show'); 
-                             $("#boleto").removeClass("hide");
-                            $("#transacao").html("<b>"+resposta.data.charge_id+"</b>");
-                            $("#codbarra").html("<b>"+resposta.data.barcode+"</b>");
-                            $("#boleto1").html("<a style='color:blue;' id='link-boleto' target='_blank' href='"+resposta.data.link+"'>Abrir Boleto</a>");
-                            $("#vencimento1").html("<b>"+resposta.data.expire_at)+"</b>";
-                          if (resposta.data.status == 'waiting') {
-                              $("#status").html("<b>Aguardando</b>");
-                           }else{
-                               $("#status").html("<b>"+resposta.data.status+"</b>");
-                             }
-                               $("#total").html("<b>"+resposta.data.total+"</b>");
-                            if (resposta.data.payment == 'banking_billet' ) {
-                                $("#metpagamento").html("<b>Boleto bancário</b>");
-                             }else{
-                                $("#metpagamento").html("<b>"+resposta.data.payment+"</b>");
-                              }
-                                 window.open(resposta.data.link, "_blank");                                        
-                                                                    
-                    }else{
-                                    $("#myModal").modal('hide');
-                                    alert("Code: "+ resposta.code)
+                    function escapeHtml(text) {
+                     return text
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
                     }
-                  },
-                          error:function (resposta){
-                              $("#myModal").modal('hide');
-                              alert("Ocorreu um erro - Mensagem: "+resposta.responseText)
-                          }
-                });
-                } //endif
-                else {
+
+
+                    function formatReal( int )
+                    {
+                            var tmp = int+'';
+                            tmp = tmp.replace(/([0-9]{2})$/g, ",$1");
+                            if( tmp.length > 6 )
+                                    tmp = tmp.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+                                return tmp;
+                    }
+
+                    if(parseInt(nome_cliente)=="NaN" || parseInt(valor)=="NaN"){
+                        $("#myModal").modal('hide');
+                        alert("Dados inválidos.");
+                        return false;
+                    }   
+                    $.ajax({
+                      url: "controller/emitir_carne.php",
+                      data:{descricao:descricao,email:email,valor:valor,quantidade:quantidade,nome_cliente:nome_cliente,cpf:cpf,telefone:telefone,vencimento:vencimento,repeticoes:repeticoes},
+                      type:'post',
+                      dataType:'json',
+                      success: function(resposta){
+                            
+                    $("#myModal").modal('hide');
+                        console.log(resposta)
+                    if(resposta.code == 200){
+                        
+                        $('#cpf_carne').mask('000.000.000-00');
+                        $('#valor_carne').mask('000.000.000.000.000,00');
+                        $('#telefone_carne').mask('(00)0000-0000');
+                        var target_offset = $("#ancora1").offset();
+                        var target_top = target_offset.top;
+                        $('html, body').animate({ scrollTop: target_top }, 2000);
+                        $("#resultados_carne").show("slow",'linear');
+
+
+                         //$("#myModalResult").modal('show');
+                        $('#enviado_email').html(email);
+                        $("#carne").removeClass("hide");
+                        $("#num_carne").html("<b>"+resposta.data.carnet_id+"</b>");
+                        $("#carne_parcelado").html("<b>R$"+formatReal(resposta.data.charges[0].value)+"</b>");
+                        $("#link_carne").html("<a style='color:blue;' id='link-boleto' target='_blank' href='"+resposta.data.link+"'>Abrir Carnê</a>");
+                        $("#venc_carne").html("<b>"+resposta.data.charges[0].expire_at)+"</b>";
+                        console.log(resposta.data)
+                        $("#total_carne").html("<b>R$"+formatReal(valor)+"</b>");
+                                window.open(resposta.data.link, "_blank");                                        
+                                                              
+                    }else{
+                        $("#myModal").modal('hide');
+                        alert("Code: "+ resposta.code)
+                            }
+                          },
+                              error:function (resposta){
+                                  $("#myModal").modal('hide');
+                                  alert("Ocorreu um erro - Mensagem: "+resposta.responseText)
+                                  }
+                        });
+                }else {
                         alert("Você deverá preencher todos dados do formulário.")
                     }
              })
