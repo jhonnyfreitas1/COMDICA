@@ -29,7 +29,13 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="inputCalc" style="margin-top: 3%;">
+<center>
+<div>
+<h4 class="ss mt-2  border rounded col-md-6 text-light" style="background-color:  #01DF74;">Calculadora do imposto de renda pessoa física <i class="fas fa-calculator"></i></h4>
+<form class=" radius col-md-12">
+
+
+  <div class="inputCalc " style="margin-top: 3%; padding-bottom:  1em; ">
   <div class="form-row" >
     <div class="form-group col-md-6">
       <label for="inputEmail4"  class="d-flex justify-content-center">Renda anual bruta</label> 
@@ -72,13 +78,14 @@
     </div>
   </div>
 
- <button type="submit" class="btn btn-success " id='calcular' style="width: 20%; display: block; margin: auto;">Calcular</button>
-
+ <button type="submit" class="btn text-light " id='calcular' style="width: 20%; display: block; margin: auto; background-color:  #01DF74;">Calcular</button>
+</div>
 </form>
-
+</div>
+</center>
 <button type="button" class="btn btn-primary fixed-bottom" disabled>
     Ano de Atuação <span class="badge badge-light"><?= date('Y'); ?></span>
-  <span class="sr-only">unread messages</span>
+
 </button>
 <div id="tabela">
 
@@ -87,7 +94,9 @@
     <i class="fas fa-info"></i>
     </button>
   <div class="dropdown-menu">
-      faça uma doação com os dados da calculadora e receba após a comfirmação da doação o documento comprovatorio de doação
+      <div class='' style="padding: 1em;">
+      Faça uma doação com os dados da calculadora e receba após a confirmação da doação o documento comprovatorio de doação no seu e-mail
+      </div>
   </div>
 </div>
 <center>

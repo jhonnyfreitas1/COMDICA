@@ -30,7 +30,7 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
       <div class="list-group list-group-flush">
         <a href="nova-postagem.php" id='postagem' class="list-group-item list-group-item-action ">Nova postagem</a>
         <a href="#" id='minhas_postagens'  class="list-group-item list-group-item-action ">Minhas postagens</a>
-        <a href="#" class="list-group-item list-group-item-action ">Doações do imposto de renda</a>
+        <a href="#" id='doacao_imposto' class="list-group-item list-group-item-action ">Doações do imposto de renda</a>
         <a href="#" id='adc_user' class="list-group-item list-group-item-action ">Adicionar Usuarios</a>
        <!--  <a href="#" class="list-group-item list-group-item-action">Configurações da Calculadora</a>
        -->

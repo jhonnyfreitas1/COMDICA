@@ -25,3 +25,7 @@ session_start();
 
             return include '../adicionar_usuario.php';
         }
+         function doacoes_imposto(){
+
+            return include '../doacoes_imposto.php';
+        }

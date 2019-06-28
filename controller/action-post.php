@@ -23,8 +23,7 @@ function is_exists($titulo, $conn){ //verifica se o poste já existe
 		$hidden=filter_var($_POST['hidden']);
 		$descricao = $_POST['descricao'];
 		$imagem = $_FILES['imagem']; //arquivo enviado
-		$pdf2 = $_FILES['pdf2'];
-		$pdf = $_FILES['pdf'];
+		
 		if ($nome == "" || $descricao == "" || $imagem == "") {
  		
  			echo 'Descricao, titulo da postagem ou a imagem principal nao foram selecionadas';
@@ -35,6 +34,13 @@ function is_exists($titulo, $conn){ //verifica se o poste já existe
 		if ($yt != "") {
 		$url = explode("watch?v=", $yt);
 		$embed = $url[0]."embed/".$url[1];
+		}
+		
+		if ($_FILES['pdf']['name']){
+			$pdf = $_FILES['pdf'];
+		}
+		if ($_FILES['pdf2']['name']){
+			$pdf2 = $_FILES['pdf2'];
 		}
 
 	if(isset($imagem)){

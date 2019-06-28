@@ -105,6 +105,7 @@ $(document).ready(function(){
             function mostrar(inssanual, rendaanual, debitos, rendabase, aliquota ,imposto, deducao, irrf){ 
                 //essa função mostra todos valores e informações referentes ao pós calculo
                 var impostopg = imposto - deducao;
+
                 $('#seuinss').html(inssanual.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 $('#suarendaanual').html(rendaanual.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 $('#seusdebitos').html(debitos.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
@@ -117,19 +118,21 @@ $(document).ready(function(){
 
                  porcentagem = Math.round(porcentagem);
                  var rendabase2 = rendabase - porcentagem;
-                 var aliquota2 = rendabase2 * (aliquota/100);
+                 var aliquota2 = rendabase2 * (aliquota/100); 
 
                  var imposto =  aliquota2.toFixed(2); 
 
                  if (irrf <= impostopg){
                     $('#impostopagar').html((impostopg - irrf).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                     $('#impostorest').html(0);        
-                    $('#valor7').html("<b><a id='pulse' href='doacao_boleto.php?valor="+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"&ir="+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"' class='btn btn-info'>Avista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> Ou <a id='pulse' class='btn btn-info m-2'>Em 6 vezes de "+(porcentagem / 6).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+ "</a></s></b> <a href='../../pq_doar.php' class='btn btn-outline-dark col-md-2 '>Por que doar ?</a>");
+                    $('#valor7').html("<b><a id='pulse' href='doacao_boleto.php?valor="+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"&ir="+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Avista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='../pq_doar.php' class='btn btn-outline-dark ml-2 col-md-2 '>Por que doar ?</a>");
 
                 }else{
                     $('#impostopagar').html(0);
                     $('#impostorest').html("<b>"+(irrf - impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
-                    $('#valor7').html('<p>Você não tem imposto a pagar e sim a restituir.</p>');
+                    //$('#valor7').html('<p>Você não tem imposto a pagar e sim a restituir.</p>');
+                    $('#valor7').html("<b><a id='pulse' href='doacao_boleto.php?valor="+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"&ir="+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Avista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='../pq_doar.php' class='btn btn-outline-dark ml-2 col-md-2 '>Por que doar ?</a>");
+
                 }
 
                 $("#irrf").html(irrf.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
