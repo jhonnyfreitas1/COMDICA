@@ -22,25 +22,26 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
 </head>
 <body>
 
-  <div class="d-flex" id="wrapper">
+  <div class="d-flex " id="wrapper">
 
     <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="bg-success border-right " id="sidebar-wrapper">
       <div class="sidebar-heading"><a href="index.php"><img src="assets/img/comdica3.png" style="width: 10em;"></a></div>
       <div class="list-group list-group-flush">
-        <a href="nova-postagem.php" id='postagem' class="list-group-item list-group-item-action bg-light">Nova postagem</a>
-        <a href="#" id='minhas_postagens' class="list-group-item list-group-item-action bg-light">Minhas postagens</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Doações do imposto de renda</a>
-        <a href="#" id='adc_user' class="list-group-item list-group-item-action bg-light">Adicionar Usuarios</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Configurações da Calculadora</a>
+        <a href="nova-postagem.php" id='postagem' class="list-group-item list-group-item-action ">Nova postagem</a>
+        <a href="#" id='minhas_postagens'  class="list-group-item list-group-item-action ">Minhas postagens</a>
+        <a href="#" class="list-group-item list-group-item-action ">Doações do imposto de renda</a>
+        <a href="#" id='adc_user' class="list-group-item list-group-item-action ">Adicionar Usuarios</a>
+       <!--  <a href="#" class="list-group-item list-group-item-action">Configurações da Calculadora</a>
+       -->
       </div>
     </div>
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-        <button class="btn btn-primary fechar-abrir" id="menu-toggle">Fechar Menu</button>
+      <nav class="navbar navbar-expand-lg navbar-light bg-success border-bottom">
+        <button class="btn btn-primary fechar-abrir " id="menu-toggle">Fechar Menu</button>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -74,13 +75,26 @@ if ($_SESSION['name'] && $_SESSION['id_user']){
 
   <!-- Bootstrap core JavaScript -->
   <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
   <!-- Menu Toggle Script -->
   <script src="assets/js/dashboard.js"></script>
 
 </body>
 <style type="text/css">
+.list-group-item{
+     background: linear-gradient(135deg, rgb(34, 130, 227) 0%, rgb(9, 226, 51) 100%);
+     color: white;
+}
+body{
+  text-decoration-color: white;
+    background: linear-gradient(135deg, rgb(34, 130, 227) 0%, rgb(9, 226, 51) 100%);
+
+  }
+  label{
+    color:white;
+  }
+
 
 </style>
 </html>
