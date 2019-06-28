@@ -32,7 +32,7 @@
 						<div class="col-md-6 col-sm-6">
 							<div class='report-module ' style=" border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.9)">
 								<div class='thumbnail' >
-									<a href="view_posts.php?id=<?=base64_encode($linha1['id_post']);?>">
+									<a href="view_post.php?id=<?=base64_encode($linha1['id_post']);?>">
 										<img class="card-img-top " style="max-height: 11em;" src="upload/<?=$linha1['imagem'];?>">
 									</a>
 								</div>
