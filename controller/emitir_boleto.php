@@ -100,4 +100,4 @@ if (isset($_POST['valor']) && isset($_POST['nome_cliente']) && isset($_POST['cpf
     }
 }else {
     echo 'Complete todos os campos do formulário para doação via boleto';
-} 
+}
