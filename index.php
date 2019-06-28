@@ -117,7 +117,7 @@ include 'nav.php';
          <div class=" col-md-12 text-dark position-top">
            <div class=" card-header bg-success  col-12  text-white"><h4>Calculadora </h4></div>
             <h5 class="card-body text-white description">
-             Calcule seu imposto de renda aqui no nosso site, exporte seus dados da calculadora e veja quanto você pode doar e muito mais
+             Calcule seu imposto de renda, exporte seus dados da calculadora e veja quanto você pode doar em seu valor parcelado ou avista, faça o teste
             </h5>
            <a href="calculo.php">   <img style="width:100%; margin-top: -3em;"  class='pulse ml-3' src="assets/img/calculado-low.png">
           </div></a>
@@ -141,12 +141,7 @@ include 'nav.php';
           <div class=" col-md-12 text-dark position-top">
            <div class=" card-header bg-success  col-12  text-white"><h4>FUNDECA</h4></div>
             <h5 class="card-body text-white description">
-             O Fundo Municipal dos Direitos da Criança e do Adolescente, é captador e
-                aplicador de recursos a serem utilizados, segundo as deliberações do Conselho dos
-                Direitos, ao qual é órgão vinculado.
-                Os critérios para liberação de recursos do Fundo Municipal dos Direitos da
-                Criança e do Adolescente, e por meio desse site visa captar recursos para serem
-                aplicados na COMDICA 
+             O Fundo Municipal dos Direitos da Criança e do Adolescente (FUMDECA) é um Fundo especial, criado por lei municipal, segundo determinação do Estatuto da Criança e do Adolescente em seu art. 260 com o objetivo de financiar programas e projetos que atuem na garantia da promoção, proteção e defesa dos direitos da criança e do adolescente. 
                 
             <img style="width:110%;" src="assets/img/fundeca-mini.png">
             </h5>
@@ -195,7 +190,7 @@ include 'nav.php';
             <div class="col-md-6 col-sm-6">
               <div class='report-module ' style=" border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.9)">
                 <div class='thumbnail' >
-                  <a href="view_posts.php?id=<?=base64_encode($linha1['id_post']);?>">
+                  <a href="view_post.php?id=<?=base64_encode($linha1['id_post']);?>">
                     <img class="card-img-top " style="max-height: 11em;" src="upload/<?=$linha1['imagem'];?>">
                   </a>
                 </div>
