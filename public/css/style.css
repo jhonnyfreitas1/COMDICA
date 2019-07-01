@@ -1,0 +1,86 @@
+body{
+  font-family: calibri;
+}
+.color_verde{
+     background-color:#01DF74;
+}
+.bt{
+    height:  120px
+}
+
+.btn.btn-destaque {
+    border:none;
+    border-color:transparent;
+    background-color: #f26522;
+    *background-color: #f26522;
+    background-image: -moz-linear-gradient(top, #FFF, #E6E7E8);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FFF), to(#E6E7E8));
+    background-image: -webkit-linear-gradient(top, #FFF, #E6E7E8);
+    background-image: -o-linear-gradient(top, #FFF, #E6E7E8);
+    background-image: linear-gradient(to bottom, #FFF, #E6E7E8);
+}
+
+.btn-warning{
+   background-color:#f26522
+}
+.nav.navbar-nav.pull-right li:nth-child(2)  {
+    text-align: center;
+    display: block;
+
+    padding: 7px 11px;
+    border-radius: 3px;
+    border: 2px solid #00b4c5;
+    line-height: 1em;
+    margin: 15px 15px 0;
+    
+}
+.container-fluid{
+    font-size: 18px;
+    display: block;
+    padding: 10px 15px;
+}
+.theme-line .navbar-nav {
+    color: #00b4c5;
+}
+.theme-line .navbar-nav {
+    color: #bbb;
+}
+
+
+
+   @media (max-width: 767px) { 
+    .navbar-brand {
+        padding: 0;        
+    }
+
+    .navbar-brand img {
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+}
+
+
+.content-footer{
+    font-size: 10px;
+}
+
+.dis_10{
+    margin-top: 20px;
+}
+
+
+#rodape{
+    margin-top: 40%;
+}
+
+.atributo{
+    color: #009615;
+    font-size: 15px;
+}
+
+em{color: #009615}
+
+
+.dev{
+    font-size: 16px;
+}

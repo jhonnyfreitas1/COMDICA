@@ -1,0 +1,12 @@
+.inputCalc{
+	border-radius: 2em;
+	
+	float: center;
+	margin: 0px auto;
+}
+.radius{
+	border-radius: 3em;
+}
+.radius1{
+	border-radius: 0.5em;
+}
