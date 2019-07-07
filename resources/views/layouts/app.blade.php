@@ -15,28 +15,28 @@
     </head>
 
 <body >
-   <nav class="navbar navbar-expand-lg navbar-light bg-success" style="" >
+   <nav class="navbar navbar-expand-lg navbar-light " style="background-color:#01DF74;" >
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Alterna navegação">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse"  id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="/"><img src="/img/comdica1.png" style="width: 150px; filter: contrast(130%);"></a>
+    <a class="navbar-brand" href="/"><img src="/img/comdica1.png" style="width: 150px; filter: contrast(120%);"></a>
     <div class="" style="">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="btn btn-success my-2 my-sm-0 m-1" style="background-color:#006400;" href="/doacoes">Doações <span class="sr-only">(Página atual)</span></a>
+        <a class="btn btn-info my-2 my-sm-0 m-1 font-weight-bold " style="" href="/doacoes">Doações <span class="sr-only">(Página atual)</span></a>
       </li>
 
       <li class="nav-item active">
-      <a class="btn btn-success my-2 my-sm-0 m-1" style="background-color:#006400;;" href="/calculadora">Calculadora de IR</a>
+      <a class="btn btn-info my-2 my-sm-0 m-1 font-weight-bold " style="" href="/calculadora">Calculadora de IR</a>
       </li>
 
       <li class="nav-item active">  
-        <a class="btn btn-success my-2 my-sm-0 m-1 " style="background-color:#006400;" href="/contato">Contato</a>
+        <a class="btn btn-info my-2 my-sm-0 m-1 font-weight-bold " style="" href="/contato">Contato</a>
       </li>
 
       <li class="nav-item active">  
-        <a class="btn btn-success my-2 my-sm-0 m-1 " style="background-color:#006400;" href="/porque_doar">Porque doar?</a>
+        <a class="btn btn-info my-2 my-sm-0 m-1 font-weight-bold " style="" href="/porque_doar">Por que doar?</a>
       </li>
     </ul>
              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
