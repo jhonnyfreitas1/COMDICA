@@ -24,8 +24,6 @@
 
     <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
 
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
 
 
@@ -33,14 +31,6 @@
 
     <link rel="stylesheet" href="css/style.css">
     
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
-    <style type="text/css">
-    	
-
-    </style>
-	 
-	    <link rel="stylesheet" href="/css/aos.css">
 
 	    <link rel="stylesheet" href="/css/style1.css">
   	@endsection
@@ -52,7 +42,6 @@
           <div class="row align-items-center justify-content-center text-center">
 
             <div class="col-md-8" data-aos="fade-up" data-aos-delay="400">
-              
 
               <h1 class="text-white font-weight-light">{{$consulta->titulo}}</h1>
               <p class="mb-5">{{ str_limit($consulta->descricao, 30)}}</p>
@@ -65,7 +54,7 @@
       @endforeach 
     </div>
     <center>
-    <div class="row m-2" style="width: 105%;">
+    <div class="row m-2" style="width: auto;">
    <div class=" col-md-3 col-11 m-2 " id="card-fundo" style="">
         <div class="row ">
          <div class=" col-md-12 text-dark position-top">
@@ -73,7 +62,7 @@
             <h5 class="card-body text-white description">
              Calcule seu imposto de renda, exporte seus dados da calculadora e veja quanto você pode doar em seu valor parcelado ou avista, faça o teste.
             </h5>
-           <a href="calculadora" class="pulse">   <img style="width:98%; margin-top: -3em;"  class='pulse ml-3' src="/img/calculado-low.png">
+           <a href="calculadora" class="pulse">   <img style="width:98%; margin-top: -3em;"  class='pulse ' src="/img/calculado-low.png">
           </div></a>
         </div>
       </div>
@@ -107,7 +96,7 @@
 
 		</div>
     </center>
- 
+ </div>
     
     <div class="site-section block-13 ">
   
@@ -134,21 +123,24 @@
     </div>  
 
     <center>
-     <div class="col-md-7 text-center m-2">
+    
+     <div class="col-md-7  text-center m-2">
+     
             <h2 class="font-weight-light text-black">Últimas postagens</h2>
+            
           </div>
-    	 </center>
- 	<div class="row ml-2 " style=" margin-top: 6em;">
+          <div class="container row" style="">
           	 @foreach($posts as $post)
+          
           <a href="/postagem/{{$post->id}}">
-            <div class=" col-md-3 col-sm-6 col-6">
+            <div class=" col-md-4 col-sm-6 col-6">
               <div class='report-module ' style=" border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.9)">
-                <div class='thumbnail ' >
-                  <a href="/postagem/{{$post->id}} " class="bg-light">
+                <div class='thumbnail'>
+                  <a href="/postagem/{{$post->id}} " class="">
                     <center>
-                    <img class="card-img-top" style="max-width:20em; max-height:15em; width: auto;
-  height: auto; position: center;" src="/upload_imagem/{{$post->imagem_principal}}">
-                   </center>
+                    <img class="card-img-top col-md-10 col-12" style="min-height:6em; 
+                    max-width:10rem; min-width:14em;" src="/upload_imagem/{{$post->imagem_principal}}">
+                  
                     <h4>{{$post->titulo}}</h4>
                   </a>
                 </div>
@@ -205,7 +197,6 @@
 	  <script src="js/bootstrap.min.js"></script>
 
 	  <script src="js/jquery.stellar.min.js"></script>
-	  <script src="js/jquery.countdown.min.js"></script>
 	  <script src="js/jquery.magnific-popup.min.js"></script>
 	  <script src="js/bootstrap-datepicker.min.js"></script>   
 	  
