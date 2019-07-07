@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ config('app.name', 'Comdica Araçoiaba') }}</title>
+        <title>Comdica Araçoiaba</title>
         <script src="{{asset('js/app.js')}}" defer></script>
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -81,11 +81,11 @@
 
 <!-- Footer -->
 <!-- Footer -->
-<footer class="page-footer font-small unique-color-dark  d-inline-block"  style=" width: 100%;  ">
+<footer class="page-footer font-small unique-color-dark  d-inline-block"  style="  width: 100%; ">
 
-  <div style="" class="bg-success" style="
-  ">
-
+<div  style="background-color:#01DF74; background-image:url('/img/prefeitura.png'); background-repeat:no-repeat; background-position: bottom 30px right 20px;" class="" style="
+ ">
+  <img >
     <div class="container" >
 
       <!-- Grid row-->
@@ -113,7 +113,7 @@
       </div>
 
       <!-- Footer Links -->
-      <div class="container text-center text-md-left mt-5"  >
+      <div  class="container text-center text-md-left mt-5"  >
 
         <!-- Grid row -->
         <div class="row mt-3" >
@@ -147,7 +147,7 @@
           <!-- Grid column -->
 
           <!-- Grid column -->
-          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <div  class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
             <!-- Links -->
             <h6 class="text-uppercase font-weight-bold  text" style=" color:  #006400;">Links úteis</h6>
@@ -161,7 +161,8 @@
             <p>
               <a href="/calculadora">Cálculo do imposto de renda</a>
             </p>
-
+            <!-- <img src="" class='float-right' style="filter: contrast(130%);">
+           -->
           </div>
           <!-- Grid column -->
 
@@ -172,9 +173,10 @@
             <h6 class="text-uppercase font-weight-bold text" style=" color: #006400 ;">Contato</h6>
             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; ">
             <p class="text">
-              <i class="fas fa-home mr-3 text"></i > Araçoiaba, n 10012, PE</p>
+            <i class="fas fa-home mr-2 text"></i> Araçoiaba, n 10012, PE</p>
               <p class="text">
-                <i class="fas fa-envelope mr-3 text"></i >cmdcaaracoiabape@gmail.com</p>
+                <i class="fas fa-envelope mr-2 text"></i >cmdcaaracoiabape@gmail.com</p>
+           
                 <p class="text">
                   <i class="fas fa-phone mr-3 text"></i > + 01 234 567 88</p>
                  
@@ -190,7 +192,7 @@
 
               <!-- Copyright -->
               <div class="footer-copyright text-center py-3">© 2019 Copyright:
-                <a href="#"> FUNDECA</a>
+                <b> FUNDECA</b>
               </div>
             <!-- Copyright -->
             </footer>
