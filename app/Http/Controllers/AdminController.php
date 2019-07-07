@@ -16,13 +16,6 @@ class AdminController extends Controller
     {
         return view('admin.index');
     }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -38,7 +31,9 @@ class AdminController extends Controller
 
         return view('admin.doacoes')->with(compact('doacoes'));
     }
-    public function minhas_postagens(){
+
+    public function minhas_postagens()
+    {
 
          $posts = DB::table('postagens')->where('user_id',Auth::id())->paginate(8);
     
@@ -112,59 +107,37 @@ class AdminController extends Controller
             return 'Falha ao fazer postagem, tente novamente.';
         }
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
-    {
-        //
+    {   
+        $query = DB::table('postagens')->where('id', '=', $id);
+        $image = $query->first();
+        // File::delete(public_path() . '/upload_imagem/'.$image->imagem_principal);
+        $resultado=  $query->delete();
+    
+        if ($resultado == true) {
+            $mensagem = "Sucesso ao deletar o item";
+            redirect()->route('minhas_postagens')->with('success',$mensagem); 
+		}else{
+            $mensagem = "Falha ao deletar o item";
+        }		
+		return $mensagem;   
     }
 }
