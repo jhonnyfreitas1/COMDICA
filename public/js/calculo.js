@@ -125,7 +125,7 @@ $(document).ready(function(){
                  if (irrf <= impostopg){
                     $('#impostopagar').html((impostopg - irrf).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                     $('#impostorest').html(0);        
-                    $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+porcentagem+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Avista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='../porque_doar' class='btn btn-outline-dark ml-2 col-md-2 '>Por que doar ?</a>");
+                    $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+porcentagem+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Doe "+ porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='/porque_doar' class='btn btn-outline-dark ml-2 col-md-3 '>Por que doar ?</a>");
 
                 }else{
                     $('#impostopagar').html(0);
