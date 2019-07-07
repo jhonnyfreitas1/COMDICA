@@ -43,6 +43,8 @@ Route::get('/admin/doacoes', ['as' => 'admin.boleto', 'uses' => 'AdminController
 Route::get('/admin/minhas_postagens', ['as' => 'minhas_postagens', 'uses' => 'AdminController@minhas_postagens'])->middleware('auth');
 
 Route::get('/auth/logout', 'Auth\LoginController@logout')->middleware('auth');
+Route::get('/admin/post/delete/{id}
+', ['as' => 'delete_postagem', 'uses' => 'AdminController@destroy'])->middleware('auth');
 
 Route::get('/admin/nova-postagem', ['as' => 'admin.nova', 'uses' => 'AdminController@nova_postagem'])->middleware('auth');
 Route::post('/admin/postagem_save', ['as' => 'admin.salvar', 'uses' => 'AdminController@salvar_postagem'])->middleware('auth');
