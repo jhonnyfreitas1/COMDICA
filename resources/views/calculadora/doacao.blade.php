@@ -4,7 +4,7 @@
 		@section('js')
 			<script src="{{asset('/js/jquery.maskMoney.min.js')}}" defer></script>
 			<script src="{{asset('/js/jquery.mask.js')}}" defer></script>
-		<script type="text/javascript" src='https://raw.githubusercontent.com/plentz/jquery-maskmoney/master/dist/jquery.maskMoney.min.js'></script>
+		<!-- <script type="text/javascript" src='https://raw.githubusercontent.com/plentz/jquery-maskmoney/master/dist/jquery.maskMoney.min.js'></script> -->
 		<link rel="stylesheet" href="/css/style.css">
 		<script type="text/javascript" src="/js/scripts.js"></script>
 		@endsection
@@ -179,7 +179,7 @@
                         <form method="POST" id="form-carne"  class="form-row m-2 ">      
                          <div class="col-lg-5">
                             <h4>Informações do doador</h4>
-
+                            <input type="hidden" id='token1' name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Nome completo<span style="color: red;">*</span>: </label>
                                 <input type="text" class="form-control" id="nome_cliente_carne" placeholder="Nome do cliente" required>
@@ -426,9 +426,10 @@
                         alert("Dados inválidos.");
                         return false;
                     }   
+                     var _token = $("#token").val();
                     $.ajax({
-                      url: "controller/emitir_carne.php",
-                      data:{descricao:descricao,email:email,valor:valor,quantidade:quantidade,nome_cliente:nome_cliente,cpf:cpf,telefone:telefone,vencimento:vencimento,repeticoes:repeticoes},
+                      url: "/calculadora/gerar_carne",
+                      data:{_token:_token,descricao:descricao,email:email,valor:valor,quantidade:quantidade,nome_cliente:nome_cliente,cpf:cpf,telefone:telefone,vencimento:vencimento,repeticoes:repeticoes},
                       type:'post',
                       dataType:'json',
                       success: function(resposta){

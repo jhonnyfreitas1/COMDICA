@@ -56,16 +56,17 @@ $(document).ready(function(){
                          
                 if(resposta.code == 200){
                        //"code":200,"data":{"barcode":"03399.32766 55400.000000 60348.101027 6 69020000009000","link":"https:\/\/visualizacaosandbox.gerencianet.com.br\/emissao\/59808_79_FORAA2\/A4XB-59808-60348-HIMA4","expire_at":"2016-08-30","charge_id":76777,"status":"waiting","total":9000,"payment":"banking_billet"-->
+                       var data_reverse = resposta.data.expire_at.split('-',3);
+
                        var target_offset = $("#ancora1").offset();
                         var target_top = target_offset.top;
-                        $('html, body').animate({ scrollTop: target_top }, 2000);
-                        $("#resultados").show("slow",'linear');
-
+                        $('html, body').animate({ scrollTop: target_top }, 2000); 
+                         $("#resultados").show("slow",'linear');
 
                         $("#transacao").html("<b>"+resposta.data.charge_id+"</b>");
                         $("#codbarra").html("<b>"+resposta.data.barcode+"</b>");
                         $("#boleto1").html("<a style='color:blue;' id='link-boleto' target='_blank' href='"+resposta.data.link+"'>Abrir Boleto</a>");
-                        $("#vencimento1").html("<b>"+resposta.data.expire_at)+"</b>";
+                        $("#vencimento1").html("<b>"+data_reverse[2]+'/'+data_reverse[1]+'/'+data_reverse[0])+"</b>";
                       if (resposta.data.status == 'waiting') {
                           $("#status").html("<b>Aguardando Pagamento</b>");
                        }else{
@@ -91,4 +92,5 @@ $(document).ready(function(){
      })
    
      
+
 })

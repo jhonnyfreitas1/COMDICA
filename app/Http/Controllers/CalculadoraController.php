@@ -54,10 +54,6 @@ class CalculadoraController extends Controller
         $clientId = 'Client_Id_b4e3a0155e6b71171d70579745e30727c5d2be1f';
         $clientSecret = 'Client_Secret_09a2dc05b56e4ce3626d49387f6602331cacef52';
         */
-
-/*
-        _token:_token,descricao:descricao,email:email,valor:valor,quantidade:quantidade,nome_cliente:nome_cliente,cpf:cpf,telefone:telefone,vencimento:vencimento
-        */
         $options = [
             'client_id' => $clientId,
             'client_secret' => $clientSecret,
@@ -76,7 +72,6 @@ class CalculadoraController extends Controller
                 $item_1
             ];
               
-
             $body = ['items' => $items];
             try {
                 $api = new Gerencianet($options);
@@ -108,38 +103,32 @@ class CalculadoraController extends Controller
                     $um = 1;
                     $boleto = 'boleto';
                     $zero = 0;
-                
-                    DB::table('doacao_boleto')->insert(
-                        ['email' => 'john@example.com',
-                         'votes' => 0]
-                    );
+                    $data_atual= date('Y-m-d');
+                    DB::table('doacao_boleto')->insert([
+                        'doador_email' => $request['email'],
+                        'doador_nome' => $request['nome_cliente'],
+                        'doador_cpf' => $request['cpf'],
+                        'doador_telefone' => $request['telefone'],
+                        'doador_email' => $request['email'],
+                        'charger_id' => $pay_charge['data']['charge_id'],
+                        'link_boleto' => $pay_charge['data']['link'],
+                        'valor_total'   =>$request['valor'],
+                        'quantidade' => 1,
+                        'parcelas' => 1,
+                        'metodo_pagamento' => 'boleto',
+                        'valor_parcelado' => 0,
+                        'created_at' => $data_atual,
+                       'fk_id_carne' => null,
+                        'vencimento' => $date,
+                        'cod_barra' => $pay_charge['data']['barcode'],
+                        'status' => $pay_charge['data']['status']
+                    ]);
 
-
-
-
-                    $insert -> bindParam(1,$request['nome_cliente']);
-                    $insert -> bindParam(2,$request['cpf']);
-                    $insert -> bindParam(3,$request['telefone']);
-                    $insert -> bindParam(4,$request['email']);
-                    $insert -> bindParam(5,$pay_charge['data']['charge_id']);
-                    $insert -> bindParam(6,$pay_charge['data']['link']);
-                    $insert -> bindParam(7,$request['valor']);
-                    $insert -> bindParam(8,$um);
-                    $insert -> bindParam(9,$um); 
-                    $insert -> bindParam(10,$boleto);
-                    $insert -> bindParam(11,$date);
-                    $insert -> bindParam(12,$pay_charge['data']['barcode']);
-                    $insert -> bindParam(13,$pay_charge['data']['status']); 
-                    $insert -> bindParam(14,$zero);
-                    $resultado = $insert -> execute();
-
-                    echo json_encode($pay_charge);
+                   return  json_encode($pay_charge);
                     }else{
-                        echo 'code nao é 200';
+                       return  'code nao é 200';
                     }
-                }else {
-                    echo "Algum dado passado esta errado!";
-                }
+             
             } catch (GerencianetException $e) {
                 print_r($e->code);
                 print_r($e->error);
@@ -148,14 +137,114 @@ class CalculadoraController extends Controller
                 print_r($e->getMessage());
             }
         }else {
-            echo 'Complete todos os campos do formulário para doação via boleto';
+          return  'Complete todos os campos do formulário para doação via boleto';
         }
 
     }
 
     public function gerar_carne(Request $request)
     {
+       
+if (isset($request['valor']) && isset($request['nome_cliente']) && isset($request['cpf']) && isset($request['telefone']) && isset($request['email']) && isset($request['vencimento']) && isset($request['repeticoes'])) {
 
+
+    $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
+    $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
+
+    $options = [
+        'client_id' => $clientId,
+        'client_secret' => $clientSecret,
+        'sandbox' => true
+    ];
+
+    $instructions = ['Seus dados foram guardados no sistema para que você possa vir .','Você receberá um email no final do pagamentos de todas as parcelas com todos os dados ', 'asdasd', 'asdasdsadsads'];
+
+    $valor_parcelado = $request['valor'] / $request['repeticoes'];
+
+
+    $item_1 = [
+        'name' => $request["descricao"],
+        'amount' => (int) 1,
+        'value' => (int) $valor_parcelado
+
+    ];
+
+    $items = [
+        $item_1
+    ];
+
+    $customer = [
+            'name' => $request["nome_cliente"],
+            'cpf' => $request["cpf"],
+            'phone_number' => $request["telefone"],
+            'email' => $request["email"],
+        ];
+
+      $date =  date('Y-m-d', strtotime('+1 month'));
+    $body = [
+    'items' => $items,
+    'repeats'=>(int)$request["repeticoes"],
+    'split_items'=>false,
+    'expire_at' => $date,
+    'customer' => $customer,
+    'instructions' =>$instructions
+    ];
+    $um = 1;
+    $zero = 0;
+    $vencimento = $request['vencimento'];
+    $boleto = 'carne';
+    try {
+        $api = new Gerencianet($options);
+        $charge = $api->createCarnet([], $body);
+        
+        if ($charge['code'] == 200) {
+            //inserindo em tabela de doacoes de carne
+              DB::table('doacao_carne')->insert([
+                        'carne_id' =>   $charge['data']['carnet_id'],
+                        'doador_nome' => $request['nome_cliente'],
+                        'link_carne' => $charge['data']['link'],
+                        'valor_total' => $request['valor'],
+                        'numero_parcelas' => $request['repeticoes'],
+                        'valor_parcelado' => $valor_parcelado,
+                        'parcelas_pagas' => 0,
+                        'status' => $charge['data']['status']
+                    ]);
+                
+
+                //inserindo   em tabela de doacoes imposto e passando uma chave estrangeira do carne.
+                for($i= 0; $i < sizeof($charge['data']['charges']); $i++){ 
+                   DB::table('doacao_boleto')->insert([
+                        'doador_email' => $request['email'],
+                        'doador_nome' => $request['nome_cliente'],
+                        'doador_cpf' => $request['cpf'],
+                        'doador_telefone' => $request['telefone'],
+                        'doador_email' => $request['email'],
+                        'charger_id' => $charge['data']['charges'][$i]['charge_id'],
+                        'link_boleto' => $charge['data']['charges'][$i]['pdf']['charge'],
+                        'valor_total'   =>$request['valor'],
+                        'quantidade' => 1,
+                        'parcelas' => $request['repeticoes'],
+                        'metodo_pagamento' => 'carne',
+                        'valor_parcelado' => $valor_parcelado,
+                       'fk_id_carne' => $charge['data']['carnet_id'],
+                        'vencimento' => $date,
+                        'cod_barra' => $charge['data']['charges'][$i]['barcode'],
+                        'status' => $charge['data']['charges'][$i]['status']
+                    ]);    
+                }
+            }
+            return json_encode($charge);
+
+    } catch (GerencianetException $e) {
+        print_r($e->code);
+        print_r($e->error);
+        print_r($e->errorDescription);
+    } catch (Exception $e) {
+        print_r($e->getMessage());
+    }
+    }else{
+    return 'falta parametros';
+    }
 
     }
 

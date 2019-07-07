@@ -9,7 +9,7 @@
         <!-- Indicadores do Carousel -->
         <ol class="carousel-indicators">
 
-         <!--  <?php   $ativo = 0;
+           <?php   $ativo = 0;
           while ($ativo < 3):
             if ($ativo == 0) { ?>
               <li data-target="#myCarousel" data-slide-to="<?=$ativo?>" class="active"></li>
@@ -20,41 +20,40 @@
                 <?php $ativo++; ?>  
               <?php endif;    
             }
-          endwhile ?> -->
+          endwhile ?> 
         </ol>
       <div class="container">
        <div class="carousel-inner" role="listbox">
-<!-- 
+
         <?php   $ativoCarr = 0;?>
         
-       /* $consulta = $conn -> query("SELECT id_post, imagem,nome_post from posts ORDER BY id_post DESC LIMIT 3 "); */
-
-        while($ = $consulta)
-          if ($ativoCarr == 0) -->
+        @foreach($postagem as $consulta)
+          @if ($ativoCarr == 0)
             <div class="carousel-item active">
-              <a href="view_post.php?id=">
-                <img style="width: 100%;height: 31em;" src="">
+              <a href="postagem/{{$consulta->id}}">
+                <img style="width: 100%;height: 31em;" src="/upload_imagem/{{$consulta->imagem_principal}}">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5 class="text-light bg-dark"></h5>
+                    <h5 class="text-light bg-dark">{{$consulta->titulo}}</h5>
                   </div>
               </a>
             </div>
-          <!--   <?php   $ativoCarr++; ?>
-          }else{
-            if ($ativoCarr <= 2) ?>  --> 
+             <?php   $ativoCarr++; ?>
+              @elseif ($ativoCarr <= 2)           
               <div class="carousel-item">
-                <a href="view_post.php?id=">
-                  <img style="width: 100%;height: 31em;" src="">
+                <a href="postagem/{{$consulta->id}}">
+                  <img style="width: 100%;height: 31em;" src="/upload_imagem/{{$consulta->imagem_principal}}">
                   <div class="carousel-caption d-none d-md-block">
-                    <h5 class="text-light bg-dark"></h5>
+                    <h5 class="text-light bg-dark">{{$consulta->titulo}}</h5>
                   </div>
                 </a>
               </div>
-             <!--  <?php   $ativoCarr++;?>
-            endif;
-         
-        endwhile; ?>
- -->
+               <?php   $ativoCarr++;?>
+              @endif
+    
+    
+               
+          @endforeach   
+ 
         <!-- Controles de Direita e Esquerda -->
       
         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -66,16 +65,16 @@
           <span class="sr-only">Próximo</span>
         </a>
          <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
+            <h2><i class="fas fa-arrow-circle-left"></i></h2>
         </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
+        <a class="carousel-control-next " style="" href="#myCarousel" role="button" data-slide="next">
+          
+          <h2><i class=" col-md-6 fas fa-arrow-circle-right"></i></h2>
         </a>
       </div>    
     </div>
     </div>
+    
   <center>
     <div class="row m-4" style="margin: auto;"> 
     <!--  <div id="logo-icon" class="col-md-5 col-6 ml-12 p-10" style=" ">

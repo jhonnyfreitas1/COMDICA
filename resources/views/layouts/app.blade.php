@@ -11,11 +11,10 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="/js/jquery-2.2.4.min.js"></script>
-          <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
          @yield('js')
     </head>
 
-<body>
+<body >
    <nav class="navbar navbar-expand-lg navbar-light bg-success" style="" >
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Alterna navegação">
     <span class="navbar-toggler-icon"></span>
@@ -40,7 +39,14 @@
         <a class="btn btn-success my-2 my-sm-0 m-1 " style="background-color:#006400;" href="/porque_doar">Porque doar?</a>
       </li>
     </ul>
+             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+               
+                <a class="dropdown-item" href="/minha/doacao">Sou doador</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/gerar/boleto/2">Gerar segunda via de boleto</a>
+              </div>
     </div>
+
   </div>
 </nav>  
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -48,7 +54,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="assets/js/jquery.min.js"></script>
+    
+ 
 
   <style type="text/css"> 
       a{
@@ -73,7 +80,7 @@
 
 <!-- Footer -->
 <!-- Footer -->
-<footer class="page-footer font-small unique-color-dark  d-inline-block"  style=" width: 100%; margin-top: 21%;">
+<footer class="page-footer font-small unique-color-dark  d-inline-block"  style=" width: 100%;  ">
 
   <div style="" class="bg-success" style="
   ">
@@ -145,7 +152,7 @@
             <h6 class="text-uppercase font-weight-bold  text" style=" color:  #006400;">Links úteis</h6>
             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
             <p>
-            <a  href="/admin-login" class="">Administrador</a>
+            <a  href="/admin/comdica" class="">Administrador</a>
             </p>
             <p>
               <a href="/doacoes">Como doar</a>
