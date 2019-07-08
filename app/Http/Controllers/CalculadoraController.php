@@ -83,7 +83,8 @@ class CalculadoraController extends Controller
                     $customer = [
                         'name' => $request["nome_cliente"],
                         'cpf' => $request["cpf"],
-                        'phone_number' => $request["telefone"]
+                        'phone_number' => $request["telefone"],
+                        'email' => $request["email"]
                     ];
 
                     //Formatando a data, convertendo do estino brasileiro para americano.
@@ -157,7 +158,7 @@ if (isset($request['valor']) && isset($request['nome_cliente']) && isset($reques
         'sandbox' => true
     ];
 
-    $instructions = ['Seus dados foram guardados no sistema para que você possa vir .','Você receberá um email no final do pagamentos de todas as parcelas com todos os dados ', 'asdasd', 'asdasdsadsads'];
+    $instructions = ['Sua doação é muito importante para todas as crianças e adolescentes de Araçoiaba.','Você receberá um e-mail quando finalizar o pagamento das parcelas.', 'veja o status da sua doação na aba SOU DOADOR ', 'digite seus dados e verifique o status da sua doação, nós da comdica.site agradecemos.'];
 
     $valor_parcelado = $request['valor'] / $request['repeticoes'];
 
