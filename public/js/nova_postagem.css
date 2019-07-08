@@ -1,0 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+ 
+}
+  #progress_bar1 {
+    margin: 10px 0;
+    padding: 3px;
+    border: 1px solid #000;
+    font-size: 14px;
+    clear: both;
+    opacity: 0;
+    -moz-transition: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+    -webkit-transition: opacity 1s linear;
+  }
+  #progress_bar1.loading1 {
+    opacity: 1.0;
+  }
+  #progress_bar1 .percent1 {
+    background-color: #99ccff;
+    height: auto;
+    width: 0;																											
+  }
+
+  #progress_bar {
+    margin: 10px 0;
+    padding: 3px;
+    border: 1px solid #000;
+    font-size: 14px;
+    clear: both;
+    opacity: 0;
+    -moz-transition: opacity 1s linear;
+    -o-transition: opacity 1s linear;
+    -webkit-transition: opacity 1s linear;
+  }
+  #progress_bar.loading {
+    opacity: 1.0;
+  }
+  #progress_bar .percent {
+    background-color: #99ccff;
+    height: auto;
+    width: 0;																											
+  }
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.upload {
+    display: inline-block;
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    margin: 14px;
+}
+
+h1 {
+    font-size: 1em;
+    color: #6f48ad;
+    margin-bottom: 20px;
+}
+
+form {
+    position: relative;
+    display: block;
+
+    margin-bottom: 10px;
+}
+
+#formFiles input {
+    position: relative;
+    border: thin solid #ddd;
+    padding: 12px;
+    width: 100%;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+#formFiles button {
+    position: relative;
+    cursor: pointer;
+    padding: 14px;
+    display: inline-block;
+    background-color: #7233e8;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    border: none;
+    outline: none;
+    width: 100%;
+    border-radius: 3px;
+}
+
+#formFiles button:hover {
+    background-color: #5b12e6;
+}
+
+#progressBar {
+    position: relative;
+    display: none;
+    background: linear-gradient(135deg, rgb(34, 130, 227) 0%, rgb(9, 226, 51) 100%);
+    height: 16px;
+    width: 0;
+    line-height: 16px;
+    color: #fff;
+    font-size: 0.75em;
+    overflow: hidden;
+}
+
+#return {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}

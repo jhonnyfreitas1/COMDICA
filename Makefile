@@ -1,34 +1,27 @@
 	conf:
 	sudo apt-get install php7.2 php7.2-mbstring php7.2-mysql php7.2-intl php7.2-xml composer
-	composer install --no-scripts 
+	composer install --no-scripts
+	cp .env.example .env
+	php artisan key:generate
 	sudo apt-get install mysql-server-5.7
-	#$(MAKE) bd-conf
-
+	$(MAKE) bd-conf
 composer:
 	composer install --no-scripts
 	cp .env.example .env
 	php artisan key:generate
 	$(MAKE) bd-conf
 
-renisson:
-	git config user.email "renissonsilva"
-	git config user.name "renissonx@gmail.com"
-	sed -i 's/$username=.*/$username="renisson";/' controller/bd-conection.php
-	sed -i 's/$password=.*/$password="renisson";/' controller/bd-conection.php
-felipe:
-	git config user.name "filipeandrev"
-	git config user.email "filipe.andrev7@gmail.com"
-	sed -i 's/$username=.*/$username="felipe";/' controller/bd-conection.php   #muda ai depois nao sei seu usuario do banco.
-	sed -i 's/$password=.*/$password="felipe";/' controller/bd-conection.php
-
-jhonny:
+conf-git-jhonny:
 	git config user.email "jhonnyfarias87@gmail.com"
 	git config user.name "jhonnyfreitas1"
-	sed -i 's/$username=.*/$username="root";/' controller/bd-conection.php
-	sed -i 's/$password=.*/$password="jhonny522";/' controller/bd-conection.php
-bd-renisson:
-
-	mysql -u renisson -p < controller/modelo.sql
-bd-jhonny: 
-	mysql -u root -p < controller/modelo.sql
-
+bd-conf:
+	mysql -u root -p --execute="drop database if exists comdica; create database comdica; drop user if exists 'comdica'; create user 'comdica' identified by 'comdica'; grant all privileges on comdica.* to 'comdica';"
+	sed -i 's/DB_DATABASE.*/DB_DATABASE=comdica/' .env
+	sed -i 's/DB_USERNAME.*/DB_USERNAME=comdica/' .env
+	sed -i 's/DB_PASSWORD.*/DB_PASSWORD=comdica/' .env	
+	sed -i 's/MAIL_HOST.*/MAIL_HOST=smtp.gmail.com/' .env
+	# sed -i 's/MAIL_PORT.*/MAIL_PORT=587/' .env
+	# sed -i 's/MAIL_USERNAME.*/MAIL_USERNAME=suporte.cticifpe@gmail.com/' .env
+	# sed -i 's/MAIL_PASSWORD.*/MAIL_PASSWORD=suporte.ctic2019/' .env
+	sed -i 's/MAIL_ENCRYPTION.*/MAIL_ENCRYPTION=tls/' .env
+	php artisan migrate:refresh --seed
