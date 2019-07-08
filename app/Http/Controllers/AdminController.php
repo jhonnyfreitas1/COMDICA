@@ -88,6 +88,8 @@ class AdminController extends Controller
                 if ($request['yt'] != "") {
                     $url = explode("watch?v=", $request['yt']);
                     $embed = $url[0]."embed/".$url[1];
+                }else{
+                    $embed = null;
                 }
 
        $resultado =  DB::table('postagens')->insert([
@@ -134,10 +136,11 @@ class AdminController extends Controller
     
         if ($resultado == true) {
             $mensagem = "Sucesso ao deletar o item";
-            redirect()->route('minhas_postagens')->with('success',$mensagem); 
+           return redirect()->route('minhas_postagens')->with('success',$mensagem); 
 		}else{
             $mensagem = "Falha ao deletar o item";
+         return redirect()->route('minhas_postagens')->with('fail',$mensagem); 
         }		
-		return $mensagem;   
+		  
     }
 }
