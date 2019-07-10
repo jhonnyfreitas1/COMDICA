@@ -10,7 +10,7 @@
           <div class="modal-content">
             <div class="modal-header">
              <h4 class="modal-title" id="gridSystemModalLabel">Aguarde processando o envio da nova postagem</h4>
-      				  <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
          					 <span aria-hidden="true">&times;</span>
         			</button>
             </div>
@@ -29,38 +29,35 @@
   
 
 
-<form action="/admin/postagem_save" method="post"  id='form-postagem' name="form-postagem" enctype="multipart/form-data">
-<div class="form-group col-md-6">
+<form action="/admin/postagem_save" class=" container border border-light col-offset-6 centered col-md-10" method="post"  id='form-postagem' name="form-postagem" enctype="multipart/form-data">
+<div class="form-group col-md-12">
     <label for="">Titulo da postagem </label><label style="color:red;">*</label>
-    <input class="form-control col-md-6" type="text" name="titulo" required>
+    <input class="form-control col-md-12" type="text" name="titulo" required>
 </div>
-	<div class="form-group col-md-6">
+	<div class="form-group col-md-12 col-12">
 		<label>Imagem principal da postagem<label style="color:red;">*</label><b>"png", "jpg", "jpeg", "bmp"</b></label>
 		<div class="file-field">   
-		    <div class="btn btn-success btn-sm float-left">
-		      <span>Procurar uma imagem</span>
-		      <input type="file" id="uploadImage" name='imagem' required>
+        <div class="btn btn-success btn-sm col-12 col-md-12">
+		      <span class="col-3">Procurar imagem</span>
+          <input type="file" id="uploadImage" name='imagem'   class='col-7 col-md-12' required>
 		    	  </div>	
 		  </div>
 	</div>
-</br>
-</br>
-
 <div   class="form-row">
-	<div class="form-group col-md-6">
+	<div class="form-group col-md-12">
 	<!---CONcertando conflitos aki  -->
 		<div class="form-group col-md-12">
 		<button id="ancora" class="btn bg-warning"> >Link </button>
  			 <label for="comment">Descrição do post<label style="color:red;">*</label></label>
 			 <textarea  name="descricao" class="form-control col12" rows="8" id="comment" required></textarea>
 		</div>
-		<div class="form-group col-md-6">
-		<label>Anexo de pdf <span class="text-info">(opcional)</span><b></b></label>
+		<div class="form-group col-md-12 ">
+		<label>Anexo de pdf <span class="text-warning">(opcional)</span><b></b></label>
 		<div class="file-field">   
-		    <div class="btn btn-danger btn-sm float-left">
+		    <div class="btn btn-danger col-md-12 btn-sm float-left ">
 		      <span>Procurar pdf</span>
 		  
-		      	<input type="file" id="files2"  name='pdf'>
+		      	<input type="file" class="col-12" id="files2"  name='pdf'>
 		      	<div id="progress_bar1">
 				
 				<div class="percent1">0%</div>
@@ -69,13 +66,16 @@
 		  </div>
        <input type="hidden" id='token' name="_token" value="{{ csrf_token() }}">
 		</div>
-		<div class="form-group col-md-6">
-		<label>Anexo um segundo pdf <span class="text-info">(opcional)</span><b></b></label>
-		<div class="file-field">   
-		    <div class="btn btn-danger btn-sm float-left">
-		      <span>Procurar pdf</span>
+    </div>
+
+    <div class="form-group col-md-12">
+		<div class="form-group col-md-12">
+		<label >Anexo um segundo pdf <span class="text-warning">(opcional)</span><b></b></label>
+		<div class="file-field ">   
+		    <div class="btn btn-danger col-md-12  btn-sm float-left">
+		      <span class="">Procurar pdf</span>
 		      
-		      <input type="file" id="files" name='pdf2'>
+		      <input type="file" id="files"  class='col-12 col-md-12' name='pdf2'>
 		      	
 		      <div id="progress_bar">
 				
@@ -84,14 +84,15 @@
 		    	  </div>	
 		  </div>
 		</div>
-		<label class="ml-3">Anexo um link para o youtube <span class="text-info">(opcional)</span></label>
-		<div class="ml-3 input-group">
+		<label class="ml-3">Anexo um link para o youtube <span class="text-warning">(opcional)</span></label>
+		<div class="ml-1  mr-1 input-group col-md-12">
 		  <div class="input-group-prepend ">
 		    <span class="input-group-text bg-danger text-white">Link do youtube</span>
 		  </div>
 		  <input type="text" name='yt' class="form-control">
 		</div>
 	</div>
+  </div>
 	
 </div>
 <a href=""  id="ai"></a>
@@ -159,7 +160,8 @@ progressBar = document.getElementById('progressBar');
 		});
 	</script>
 </br>
-	<input type="submit" name="enviar"  style='margin-left: 5em;' class="col-md-2 btn-success">
+	<input type="submit" name="enviar"  style='margin-left: 5em;' class=" text-light border  border-light float-left col-md-4 mb-3 col-6 btn-success">
+
 </form>
 <div id="return"></div>
 
