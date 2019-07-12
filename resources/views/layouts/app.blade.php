@@ -24,7 +24,7 @@
     <div class="" style="">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="btn btn-info my-2 my-sm-0 m-1 font-weight-bold " style="" href="/doacoes">Doações <span class="sr-only">(Página atual)</span></a>
+        <a class="btn btn-info my-2 my-sm-0 m-1 font-weight-bold " style="" href="/sou_doador">Sou doador<span class="sr-only">(Página atual)</span></a>
       </li>
 
       <li class="nav-item active">
