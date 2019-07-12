@@ -27,23 +27,21 @@
               <a href="/postagem/{{$post->id}}">
                 <div class=" col-md-3 col-sm-6 col-6" style=''>
                   <div class='report-module ' style=" border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(200, 200, 226, 0.9)">
-                    <div class='thumbnail ' >
+                    <div class='thumbnail' >
                       <a href="/postagem/{{$post->id}} " class="bg-light">
                         <center>
-                        <img class="card-img-top" style="max-width:15em; max-height:15em; width: auto;
-      height: auto; position: center;" src="/upload_imagem/{{$post->imagem_principal}}">
+                        <img class="card-img-top" style="" src="/upload_imagem/{{$post->imagem_principal}}">
                       </center>
-                        <h4>{{$post->titulo}}</h4>
+                        <h6 class="col-md-12 col-12 title" style="">{{$post->titulo}}</h6>
                       </a>
                     </div>
                     <div class='post-content'>
-                      <h3 class='title' style=""></h3>
-                      <p class='description' style="">{{ str_limit($post->descricao, 30)}}</p>
+                      <h6 class='description col-md-12 col-12' style="">{{ str_limit($post->descricao, 30)}}</h6>
                       <div class='post-meta float-right'>
                       <div class="row">
-                      <a class="btn btn-primary btn-block col-md-3 col-8 m-1" id="but" style="" href=""><i class="fas fa-eye"></i></a>
-                      <a class="btn btn-danger btn-block col-md-3 col-8  m-1 "  data-toggle="modal" data-target="#delete{{$count}}" id='delete'><i class="far fa-trash-alt"></i></a>
-                      <a class="btn btn-warning btn-block col-md-3 col-8  m-1 " id="but" style="" href=""> <i class="fas fa-edit"></i></a>
+                      <a class="btn btn-primary btn-block col-md-3 col-3 m-1" id="but" style="" href=""><i class="fas fa-eye"></i></a>
+                      <a class="btn btn-danger btn-block col-md-3 col-3  m-1 "  data-toggle="modal" data-target="#delete{{$count}}" id='delete'><i class="far fa-trash-alt"></i></a>
+                      <a class="btn btn-warning btn-block col-md-3 col-3  m-1 " id="but" style="" href=""> <i class="fas fa-edit"></i></a>
                   </div> 
                       </div>
                     </div>
