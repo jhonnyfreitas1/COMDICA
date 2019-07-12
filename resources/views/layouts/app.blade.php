@@ -20,7 +20,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse"  id="navbarTogglerDemo01">
-    <a class="navbar-brand" href="/"><img src="/img/comdica1.png" style="width: 150px; filter: contrast(120%);"></a>
+    <a class="navbar-brand" href="/"><img src="/img/comdica3.png" style="width: 150px; "></a>
     <div class="" style="">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
@@ -81,11 +81,11 @@
 
 <!-- Footer -->
 <!-- Footer -->
-<footer class="page-footer font-small unique-color-dark  d-inline-block"  style="  width: 100%; ">
+<footer class="mt-5   page-footer font-small unique-color-dark  d-inline-block"  style="  width: 100%;">
 
-<div  style="background-color:#01DF74; background-image:url('/img/prefeitura.png'); background-repeat:no-repeat; background-position: bottom 30px right 20px;" class="" style="
+<div  style="background-color:#01DF74; " class="mt-1" style="
  ">
-  <img >
+
     <div class="container" >
 
       <!-- Grid row-->
@@ -179,17 +179,16 @@
            
                 <p class="text">
                   <i class="fas fa-phone mr-3 text"></i > + 01 234 567 88</p>
-                 
-
+                    
                   </div>
                   <!-- Grid column -->
-
+                 
                 </div>
                 <!-- Grid row -->
-
+              <img src="/img/prefeitura.png" class="col-md-3 ">
+                    <!-- <img src="/img/fundeca.png" class="col-md-12"> -->
               </div>
               <!-- Footer Links -->
-
               <!-- Copyright -->
               <div class="footer-copyright text-center py-3">© 2019 Copyright:
                 <b> FUNDECA</b>
