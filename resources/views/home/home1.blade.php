@@ -11,28 +11,16 @@
 
 
     <link rel="stylesheet" href="/css/index-css.css">
-
-
     <link rel="stylesheet" href="/css/owl.carousel.min.css">
-
     <link rel="stylesheet" type="text/css" href="/css/owl.carousel.min.css">
-
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/magnific-popup.css">
     <link rel="stylesheet" href="/css/jquery-ui.css">
-
-
     <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
-
-
     <link rel="stylesheet" href="css/aos.css">
-
     <link rel="stylesheet" href="css/style.css">
-    
-
-	    <link rel="stylesheet" href="/css/style1.css">
+	   <link rel="stylesheet" href="/css/style1.css">
   	@endsection
 
     <div class="slide-one-item home-slider owl-carousel "  style="margin-top: -2em;">
@@ -58,7 +46,7 @@
    <div class=" col-md-3 col-11 m-2 " id="card-fundo" style="">
         <div class="row ">
          <div class=" col-md-12 text-dark position-top">
-           <div class=" card-header bg-success col-12  text-white "><h4>Calculadora </h4></div>
+           <div class=" card-header bg-info col-12  text-white "><h4>Calculadora </h4></div>
             <h5 class="card-body text-white description">
              Calcule seu imposto de renda, exporte seus dados da calculadora e veja quanto você pode doar em seu valor parcelado ou avista, faça o teste.
             </h5>
@@ -70,7 +58,7 @@
       <div class=" col-md-5 col-11 m-2 " id="card-fundo" style="">
         <div class="row">
           <div class=" col-md-12  text-dark position-top">
-           <div class=" card-header bg-success  col-12  text-white"><h4>COMDICA ARAÇOIABA-PE</h4></div>
+           <div class=" card-header bg-info  col-12  text-white"><h4>COMDICA ARAÇOIABA-PE</h4></div>
             <h5 class="card-body text-white description">
                 O Conselho Municipal de Defesa e Promoção dos Direitos da Criança e do Adolescente -COMDICA  é um órgão regido no artigo 88 da lei n° 8.069/1990 – Estatuto da Criança e do Adolescente
             </h5>
@@ -83,7 +71,7 @@
         <div class="row">
 
           <div class=" col-md-12 text-dark position-top">
-           <div class=" card-header bg-success  col-12  text-white"><h4>FUNDECA</h4></div>
+           <div class=" card-header bg-info  col-12  text-white"><h4>FUNDECA</h4></div>
             <h5 class="card-body text-white description">
              O Fundo Municipal dos Direitos da Criança e do Adolescente (FUMDECA) é um Fundo especial, criado por lei municipal, segundo determinação do Estatuto da Criança e do Adolescente em seu art. 260 com o objetivo de financiar programas e projetos que atuem na garantia da promoção, proteção e defesa dos direitos da criança e do adolescente. 
                 
@@ -132,74 +120,61 @@
           <div class="container row" style="">
           	 @foreach($posts as $post)
           
-          <a href="/postagem/{{$post->id}}">
-            <div class=" col-md-4 col-sm-6 col-6">
-              <div class='report-module ' style=" border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(214, 224, 226, 0.9)">
-                <div class='thumbnail'>
-                  <a href="/postagem/{{$post->id}} " class="">
-                    <center>
-                    <img class="card-img-top col-md-10 col-12" style="min-height:6em; 
-                    max-width:10rem; min-width:14em;" src="/upload_imagem/{{$post->imagem_principal}}">
-                  
-                    <h4>{{$post->titulo}}</h4>
-                  </a>
-                </div>
-                <div class='post-content'>
-                  <h3 class='title' style=""></h3>
-                  <p class='description' style="">{{ str_limit($post->descricao, 30)}}</p>
-                  <div class='post-meta float-right'>
-                    <span class='comments'>
+           <a href="/postagem/{{$post->id}}">
+                <div class=" col-md-4 col-sm-6 col-12" style=''>
+                  <div class='report-module ' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(200, 200, 226, 0.9)">
+                    <div class='thumbnail' >
+                      <a href="/postagem/{{$post->id}} " class="bg-light">
+                        <center>
+                        <img class="card-img-top" style="" src="/upload_imagem/{{$post->imagem_principal}}">
+                      </center>
+                        <h6 class="col-md-12 col-12 title" style="">{{$post->titulo}}</h6>
+                      </a>
+                    </div>
+                    <div class='post-content'>
+                      <h6 class='description col-md-12 col-12' style="">{{ str_limit($post->descricao, 30)}}</h6>
+                      <div class='post-meta float-right'>
+                      <div class="row">
                       <a class="btn btn-success  btn-block" id="but" style="border:1px solid black;" href="/postagem/{{$post->id}}">Ver Postagem</a>
                     </span>
                   </div>
                 </div>
-              </div>
-            </div>
+              
           </a>
-         
+          
+    </div>
+    </div>
+    </div>         
           @endforeach
 
-		
+            </div>
    </div>
    {!! $posts -> Links()!!} 
   </div>
     </div>
-    <style type="text/css">
- 
-    </style>
-
      <script src="js/aos.js"></script>
  		<script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/main.js"></script>
       <script src="js/owl.carousel.min.js"></script>
   
   				<script type="text/javascript">
-  				
-
           $(document).ready(function(){
   						$(".owl-next").html("<h1><i class='fas fa-arrow-circle-right'></i></h1>");
   						$(".owl-prev").html("<h1><i class='fas fa-arrow-circle-left'></i></h1>");
   				
               });
-
   				</script>
- 			<style type="text/css">
- 				
+        <script src="js/mediaelement-and-player.min.js"></script>
+        <script src="js/bootstrap-datapicker.min.js"></script> 
+        <script src="js/boostrap-blunde.min.js"></script> 
+        <script src="js/jquery-migrate-3.0.1.min.js"></script>
+        <script src="js/jquery-ui.js"></script>
+        <script src="js/popper.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.stellar.min.js"></script>
+        <script src="js/jquery.magnific-popup.min.js"></script>
+        <script src="js/bootstrap-datepicker.min.js"></script>   
 
- 				}
- 			</style>
-       <script src="js/mediaelement-and-player.min.js"></script>
-       <script src="js/bootstrap-datapicker.min.js"></script> 
-       <script src="js/boostrap-blunde.min.js"></script> 
-	  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-	  <script src="js/jquery-ui.js"></script>
-	  <script src="js/popper.min.js"></script>
-	  <script src="js/bootstrap.min.js"></script>
-
-	  <script src="js/jquery.stellar.min.js"></script>
-	  <script src="js/jquery.magnific-popup.min.js"></script>
-	  <script src="js/bootstrap-datepicker.min.js"></script>   
-	  
 	
 
 	@endsection
