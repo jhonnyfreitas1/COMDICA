@@ -14,7 +14,7 @@
   */
 
   #card-fundo{
-  background-image: linear-gradient(to bottom right,#01eFeF, #b3ffb3);
+  background-image: linear-gradient(to bottom right,#bbbff5, #bbbff5);
   height: 50%;
   }
 
@@ -63,7 +63,7 @@ margin-top: 1em;
   }
   100% {
     transform: scale(1.1);
-    filter: brightness(200%);
+    filter: brightness(138%);
   }
 }
 @-webkit-keyframes fadeIn {
