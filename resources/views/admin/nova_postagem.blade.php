@@ -57,7 +57,7 @@
 		    <div class="btn btn-danger col-md-12 btn-sm float-left ">
 		      <span>Procurar pdf</span>
 		  
-		      	<input type="file" class="col-12" id="files2"  name='pdf'>
+		      	<input type="file" class="col-9 col-md-12" id="files2"  name='pdf'>
 		      	<div id="progress_bar1">
 				
 				<div class="percent1">0%</div>
@@ -75,7 +75,7 @@
 		    <div class="btn btn-danger col-md-12  btn-sm float-left">
 		      <span class="">Procurar pdf</span>
 		      
-		      <input type="file" id="files"  class='col-12 col-md-12' name='pdf2'>
+		      <input type="file" id="files"  class='col-9 col-md-12' name='pdf2'>
 		      	
 		      <div id="progress_bar">
 				
@@ -93,7 +93,7 @@
 		</div>
 	</div>
   </div>
-	
+
 </div>
 <a href=""  id="ai"></a>
 	<script type="text/javascript">
