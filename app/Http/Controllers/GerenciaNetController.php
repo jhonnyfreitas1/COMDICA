@@ -46,30 +46,30 @@ class GerenciaNetController extends Controller
 				  // Para identificar o status atual da sua transação você deverá contar o número de situações contidas no array, pois a última posição guarda sempre o último status. Veja na um modelo de respostas na seção "Exemplos de respostas" abaixo.
 				  
 				  // Veja abaixo como acessar o ID e a String referente ao último status da transação.
-				    
+				    return dd($chargeNotification);
 				    // Conta o tamanho do array data (que armazena o resultado)
 				    $i = count($chargeNotification["data"]);
 				    // Pega o último Object chargeStatus
 				    $ultimoStatus = $chargeNotification["data"][$i-1];
-				    // Acessando o array Status
+                    // Acessando o array Status
 				    $status = $ultimoStatus["status"];
 				    // Obtendo o ID da transação    
 				    $charge_id = $ultimoStatus["identifiers"]["charge_id"];
 				    // Obtendo a String do status atual
 				    $statusAtual = $status["current"];
-				    
+		
 				    // Com estas informações, você poderá consultar sua base de dados e atualizar o status da transação especifica, uma vez que você possui o "charge_id" e a String do STATUS
 				  
 				    $posts = DB::table('doacao_boleto')->where('charger_id',$charge_id)->get();
-			
-
-	    
-	    			$flight = DB::table('doacao_boleto')->where('charger_id',$charge_id)->updateOrCreate(
+			    
+	    			/*$flight = DB::table('doacao_boleto')->where('charger_id',$charge_id)->update(
 					    ['status' => $statusAtual]
-					);
+					);*/
 
-				   return  "O id da transação é: ".$charge_id." seu novo status é: ".$statusAtual."seu array";
+
+				   return  "O id da transação é: ".$charge_id." seu novo status é: ".$statusAtual;
 				 
+                    DB::table('doacao_boleto')->where('charge_id', $charge_id)->update(['status' => $statusAtua]);
 				    //print_r($chargeNotification);
 				} catch (GerencianetException $e) {
 				   return  print_r($e->code);
@@ -112,7 +112,7 @@ class GerenciaNetController extends Controller
                 $item_1
             ];
 
-            $metadata = array('notification_url'=>'http://api.webhookinbox.com/i/m0qsqDi9/in/');      
+            $metadata = array('notification_url'=>' http://api.webhookinbox.com/i/mACl0omG/in/');      
       
             $body = ['items' => $items,
             'metadata' => $metadata];
@@ -190,106 +190,108 @@ class GerenciaNetController extends Controller
     public function gerar_carne(Request $request)
     {
        
-if (isset($request['valor']) && isset($request['nome_cliente']) && isset($request['cpf']) && isset($request['telefone']) && isset($request['email']) && isset($request['vencimento']) && isset($request['repeticoes'])) {
+        if (isset($request['valor']) && isset($request['nome_cliente']) && isset($request['cpf']) && isset($request['telefone']) && isset($request['email']) && isset($request['vencimento']) && isset($request['repeticoes'])) {
 
 
-    $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
-    $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
+            $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
+            $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
 
-    $options = [
-        'client_id' => $clientId,
-        'client_secret' => $clientSecret,
-        'sandbox' => true
-    ];
+            $options = [
+                'client_id' => $clientId,
+                'client_secret' => $clientSecret,
+                'sandbox' => true
+            ];
 
-    $instructions = ['Sua doação é muito importante para todas as crianças e adolescentes de Araçoiaba.','Você receberá um e-mail quando finalizar o pagamento das parcelas.', 'veja o status da sua doação na aba SOU DOADOR ', 'digite seus dados e verifique o status da sua doação, nós da comdica.site agradecemos.'];
+            $instructions = ['Sua doação é muito importante para todas as crianças e adolescentes de Araçoiaba.','Você receberá um e-mail quando finalizar o pagamento das parcelas.', 'veja o status da sua doação na aba SOU DOADOR ', 'digite seus dados e verifique o status da sua doação, nós da comdica.site agradecemos.'];
 
-    $valor_parcelado = $request['valor'] / $request['repeticoes'];
+            $valor_parcelado = $request['valor'] / $request['repeticoes'];
 
 
-    $item_1 = [
-        'name' => $request["descricao"],
-        'amount' => (int) 1,
-        'value' => (int) $valor_parcelado
+            $item_1 = [
+                'name' => $request["descricao"],
+                'amount' => (int) 1,
+                'value' => (int) $valor_parcelado
 
-    ];
+            ];
 
-    $items = [
-        $item_1
-    ];
+            $items = [
+                $item_1
+            ];
+            $metadata = array('notification_url'=>'http://api.webhookinbox.com/i/mACl0omG/in/');
 
-    $customer = [
-            'name' => $request["nome_cliente"],
-            'cpf' => $request["cpf"],
-            'phone_number' => $request["telefone"],
-            'email' => $request["email"],
-        ];
+            $customer = [
+                    'name' => $request["nome_cliente"],
+                    'cpf' => $request["cpf"],
+                    'phone_number' => $request["telefone"],
+                    'email' => $request["email"],
+                ];
 
-      $date =  date('Y-m-d', strtotime('+1 month'));
-    $body = [
-    'items' => $items,
-    'repeats'=>(int)$request["repeticoes"],
-    'split_items'=>false,
-    'expire_at' => $date,
-    'customer' => $customer,
-    'instructions' =>$instructions
-    ];
-    $um = 1;
-    $zero = 0;
-    $vencimento = $request['vencimento'];
-    $boleto = 'carne';
-    try {
-        $api = new Gerencianet($options);
-        $charge = $api->createCarnet([], $body);
-        
-        if ($charge['code'] == 200) {
-            //inserindo em tabela de doacoes de carne
-              DB::table('doacao_carne')->insert([
-                        'carne_id' =>   $charge['data']['carnet_id'],
-                        'doador_nome' => $request['nome_cliente'],
-                        'link_carne' => $charge['data']['link'],
-                        'valor_total' => $request['valor'],
-                        'numero_parcelas' => $request['repeticoes'],
-                        'valor_parcelado' => $valor_parcelado,
-                        'parcelas_pagas' => 0,
-                        'status' => $charge['data']['status']
-                    ]);
+              $date =  date('Y-m-d', strtotime('+1 month'));
+            $body = [
+            'items' => $items,
+            'repeats'=>(int)$request["repeticoes"],
+            'split_items'=>false,
+            'expire_at' => $date,
+            'customer' => $customer,
+            'instructions' =>$instructions,
+            'metadata' => $metadata
+            ];
+            $um = 1;
+            $zero = 0;
+            $vencimento = $request['vencimento'];
+            $boleto = 'carne';
+            try {
+                $api = new Gerencianet($options);
+                $charge = $api->createCarnet([], $body);
                 
+                if ($charge['code'] == 200) {
+                    //inserindo em tabela de doacoes de carne
+                      DB::table('doacao_carne')->insert([
+                                'carne_id' =>   $charge['data']['carnet_id'],
+                                'doador_nome' => $request['nome_cliente'],
+                                'link_carne' => $charge['data']['link'],
+                                'valor_total' => $request['valor'],
+                                'numero_parcelas' => $request['repeticoes'],
+                                'valor_parcelado' => $valor_parcelado,
+                                'parcelas_pagas' => 0,
+                                'status' => $charge['data']['status']
+                            ]);
+                        
 
-                //inserindo   em tabela de doacoes imposto e passando uma chave estrangeira do carne.
-                for($i= 0; $i < sizeof($charge['data']['charges']); $i++){ 
-                   DB::table('doacao_boleto')->insert([
-                        'doador_email' => $request['email'],
-                        'doador_nome' => $request['nome_cliente'],
-                        'doador_cpf' => $request['cpf'],
-                        'doador_telefone' => $request['telefone'],
-                        'doador_email' => $request['email'],
-                        'charger_id' => $charge['data']['charges'][$i]['charge_id'],
-                        'link_boleto' => $charge['data']['charges'][$i]['pdf']['charge'],
-                        'valor_total'   =>$request['valor'],
-                        'quantidade' => 1,
-                        'parcelas' => $request['repeticoes'],
-                        'metodo_pagamento' => 'carne',
-                        'valor_parcelado' => $valor_parcelado,
-                       'fk_id_carne' => $charge['data']['carnet_id'],
-                        'vencimento' => $date,
-                        'cod_barra' => $charge['data']['charges'][$i]['barcode'],
-                        'status' => $charge['data']['charges'][$i]['status']
-                    ]);    
-                }
+                        //inserindo   em tabela de doacoes imposto e passando uma chave estrangeira do carne.
+                        for($i= 0; $i < sizeof($charge['data']['charges']); $i++){ 
+                           DB::table('doacao_boleto')->insert([
+                                'doador_email' => $request['email'],
+                                'doador_nome' => $request['nome_cliente'],
+                                'doador_cpf' => $request['cpf'],
+                                'doador_telefone' => $request['telefone'],
+                                'doador_email' => $request['email'],
+                                'charger_id' => $charge['data']['charges'][$i]['charge_id'],
+                                'link_boleto' => $charge['data']['charges'][$i]['pdf']['charge'],
+                                'valor_total'   =>$request['valor'],
+                                'quantidade' => 1,
+                                'parcelas' => $request['repeticoes'],
+                                'metodo_pagamento' => 'carne',
+                                'valor_parcelado' => $valor_parcelado,
+                               'fk_id_carne' => $charge['data']['carnet_id'],
+                                'vencimento' => $date,
+                                'cod_barra' => $charge['data']['charges'][$i]['barcode'],
+                                'status' => $charge['data']['charges'][$i]['status']
+                            ]);    
+                        }
+                    }
+                    return json_encode($charge);
+
+            } catch (GerencianetException $e) {
+                print_r($e->code);
+                print_r($e->error);
+                print_r($e->errorDescription);
+            } catch (Exception $e) {
+                print_r($e->getMessage());
             }
-            return json_encode($charge);
-
-    } catch (GerencianetException $e) {
-        print_r($e->code);
-        print_r($e->error);
-        print_r($e->errorDescription);
-    } catch (Exception $e) {
-        print_r($e->getMessage());
-    }
-    }else{
-    return 'falta parametros';
-    }
+            }else{
+            return 'falta parametros';
+            }
 
     }
 
