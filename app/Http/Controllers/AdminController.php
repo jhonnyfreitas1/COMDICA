@@ -76,11 +76,11 @@ class AdminController extends Controller
                 }
                 if ($request->hasFile('pdf2') && $request->file('pdf2')->isValid()) {   
                     $pdf2 = $request->file()['pdf2'];
-                    $numero = rand(11111,99999).$data;
+                    $numero1 = md5(rand(11111,99999).$data);
                     $diretorio = "upload_pdf";
-                    $nomepdf2 = "pdf_".$numero.".pdf"; 
-                    $pdf2->move($diretorio,$nomepdf);
-                    $request->file()['pdf2'] = $nomepdf;
+                    $nomepdf2 = "pdf_".$numero1.".pdf"; 
+                    $pdf2->move($diretorio,$nomepdf2);
+                    $request->file()['pdf2'] = $nomepdf2;
                 }else{
                     $nomepdf2 = null;
                 }
