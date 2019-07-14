@@ -39,6 +39,10 @@ class HomeController extends Controller
     {
         return view('home.sou_doador');
     }
+    public function status()
+    {
+        return view('home.status');
+    }
     public function contato()
     {
         return view('home.contato');

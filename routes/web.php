@@ -29,6 +29,7 @@ Route::get('/home1', 'HomeController@home1')->name('home1');
 Route::get('/postagem/{id}', ['as' => 'postagem', 'uses' => 'HomeController@postagem']);
 Route::get('/porque_doar', ['as' => 'porque_doar', 'uses' => 'HomeController@pq_doar']);
 Route::get('/contato', ['as' => 'contato', 'uses' => 'HomeController@contato']);
+Route::get('/status', ['as' => 'status', 'uses' => 'HomeController@status']);
 
 
 //Rotas admin

@@ -10,9 +10,8 @@
       <input type="text" class="form-control col-12" id="inputNome">
     </div>
 
- <button type="submit" class="btn btn-success float-right" style="">Obter dados</button>
-</div>
-
+      <a class="btn btn-success my-2 my-sm-0 m-1 font-weight-bold " style="" href="/status">Obter dados</a>
+      
 </form>
 
 <style type="text/css">
