@@ -8,10 +8,31 @@
 	@endsection
 	@section('area-principal')
  </center>
- 	<div class="row " style=" margin-top: 2em;">
+ <div class="modal modal-danger fade" id="carregamento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h4 class="modal-title text-center" id="myModalLabel">Aguarde a sincronização do sistema </h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              </div>
+                              <div class="modal-body" id="alo" >
+                                <center>      
+                                  <img class=""  src='/img/carregamento1.gif'>
+                                </center>
 
+                              </div>
+                                <div class=" modal-footer " >
+                                  <span>A página irá recarregar automaticamente</span>
+                                </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>  
+  <div class="row m-2" style=" margin-top: 2em;">
 
        <table class="table table-striped table-bordered " id="example">
+  <a href="" id='recarregar' class="float-right mr-4 hover hover-triped mb-2"> <i style="color: #3ee2ee;" class="fas fa-sync-alt fa-2x"></i></a>
+
             <thead align="center" class="thead-light" style="height:10%;" >
                 <tr align="center">                 
                     <th scope="col"> Charger ID </th>
