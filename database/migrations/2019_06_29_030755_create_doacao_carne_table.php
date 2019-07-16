@@ -17,12 +17,12 @@ class CreateDoacaoCarneTable extends Migration
             $table->Integer('carne_id');
             $table->primary('carne_id');
             $table->Integer('valor_parcelado')->nullable();
-            $table -> string('doador_nome');
-            $table -> string('link_carne');
-            $table -> Integer('valor_total');
-            $table -> Integer('numero_parcelas');
-            $table  -> Integer('parcelas_pagas')->nullable();      
-            $table -> string('status');
+            $table ->string('doador_nome');
+            $table ->string('link_carne');
+            $table ->Integer('valor_total');
+            $table ->Integer('numero_parcelas');
+            $table ->Integer('parcelas_pagas')->nullable();      
+            $table ->string('status');
             $table->timestamps();
         });
     }
