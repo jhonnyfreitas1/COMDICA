@@ -27,7 +27,7 @@ class AdminController extends Controller
 
      public function doacoes_boleto()
     {
-         $doacoes = DB::table('doacao_boleto')->paginate(10);
+         $doacoes = DB::table('doacao_boleto')->orderBy('id', 'DESC')->paginate(10);
 
         return view('admin.doacoes')->with(compact('doacoes'));
     }
