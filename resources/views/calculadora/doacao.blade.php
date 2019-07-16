@@ -13,14 +13,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title " id="myModalLabel">Um momento.</h4>
+                    <h4 class="modal-title " id="myModalLabel">Gerando transação</h4>
                 </div>
                 <div class="modal-body">
-                    Estamos processando a requisição <img src="/img/ajax-loader.gif">.
+                    Estamos processando a requisição<img src="/img/ajax-loader.gif">
                 </div>
                 <div class="modal-footer">
-
-                    <button type="button" class="btn btn-primary">Fechar</button>
+                    Aguarde
                 </div>
             </div>
         </div>
@@ -99,7 +98,7 @@
                                      Dados da Calculadora
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Valor da doação<h5> <span class="badge badge-info"><span class="border-bottom border-danger"></span>{{'R$' . number_format($valor, 2, ',', '.')}} equivale a 6% de <br> {{$ir}} do imposto a pagar </span></h5></li>
+                                    <li class="list-group-item">Valor da doação<h5> <span class="badge badge-info"><span class="border-bottom border-danger"></span>{{'R$' . number_format($valor, 2, ',', '.')}} equivale a 6% de <br> {{$ir}} do imposto</span></h5></li>
                                     <li class="list-group-item">Data da doação<h5> <span class="badge badge-info">{{ date('d/M/Y') }}</span></h5> </li>
                                     <li class="list-group-item">Doação para<h5> <span class="badge badge-info border-bottom border-danger"> FUNDECA<br>CNPJ 26.615.546/0001-40</span></li>
                                 </ul>
