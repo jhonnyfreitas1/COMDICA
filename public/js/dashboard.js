@@ -21,19 +21,21 @@ $("#postagem").click(function(e) {
 
 });
 
-/*$("#minhas_postagens").click(function(e) {
+$("#recarregar").click(function(e) {
     e.preventDefault();
-    $('#area-principal').html("<center><progress style='width:80%; margin-top:8em;'></progress> </center>");
+    $('#carregamento').modal("show");
     $.ajax({
-        type: 'get',
-        url: '/admin/minhas_postagens',
+        type: 'post',
+        url: '/api/boleto/atualizar',
         datatype: 'json',
-        data: {quero: 'minha_postagem'},     //metodo ajax que busca arquivo de formulario do post e coloca em uma div '#area-principal'
         success: function (response) {
-            $('#area-principal').html(response);
+            $('#alo').html(response);
+                   setTimeout(function(){ 
+                window.location.href="/admin/doacoes";
+             }, 3000);
         }
     })
-});*/
+});
 
 /*$("#adc_user").click(function(e) {
     e.preventDefault();
