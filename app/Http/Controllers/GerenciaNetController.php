@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,30 +6,37 @@ use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 use \DateTime;
 use Illuminate\Support\Facades\DB;
-
+use Carbon;
 class GerenciaNetController extends Controller
 {
     
 	public function notification(Request $request){ //function que nao esta em rotas da web e sim api	
 		if (isset($request['notification'])) {
-			
 
-			$resultado = DB::table('tokens')->insert([
-				'token' => $request['notification']
-			]);
+            $mytime = Carbon\Carbon::now();
+            $data =  $mytime->toDateTimeString();
+
+            $query = DB::table('tokens')->find($request['notification']);
+            if ($query != true) {
+            $resultado = DB::table('tokens')->insert([
+				'id' => $request['notification'],
+                'created_at' => $data
+			 ]);
+            }
 		
-				$clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
-		        $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
-
-		        /* producao
-		        $clientId = 'Client_Id_0f2062a85eb24a28bd08ec8d34b73e371f6d2f47';
+                // desenvolvimento             
+                 $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
+                                $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
+                
+		         //producao
+		       /* $clientId = 'Client_Id_0f2062a85eb24a28bd08ec8d34b73e371f6d2f47';
 		        $clientSecret = 'Client_Secret_23bd0aeeda1c17959b9d52b50ecab0bdd36d038f';
 		        */
 				 
 				$options = [
 				  'client_id' => $clientId,
 				  'client_secret' => $clientSecret,
-				  'sandbox' => true 
+				  'sandbox' => true
 				];
 				 
 				
@@ -43,33 +49,52 @@ class GerenciaNetController extends Controller
 				try {
 				    $api = new Gerencianet($options);
 				    $chargeNotification = $api->getNotification($params, []);
-				  // Para identificar o status atual da sua transação você deverá contar o número de situações contidas no array, pois a última posição guarda sempre o último status. Veja na um modelo de respostas na seção "Exemplos de respostas" abaixo.
-				  
-				  // Veja abaixo como acessar o ID e a String referente ao último status da transação.
-				    return dd($chargeNotification);
-				    // Conta o tamanho do array data (que armazena o resultado)
-				    $i = count($chargeNotification["data"]);
-				    // Pega o último Object chargeStatus
-				    $ultimoStatus = $chargeNotification["data"][$i-1];
-                    // Acessando o array Status
-				    $status = $ultimoStatus["status"];
-				    // Obtendo o ID da transação    
-				    $charge_id = $ultimoStatus["identifiers"]["charge_id"];
-				    // Obtendo a String do status atual
-				    $statusAtual = $status["current"];
-		
-				    // Com estas informações, você poderá consultar sua base de dados e atualizar o status da transação especifica, uma vez que você possui o "charge_id" e a String do STATUS
-				  
-				    $posts = DB::table('doacao_boleto')->where('charger_id',$charge_id)->get();
-			    
-	    			/*$flight = DB::table('doacao_boleto')->where('charger_id',$charge_id)->update(
-					    ['status' => $statusAtual]
-					);*/
+                   
+                     return json_encode($chargeNotification);
+    
+                    $y = count($chargeNotification["data"]);
+                     
+                    $quantos_pagos =0;
+                    $quantos_nao_pagos =0;
+                    if($chargeNotification['data'][0]['type'] == 'carnet'){
 
+                        for ($i=1; $i< sizeOf($chargeNotification['data']); $i++){ 
+                            $carne = $chargeNotification['data'][0]['identifiers']['carnet_id'];
+                            $boleto = DB::table('doacao_boleto')->where('charger_id',$chargeNotification['data'][$i]['identifiers']['charge_id'])->get();
+                            if ($boleto == true) {
+                                    $charger =$chargeNotification['data'][$i]['identifiers']['charge_id'];
+                                    $status_charger =$chargeNotification['data'][$i]['status']['current'];
+                                   $update_status = DB::table('doacao_boleto')->where('charger_id',$charger)->update(
+                                    ['status' => $status_charger]);
+                            }
+                            if ($chargeNotification['data'][$i]['status']['current'] == 'canceled'){
+                                $quantos_pagos++;
+                            }else{
+                                $quantos_nao_pagos++;
+                            }
 
-				   return  "O id da transação é: ".$charge_id." seu novo status é: ".$statusAtual;
-				 
-                    DB::table('doacao_boleto')->where('charge_id', $charge_id)->update(['status' => $statusAtua]);
+                        }
+
+                            $update_pagos = DB::table('doacao_carne')->where('carne_id',$carne)->update(
+                                    ['parcelas_pagas' => $quantos_pagos]);
+                       
+                            return "pagos ".$quantos_pagos."</br>nao pagos".$quantos_nao_pagos;
+                      
+                    }else if($chargeNotification['data'][0]['type'] == 'charge'){
+
+                        $i = count($chargeNotification["data"]);
+                        $ultimoStatus = $chargeNotification["data"][$i-1];
+        			    $status = $ultimoStatus["status"];
+        			    $charge_id = $ultimoStatus["identifiers"]["charge_id"];
+        			    $statusAtual = $status["current"];
+				        $boleto = DB::table('doacao_boleto')->where('charger_id',$charge_id)->get();
+                        if ($boleto == true) {
+        	    			$update_status = DB::table('doacao_boleto')->where('charger_id',$charge_id)->update(
+                                ['status' => $statusAtual]
+        					);
+                        }				 
+        
+                    }
 				    //print_r($chargeNotification);
 				} catch (GerencianetException $e) {
 				   return  print_r($e->code);
@@ -86,11 +111,10 @@ class GerenciaNetController extends Controller
     public function gerar_boleto(Request $request)
     {
 
-    	
         $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
         $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
-
-        /* producao
+        
+       /*  //producao
         $clientId = 'Client_Id_0f2062a85eb24a28bd08ec8d34b73e371f6d2f47';
         $clientSecret = 'Client_Secret_23bd0aeeda1c17959b9d52b50ecab0bdd36d038f';
         */
@@ -112,7 +136,7 @@ class GerenciaNetController extends Controller
                 $item_1
             ];
 
-            $metadata = array('notification_url'=>' http://api.webhookinbox.com/i/mACl0omG/in/');      
+            $metadata = array('notification_url'=>'http://comdica.site/api/boleto/notification');      
       
             $body = ['items' => $items,
             'metadata' => $metadata];
@@ -171,9 +195,8 @@ class GerenciaNetController extends Controller
 
                    return  json_encode($pay_charge);
                     }else{
-                       return  'code nao é 200';
-                    }
-             
+                       return  'Houve um problema com o servico de boletos codigo difere de 200, tente novamente';
+                    }            
             } catch (GerencianetException $e) {
                 print_r($e->code);
                 print_r($e->error);
@@ -193,14 +216,14 @@ class GerenciaNetController extends Controller
         if (isset($request['valor']) && isset($request['nome_cliente']) && isset($request['cpf']) && isset($request['telefone']) && isset($request['email']) && isset($request['vencimento']) && isset($request['repeticoes'])) {
 
 
-            $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
-            $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
-
-            $options = [
-                'client_id' => $clientId,
-                'client_secret' => $clientSecret,
-                'sandbox' => true
-            ];
+         $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
+        $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
+        
+        $options = [
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
+            'sandbox' => true
+        ];
 
             $instructions = ['Sua doação é muito importante para todas as crianças e adolescentes de Araçoiaba.','Você receberá um e-mail quando finalizar o pagamento das parcelas.', 'veja o status da sua doação na aba SOU DOADOR ', 'digite seus dados e verifique o status da sua doação, nós da comdica.site agradecemos.'];
 
@@ -211,13 +234,11 @@ class GerenciaNetController extends Controller
                 'name' => $request["descricao"],
                 'amount' => (int) 1,
                 'value' => (int) $valor_parcelado
-
             ];
-
             $items = [
                 $item_1
             ];
-            $metadata = array('notification_url'=>'http://api.webhookinbox.com/i/mACl0omG/in/');
+            $metadata = array('notification_url'=>'http://comdica.site/api/boleto/notification');
 
             $customer = [
                     'name' => $request["nome_cliente"],
@@ -294,5 +315,128 @@ class GerenciaNetController extends Controller
             }
 
     }
+    public function cancelar_transacao($id){
+
+         $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
+        $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
+                      
+        $options = [
+          'client_id' => $clientId,
+          'client_secret' => $clientSecret,
+          'sandbox' => true // altere conforme o ambiente (true = desenvolvimento e false = producao)
+        ];
+         
+        // $charge_id refere-se ao ID da transação ("charge_id")
+        $params = [
+          'id' => $id
+        ];
+         
+        try {
+            $api = new Gerencianet($options);
+            $charge = $api->cancelCharge($params, []);
+         
+            print_r($charge);
+        } catch (GerencianetException $e) {
+            print_r($e->code);
+            print_r($e->error);
+            print_r($e->errorDescription);
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+
+    public function atualizar_boletos(){
+       $tokens = DB::table('tokens')->get('id');
+      $mensagem = 0;
+        if (is_null($tokens) || $tokens->count() == 0) {
+            return 'sem tokens no banco de dados';
+         }
+        foreach ($tokens as $token){
+               $tokenzin = $token->id;
+                   
+            $mytime = Carbon\Carbon::now();
+            $data =  $mytime->toDateTimeString();
+
+        
+                //desenvolvimento             
+                 $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
+                 $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
+        
+                 //producao
+               /* $clientId = 'Client_Id_0f2062a85eb24a28bd08ec8d34b73e371f6d2f47';
+                $clientSecret = 'Client_Secret_23bd0aeeda1c17959b9d52b50ecab0bdd36d038f';
+                */
+                 
+                $options = [
+                  'client_id' => $clientId,
+                  'client_secret' => $clientSecret,
+                  'sandbox' => true
+                ];
+                 
+             
+                $params = [
+                  'token' => $tokenzin
+                ];                 
+                try {
+                    $api = new Gerencianet($options);
+                    $chargeNotification = $api->getNotification($params, []);
+                    $y = count($chargeNotification["data"]);
+                    $quantos_pagos =0;
+                    $quantos_nao_pagos =0;
+
+                    if($chargeNotification['data'][0]['type'] == 'carnet'){
+
+                        for ($i=1; $i< sizeOf($chargeNotification['data']); $i++){ 
+                            $carne = $chargeNotification['data'][0]['identifiers']['carnet_id'];
+                            if (isset($chargeNotification['data'][$i]['identifiers']['charge_id'])) {
+                                
+                            $boleto = DB::table('doacao_boleto')->where('charger_id',$chargeNotification['data'][$i]['identifiers']['charge_id'])->get();
+                            if ($boleto == true) {
+                                    $charger =$chargeNotification['data'][$i]['identifiers']['charge_id'];
+                                    $status_charger =$chargeNotification['data'][$i]['status']['current'];
+                                   $update_status = DB::table('doacao_boleto')->where('charger_id',$charger)->update(
+                                    ['status' => $status_charger]);
+                            }
+                           
+                            if ($chargeNotification['data'][$i]['status']['current'] == 'paid'){
+                                $quantos_pagos++;
+                            }else{
+                                $quantos_nao_pagos++;
+                            }
+                        }
+                    }
+                            $update_pagos = DB::table('doacao_carne')->where('carne_id',$carne)->update(
+                                    ['parcelas_pagas' => $quantos_pagos]);
+                       
+                     $mensagem =+ $y;
+                    }else if($chargeNotification['data'][0]['type'] == 'charge'){
+
+                        $i = count($chargeNotification["data"]);
+                        $ultimoStatus = $chargeNotification["data"][$i-1];
+                        $status = $ultimoStatus["status"];
+                        $charge_id = $ultimoStatus["identifiers"]["charge_id"];
+                        $statusAtual = $status["current"];
+                        $boleto = DB::table('doacao_boleto')->where('charger_id',$charge_id)->get();
+                        if ($boleto == true) {
+                            $update_status = DB::table('doacao_boleto')->where('charger_id',$charge_id)->update(
+                                ['status' => $statusAtual]
+                            );
+                             $mensagem =+ $y;   
+                        }                
+        
+                    }
+                    //print_r($chargeNotification);
+                } catch (GerencianetException $e) {
+                   return  print_r($e->code);
+                   return  print_r($e->error);
+                   return  print_r($e->errorDescription);
+                } catch (Exception $e) {
+                   return  print_r($e->getMessage());
+                }        
+         
+         }
+                return 'Transações verificadas  <b>' . $mensagem.' </b>';
+    }
 
 }
+
