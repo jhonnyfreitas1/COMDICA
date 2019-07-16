@@ -20,13 +20,9 @@
 
   <div class="inputCalc " style=" padding-bottom:1em;">
   <div class="form-row" >
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-12">
       <label for="inputEmail4" class="d-flex justify-content-center">Renda anual bruta</label> 
-      <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius  "  data-toggle="tooltip" data-placement="top" title="Salário, Férias, Ganhos Tributaveis no ano etc..." id="renda-bruta" placeholder="R$ 0,00" required='required'>
-    </div>
-     <div class="form-group col-md-6" >
-      <label>13º Salário</label>
-      <input type="text"  data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius " id="13" placeholder="R$ 0,00">
+      <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius  "  data-toggle="tooltip" data-placement="top" title="Salário, Férias, Ganhos Tributaveis no ano..." id="renda-bruta" placeholder="R$ 0,00" required='required'>
     </div>
      <div class="form-group col-md-6" >
       <label for="inputEmail4">IRRF (Imposto retido na fonte)</label>
@@ -81,7 +77,7 @@
 		</div>
 	<center>
 
-	<table class="fixed-center  table table-hover col-md-10 border border-dark m-2" id='resultados'>
+	<table class="fixed-center mt-4 table table-hover col-md-10 border border-dark m-2" id='resultados'>
 	  <thead class="thead-dark">
 
 	    <tr>	

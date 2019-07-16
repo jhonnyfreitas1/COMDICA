@@ -63,22 +63,17 @@ $(document).ready(function(){
             
             var pensao = despPensao($('#desp-alim').maskMoney('unmasked')[0], rendabruta);
 
-            var salario13 = $("#13").maskMoney('unmasked')[0];
-
-            rendabruta += salario13;
-
             var valordepentes = Dependentes(dependentes);
 
             var despesasensino = despEnsino(despensino, dependentes);
-
-            var rendacalcSujo =  rendabruta  - (inssmensal + valordepentes + despesasensino + pensao + despmedic); // renda anualmenos o inss anual 
+          
+            var rendacalcSujo =  rendabruta - (inssmensal + valordepentes + despesasensino + pensao + despmedic); // renda anualmenos o inss anual 
             
             var debitos = (inssmensal + valordepentes + despesasensino + pensao + despmedic); 
 
-
             var aliquota = Aliquota(rendacalcSujo);
 
-            var imposto = rendacalcSujo * (aliquota/100);
+            var imposto =  rendacalcSujo * (aliquota/100);
             
             if (aliquota =='Isento') {
                $("#isento").html('<h5>Você está Isento do imposto de renda, pós seu salario é inferior a 1903.98 após as deduções.</h5>');
@@ -93,11 +88,11 @@ $(document).ready(function(){
              if (Number.isNaN(imposto)) { //verifica se o imposto de renda é igual a NAN para dizer que deu errado.
                  var  imposto = 'Sem IR.</br>Há erros na digitação dos valores na calculadora ?';
              }       
-             console.log('imposto>'+imposto);
+         /*    console.log('imposto>'+imposto);
              console.log('renda base'+rendacalcSujo);
              console.log('ensino >'+despesasensino);     //só pra teste;
              console.log('pensao>'+pensao);
-
+*/
             function Dependentes(num){
                 var valordepentes = num * 2275.08;
                 return valordepentes;
@@ -106,6 +101,7 @@ $(document).ready(function(){
                 //essa função mostra todos valores e informações referentes ao pós calculo
                 var impostopg = imposto - deducao;
 
+
                 $('#seuinss').html(inssanual.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 $('#suarendaanual').html(rendaanual.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 $('#seusdebitos').html(debitos.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
@@ -113,25 +109,31 @@ $(document).ready(function(){
                 $('#eliquota').html(aliquota+'%');
                 $('#impostoir').html(imposto.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 $('#deducao').html(deducao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
-                var irrfvspg = impostopg - irrf;
+                var irrfvspg = impostopg  - irrf;
+                alert(irrfvspg);
+
+                 impostopg = irrfvspg;
+              
                  var porcentagem = impostopg * (6/100);     //tira os 6% da para doação 
 
+                 console.log(porcentagem);
                  porcentagem = Math.round(porcentagem);
                  var rendabase2 = rendabase - porcentagem;
                  var aliquota2 = rendabase2 * (aliquota/100); 
 
                  var imposto =  aliquota2.toFixed(2); 
 
-                 if (irrf <= impostopg){
-                    $('#impostopagar').html((impostopg - irrf).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
+                 if (impostopg > 1){
+                    $('#impostopagar').html((impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                     $('#impostorest').html(0);        
-                    $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+porcentagem+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Doe "+ porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='/porque_doar' class='btn btn-outline-dark ml-2 col-md-3 '>Por que doar ?</a>");
+                    $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+porcentagem+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Doe "+ porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='/porque_doar' class='btn btn-outline-dark ml-2 col-md-4  col-7'>Por que doar ?</a>");
 
                 }else{
+                    porcentagem = porcentagem * -1;
                     $('#impostopagar').html(0);
-                    $('#impostorest').html("<b>"+(irrf - impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
+                    $('#impostorest').html("<b>"+(impostopg * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
                     //$('#valor7').html('<p>Você não tem imposto a pagar e sim a restituir.</p>');
-                    $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Avista "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='../porque_doar' class='btn btn-outline-dark ml-2 col-md-2 '>Por que doar ?</a>");
+                    $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"/"+(impostopg * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Doe "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='../porque_doar' class='btn btn-outline-dark ml-2 col-md-4 col-7 '>Por que doar ?</a>");
 
                 }
 
@@ -188,7 +190,7 @@ $(document).ready(function(){
             }
             function parDeduzir(aliquota){
                 if (aliquota == 7.5) {
-                    var deducao =   142.80 * 12;
+                    var deducao =  142.80 * 12;
                     return  deducao;
                 }else if (aliquota == 15) {
                     var deducao = 354.80 *  12;
