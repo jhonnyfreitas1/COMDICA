@@ -21,6 +21,7 @@ Route::get('/calculadora/doacao/{valor}/{ir}', ['as' => 'calculadora.doacao', 'u
 //Rotas gerencianet
 Route::post('/calculadora/gerar_boleto', ['as' => 'gerencianet.gerar_boleto', 'uses' =>'GerenciaNetController@gerar_boleto']);
 Route::post('/calculadora/gerar_carne', ['as' => 'gerencianet.gerar_carne', 'uses' =>'GerenciaNetController@gerar_carne']);
+Route::get('/calculadora/cancelar_transacao/{id}', ['as' => 'gerencianet.cancelar', 'uses' =>'GerenciaNetController@cancelar_transacao']);
 
 
 //Rotas do site 
