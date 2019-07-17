@@ -123,8 +123,11 @@
 	    <tr>
 	      <th class="border border-dark table-active" scope="row">Imposto de renda a pagar</th>
 	      <td  class=' table-active border border-dark ' id="impostopagar">Calcule </td>  
-	  
 	    </tr>
+        <tr>
+        <th class="border border-dark" scope="row">Imposto devido</th>
+        <td  id="impostodevido">Calcule</td>  
+      </tr>
 	    <tr class="table-light">
 	      <th class="border border-dark table-active bg-success" scope="row">Doe 6% do seu imposto para a fundeca</th>
 	      <td  class='table-active border border-dark bg-success' id="valor7"></td>  

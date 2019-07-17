@@ -80,7 +80,6 @@ $(document).ready(function(){
                setTimeout(function(){ 
                    $("#isento").empty();
                }, 3000);    
-               var aliquota = false;
             }else{
                var deducao =  parDeduzir(aliquota);
                 mostrar(inssmensal, rendabruta, debitos, rendacalcSujo, aliquota, imposto, deducao,irrf); // chama a função mostrar 
@@ -110,13 +109,16 @@ $(document).ready(function(){
                 $('#impostoir').html(imposto.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 $('#deducao').html(deducao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 var irrfvspg = impostopg  - irrf;
-                alert(irrfvspg);
 
                  impostopg = irrfvspg;
-              
-                 var porcentagem = impostopg * (6/100);     //tira os 6% da para doação 
+                var impostodevido = (impostopg * -1) - irrf;              
+                 var porcentagem = impostodevido  * (6/100);     //tira os 6% da para doação 
 
-                 console.log(porcentagem);
+                 
+                 console.log(impostopg);
+                 console.log(irrfvspg);
+                 console.log(irrf);
+
                  porcentagem = Math.round(porcentagem);
                  var rendabase2 = rendabase - porcentagem;
                  var aliquota2 = rendabase2 * (aliquota/100); 
@@ -126,19 +128,17 @@ $(document).ready(function(){
                  if (impostopg > 1){
                     $('#impostopagar').html((impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                     $('#impostorest').html(0);        
-                    $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+porcentagem+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Doe "+ porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='/porque_doar' class='btn btn-outline-dark ml-2 col-md-4  col-7'>Por que doar ?</a>");
-
+                    $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+(porcentagem * -1)+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Doe "+(porcentagem * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='/porque_doar' class='btn btn-outline-dark ml-2 col-md-4  col-7'>Por que doar ?</a>");
+                    $('#impostodevido').html("<b>"+(impostodevido * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
+                    
                 }else{
-                    porcentagem = porcentagem * -1;
                     $('#impostopagar').html(0);
                     $('#impostorest').html("<b>"+(impostopg * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
                     //$('#valor7').html('<p>Você não tem imposto a pagar e sim a restituir.</p>');
-                    $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"/"+(impostopg * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Doe "+porcentagem.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='../porque_doar' class='btn btn-outline-dark ml-2 col-md-4 col-7 '>Por que doar ?</a>");
-
+                    $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+(porcentagem * -1)+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Doe "+(porcentagem * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='../porque_doar' class='btn btn-outline-dark ml-2 col-md-4 col-7 '>Por que doar ?</a>");
+                    $('#impostodevido').html("<b>"+(impostodevido * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
                 }
-
                 $("#irrf").html(irrf.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
-
                 var target_offset = $("#ancora1").offset();
                 var target_top = target_offset.top;
                 $('html, body').animate({ scrollTop: target_top }, 3000);
