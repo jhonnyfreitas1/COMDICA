@@ -43,3 +43,5 @@ Route::get('/admin/nova-postagem', ['as' => 'admin.nova', 'uses' => 'AdminContro
 Route::post('/admin/postagem_save', ['as' => 'admin.salvar', 'uses' => 'AdminController@salvar_postagem'])->middleware('auth');
 
 
+//Rotas de email 
+Route::get('/email/verify/{email}', ['as' => 'status', 'uses' => 'EmailsController@verificar']);

@@ -34,7 +34,7 @@
           <div class="card-body">
             <h3 class="card-title">{{$postagem->titulo}}</h3>
          	</br>
-          		  <p class="card-text">{{$postagem->descricao}}asdas</p>
+          		  <p class="card-text">{!! $postagem->descricao !!}</p>
           
           </div>
         </div>
