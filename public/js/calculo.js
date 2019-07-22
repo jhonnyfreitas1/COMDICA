@@ -81,7 +81,7 @@ $(document).ready(function(){
                    $("#isento").empty();
                }, 3000);    
             }else{
-               var deducao =  parDeduzir(aliquota);
+               var deducao =  parDeduzir(aliquota , rendacalcSujo);
                 mostrar(inssmensal, rendabruta, debitos, rendacalcSujo, aliquota, imposto, deducao,irrf); // chama a função mostrar 
             }
              if (Number.isNaN(imposto)) { //verifica se o imposto de renda é igual a NAN para dizer que deu errado.
@@ -188,7 +188,7 @@ $(document).ready(function(){
                     }
                 }
             }
-            function parDeduzir(aliquota){
+            function parDeduzir(aliquota, renda){
                 if (aliquota == 7.5) {
                     var deducao =  142.80 * 12;
                     return  deducao;
@@ -202,7 +202,9 @@ $(document).ready(function(){
                     var deducao = 869.36 * 12;
                     return deducao;
                 }else {
-                    alert('erro com aliquota, verificar valores ou contate-nos');
+                    var teste =  Aliquota(renda);
+                    parDeduzir(teste , renda);
+                    /*alert('erro com aliquota, verificar valores ou contate-nos');*/
                 }
 
             }
