@@ -9,8 +9,11 @@ use Illuminate\Support\Facades\DB;
 use Carbon;
 class GerenciaNetController extends Controller
 {
-    
-	public function notification(Request $request){ //function que nao esta em rotas da web e sim api	
+
+    protected $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
+    protected $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
+	
+    public function notification(Request $request){ //function que nao esta em rotas da web e sim api	
 		if (isset($request['notification'])) {
 
             $mytime = Carbon\Carbon::now();
@@ -23,23 +26,12 @@ class GerenciaNetController extends Controller
                 'created_at' => $data
 			 ]);
             }
-		
-                // desenvolvimento             
-                 $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
-                                $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
-                
-		         //producao
-		       /* $clientId = 'Client_Id_0f2062a85eb24a28bd08ec8d34b73e371f6d2f47';
-		        $clientSecret = 'Client_Secret_23bd0aeeda1c17959b9d52b50ecab0bdd36d038f';
-		        */
-				 
 				$options = [
-				  'client_id' => $clientId,
-				  'client_secret' => $clientSecret,
+				  'client_id' => $this->clientId,
+				  'client_secret' => $this->clientSecret,
 				  'sandbox' => true
 				];
-				 
-				
+				 		
 				$token = $request["notification"];
 				 
 				$params = [
@@ -111,16 +103,9 @@ class GerenciaNetController extends Controller
     public function gerar_boleto(Request $request)
     {
 
-        $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
-        $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
-        
-       /*  //producao
-        $clientId = 'Client_Id_0f2062a85eb24a28bd08ec8d34b73e371f6d2f47';
-        $clientSecret = 'Client_Secret_23bd0aeeda1c17959b9d52b50ecab0bdd36d038f';
-        */
         $options = [
-            'client_id' => $clientId,
-            'client_secret' => $clientSecret,
+            'client_id' => $this->clientId,
+            'client_secret' => $this->clientSecret,
             'sandbox' => true
         ];
 
@@ -137,7 +122,6 @@ class GerenciaNetController extends Controller
             ];
 
             $metadata = array('notification_url'=>'http://comdica.site/api/boleto/notification');      
-      
             $body = ['items' => $items,
             'metadata' => $metadata];
             
@@ -212,23 +196,17 @@ class GerenciaNetController extends Controller
 
     public function gerar_carne(Request $request)
     {
-       
         if (isset($request['valor']) && isset($request['nome_cliente']) && isset($request['cpf']) && isset($request['telefone']) && isset($request['email']) && isset($request['vencimento']) && isset($request['repeticoes'])) {
 
-
-         $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
-        $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
-        
         $options = [
-            'client_id' => $clientId,
-            'client_secret' => $clientSecret,
+            'client_id' => $this->clientId,
+            'client_secret' => $this->clientSecret,
             'sandbox' => true
         ];
 
             $instructions = ['Sua doação é muito importante para todas as crianças e adolescentes de Araçoiaba.','Você receberá um e-mail quando finalizar o pagamento das parcelas.', 'veja o status da sua doação na aba SOU DOADOR ', 'digite seus dados e verifique o status da sua doação, nós da comdica.site agradecemos.'];
 
             $valor_parcelado = $request['valor'] / $request['repeticoes'];
-
 
             $item_1 = [
                 'name' => $request["descricao"],
@@ -316,13 +294,10 @@ class GerenciaNetController extends Controller
 
     }
     public function cancelar_transacao($id){
-
-         $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
-        $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
-                      
+            
         $options = [
-          'client_id' => $clientId,
-          'client_secret' => $clientSecret,
+          'client_id' => $this->clientId,
+          'client_secret' => $this->clientSecret,
           'sandbox' => true // altere conforme o ambiente (true = desenvolvimento e false = producao)
         ];
          
@@ -356,20 +331,10 @@ class GerenciaNetController extends Controller
                    
             $mytime = Carbon\Carbon::now();
             $data =  $mytime->toDateTimeString();
-
-        
-                //desenvolvimento             
-                 $clientId = 'Client_Id_9531fd3340c988f93653a016d1a3bdc0407884e3';
-                 $clientSecret ='Client_Secret_74cc4e9058692da04749719f6fa9d9b135029f76'; 
-        
-                 //producao
-               /* $clientId = 'Client_Id_0f2062a85eb24a28bd08ec8d34b73e371f6d2f47';
-                $clientSecret = 'Client_Secret_23bd0aeeda1c17959b9d52b50ecab0bdd36d038f';
-                */
-                 
+             
                 $options = [
-                  'client_id' => $clientId,
-                  'client_secret' => $clientSecret,
+                  'client_id' => $this->clientId,
+                  'client_secret' => $this->clientSecret,
                   'sandbox' => true
                 ];
                  
@@ -398,17 +363,17 @@ class GerenciaNetController extends Controller
                                     ['status' => $status_charger]);
                             }
                            
-                            if ($chargeNotification['data'][$i]['status']['current'] == 'paid'){
-                                $quantos_pagos++;
-                            }else{
-                                $quantos_nao_pagos++;
+                                if ($chargeNotification['data'][$i]['status']['current'] == 'paid'){
+                                    $quantos_pagos++;
+                                }else{
+                                    $quantos_nao_pagos++;
+                                }
                             }
-                        }
-                    }
+                         }
                             $update_pagos = DB::table('doacao_carne')->where('carne_id',$carne)->update(
                                     ['parcelas_pagas' => $quantos_pagos]);
-                       
-                     $mensagem =+ $y;
+                            $mensagem =+ $y;
+
                     }else if($chargeNotification['data'][0]['type'] == 'charge'){
 
                         $i = count($chargeNotification["data"]);
