@@ -126,14 +126,12 @@ $(document).ready(function(){
                  var imposto =  aliquota2.toFixed(2); 
 
                  if (impostopg > 1){
-                    $('#impostopagar').html((impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
-                    $('#impostorest').html(0);        
+                    $('#impostopagar').html((impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));        
                     $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+(porcentagem * -1)+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Doe "+(porcentagem * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='/porque_doar' class='btn btn-outline-dark ml-2 col-md-4  col-7'>Por que doar ?</a>");
                     $('#impostodevido').html("<b>"+(impostodevido * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
                     
                 }else{
-                    $('#impostopagar').html(0);
-                    $('#impostorest').html("<b>"+(impostopg * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
+                    $('#impostopagar').html("<b>"+(impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
                     //$('#valor7').html('<p>Você não tem imposto a pagar e sim a restituir.</p>');
                     $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+(porcentagem * -1)+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Doe "+(porcentagem * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='../porque_doar' class='btn btn-outline-dark ml-2 col-md-4 col-7 '>Por que doar ?</a>");
                     $('#impostodevido').html("<b>"+(impostodevido * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
@@ -231,7 +229,6 @@ $(document).ready(function(){
                     var  aliquota = 27.50;
                     return aliquota;
                 }
-
 
             }
 
