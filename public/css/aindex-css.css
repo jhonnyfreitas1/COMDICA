@@ -14,18 +14,12 @@
   
 
   #card-fundo{
-<<<<<<< HEAD
   position: center;
  text-align: center;
-=======
-<<<<<<<< HEAD:assets/css/index-css.css
   background-image: linear-gradient(to bottom right,#00BFFF, palegreen);
   height: 50%;
-========
   position: center;
  text-align: center;
->>>>>>>> jhonny:public/css/aindex-css.css
->>>>>>> jhonny
   }
 
 .report-module{
@@ -50,16 +44,8 @@ margin-top: 1em;
 .pulse{
   float: right;
   animation: pulse 0.7s infinite;
-<<<<<<< HEAD
   margin: 0 auto;
   display: table;
-=======
-<<<<<<<< HEAD:assets/css/index-css.css
-========
-  margin: 0 auto;
-  display: table;
->>>>>>>> jhonny:public/css/aindex-css.css
->>>>>>> jhonny
   animation-direction: alternate;
   -webkit-animation-name: pulse;
   animation-name: pulse;
@@ -103,15 +89,9 @@ margin-top: 1em;
 100% { opacity: 1; }
 }
 .fadeIn {
-<<<<<<< HEAD
--webkit-animation: fadeIn 4s ease-in-out;
--moz-animation: fadeIn 4s ease-in-out;
--o-animation: fadeIn 4s ease-in-out;
-animation: fadeIn 4s ease-in-out;
-=======
 -webkit-animation: fadeIn 2s ease-in-out;
 -moz-animation: fadeIn 2s ease-in-out;
 -o-animation: fadeIn 2s ease-in-out;
 animation: fadeIn 2s ease-in-out;
->>>>>>> jhonny
+
 }

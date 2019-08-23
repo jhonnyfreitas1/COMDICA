@@ -13,8 +13,7 @@
         <script src="/js/jquery-2.2.4.min.js"></script>
          @yield('js')
     </head>
-
-<body >
+<body>
    <nav class="navbar navbar-expand-lg navbar-light " style="background-color:#01DF74;" >
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Alterna navegação">
     <span class="navbar-toggler-icon"></span>
@@ -195,5 +194,6 @@
               </div>
             <!-- Copyright -->
             </footer>
+             
               <!-- Footer -->
 </html>

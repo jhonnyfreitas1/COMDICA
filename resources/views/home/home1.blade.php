@@ -1,15 +1,14 @@
 @extends('layouts.app')
-	@section('content')
-
-
+	<div id="loader"  style="">
+          <img style=" position: fixed;  width: 100%;  background-color: white;  height: 100%; z-index: 1000;" src="/img/COR1.png">
+          <img class="col-4 col-md-2  position-absolute sticky-top" style=" z-index: 1002;" src="/img/carregamento.gif">
+     </div>
+  @section('content')
   <head>
     <title>Travalers &mdash; Colorlib Website Template</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      @section('js')
-
-
-
     <link rel="stylesheet" href="/css/index-css.css">
     <link rel="stylesheet" href="/css/owl.carousel.min.css">
     <link rel="stylesheet" type="text/css" href="/css/owl.carousel.min.css">
@@ -23,6 +22,7 @@
 	   <link rel="stylesheet" href="/css/style1.css">
   	@endsection
 
+    
     <div class="slide-one-item home-slider owl-carousel "  style="margin-top: -2em;">
        @foreach($postagem as $consulta)
       <div class="site-blocks-cover overlay" style="background-image: url('/upload_imagem/{{$consulta->imagem_principal}}');" data-aos="fade" data-stellar-background-ratio="0.5">
@@ -97,7 +97,7 @@
     </div> -->
 
 
-    <div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(/img/fundeca.png); background-attachment: fixed; background-size: 70%;">
+    <div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(/img/fundeca.png); background-attachment: fixed; background-size: 70%; background-color: white;">
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
 
@@ -152,6 +152,7 @@
    {!! $posts -> Links()!!} 
   </div>
     </div>
+  
      <script src="js/aos.js"></script>
  		<script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/main.js"></script>
@@ -164,17 +165,22 @@
   				
               });
   				</script>
+          <script type="text/javascript">
+        // Este evendo é acionado após o carregamento da página
+      
+        $(window).on('load',function() {
+           
+            $("#loader").delay(2000).fadeOut("slow");
+        });
+    </script>
+    
         <script src="js/mediaelement-and-player.min.js"></script>
-        <script src="js/bootstrap-datapicker.min.js"></script> 
-        <script src="js/boostrap-blunde.min.js"></script> 
+         
         <script src="js/jquery-migrate-3.0.1.min.js"></script>
         <script src="js/jquery-ui.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.stellar.min.js"></script>
         <script src="js/jquery.magnific-popup.min.js"></script>
-        <script src="js/bootstrap-datepicker.min.js"></script>   
-
-	
 
 	@endsection
