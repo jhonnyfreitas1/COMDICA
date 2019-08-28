@@ -12,6 +12,10 @@
     background-color: #ebeced;
   }
   */
+  .m-2{
+    display: flex;
+    justify-content: center;
+  }
 
   #card-fundo{
   background-image: linear-gradient(to bottom right,#bbbff5, #bbbff5);
