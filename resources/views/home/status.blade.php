@@ -2,9 +2,7 @@
 
 @section('content')
 
-<?php dd($status) ?>
-
-<h1 class="title">Doações realizadas</h1>
+<h1 class="title">Boletos gerados</h1>
 
 <table class="table tabelaStatus">
 	<thead class="thead-dark">
@@ -44,6 +42,13 @@
 
 	</tr>
 </table>
+<center>
+<div>
+	<a href="/" class="btn btn-success btn-doador">Voltar ao início</a>
+	<a href="/sou_doador" class="btn btn-success btn-doador">Verificar outro CPF</a>
+	<a href="/calculadora" class="btn btn-success btn-doador">Realizar uma doação</a>
+</div>
+</center>
 <style type="text/css">
   body{
     background-image: url('/img/fundeca1.png');

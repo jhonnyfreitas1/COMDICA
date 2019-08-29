@@ -14,10 +14,23 @@
 	font-weight: bold;
 	-webkit-text-stroke-width: 2px;
 	-webkit-text-stroke-color: #262626;
+	margin-bottom: 2%;
 }
 .table .thead-dark th{
 	background-color: #01DF74 !important;
 	border: 0;
+}
+
+.btn-success{
+	font-size:18px;
+}
+.py-4{
+	margin-bottom: 20%;
+}
+.btn-doador{
+	margin-right: .5%;
+	background-color: #17a2b8 !important;
+	border: 0 !important;
 }
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
