@@ -11,20 +11,20 @@
 			<th>Valor total</th>
 			<th>Status</th>
 			<th>Vencimento</th>
-			<th>Confirmação</th>
+			<th>Recibo do pagamento</th>
 		</tr>
 	</thead>
 	<tr>
 		<td>{{$status->doador_nome}}</td>
 		<td>{{$status->valor_total}}</td>
 
-		@if($status->status == 'waiting')
+		@if($status->status != 'waiting')
 
 		<td>Aguardando pagamento</td>
 
 		@else
 
-		<td>Outra coisa</td>
+		<td>Pagamento recebido</td>
 
 		@endif
 

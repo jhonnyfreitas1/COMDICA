@@ -10,7 +10,7 @@
       <input type="hidden" id='token' name="_token" value="{{ csrf_token() }}">
       <input type="text" class="form-control col-12" name="cpf">
     </div>
-    <input type="submit" value="Verificar" name="cpfInput" class="btn-success">
+    <input type="submit" value="Verificar" class="btn btn-success btn-sou">
 </form>
 
 <style type="text/css">
