@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-             $postagem = DB::table('postagens')->limit(3)->orderBy('id', 'DESC')->get();
+        $postagem = DB::table('postagens')->limit(3)->orderBy('id', 'DESC')->get();
 
         $posts = DB::table('postagens')->orderBy('id', 'DESC')->paginate(6);
 
@@ -28,7 +28,6 @@ class HomeController extends Controller
     public function postagem($id)
     {
         $postagem = DB::table('postagens')->find($id);
-
         return view('home.postagem')->with(compact('postagem'));
     }
      public function pq_doar()

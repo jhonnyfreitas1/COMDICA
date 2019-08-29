@@ -41,7 +41,7 @@
   </div> 
   @endforeach 
 </div>
-<center>
+
   <div class="row m-2" style="width: auto;">
    <div class=" col-md-3 col-11 m-2 " id="card-fundo" style="">
     <div class="row ">
@@ -83,7 +83,7 @@
 
 
 </div>
-</center>
+
 </div>
 <div class="site-section block-13 ">
 

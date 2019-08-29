@@ -15,7 +15,6 @@
   .m-2{
     display: flex;
     justify-content: center;
-    align-items: center;
   }
 
   #card-fundo{
@@ -30,7 +29,6 @@
    background-color: rgba(214, 224, 226, 0.9);
 }
 #logo-icon{
-
 position: center;
 margin-top: 1em;
 }
