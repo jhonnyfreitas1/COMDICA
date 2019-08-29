@@ -73,7 +73,7 @@ create table `doacao_boleto` (
   `doador_telefone` varchar(255) not null, 
   `charger_id` int not null, 
   `link_boleto` varchar(255) not null, 
-  `valor_total` int not null, 
+  `valor_total` decimal(4,2) not null, 
   `quantidade` int not null, 
   `parcelas` int not null default '1', 
   `metodo_pagamento` enum('boleto', 'carne') not null, 

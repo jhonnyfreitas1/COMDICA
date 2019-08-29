@@ -38,9 +38,10 @@ class HomeController extends Controller
     {
         return view('home.sou_doador');
     }
-    public function status()
+    public function status(Request $request)
     {
-        return view('home.status');
+        $status = DB::table('doacao_boleto')->where('doador_cpf',$request->cpf)->first();
+        return view('home.status')->with(compact('status'));
     }
     public function contato()
     {
@@ -55,4 +56,5 @@ class HomeController extends Controller
         return view('home.home1')->with(compact('postagem' ,'posts'));
         
     }
+
 }

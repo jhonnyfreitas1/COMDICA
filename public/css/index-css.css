@@ -93,3 +93,7 @@ margin-top: 1em;
 -o-animation: fadeIn 2s ease-in-out;
 animation: fadeIn 2s ease-in-out;
 }
+
+.tabelaStatus{
+  width:80%;
+}

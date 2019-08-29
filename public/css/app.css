@@ -1,5 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
+.tabelaStatus{
+	width:80% !important;
+	margin-left: 10%;
+	background-color: white !important;
+	text-align: center;
+}
+.title{
+	color:#01DF74;
+	text-align: center;
+	font-size: 50px;
+	font-family: Ubuntu;
+	font-weight: bold;
+	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color: #262626;
+}
+.table .thead-dark th{
+	background-color: #01DF74 !important;
+	border: 0;
+}
 /*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
