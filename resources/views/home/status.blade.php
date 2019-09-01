@@ -14,6 +14,11 @@
 			<th>Recibo do pagamento</th>
 		</tr>
 	</thead>
+	<?php
+		function data($data){
+			return date("d/m/Y", strtotime($data));
+		}
+	?>
 	
 	@foreach ($status as $boleto)
 		<?php 
@@ -70,7 +75,7 @@
 
 			@endif
 
-			<td>{{$boleto->vencimento}}</td>
+			<td><?php echo(data($boleto->vencimento)); ?></td>
 
 			@if($boleto->status == 'paid')
 
