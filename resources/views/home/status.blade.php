@@ -14,72 +14,74 @@
 			<th>Recibo do pagamento</th>
 		</tr>
 	</thead>
-
+	
 	@foreach ($status as $boleto)
-    	
-    		<tr>
-		<td>{{$boleto->doador_nome}}</td>
-		<td>{{$boleto->valor_total}}</td>
+		<?php 
+		    $valortotal = $boleto->valor_total;
+			$valortotal = preg_replace("/^([0-9]+)*?([0-9]{2})$/", "$1,$2", $valortotal);
+	    ?>
+    	<tr>
+			<td>{{$boleto->doador_nome}}</td>
+			<td>R$ {{$valortotal}}</td>
 
-		@if($boleto->status == 'paid')
+			@if($boleto->status == 'paid')
 
-		<td>Pagamento confirmado</td>
+			<td>Pagamento confirmado</td>
 
-		@elseif($boleto->status == 'unpaid')
+			@elseif($boleto->status == 'unpaid')
 
-		<td>Não foi possível confirmar o pagamento</td>
+			<td>Não foi possível confirmar o pagamento</td>
 
-		@elseif($boleto->status == 'new')
+			@elseif($boleto->status == 'new')
 
-		<td>Aguardando definição da forma de pagamento</td>
+			<td>Aguardando definição da forma de pagamento</td>
 
-		@elseif($boleto->status == 'refunded')
+			@elseif($boleto->status == 'refunded')
 
-		<td>Pagamento devolvido</td>
+			<td>Pagamento devolvido</td>
 
-		@elseif($boleto->status == 'contested')
+			@elseif($boleto->status == 'contested')
 
-		<td>Pagamento em processo de contestação</td>
+			<td>Pagamento em processo de contestação</td>
 
-		@elseif($boleto->status == 'canceled')
+			@elseif($boleto->status == 'canceled')
 
-		<td>Cobrança cancelada pelo vendedor ou pelo pagador</td>
+			<td>Cobrança cancelada pelo vendedor ou pelo pagador</td>
 
-		@elseif($boleto->status == 'settled')
+			@elseif($boleto->status == 'settled')
 
-		<td>Cobrança foi confirmada manualmente</td>
+			<td>Cobrança foi confirmada manualmente</td>
 
-		@elseif($boleto->status == 'link')
+			@elseif($boleto->status == 'link')
 
-		<td>Cobrança está associada a um link de pagamento</td>
+			<td>Cobrança está associada a um link de pagamento</td>
 
-		@elseif($boleto->status == 'expired')
+			@elseif($boleto->status == 'expired')
 
-		<td>Data de vencimento expirada</td>
+			<td>Data de vencimento expirada</td>
 
-		@elseif($boleto->status == 'waiting')
+			@elseif($boleto->status == 'waiting')
 
-		<td>Aguardando confirmação do pagamento</td>
+			<td>Aguardando confirmação do pagamento</td>
 
-		@else
+			@else
 
-		<td>Indisponível</td>
+			<td>Indisponível</td>
 
-		@endif
+			@endif
 
-		<td>{{$boleto->vencimento}}</td>
+			<td>{{$boleto->vencimento}}</td>
 
-		@if($boleto->status == 'paid')
+			@if($boleto->status == 'paid')
 
-		<td><a href="{{$boleto->link_boleto}}">Baixar</a></td>
+			<td><a href="{{$boleto->link_boleto}}">Baixar</a></td>
 
-		@else
+			@else
 
-		<td>Disponível quando o pagamento for confirmado</td>
+			<td>Disponível quando o pagamento for confirmado</td>
 
-		@endif
-
-	</tr>
+			@endif
+		</tr>
 	@endforeach
 
 	
