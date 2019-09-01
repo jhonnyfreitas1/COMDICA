@@ -18,25 +18,61 @@
 		<td>{{$status->doador_nome}}</td>
 		<td>{{$status->valor_total}}</td>
 
-		@if($status->status != 'waiting')
+		@if($status->status == 'paid')
 
-		<td>Aguardando pagamento</td>
+		<td>Pagamento confirmado</td>
+
+		@elseif($status->status == 'unpaid')
+
+		<td>Não foi possível confirmar o pagamento</td>
+
+		@elseif($status->status == 'new')
+
+		<td>Aguardando definição da forma de pagamento</td>
+
+		@elseif($status->status == 'refunded')
+
+		<td>Pagamento devolvido</td>
+
+		@elseif($status->status == 'contested')
+
+		<td>Pagamento em processo de contestação</td>
+
+		@elseif($status->status == 'canceled')
+
+		<td>Cobrança cancelada pelo vendedor ou pelo pagador</td>
+
+		@elseif($status->status == 'settled')
+
+		<td>Cobrança foi confirmada manualmente</td>
+
+		@elseif($status->status == 'link')
+
+		<td>Cobrança está associada a um link de pagamento</td>
+
+		@elseif($status->status == 'expired')
+
+		<td>Data de vencimento expirada</td>
+
+		@elseif($status->status == 'waiting')
+
+		<td>Aguardando confirmação do pagamento</td>
 
 		@else
 
-		<td>Pagamento recebido</td>
+		<td>Indisponível</td>
 
 		@endif
 
 		<td>{{$status->vencimento}}</td>
 
-		@if($status->status == 'waiting')
+		@if($status->status == 'paid')
 
 		<td><a href="{{$status->link_boleto}}">Baixar</a></td>
 
 		@else
 
-		<td>Pagamento ainda não confirmado</td>
+		<td>Disponível quando o pagamento for confirmado</td>
 
 		@endif
 
