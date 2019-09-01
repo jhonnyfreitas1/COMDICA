@@ -14,47 +14,50 @@
 			<th>Recibo do pagamento</th>
 		</tr>
 	</thead>
-	<tr>
-		<td>{{$status->doador_nome}}</td>
-		<td>{{$status->valor_total}}</td>
 
-		@if($status->status == 'paid')
+	@foreach ($status as $boleto)
+    	
+    		<tr>
+		<td>{{$boleto->doador_nome}}</td>
+		<td>{{$boleto->valor_total}}</td>
+
+		@if($boleto->status == 'paid')
 
 		<td>Pagamento confirmado</td>
 
-		@elseif($status->status == 'unpaid')
+		@elseif($boleto->status == 'unpaid')
 
 		<td>Não foi possível confirmar o pagamento</td>
 
-		@elseif($status->status == 'new')
+		@elseif($boleto->status == 'new')
 
 		<td>Aguardando definição da forma de pagamento</td>
 
-		@elseif($status->status == 'refunded')
+		@elseif($boleto->status == 'refunded')
 
 		<td>Pagamento devolvido</td>
 
-		@elseif($status->status == 'contested')
+		@elseif($boleto->status == 'contested')
 
 		<td>Pagamento em processo de contestação</td>
 
-		@elseif($status->status == 'canceled')
+		@elseif($boleto->status == 'canceled')
 
 		<td>Cobrança cancelada pelo vendedor ou pelo pagador</td>
 
-		@elseif($status->status == 'settled')
+		@elseif($boleto->status == 'settled')
 
 		<td>Cobrança foi confirmada manualmente</td>
 
-		@elseif($status->status == 'link')
+		@elseif($boleto->status == 'link')
 
 		<td>Cobrança está associada a um link de pagamento</td>
 
-		@elseif($status->status == 'expired')
+		@elseif($boleto->status == 'expired')
 
 		<td>Data de vencimento expirada</td>
 
-		@elseif($status->status == 'waiting')
+		@elseif($boleto->status == 'waiting')
 
 		<td>Aguardando confirmação do pagamento</td>
 
@@ -64,11 +67,11 @@
 
 		@endif
 
-		<td>{{$status->vencimento}}</td>
+		<td>{{$boleto->vencimento}}</td>
 
-		@if($status->status == 'paid')
+		@if($boleto->status == 'paid')
 
-		<td><a href="{{$status->link_boleto}}">Baixar</a></td>
+		<td><a href="{{$boleto->link_boleto}}">Baixar</a></td>
 
 		@else
 
@@ -77,6 +80,10 @@
 		@endif
 
 	</tr>
+	@endforeach
+
+	
+
 </table>
 <center>
 <div>

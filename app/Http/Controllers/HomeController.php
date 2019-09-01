@@ -40,7 +40,7 @@ class HomeController extends Controller
     }
     public function status(Request $request)
     {
-        $status = DB::table('doacao_boleto')->where('doador_cpf',$request->cpf)->first();
+        $status = DB::table('doacao_boleto')->where('doador_cpf',$request->cpf)->get();
         return view('home.status')->with(compact('status'));
     }
     public function contato()
