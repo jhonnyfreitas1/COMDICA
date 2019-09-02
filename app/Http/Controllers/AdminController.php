@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Doacao_boleto;
+use App\Contato;
+use App\Postagem;
 use Illuminate\Support\Facades\Redirect;
+
 class AdminController extends Controller
 {
     /**
@@ -14,7 +18,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+
+        $boletos = Doacao_boleto::get()->count();
+        $contato = Contato::where('visto', false)->get()->count();
+        return view('admin.index')->with(compact('contato'));
     }
     public function create()
     {
@@ -22,22 +29,22 @@ class AdminController extends Controller
     }
     public function nova_postagem()
     {
-        return view('admin.nova_postagem');
+         $contato = Contato::where('visto', false)->get()->count();
+        return view('admin.nova_postagem')->with(compact('contato'));
     }
 
      public function doacoes_boleto()
     {
-         $doacoes = DB::table('doacao_boleto')->orderBy('id', 'DESC')->paginate(10);
-
-        return view('admin.doacoes')->with(compact('doacoes'));
+        $doacoes = Doacao_boleto::orderBy('id', 'DESC')->paginate(10);
+         $contato = Contato::where('visto', false)->get()->count();
+        return view('admin.doacoes')->with(compact('doacoes','contato'));
     }
 
     public function minhas_postagens()
     {
-
          $posts = DB::table('postagens')->where('user_id',Auth::id())->paginate(8);
-    
-         return   view('admin.minhas_postagens')->with(compact('posts'));
+         $contato = Contato::where('visto', false)->get()->count();
+         return  view('admin.minhas_postagens')->with(compact('posts','contato'));
     }
     public function salvar_postagem(Request $request)
     {
@@ -92,15 +99,18 @@ class AdminController extends Controller
                     $embed = null;
                 }
 
-       $resultado =  DB::table('postagens')->insert([
-            'titulo' => $request['titulo'],
-            'descricao' => $request['descricao'],
-            'link_yt'  => $embed,
-            'imagem_principal' => $nomeImagem,
-            'pdf1' => $nomepdf,
-            'pdf2' => $nomepdf2,
-            'user_id' => Auth::id()
-        ]);
+                    
+
+                   $model = new Postagem;
+                   $model->titulo = $request['titulo'];
+                   $model->descricao = $request['descricao'];
+                   $model->link_yt = $embed;
+                   $model->imagem_principal = $nomeImagem;
+                   $model->pdf1 = $nomepdf;
+                   $model->pdf2 = $nomepdf2;
+                   $model->user_id = Auth::id();
+                  $resultado = $model->save();
+
 
         if ($resultado == true) {
             return 'Postagem feita com sucesso';
@@ -113,11 +123,38 @@ class AdminController extends Controller
     {
         //
     }
+
+    public function back(){
+         return back()->withInput();
+    }
+
+    public function contato_single($id){
+
+         $model = Contato::where('id', '=' , $id)->first();
+         $contato = Contato::where('visto', false)->get()->count();
+        if ($model) {   
+         $model->visto = true;
+         $model->save();
+         return view('admin.mensagem')->with(compact('model','contato'));
+        }else{
+            return redirect('/notfound');
+        }
+
+    }
     public function show($id)
     {
         //
     }
-
+    public function contato(){
+            $mensagens =  Contato::orderBy('id', 'DESC')->paginate(12);
+            $contato = Contato::where('visto', false)->get()->count();
+            if ($mensagens) {
+                return view('admin.contato')->with(compact('mensagens','contato'));
+            }else{
+                $mensagens = 'Sem mensagens no momento.';
+                return view('admin.contato')->with(compact('mensagens')); 
+            }
+    }
     public function edit($id)
     {
         //
@@ -129,17 +166,15 @@ class AdminController extends Controller
 
     public function destroy($id)
     {   
-        $query = DB::table('postagens')->where('id', '=', $id);
-        $image = $query->first();
-        // File::delete(public_path() . '/upload_imagem/'.$image->imagem_principal);
+        $query = Postagem::where('id', '=', $id)->first();
+        unlink("upload_imagem/".$query->imagem_principal);
         $resultado=  $query->delete();
-    
         if ($resultado == true) {
             $mensagem = "Sucesso ao deletar o item";
-           return redirect()->route('minhas_postagens')->with('success',$mensagem); 
+           return redirect()->route('admin.minhas_postagens')->with('success',$mensagem); 
 		}else{
             $mensagem = "Falha ao deletar o item";
-         return redirect()->route('minhas_postagens')->with('fail',$mensagem); 
+         return redirect()->route('admin.minhas_postagens')->with('fail',$mensagem); 
         }		
 		  
     }
