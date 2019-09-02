@@ -139,7 +139,7 @@ $(document).ready(function(){
                 $("#irrf").html(irrf.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 var target_offset = $("#ancora1").offset();
                 var target_top = target_offset.top;
-                $('html, body').animate({ scrollTop: target_top }, 3000);
+                $('html, body').animate({ scrollTop: target_top },50);
                 $("#gerarpdf").show("slow",'linear');
                $("#resultados").show("slow",'linear');  //faz aparecer a div de mostrar valores com uma animação
            }
