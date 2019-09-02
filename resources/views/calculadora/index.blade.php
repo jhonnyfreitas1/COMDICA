@@ -11,13 +11,28 @@
 @endsection
 <script src="/js/calculo.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/calc.css">
-<center>
-  <div>
-    <form class="radius col-md-6 border shadow-lg z-index-1 " action="#">
+
+<div style=" display:flex;" class="row m-2 float-left">
+    <div  style="justify-content: left; display: flex; " class="m-4 card col-md-3 m-2 mt-0 float-left bg-info text-white text-center p-3">
+      <blockquote class="blockquote mb-0">
+        <p>Os valores resultantes da calculadora podem ser diferentes do valor resultante na declaração portanto recomendamos então a maior fidelidade de dados na hora de inserir os valores na calculadora pois nao será possivel o ressarcimento da diferença.</p>
+          
+          <hr>
+
+       O benefício fiscal só é válido para aqueles que optarem pela Declaração Completa do imposto de renda.
+        </p>
+        <footer class="blockquote-footer text-white">
+          <small>
+            <cite title="Source Title"></cite>
+          </small>
+        </footer>
+      </blockquote>
+    </div>  
+
+    <form style="align-items: center; text-align: center;margin: 0 auto" class="radius col-md-6 m-2 border shadow-lg z-index-1 " action="#">
       <div class="col-md-12">
         <h4 class="border col-md-12 text-light radius1 mb-1" style="margin-bottom: -1.2em; background-color:#01DF74;">Calculadora do imposto de renda pessoa física <i class="fas fa-calculator"></i></h4>
       </div>
-
       <div class="inputCalc " style=" padding-bottom:1em;">
         <div class="form-row" >
           <div class="form-group col-md-12">
@@ -50,6 +65,7 @@
             <label for="inputEmail4">Despesa anual médica</label>
             <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius " data-toggle="tooltip" data-placement="top" title="Valor de dedução ilimitada" id="desp-medic" placeholder="R$ 0,00">
           </div>
+     <a name="ancora1" id="ancora1"></a>        
           <div class="form-group col-md-6">
             <label for="inputPassword4">Previdência social (INSS)</label>
             <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius " id="inss" placeholder="R$ 0,00">
@@ -59,24 +75,25 @@
         <button type="submit" class="btn text-light col-md-6 mb-2" id='calcular' style="background-color:#01DF74;">Calcular</button>
       </div>
     </form>
-  </div>
-</center>
-<button type="button" class="btn btn-primary fixed-bottom" disabled>
-  Ano de Atuação <span class="badge badge-light"><?= date('Y'); ?></span>
-</button>
-<div id="tabela">
-  <div class="btn-group dropleft float-right">
+  <div style="height: 50%; margin: 0;" class="btn-group dropleft">
     <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <i class="fas fa-info"></i>
     </button>
     <div class="dropdown-menu">
      <div class='' style="padding: 1em;">
-       Faça uma doação com os dados da calculadora e receba após a confirmação da doação o documento comprovatorio de doação no seu e-mail
+       Faça uma doação com os dados da calculadora gerando um boleto e após o pagamento acesse área do <a href="/sou_doador">Sou doador</a>
+        para confirmar o pagamento e gerar seu recibo de doação.
      </div>
    </div>
  </div>
- <center>
+ </div>
+<div id="tabela">
 
+<button type="button" class="btn btn-primary fixed-bottom" disabled>
+  Ano de Atuação <span class="badge badge-light"><?= date('Y'); ?></span>
+</button>
+
+  <center>
    <table class="fixed-center mt-4 table table-hover col-md-10 border border-dark m-2" id='resultados'>
      <thead class="thead-dark">
 
@@ -115,11 +132,7 @@
            <th class="border border-dark" scope="row">Valor a deduzir (-)</th>
            <td  id="deducao">Calcule</td>  
          </tr>
-      <!--      <th class="border border-dark table-active" scope="row">Imposto de renda a restituir</th>
-         <tr>
-         <tr>
-           <td  class=' table-active border border-dark' id="impostorest">Calcule </td>   -->
-           <a name="ancora1" id="ancora1"></a>
+               
            <th class="border border-dark table-active" scope="row">Imposto de renda a pagar ou restituir</th>
            <td  class=' table-active border border-dark ' id="impostopagar">Calcule </td>  
          </tr>
@@ -131,20 +144,17 @@
          <th class="border border-dark table-active bg-success" scope="row">Doe 6% do seu imposto para a fundeca</th>
          <td  class='table-active border border-dark bg-success' id="valor7"></td>  
        </tr>
-       
      </thead>
    </tbody>
 
  </table>
 
-</center>  
 </div>
 <button class='button' id="gerarpdf" onclick="CriaPDF()" style="color: red; size: 120%; float: right; margin-right: 9em;">Gerar pdf</br>
  <i class="fa  fa-file-pdf-o" aria-hidden="true"
- value="Criar PDF" id="btnImprimir" "></i></button>
+ value="Criar PDF" id="btnImprimir"></i></button>
 </div>
-<div style="height: 10em;"></div>
-
+</center>
 <script>
   function CriaPDF() {
     var minhaTabela = document.getElementById('tabela').innerHTML;
@@ -174,6 +184,7 @@
   </div>
 
   <p id="isento"> </p>
+
   <style type="text/css">
     .centered {
       margin: 0 auto !important;
@@ -219,6 +230,6 @@
 
 
     </style>
+ 
     <div>
       @endsection
-
