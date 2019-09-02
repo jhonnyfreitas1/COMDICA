@@ -23,6 +23,9 @@
                 <?php Session::pull('fail')?>         
               @endif
         <div class="row " style=" " >
+          @if($posts == "")
+            <h2 class="text-light m-2">Sem postagens atualmente</h2>
+          @endif
             @foreach($posts as $count => $post)
               <a href="/postagem/{{$post->id}}">
                 <div class=" col-md-3 col-sm-6 col-6" style=''>
