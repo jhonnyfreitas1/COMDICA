@@ -15,7 +15,7 @@ class CreateDoacaoBoletoTable extends Migration
     {
         Schema::create('doacao_boleto', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->Integer('valor_parcelado')->nullabe();
+            $table->Integer('valor_parcelado')->nullable();
             $table -> string('doador_nome');
             $table -> string('doador_cpf');
             $table -> string('doador_email');
