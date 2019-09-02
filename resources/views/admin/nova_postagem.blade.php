@@ -1,6 +1,6 @@
 
 
-<h2>Faça uma nova postagem</h2>
+
     @section('admin-js')
 
     <link rel="stylesheet" type="text/css" href="/js/nova_postagem.css">
@@ -29,7 +29,7 @@
   
 
 
-<form action="/admin/postagem_save" class=" container border border-light col-offset-6 centered col-md-10" method="post"  id='form-postagem' name="form-postagem" enctype="multipart/form-data">
+<form action="/admin/postagem_save" class=" mt-2 container border border-light col-offset-6 centered col-md-10" method="post"  id='form-postagem' name="form-postagem" enctype="multipart/form-data">
 <div class="form-group col-md-12">
     <label for="">Titulo da postagem </label><label style="color:red;">*</label>
     <input class="form-control col-md-12" type="text" name="titulo" required>

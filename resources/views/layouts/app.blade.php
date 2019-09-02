@@ -147,7 +147,7 @@
             <h6 class="text-uppercase font-weight-bold  text" style=" color:  #006400;">Links úteis</h6>
             <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
             <p>
-            <a  href="/admin/comdica" class="">Administrador</a>
+            <a  href="/admin/comdica" class="">Área restrita</a>
             </p>
             <p>
               <a href="/doacoes">Como doar</a>
