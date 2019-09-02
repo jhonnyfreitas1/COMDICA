@@ -227,7 +227,7 @@
                               <div class="form-group col-lg-8">
                                 <label for="exampleInputPassword1">Número de parcelas<span style="color: red;">*</span>:</label></label>
                                 <select required id="repeticoes" class="form-control">
-                                     @for ($i = 2; $i < 6; $i++)
+                                     @for ($i = 2; $i < 5; $i++)
                                         <option> {{$i}} </option>
                                     @endfor
                                 </select>
@@ -246,7 +246,7 @@
  </center>
  </div>
 
-<a href="../calculo.php" class="btn btn-dark"><i class="fas fa-calculator">Voltar</i></a>
+<a href="/calculadora" class="btn btn-dark"><i class="fas fa-calculator">Voltar</i></a>
  <center>
 <div id="boleto" style="">
     <table id="resultados" class="fixed-center table-striped   table table-hover table table-sm  col-md-5 border border-dark">
