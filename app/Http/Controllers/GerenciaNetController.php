@@ -1,12 +1,14 @@
 <?php
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 use \DateTime;
 use Illuminate\Support\Facades\DB;
 use Carbon;
+use App\Doacao_boleto;
+use App\Doacao_carne;
+
 class GerenciaNetController extends Controller
 {
 
