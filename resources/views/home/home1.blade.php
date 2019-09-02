@@ -100,7 +100,7 @@
           </div>
         </div>
       </div>  
-    </div>
+    
  
   <center>
    <div class="col-md-7  text-center m-2">
@@ -133,7 +133,7 @@
 {!! $posts -> Links()!!} 
 </div>
 </div>
-
+</center>
 
 <script src="js/aos.js"></script>
 <script src="js/jquery-3.3.1.min.js"></script>
