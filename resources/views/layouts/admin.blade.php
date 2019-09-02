@@ -24,12 +24,16 @@
     <div class="bg-success border-right " id="sidebar-wrapper">
       <div class="sidebar-heading"><a href="/"><img src="/img/comdica3.png" style="width: 10em;"></a></div>
       <div class="list-group list-group-flush">
-        <a href="nova-postagem.php" id='postagem' class="list-group-item list-group-item-action ">Nova postagem</a>
-        <a href="/admin/minhas_postagens" id='minhas_postagens'  class="list-group-item list-group-item-action ">Minhas postagens</a>
-        <a href="/admin/doacoes" id='doacao_imposto' class="list-group-item list-group-item-action ">Doações do imposto de renda</a>
-        <a href="/register" id='adc_user' class="list-group-item list-group-item-action ">Adicionar Usuarios</a>
-       <!--  <a href="#" class="list-group-item list-group-item-action">Configurações da Calculadora</a>
-       -->
+        <a href="nova-postagem.php" id='postagem' class="list-group-item list-group-item-action ">Nova postagem <i class="fas fa-plus-square"></i> </a>
+        <a href="/admin/minhas_postagens" id='minhas_postagens'  class="list-group-item list-group-item-action ">Minhas postagens <i class="fas fa-user"></i></a>
+        <a href="/admin/doacoes" id='doacao_imposto' class="list-group-item list-group-item-action ">Doações por boleto <i class="fas fa-file-invoice-dollar"></i></a>
+        <a href="/register" id='adc_user' class="list-group-item list-group-item-action ">Adicionar Usuarios <i class="fas fa-users"></i></a>
+         <a href="/admin/contato" class="list-group-item list-group-item-action">Mensagens de contato <i class="far fa-comments"></i>
+          @isset($contato)
+          <span class="bg-danger rounded p-1">{{$contato}}</span>
+          @endisset
+        </a>
+       
       </div>
     </div>
 
@@ -61,8 +65,8 @@
         </div>
       </nav>
 
-      <div class="container-fluid" id="area-principal" >
-        <h1 class="mt-4">Área do administrador COMDICA</h1>
+      <div class="container-fluid" id="area-principal" style="width: 100%;" >
+      
           @yield('area-principal')
 
     </div>
