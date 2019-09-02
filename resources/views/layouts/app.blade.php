@@ -45,7 +45,6 @@
                 <a class="dropdown-item" href="/gerar/boleto/2">Gerar segunda via de boleto</a>
               </div>
     </div>
-
   </div>
 </nav>  
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -88,7 +87,7 @@
     <div class="container" >
 
       <!-- Grid row-->
-      <div class="row py-4 d-flex align-items-center">
+      <div class="row py-2 d-flex align-items-center">
 
         <!-- Grid column -->
         <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
@@ -100,10 +99,6 @@
 
           <!-- Grid column -->
           <div class="col-md-6 col-lg-7 text-center text-md-right" style='z-index: 999;'>
-
-
-
-            <!-- Grid column -->
 
           </div>
           <!-- Grid row-->
