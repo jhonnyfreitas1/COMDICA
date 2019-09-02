@@ -46,6 +46,8 @@ Route::get('/auth/logout', 'Auth\LoginController@logout')->middleware('auth');
 Route::get('/admin/post/delete/{id}', ['as' => 'delete_postagem', 'uses' => 'AdminController@destroy'])->middleware('auth');
 Route::get('/admin/nova-postagem', ['as' => 'admin.nova', 'uses' => 'AdminController@nova_postagem'])->middleware('auth');
 Route::post('/admin/postagem_save', ['as' => 'admin.salvar', 'uses' => 'AdminController@salvar_postagem'])->middleware('auth');
+Route::get('/admin/update', ['as' => 'admin.update', 'uses' => 'AdminController@update'])->middleware('auth');
+Route::post('/admin/update_save', ['as' => 'admin.update_save', 'uses' => 'AdminController@store'])->middleware('auth');
 
 
 //Rotas de email 

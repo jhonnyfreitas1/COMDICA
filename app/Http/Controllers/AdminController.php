@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Doacao_boleto;
 use App\Contato;
+use App\User;
 use App\Postagem;
 use Illuminate\Support\Facades\Redirect;
 
@@ -121,7 +122,28 @@ class AdminController extends Controller
     }
     public function store(Request $request)
     {
-        //
+
+         $this->validate(request(), [
+            'name' => 'required',
+            'password' => 'required|min:8|confirmed',
+            'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
+            'password2' => 'min:8'
+        ]);
+
+         
+        $user  = User::find(Auth::user()->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        
+        $user->password = bcrypt($request->password);     
+
+        if ($user->save()) {
+                $mensagem = "Dados alterados com sucesso";
+                return back()->with(compact($mensagem));  
+        }else{
+            $mensagem = "erro na atualizacao dos dados";
+            return back()->with(compact($mensagem));
+        }
     }
 
     public function back(){
@@ -159,9 +181,11 @@ class AdminController extends Controller
     {
         //
     }
-    public function update(Request $request, $id)
+    public function update()
     {
-        //
+        $user = User::find(Auth::id());
+
+       return view('admin.admin_update')->with(compact('user'));
     }
 
     public function destroy($id)
