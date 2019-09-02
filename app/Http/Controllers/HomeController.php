@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Contato;
 class HomeController extends Controller
 {
     private $totalPag = 6;
@@ -28,7 +29,11 @@ class HomeController extends Controller
     public function postagem($id)
     {
         $postagem = DB::table('postagens')->find($id);
-        return view('home.postagem')->with(compact('postagem'));
+        if ($postagem) {
+            return view('home.postagem')->with(compact('postagem')); 
+         }else{
+            return redirect('/notfound');
+        }
     }
      public function pq_doar()
     {
@@ -37,6 +42,9 @@ class HomeController extends Controller
     public function sou_doador()
     {
         return view('home.sou_doador');
+    }
+    public function notfound(){
+        return view('home.notfound');
     }
     public function status(Request $request)
     {
@@ -56,5 +64,22 @@ class HomeController extends Controller
         return view('home.home1')->with(compact('postagem' ,'posts'));
         
     }
+    public function create_contato(Request $req){
 
+       $validar  =   $req->validate([
+            'usuario_mensagem' => 'required',
+            'usuario_nome' => 'required',
+         ],['usuario_mensagem.required' => 'Indique a mensagem em questão',
+            'usuario_mensagem.required' => 'Preencha o campo nome']);
+
+        $contato = $req->all();
+        $resultado = Contato::create($contato);
+       if ($resultado) {
+            $mensagem = 'Mensagem enviada com sucesso';
+           return view('home.contato')->with(compact('mensagem'));
+       }else{
+        $erro = 'Falha no envio da mensagem';
+           return view('home.contato')->with(compact('erro'));
+       }
+    }
 }
