@@ -51,6 +51,11 @@ class HomeController extends Controller
         $status = DB::table('doacao_boleto')->where('doador_cpf',$request->cpf)->get();
         return view('home.status')->with(compact('status'));
     }
+    public function gerarPDF(){
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML('<h1>Hello world!</h1>');
+        $mpdf->Output();
+    }
     public function contato()
     {
         return view('home.contato');
