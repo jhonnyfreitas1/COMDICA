@@ -33,6 +33,7 @@ Route::get('/porque_doar', ['as' => 'porque_doar', 'uses' => 'HomeController@pq_
 Route::get('/contato', ['as' => 'contato', 'uses' => 'HomeController@contato']);
 Route::post('/status', ['as' => 'status', 'uses' => 'HomeController@status']);
 Route::post('/contato/save', ['as' => 'home.contato', 'uses' => 'HomeController@create_contato']);
+Route::get('/status/pdf', ['as' => 'pdf', 'uses' => 'HomeController@pdf']);
 
 
 //Rotas admin
