@@ -5,6 +5,10 @@
 	margin-left: 10%;
 	background-color: white !important;
 	text-align: center;
+	border: 2px solid black; 
+}
+table,td {
+  border: 1px solid black !important;
 }
 .title{
 	color:#01DF74;
@@ -30,8 +34,11 @@
 .btn-doador{
 	margin-right: .5%;
 	background-color: #17a2b8 !important;
-	border: 0 !important;
+	border: 1px solid #0058a6 !important;
 	font-weight: bold !important;
+}
+.btn-doador:hover{
+	background-color: #157eb3 !important;
 }
 .btn-sou{
 	font-weight: bold !important;	
