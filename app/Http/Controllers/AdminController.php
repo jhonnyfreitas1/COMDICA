@@ -101,12 +101,14 @@ class AdminController extends Controller
                 }
 
                     
+                    $categorianumber= intval($request['categoria']);
 
                    $model = new Postagem;
                    $model->titulo = $request['titulo'];
                    $model->descricao = $request['descricao'];
                    $model->link_yt = $embed;
                    $model->imagem_principal = $nomeImagem;
+                   $model->categoria = $categorianumber;
                    $model->pdf1 = $nomepdf;
                    $model->pdf2 = $nomepdf2;
                    $model->user_id = Auth::id();

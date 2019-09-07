@@ -18,13 +18,26 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+       
         $postagem = DB::table('postagens')->limit(3)->orderBy('id', 'DESC')->get();
+           if ($request->cat){
+            $categoria = decrypt(htmlspecialchars($request->cat));
+            if ($categoria && $categoria == 1 || $categoria == 2  || $categoria == 3 || $categoria == 4 || $categoria == 5) {
+               
+               $mensagem = $categoria;
+                $posts = DB::table('postagens')->orderBy('id', 'DESC')->where('categoria', $categoria)->paginate(10);
+               
+                return view('home.home1')->with(compact('postagem' ,'posts','mensagem'));
+           }
+            }else{
+                $mensagem = "Postagens recentes";
+                $posts = DB::table('postagens')->orderBy('id', 'DESC')->paginate(10); 
+                return view('home.home1')->with(compact('postagem' ,'posts','mensagem'));
+            }
+            
 
-        $posts = DB::table('postagens')->orderBy('id', 'DESC')->paginate(6);
-
-        return view('home.home1')->with(compact('postagem' ,'posts'));
     }
     public function postagem($id)
     {
