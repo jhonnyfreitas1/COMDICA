@@ -82,6 +82,9 @@
     <center>
          
 
+          <div class="col-md-10 col-10 bg-warning text-light">
+            <h3>Ferramenta ainda em fase de teste, o lançamento oficial está previsto para o mês de outubro.</h3>
+     </div>  
     <div class="col-md-8 nav  row " style="margin-top: 2em;" role="tablist" >
         <nav class="col-md-12 bg-white" >
           <div class="nav nav-tabs bg-white  " id="nav-tab" role="tablist" style="">
@@ -169,6 +172,7 @@
              
            </div>
         </div>
+
         <div class="tab-pane fade" id="menu2" role="tabpanel" aria-labelledby="nav-profile-tab">         	<div  class="tab-content nav-tabs col-md-12">
             <div  class=" tab-pane fade show active nav-tabs " id="home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div style='' class=" mx-auto col-lg-12 col-md-12 col-sm-12 col-12 nav-tabs ">
@@ -242,7 +246,8 @@
           </div>
          </div>
         </div>
-    </div>  
+    </div>
+
  </center>
  </div>
 
