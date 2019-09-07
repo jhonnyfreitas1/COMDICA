@@ -102,37 +102,57 @@
       </div>  
     
  
+
   <center>
-   <div class="col-md-7  text-center m-2">
-    <h2 class="font-weight-light text-black">Últimas postagens</h2>
+ 
+      <h1 id="desc_categoria" class=" m-2 border border-dark">Postagens recentes</h1>
+    <div class="dropdown show col-3" style=" float:left;">
+
+    <a class="btn btn-secondary   bg-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   Filtrar <i class="fas fa-sort"></i>
+  </a>
+  <div class="dropdown-menu bg-info " aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item border-bottom text-light" href="/">Postagens recentes</a>
+    <a class="dropdown-item border-bottom text-light" href="/?cat={{encrypt(1)}}">Projetos financiados pelo Fundeca</a>
+    <a class="dropdown-item border-bottom text-light"  href="/?cat={{encrypt(2)}}">Ordem do dia COMDICA: Reuniões, Atas, Resoluções</a>
+    <a class="dropdown-item border-bottom text-light" href="/?cat={{encrypt(3)}}">Notícias</a>
+    <a class="dropdown-item border-bottom text-light" href="/?cat={{encrypt(4)}}">Publicações, eventos, fórums, conferência</a>
+    <a class="dropdown-item border-bottom text-light" href="/?cat={{encrypt(5)}}">2º PROCESSO DE ESCOLHA</a>
+</div>
+ 
   </div>
-  <div class="container row">
+</div>
+  <div class=" row m-3 ">
+   
+      
     @foreach($posts as $post)
     <a href="/postagem/{{$post->id}}">
-      <div class=" col-md-4 col-sm-6 col-12" style=''>
+      <div class="col-md-3 col-12 mt-1" style=''>
         <div class='report-module ' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(200, 200, 226, 0.9)">
           <div class='thumbnail' >
             <a href="/postagem/{{$post->id}} " class="bg-light">
               <center>
-                <img class="card-img-top" style="" src="/upload_imagem/{{$post->imagem_principal}}">
+                <img class="card-img-top" style="height: 20vh;
+    width: 100%;
+    object-fit: cover; " src="/upload_imagem/{{$post->imagem_principal}}">
               </center>
-              <h6 class="col-md-12 col-12 title" style="">{{$post->titulo}}</h6>
+              <h6 class="col-md-12 col-12 " style="">{{$post->titulo}}</h6>
             </a>
           </div>
           <div class='post-content'>
-            <h6 class='description col-md-12 col-12' style="">{{ str_limit($post->descricao, 30)}}</h6>
             <div class='post-meta float-right'>
               <div class="row">
-                <a class="btn btn-success  btn-block" id="but" style="border:1px solid black;" href="/postagem/{{$post->id}}">Ver Postagem</a >
+                <a class="btn btn-success col-12 btn-block " id="but" style="border:1px solid black;" href="/postagem/{{$post->id}}">Ver Postagem</a >
         </div>
         </div>
       </div>
     </div>
   </div>
   @endforeach
+</div>
 {!! $posts -> Links()!!} 
-</div>
-</div>
+
+
 </center>
 
 <script src="js/aos.js"></script>
@@ -144,6 +164,29 @@
   $(document).ready(function(){
     $(".owl-next").html("<h1><i class='fas fa-arrow-circle-right'></i></h1>");
     $(".owl-prev").html("<h1><i class='fas fa-arrow-circle-left'></i></h1>");
+    $('.dropdown-toggle').dropdown();
+      var mensagem = "{{$mensagem}}";
+      if (mensagem != "Postagens recentes") {
+        if (mensagem == 1){
+          $("#desc_categoria").html("Projetos financiados pelo Fundeca");  
+        }else if(mensagem == 2 ){
+          $("#desc_categoria").html("Ordem do dia COMDICA: Reuniões, Atas, Resoluções");
+        }else if(mensagem == 3){
+          $("#desc_categoria").html("Notícias");
+        }else if(mensagem == 4){
+          $("#desc_categoria").html("Publicações, eventos, fórums, conferência");
+        }else if (mensagem == 5) {
+          $("#desc_categoria").html("Segundo processo de escolha dos membros do conselho tutelar ARAÇOIABA-PE");
+        }else {
+
+        }
+      }
+  
+      $("border-bottom").on("hover",function(e){
+
+          e.css('background-color', '#babaca');
+
+      });
 
   });
 </script>
