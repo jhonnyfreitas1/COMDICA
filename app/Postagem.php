@@ -12,7 +12,7 @@ class Postagem extends Model
       protected $table = 'postagens';
 
       protected $fillable = [
-            'titulo','descricao','imagem_principal','link_yt','pdf1','pdf2',
+            'titulo','descricao','imagem_principal','link_yt','pdf1','pdf2','categoria'
       ];
     
       protected $guarded = [
