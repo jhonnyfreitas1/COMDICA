@@ -27,11 +27,11 @@
             <h2 class="text-light m-2">Sem postagens atualmente</h2>
           @endif
             @foreach($posts as $count => $post)
-              <a href="/postagem/{{$post->id}}">
+              <a href="/postagem/{{encrypt($post->id)}}">
                 <div class=" col-md-3 col-sm-6 col-6" style=''>
                   <div class='report-module ' style=" border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(200, 200, 226, 0.9)">
                     <div class='thumbnail' >
-                      <a href="/postagem/{{$post->id}} " class="bg-light">
+                      <a href="/postagem/{{encrypt($post->id)}} " class="bg-light">
                         <center>
                         <img class="card-img-top" style="" src="/upload_imagem/{{$post->imagem_principal}}">
                       </center>
