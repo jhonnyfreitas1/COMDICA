@@ -4,20 +4,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Contato;
+use App\Postagem;
 class HomeController extends Controller
 {
-    private $totalPag = 6;
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-   
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function index(Request $request)
     {
        
@@ -27,28 +17,31 @@ class HomeController extends Controller
             if ($categoria && $categoria == 1 || $categoria == 2  || $categoria == 3 || $categoria == 4 || $categoria == 5) {
                
                $mensagem = $categoria;
-                $posts = DB::table('postagens')->orderBy('id', 'DESC')->where('categoria', $categoria)->paginate(10);
+                $posts = DB::table('postagens')->orderBy('id', 'DESC')->where('categoria', $categoria)->paginate(8);
                
                 return view('home.home1')->with(compact('postagem' ,'posts','mensagem'));
            }
             }else{
                 $mensagem = "Postagens recentes";
-                $posts = DB::table('postagens')->orderBy('id', 'DESC')->paginate(10); 
+                $posts = DB::table('postagens')->orderBy('id', 'DESC')->paginate(8); 
                 return view('home.home1')->with(compact('postagem' ,'posts','mensagem'));
             }
-            
-
     }
     public function postagem($id)
     {
-        $postagem = DB::table('postagens')->find($id);
+
+        $id = decrypt(htmlspecialchars($id));
+        $postagem = Postagem::find($id);
+
+        $posts  = Postagem::inRandomOrder()->where('categoria', $postagem->categoria)->skip(5)->take(5)->orderBy('id', 'DESC')->paginate(6);
+        
         if ($postagem) {
-            return view('home.postagem')->with(compact('postagem')); 
+            return view('home.postagem')->with(compact('postagem', 'posts')); 
          }else{
             return redirect('/notfound');
         }
     }
-     public function pq_doar()
+    public function pq_doar()
     {
         return view('home.pq_doar');
     }
