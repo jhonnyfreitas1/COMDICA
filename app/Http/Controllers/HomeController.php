@@ -5,6 +5,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Contato;
 use App\Postagem;
+use PDF;
+
 class HomeController extends Controller
 {
 
@@ -52,11 +54,21 @@ class HomeController extends Controller
     public function notfound(){
         return view('home.notfound');
     }
+
+
     public function status(Request $request)
     {
         $status = DB::table('doacao_boleto')->where('doador_cpf',$request->cpf)->get();
         return view('home.status')->with(compact('status'));
     }
+    public function gerarPdf(){
+
+        $pdf = PDF::loadView('/home/pdf');
+
+        return $pdf->setPaper('a4')->stream('Teste de PDF');
+    }
+
+
     public function contato()
     {
         return view('home.contato');
