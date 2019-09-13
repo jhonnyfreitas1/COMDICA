@@ -10,7 +10,7 @@
       <input type="hidden" id='token' name="_token" value="{{ csrf_token() }}">
       <input type="text" class="form-control col-12" name="cpf" maxlength="11" oninput="bloq()">
     </div>
-    <input type="submit" value="Verificar" class="btn btn-success btn-sou">
+    <input type="submit" value="Verificar" class="btn btn-success btn-sou" id="submit">
 </form>
 
 <style type="text/css">
