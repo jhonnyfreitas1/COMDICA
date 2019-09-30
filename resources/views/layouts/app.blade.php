@@ -78,7 +78,7 @@
 </body>
 
 
-<footer class="mt-5   page-footer font-small unique-color-dark  d-inline-block"  style="  width: 100%;">
+<footer class="   page-footer font-small unique-color-dark  d-inline-block"  style="  width: 100%;">
 
 <div  style="background-color:#01DF74; " class="mt-1" style="
  ">
