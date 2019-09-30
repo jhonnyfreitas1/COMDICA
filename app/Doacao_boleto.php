@@ -15,7 +15,7 @@ class Doacao_boleto extends Model
     public $timestamps = true;
 
     public $fillable = [
-    	'status','doador_nome','doador_email','doador_telefone',
+    	'status','doador_nome','doador_email',
     ];
     protected $guarded = [
     	 'valor_total','metodo_pagamento','cod_barra','fk_id_carne',
