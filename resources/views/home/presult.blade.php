@@ -16,7 +16,6 @@
           </a>
         </div>
         <div class='post-content'>
-          <h6 class='description col-md-12 col-12' style="">{{ str_limit($post->descricao, 30)}}</h6>
           <div class='post-meta float-right'>
             <div class="row">
               <a class="btn btn-success  btn-block" id="but" style="border:1px solid black;" href="/postagem/{{encrypt($post->id)}}">Ver Postagem</a >
