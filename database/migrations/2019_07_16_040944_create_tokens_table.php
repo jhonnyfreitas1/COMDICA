@@ -14,9 +14,11 @@ class CreateTokensTable extends Migration
     public function up()
     {
         Schema::create('tokens', function (Blueprint $table) {
-            $table->string('id');
-            $table->primary('id');
-            $table->timestamps();
+            $table->string('paymentToken');
+            $table->primary('paymentToken');
+            $table->string('chargeReference')->nullable();
+            $table->string('chargeCode');
+            $table->timestamps(true);
         });
     }
 
