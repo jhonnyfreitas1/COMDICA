@@ -2,8 +2,6 @@
 
 	@section('js')
 		<style type="text/css">
-				
-
 		</style>
 	@endsection
 	@section('area-principal')
@@ -31,11 +29,11 @@
   <div class="row m-2" style=" margin-top: 2em;">
 
        <table class="table table-striped table-bordered " id="example">
-  <a href="" id='recarregar' class="float-right mr-4 hover hover-triped mb-2"> <i style="color: #3ee2ee;" class="fas fa-sync-alt fa-2x"></i></a>
+        <a href="" id='recarregar' class="float-right mr-4 hover hover-triped mb-2"> <i style="color: #3ee2ee;" class="fas fa-sync-alt fa-2x"></i></a>
 
             <thead align="center" class="thead-light" style="height:10%;" >
                 <tr align="center">                 
-                    <th scope="col"> Charger ID </th>
+                    <th scope="col"> code (não é o codigo de barra!)</th>
                     <th scope="col"> Nome doador </th>
                     <th scope="col"> Link Boleto </th>
                 @if(isset($doacao->parcela))
@@ -55,10 +53,10 @@
            <tbody>
                 @foreach ($doacoes as $count => $doacao)
                     <tr id="{{ $doacao->charger_id }}" class="bg-light" align="center">
-                        <td> {{$doacao->charger_id}}</td>
+                        <td> {{$doacao->code}}</td>
                         <td> {{$doacao->doador_nome}}</td>
                         <td> <a href="{{$doacao->link_boleto}}">
-                        {{ str_limit($doacao->link_boleto, 25)}}</a></td>
+                        {{ str_limit($doacao->link, 25)}}</a></td>
             
                         <td>{{$doacao->valor_total}}</td>
         
