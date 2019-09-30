@@ -19,19 +19,18 @@ class CreateDoacaoBoletoTable extends Migration
             $table -> string('doador_nome');
             $table -> string('doador_cpf');
             $table -> string('doador_email');
-            $table -> string('doador_telefone');
-            $table -> Integer('charger_id');
-            $table -> string('link_boleto');
+            $table -> Integer('code');
+            $table -> string('link');
             $table -> Integer('valor_total');
-            $table -> Integer('quantidade');
             $table -> Integer('parcelas')->default('1');
             $table->enum('metodo_pagamento', ['boleto','carne']);
             $table -> date('vencimento'); 
             $table -> string('cod_barra');
+             $table->string('data_pagamento')->nullable();
             $table -> string('status');
             $table->timestamps();
             $table->Integer('fk_id_carne')->nullable();
-            $table->foreign('fk_id_carne')->references('carne_id')->on('doacao_carne')->onDelete('cascade')->unsigned();   
+            $table->foreign('fk_id_carne')->references('carne_id')->on('doacao_carne')->onDelete('cascade')->unsigned(); 
         });
     }
 
