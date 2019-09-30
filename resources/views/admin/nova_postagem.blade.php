@@ -1,6 +1,5 @@
 
 
-
 @section('admin-js')
 
 <link rel="stylesheet" type="text/css" href="/js/nova_postagem.css">
@@ -27,12 +26,13 @@
 </div>
 </div>
 
-<form action="/admin/postagem_save" class=" mt-2 container border border-light col-offset-6 centered col-md-10" method="post"  id='form-postagem' name="form-postagem" enctype="multipart/form-data">
-  <div class="form-group col-md-12">
+<form action="/admin/postagem_save" class=" mt-2 border border-light col-offset-6 centered col-md-10 row" method="post"  id='form-postagem' name="form-postagem" enctype="multipart/form-data">
+  <div class="form-row col-md-12">
+  <div class="form-group col-md-12 ">
     <label for="">Titulo da postagem </label><label style="color:red;">*</label>
-    <input class="form-control col-md-12" type="text" name="titulo" required>
+    <input class="form-control col-md-12" value="" type="text" name="titulo" required>
   </div>
-  <div class="form-group col-md-12 col-12">
+  <div class="form-group col-md-12 col-12 ">
     <label>Imagem principal da postagem<label style="color:red;">*</label><b>"png", "jpg", "jpeg", "bmp"</b></label>
     <div class="file-field">   
       <div class="btn btn-success btn-sm col-12 col-md-12">
@@ -40,6 +40,7 @@
         <input type="file" id="uploadImage" name='imagem'   class='col-7 col-md-12' required>
       </div>	
     </div>
+  </div>
   </div>
   <div   class="form-row">
    <div class="form-group col-md-12">
