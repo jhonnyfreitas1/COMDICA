@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $('#renda-bruta').maskMoney();
-    $('#desp-ensino').maskMoney();
+     $('#desp-ensino').maskMoney();
     $('#desp-alim').maskMoney();          //adiciona mascaramento a todos os inputs na lista;
     $('#desp-medic').maskMoney();
     $('#desp-ensino').maskMoney();
@@ -123,17 +123,20 @@ $(document).ready(function(){
                  var rendabase2 = rendabase - porcentagem;
                  var aliquota2 = rendabase2 * (aliquota/100); 
 
-                 var imposto =  aliquota2.toFixed(2); 
 
+                 var imposto =  aliquota2.toFixed(2); 
+                 var valor_doacao_formatado = (porcentagem * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                 $('#valor_doar').val(valor_doacao_formatado);
+                 $("#valor_doar_carne").val(valor_doacao_formatado);
                  if (impostopg > 1){
                     $('#impostopagar').html((impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));        
-                    $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+(porcentagem * -1)+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Doe "+(porcentagem * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='/porque_doar' class='btn btn-outline-dark ml-2 col-md-4  col-7'>Por que doar ?</a>");
+                    $('#valor7').html("<b><a id='pulse' data-toggle='modal' data-target='#modalExemplo' href='calculadora/doacao/"+(porcentagem * -1)+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info mb-1'>Doe "+valor_doacao_formatado+"</a> Ou <a href='#' id='pulse' class='btn btn-primary mb-1' data-toggle='modal' data-target='#modalcarne'> Doe "+valor_doacao_formatado+" parcelado em até 3 vezes </a> <a href='/porque_doar' class='btn btn-outline-dark ml-2 col-md-4  col-7'>Por que doar ?</a>");
                     $('#impostodevido').html("<b>"+(impostodevido * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
                     
                 }else{
                     $('#impostopagar').html("<b>"+(impostopg).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
                     //$('#valor7').html('<p>Você não tem imposto a pagar e sim a restituir.</p>');
-                    $('#valor7').html("<b><a id='pulse' href='calculadora/doacao/"+(porcentagem * -1)+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info'>Doe "+(porcentagem * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</a> <a href='../porque_doar' class='btn btn-outline-dark ml-2 col-md-4 col-7 '>Por que doar ?</a>");
+                    $('#valor7').html("<b><a id='pulse' data-toggle='modal' data-target='#modalExemplo' href='calculadora/doacao/"+(porcentagem * -1)+"/"+impostopg.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"'class='btn btn-info mb-1'>Doe "+valor_doacao_formatado+"</a> Ou <a href='#' id='pulse' class='btn btn-primary mb-1'  data-toggle='modal' data-target='#modalcarne'> Doe "+valor_doacao_formatado+" parcelado em até 3 vezes </a>  <a href='../porque_doar' class='btn btn-outline-dark ml-2 col-md-4 col-7 '>Por que doar ?</a>");
                     $('#impostodevido').html("<b>"+(impostodevido * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})+"</b>");
                 }
                 $("#irrf").html(irrf.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));

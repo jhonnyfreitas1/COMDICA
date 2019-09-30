@@ -25,8 +25,8 @@ $("#recarregar").click(function(e) {
     e.preventDefault();
     $('#carregamento').modal("show");
     $.ajax({
-        type: 'post',
-        url: '/api/boleto/atualizar',
+        type: 'get',
+        url: '/boleto/detalhes',
         datatype: 'json',
         success: function (response) {
             $('#alo').html(response);
