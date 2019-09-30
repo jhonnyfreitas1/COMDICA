@@ -23,31 +23,31 @@
 	@foreach ($status as $boleto)
 		<?php 
 		    $valortotal = $boleto->valor_total;
-			$valortotal = preg_replace("/^([0-9]+)*?([0-9]{2})$/", "$1,$2", $valortotal);
+			$valortotal = preg_replace("/^([0-9]+)*?([0-9]{2})$/", "$2", $valortotal);
 	    ?>
     	<tr>
 			<td>{{$boleto->doador_nome}}</td>
 			<td>R$ {{$valortotal}}</td>
 
-			@if($boleto->status == 'paid')
+			@if($boleto->status == 'CONFIRMED')
 
 			<td>Pagamento confirmado</td>
 
-			@elseif($boleto->status == 'unpaid')
+			@elseif($boleto->status == 'FAILED')
 
-			<td>Não foi possível confirmar o pagamento</td>
+			<td>Pagamento não realizado</td>
 
-			@elseif($boleto->status == 'new')
+			@elseif($boleto->status == 'AUTHORIZED')
 
 			<td>Aguardando definição da forma de pagamento</td>
 
-			@elseif($boleto->status == 'refunded')
+			@elseif($boleto->status == 'DECLINED')
 
-			<td>Pagamento devolvido</td>
+			<td>Pagamento rejeitado pela análise de risco.</td>
 
-			@elseif($boleto->status == 'contested')
+			@elseif($boleto->status == 'NOT_AUTHORIZED')
 
-			<td>Pagamento em processo de contestação</td>
+			<td>Pagamento não autorizado pela instituição responsável pelo cartão de crédito</td>
 
 			@elseif($boleto->status == 'canceled')
 
@@ -65,7 +65,7 @@
 
 			<td>Data de vencimento expirada</td>
 
-			@elseif($boleto->status == 'waiting')
+			@elseif($boleto->status == 'AUTHORIZED')
 
 			<td>Aguardando confirmação do pagamento</td>
 
@@ -77,9 +77,9 @@
 
 			<td><?php echo(data($boleto->vencimento)); ?></td>
 
-			@if($boleto->status == 'paid')
+			@if($boleto->status == 'CONFIRMED')
 
-			<td><a href="{{$boleto->link_boleto}}">Baixar</a></td>
+			<td><a href="{{$boleto->link}}">Baixar</a></td>
 
 			@else
 
