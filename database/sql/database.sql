@@ -36,6 +36,7 @@ create table `postagens` (
   `link_yt` varchar(255) null, 
   `pdf1` varchar(255) null, 
   `pdf2` varchar(255) null, 
+  `categoria` enum('1', '2', '3', '4', '5') not null, 
   `user_id` bigint unsigned not null, 
   `created_at` timestamp null, 
   `updated_at` timestamp null
@@ -66,19 +67,18 @@ add
 -- migration:2019_06_29_030857_create_doacao_boleto_table --
 create table `doacao_boleto` (
   `id` bigint unsigned not null auto_increment primary key, 
-  `valor_parcelado` int not null, 
+  `valor_parcelado` int null, 
   `doador_nome` varchar(255) not null, 
   `doador_cpf` varchar(255) not null, 
   `doador_email` varchar(255) not null, 
-  `doador_telefone` varchar(255) not null, 
-  `charger_id` int not null, 
-  `link_boleto` varchar(255) not null, 
+  `code` int not null, 
+  `link` varchar(255) not null, 
   `valor_total` int not null, 
-  `quantidade` int not null, 
   `parcelas` int not null default '1', 
   `metodo_pagamento` enum('boleto', 'carne') not null, 
   `vencimento` date not null, 
   `cod_barra` varchar(255) not null, 
+  `data_pagamento` varchar(255) null, 
   `status` varchar(255) not null, 
   `created_at` timestamp null, 
   `updated_at` timestamp null, 
@@ -91,11 +91,28 @@ add
 
 -- migration:2019_07_16_040944_create_tokens_table --
 create table `tokens` (
-  `id` varchar(255) not null, 
-  `created_at` timestamp null, 
-  `updated_at` timestamp null
+  `paymentToken` varchar(255) not null, 
+  `chargeReference` varchar(255) null, 
+  `chargeCode` varchar(255) not null, 
+  `created_at` timestamp(1) null, 
+  `updated_at` timestamp(1) null
 ) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
 alter table 
   `tokens` 
 add 
-  primary key `tokens_id_primary`(`id`);
+  primary key `tokens_paymenttoken_primary`(`paymentToken`);
+
+-- migration:2019_08_30_232225_create_contatos_table --
+create table `contatos` (
+  `id` bigint unsigned not null auto_increment primary key, 
+  `usuario_mensagem` varchar(255) not null, 
+  `usuario_nome` varchar(255) not null, 
+  `usuario_email` varchar(255) null, 
+  `usuario_telefone` varchar(255) null, 
+  `visto` tinyint(1) not null default '0', 
+  `contato_assunto` enum(
+    'reclamacao', 'duvida', 'sugestao'
+  ) not null, 
+  `created_at` timestamp null, 
+  `updated_at` timestamp null
+) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
