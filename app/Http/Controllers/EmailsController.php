@@ -10,7 +10,7 @@ class EmailsController extends Controller
    
 	public function verificar(){
 
-			Mail::to('jhonnyfarias87@gmail.com')->send(new SendMailComdica());
+			Mail::to('')->send(new SendMailComdica());
 		
 	}
 
