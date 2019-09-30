@@ -44,7 +44,7 @@
                       <div class="row">
                       <a class="btn btn-primary btn-block col-md-3 col-3 m-1" id="but" style="" href=""><i class="fas fa-eye"></i></a>
                       <a class="btn btn-danger btn-block col-md-3 col-3  m-1 "  data-toggle="modal" data-target="#delete{{$count}}" id='delete'><i class="far fa-trash-alt"></i></a>
-                      <a class="btn btn-warning btn-block col-md-3 col-3  m-1 " id="but" style="" href=""> <i class="fas fa-edit"></i></a>
+                      <a class="btn btn-warning btn-block col-md-3 col-3  m-1 " id="but" style="" href="/admin/postagem_edit/{{$post->id}}"> <i class="fas fa-edit"></i></a>
                   </div> 
                       </div>
                     </div>
