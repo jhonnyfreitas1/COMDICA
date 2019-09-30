@@ -17,8 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/boleto/notification', ['as' => 'gerencianet.gerar_carne', 'uses' =>'GerenciaNetController@notification']);
-
-Route::post('/boleto/atualizar', ['as' => 'gerencianet.atualizar', 'uses' =>'GerenciaNetController@atualizar_boletos']);
-
-
+Route::post('transacoes/notification' , ['as' => 'notification_token', 'uses' => 'CalculadoraController@notification']);

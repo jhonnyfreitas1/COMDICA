@@ -23,7 +23,9 @@ Route::post('/calculadora/gerar_boleto', ['as' => 'gerencianet.gerar_boleto', 'u
 Route::post('/calculadora/gerar_carne', ['as' => 'gerencianet.gerar_carne', 'uses' =>'GerenciaNetController@gerar_carne']);
 Route::get('/calculadora/cancelar_transacao/{id}', ['as' => 'gerencianet.cancelar', 'uses' =>'GerenciaNetController@cancelar_transacao']);
 
-
+Route::post('boleto/gerar' , ['as' => 'gerarboleto', 'uses' => 'CalculadoraController@gerarBoleto']);
+Route::post('carne/gerar' , ['as' => 'gerarboleto', 'uses' => 'CalculadoraController@gerarCarne']);
+Route::get('boleto/detalhes' , ['as' => 'boleto_detail', 'uses' => 'CalculadoraController@detalhes_boleto']);
 //Rotas do site 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/notfound', 'HomeController@notfound')->name('home');
