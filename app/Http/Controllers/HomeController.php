@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Contato;
+use \DateTime;
 use App\Postagem;
 use PDF;
+use App\Doacao_boleto;
+use App\Recibo;
 
 class HomeController extends Controller
 {
@@ -61,11 +64,58 @@ class HomeController extends Controller
         $status = DB::table('doacao_boleto')->where('doador_cpf',$request->cpf)->get();
         return view('home.status')->with(compact('status'));
     }
-    public function gerarPdf(){
 
-        $pdf = PDF::loadView('/home/pdf');
+    public function gerarPdf($id){
 
-        return $pdf->setPaper('a4')->stream('Teste de PDF');
+
+        $id = decrypt(htmlspecialchars($id));
+
+        $boleto = Doacao_boleto::where('code',$id)->first();
+        
+        if ($boleto->status == 'CONFIRMED') {
+           
+                $recibo = Recibo::where('cod_boleto' , $id)->first();
+
+                if($recibo){
+
+                        $codigo = strval($recibo->codigo_verificacao);
+
+                        $nome = $boleto->doador_nome;
+                        $cpf = $boleto->doador_cpf;
+                        $valor = number_format($boleto->valor_parcelado ?  $boleto->valor_parcelado: $boleto->valor_total , 2);
+                        $data_pagamento = $boleto->data_pagamento;
+                        $vencimento = $boleto->vencimento;
+                        $vencimento = new DateTime($vencimento);
+                        $vencimento =  $vencimento->format('d/m/Y');
+                        $data_documento = $recibo->created_at;
+                        $pdf = PDF::loadView('/home/pdf',compact('nome', 'cpf','valor','codigo','data_pagamento','vencimento'));
+                         return $pdf->setPaper("A4", "portrait")->stream('Recibo comprovante de doação');
+
+                }else{
+
+                        $codigo = strtoupper(uniqid());
+                        $nome = $boleto->doador_nome;
+                        $cpf = $boleto->doador_cpf;
+                        $valor = number_format($boleto->valor_parcelado ?  $boleto->valor_parcelado: $boleto->valor_total , 2);
+                        $data_pagamento = $boleto->data_pagamento;
+                        $vencimento = $boleto->vencimento;
+                        $vencimento = new DateTime($vencimento);
+                        $vencimento =  $vencimento->format('d/m/Y');
+
+                        $pdf = PDF::loadView('/home/pdf',compact('nome', 'cpf','valor','codigo','data_pagamento','vencimento' ));
+                 
+                        $recibo = new Recibo;
+                        $recibo->codigo_verificacao = $codigo;
+                        $recibo->cod_boleto = $boleto->code;
+                        $recibo->link_recibo = "teste";
+                        $recibo ->save();
+
+                        return $pdf->setPaper("A4", "portrait")->stream('Recibo comprovante de doação');
+                }
+
+        }else{
+            return 'esse boleto nao está pago !';
+        }
     }
 
 
@@ -81,6 +131,18 @@ class HomeController extends Controller
 
         return view('home.home1')->with(compact('postagem' ,'posts'));
         
+    }
+    public function verificar_recibo(Request $req){
+
+
+            $recibo = Recibo::where('codigo_verificacao',$req->cod)->first();
+            if ($recibo) {
+                return "tudo certo,  esse recibo eh valido !!!!!!!!!";       
+            }
+            else{
+                return "recibo invalido";
+            }
+
     }
     public function create_contato(Request $req){
 
