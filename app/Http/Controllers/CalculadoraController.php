@@ -96,10 +96,10 @@ class CalculadoraController extends Controller
 
     public function gerarBoleto(Request $req) {
             
-            if ($req->cpf && $req->nome) {
+        if ($req->cpf && $req->nome) {
             require("BoletoFacilController.php");
             
-            $notification = "http://api.webhookinbox.com/i/jk37GwW6/in/";
+            $notification = "http://comdicaaracoiabape.com.br/api/transacoes/notification";
             $nome = htmlspecialchars($req->nome);
             $cpf = htmlspecialchars($req->cpf);
             $email = htmlspecialchars($req->email);
@@ -109,6 +109,8 @@ class CalculadoraController extends Controller
             $boletoFacil->payerEmail = $email;
             $boleto = json_decode($boletoFacil->issueCharge(), true);
 
+            if ($boleto != null) {
+             
             $date = new DateTime($boleto['data']['charges'][0]['dueDate']);
             $date->format('Y-m-d H:i:s');
             $model = new Doacao_boleto;
@@ -129,11 +131,15 @@ class CalculadoraController extends Controller
                    return view('layouts.retorno_boleto', compact('nome','link_boleto', 'cod','email'));
                 return  "sucesso ao gerar boleto".json_encode($boleto['data']['charges'][0]);
             }
-            return $dado;
-        } 
-        else {
-            return "Falta preencher todos os dados.";
-        }   
+                return $dado;
+            }   
+             else {
+                return "Servidor de transações fora de operação";
+            }
+          
+         } else {
+                return "Falta preencher todos os dados.";
+            } 
     }
 
 
@@ -143,11 +149,10 @@ class CalculadoraController extends Controller
             $nome = htmlspecialchars($req->nome);
             $parcelas = htmlspecialchars($req->parcelas);
             $cpf = htmlspecialchars($req->cpf);
-            $valor = number_format($req->valor , 2, '.', '');
+            $valor = number_format($req->valor , 2);
             $valorparcelado = number_format($valor / $parcelas, 2);
             $email = htmlspecialchars($req->email);
-            $notification = "http://api.webhookinbox.com/i/jk37GwW6/in/";
-
+            $notification = "http://comdicaaracoiabape.com.br/api/transacoes/notification";
             $boletoFacil = new BoletoFacilController("44765F040CC6D355B69B7660F8809E5664DE315FB287EC6C91DBCFED7924D819");
             $boletoFacil->createCharge($nome, $cpf, "Doacao para o fundo da crianca e do adolescente", $valorparcelado, "",$notification);
             $boletoFacil->payerEmail = $email;
