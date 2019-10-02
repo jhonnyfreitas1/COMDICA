@@ -79,7 +79,7 @@
 
 			@if($boleto->status == 'CONFIRMED')
 
-			<td><a href="{{$boleto->link}}">Baixar</a></td>
+			<td><a href="/pdf/pagador/{{encrypt($boleto->code)}}">Baixar</a></td>
 
 			@else
 
@@ -99,6 +99,7 @@
 	<a href="/calculadora" class="btn btn-success btn-doador">Realizar uma doação</a>
 </div>
 </center>
+<style type="text/css" src="/css/app.css"></style>
 <style type="text/css">
   body{
     background-image: url('/img/fundeca1.png');
