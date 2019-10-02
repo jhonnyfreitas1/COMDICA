@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Recibo;
 use App\Doacao_carne;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,7 @@ class Doacao_boleto extends Model
     public $timestamps = true;
 
     public $fillable = [
-    	'status','doador_nome','doador_email',
+    	'status','doador_nome','doador_email','code',
     ];
     protected $guarded = [
     	 'valor_total','metodo_pagamento','cod_barra','fk_id_carne',
@@ -24,5 +25,5 @@ class Doacao_boleto extends Model
 	  public function fk_id_carne(){
          return $this->belongsTo(Doacao_carne::class);
      }     
-
+    
 }
