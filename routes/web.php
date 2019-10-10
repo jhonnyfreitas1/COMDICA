@@ -51,7 +51,7 @@ Route::get('/admin/post/delete/{id}', ['as' => 'delete_postagem', 'uses' => 'Adm
 Route::get('/admin/nova-postagem', ['as' => 'admin.nova', 'uses' => 'AdminController@nova_postagem'])->middleware('auth');
 Route::post('/admin/postagem_save', ['as' => 'admin.salvar', 'uses' => 'AdminController@salvar_postagem'])->middleware('auth');
 Route::get('/admin/update', ['as' => 'admin.update', 'uses' => 'AdminController@update'])->middleware('auth');
-Route::post('/admin/update_save', ['as' => 'admin.update_save', 'uses' => 'AdminController@store'])->middleware('auth');
+Route::post('/admin/update_save/{id}', ['as' => 'admin.update_save', 'uses' => 'AdminController@update_save'])->middleware('auth');
 Route::get('/admin/postagem_edit/{id}', ['as' => 'admin.postagem_edit', 'uses' => 'AdminController@edit'])->middleware('auth');
 
 

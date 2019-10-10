@@ -22,10 +22,9 @@
                 </ol> 
                 <?php Session::pull('fail')?>         
               @endif
-        <div class="row " style=" " >
-          @if($posts == "")
-            <h2 class="text-light m-2">Sem postagens atualmente</h2>
-          @endif
+
+
+        <div class="row m-2 " style=" " >
             @foreach($posts as $count => $post)
               <a href="/postagem/{{encrypt($post->id)}}">
                 <div class=" col-md-3 col-sm-6 col-6" style=''>
@@ -33,7 +32,7 @@
                     <div class='thumbnail' >
                       <a href="/postagem/{{encrypt($post->id)}} " class="bg-light">
                         <center>
-                        <img class="card-img-top" style="" src="/upload_imagem/{{$post->imagem_principal}}">
+                        <img class="card-img-top"  style="height: 20vh; width: 100%;" src="/upload_imagem/{{$post->imagem_principal}}">
                       </center>
                         <h6 class="col-md-12 col-12 title" style="">{{$post->titulo}}</h6>
                       </a>

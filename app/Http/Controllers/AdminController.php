@@ -100,7 +100,6 @@ class AdminController extends Controller
                     $embed = null;
                 }
 
-                    
                     $categorianumber= intval($request['categoria']);
 
                    $model = new Postagem;
@@ -192,18 +191,15 @@ class AdminController extends Controller
     }
     public function update_save(Request $request, $id){
 
-        Postagem::find($id);
-
 
         if (strlen($request->titulo) > 50)
         {
             return 'O titulo de sua postagem não pode ultrapassar 50 caracteres';
         }
-        $validPost = Postagem::where('titulo',$request->titulo)->first();
     
-        if ($validPost){
-            return 'Uma postagem com esse titulo já existe';
-        }
+        $post = Postagem::find($id);
+        $model = Postagem::find($id);
+
         $data =  date('Y-m-d H:i:s');
             if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {   
                     $imagem = $request->file()['imagem'];
@@ -213,6 +209,7 @@ class AdminController extends Controller
                     $nomeImagem = "imagem_".$numero.".".$ex;
                     $imagem->move($dir,$nomeImagem);
                     $request->file()['imagem'] = $nomeImagem;
+                    $model->imagem_principal = $nomeImagem;
                 }
 
                 if ($request->hasFile('pdf') && $request->file('pdf')->isValid()) {   
@@ -223,6 +220,7 @@ class AdminController extends Controller
                     $nomepdf = "pdf_".$numero.".pdf";
                     $pdf1->move($diretorio,$nomepdf);
                     $request->file()['pdf'] = $nomepdf;
+                     $model->pdf1 = $nomepdf;
                 }else{
                     $nomepdf = null;
                 }
@@ -233,32 +231,35 @@ class AdminController extends Controller
                     $nomepdf2 = "pdf_".$numero1.".pdf"; 
                     $pdf2->move($diretorio,$nomepdf2);
                     $request->file()['pdf2'] = $nomepdf2;
+                     $model->pdf2 = $nomepdf2; 
                 }else{
                     $nomepdf2 = null;
                 }
                 if ($request['yt'] != "") {
                     $url = explode("watch?v=", $request['yt']);
                     $embed = $url[0]."embed/".$url[1];
+
                 }else{
                     $embed = null;
                 }
+
                     $categorianumber= intval($request['categoria']);
-                   $model = new Postagem;
-                   $model->titulo = $request['titulo'];
-                   $model->descricao = $request['descricao'];
-                   $model->link_yt = $embed;
-                   $model->imagem_principal = $nomeImagem;
+              
+                   $model->titulo = $request['titulo'] ? $request['titulo'] : $post->titulo;
+                   $model->descricao = $request['descricao'] ? $request['descricao'] : $post->descricao;
+                   
                    $model->categoria = $categorianumber;
-                   $model->pdf1 = $nomepdf;
-                   $model->pdf2 = $nomepdf2;
+                  $model->link_yt = $embed;
                    $model->user_id = Auth::id();
-                  $resultado = $model->save();
+                  $resultado = $model->update();
 
         if ($resultado == true) {
-            return 'Postagem feita com sucesso';
+            $mensagem = 'Atualização feita com sucesso';
+            return $mensagem;
 
         }else {
-            return 'Falha ao fazer postagem, tente novamente.';
+            $mensagem = 'Falha ao atualizar postagem';
+                 return $mensagem;
         }
     }
     

@@ -54,7 +54,7 @@
       <div class="input-group-prepend">
         <label class="input-group-text bg-primary text-light" for="inputGroupSelect01">Categorias </label>
       </div>
-      <select class="categoria bg-light" name="categoria" id="categoria">
+      <select class="categoria bg-light" name="categoria" id="categoria" required="required">
         <option ></option>
         <option value="1">PROJETOS FINANCIADOS</option> 
         <option value="2">REUNIÕES, ATAS, RESOLUÇÕES</option>
