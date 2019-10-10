@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Auth;
+use Khill\Lavacharts\Lavacharts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Doacao_boleto;
@@ -22,7 +23,35 @@ class AdminController extends Controller
 
         $boletos = Doacao_boleto::get()->count();
         $contato = Contato::where('visto', false)->get()->count();
-        return view('admin.index')->with(compact('contato'));
+        $lava = new Lavacharts; // See note below for Laravel
+
+        $cancelados = Doacao_boleto::where('status' , 'FAILED')->count();
+
+        $pagos =Doacao_boleto::where('status' , 'CONFIRMED')->count();
+        
+                
+        $wating= Doacao_boleto::where('status' , 'AUTHORIZED')->count();
+
+        $reasons = $lava->DataTable();
+
+        $reasons->addStringColumn('Reasons')
+                ->addNumberColumn('Percent')
+                ->addRow(['Pagamento não realizado', $cancelados])
+                ->addRow(['Pagos', $pagos])
+                ->addRow(['Esperando pagamento', $wating]);
+
+        $lava->DonutChart('IMDB', $reasons, [
+            'width' => 1000,
+            'height' => 600,
+              'colors'=> ['#b71f2d', 'rgb(8, 179, 41)', '#babaca'],
+                'is3D' => true,
+            'legend' => [
+                'position' => 'right',
+            ],
+            'backgroundColor' => ''
+        ]);
+
+        return View('admin.index', compact('lava'))->with(compact('contato'));
     }
     public function create()
     {
