@@ -15,20 +15,20 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-       
+
         $postagem = DB::table('postagens')->limit(3)->orderBy('id', 'DESC')->get();
            if ($request->cat){
             $categoria = decrypt(htmlspecialchars($request->cat));
             if ($categoria && $categoria == 1 || $categoria == 2  || $categoria == 3 || $categoria == 4 || $categoria == 5) {
-               
+
                $mensagem = $categoria;
                 $posts = DB::table('postagens')->orderBy('id', 'DESC')->where('categoria', $categoria)->paginate(8);
-               
+
                 return view('home.home1')->with(compact('postagem' ,'posts','mensagem'));
            }
             }else{
                 $mensagem = "Postagens recentes";
-                $posts = DB::table('postagens')->orderBy('id', 'DESC')->paginate(8); 
+                $posts = DB::table('postagens')->orderBy('id', 'DESC')->paginate(8);
                 return view('home.home1')->with(compact('postagem' ,'posts','mensagem'));
             }
     }
@@ -39,9 +39,9 @@ class HomeController extends Controller
         $postagem = Postagem::find($id);
 
         $posts  = Postagem::inRandomOrder()->where('categoria', $postagem->categoria)->skip(5)->take(5)->orderBy('id', 'DESC')->paginate(6);
-        
+
         if ($postagem) {
-            return view('home.postagem')->with(compact('postagem', 'posts')); 
+            return view('home.postagem')->with(compact('postagem', 'posts'));
          }else{
             return redirect('/notfound');
         }
@@ -71,9 +71,9 @@ class HomeController extends Controller
         $id = decrypt(htmlspecialchars($id));
 
         $boleto = Doacao_boleto::where('code',$id)->first();
-        
+
         if ($boleto->status == 'CONFIRMED') {
-           
+
                 $recibo = Recibo::where('cod_boleto' , $id)->first();
 
                 if($recibo){
@@ -103,7 +103,7 @@ class HomeController extends Controller
                         $vencimento =  $vencimento->format('d/m/Y');
 
                         $pdf = PDF::loadView('/home/pdf',compact('nome', 'cpf','valor','codigo','data_pagamento','vencimento' ));
-                 
+
                         $recibo = new Recibo;
                         $recibo->codigo_verificacao = $codigo;
                         $recibo->cod_boleto = $boleto->code;
@@ -130,17 +130,20 @@ class HomeController extends Controller
         $posts = DB::table('postagens')->paginate(6);
 
         return view('home.home1')->with(compact('postagem' ,'posts'));
-        
+
     }
     public function verificar_recibo(Request $req){
 
 
             $recibo = Recibo::where('codigo_verificacao',$req->cod)->first();
+
             if ($recibo) {
-                return "tudo certo,  esse recibo eh valido !!!!!!!!!";       
+
+                $boleto = Doacao_boleto::where('code' , $recibo->cod_boleto)->first();
+                return view('home.recibo_valido',compact('recibo' , 'boleto'));
             }
             else{
-                return "recibo invalido";
+                return view('home.recibo_invalido');
             }
 
     }

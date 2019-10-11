@@ -11,7 +11,7 @@ use App\Doacao_boleto;
 use App\Doacao_carne;
 class CalculadoraController extends Controller
 {
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -95,10 +95,10 @@ class CalculadoraController extends Controller
 
 
     public function gerarBoleto(Request $req) {
-            
+
         if ($req->cpf && $req->nome) {
             require("BoletoFacilController.php");
-            
+
             $notification = "http://comdicaaracoiabape.com.br/api/transacoes/notification";
             $nome = htmlspecialchars($req->nome);
             $cpf = htmlspecialchars($req->cpf);
@@ -110,9 +110,7 @@ class CalculadoraController extends Controller
             $boleto = json_decode($boletoFacil->issueCharge(), true);
 
             if ($boleto != null) {
-             
-            $date = new DateTime($boleto['data']['charges'][0]['dueDate']);
-            $date->format('Y-m-d H:i:s');
+            $date = $boleto['data']['charges'][0]['dueDate'];
             $model = new Doacao_boleto;
             $model->doador_nome = $nome;
             $model->doador_cpf = $cpf;
@@ -124,7 +122,7 @@ class CalculadoraController extends Controller
             $model->vencimento = $date;
             $model->cod_barra = $boleto['data']['charges'][0]['payNumber'];
             $model->status = "AUTHORIZED";
-            $resultado = $model->save();        
+            $resultado = $model->save();
             $link_boleto = $boleto['data']['charges'][0]['link'];
             $cod =$boleto['data']['charges'][0]['payNumber'];
             if ($resultado == true) {
@@ -132,14 +130,14 @@ class CalculadoraController extends Controller
                 return  "sucesso ao gerar boleto".json_encode($boleto['data']['charges'][0]);
             }
                 return $dado;
-            }   
+            }
              else {
                 return "Servidor de transações fora de operação";
             }
-          
+
          } else {
                 return "Falta preencher todos os dados.";
-            } 
+            }
     }
 
 
@@ -149,23 +147,23 @@ class CalculadoraController extends Controller
             $nome = htmlspecialchars($req->nome);
             $parcelas = htmlspecialchars($req->parcelas);
             $cpf = htmlspecialchars($req->cpf);
-            $valor = number_format($req->valor , 2);
+            $valor = $req->valor;
             $valorparcelado = number_format($valor / $parcelas, 2);
+
             $email = htmlspecialchars($req->email);
             $notification = "http://comdicaaracoiabape.com.br/api/transacoes/notification";
             $boletoFacil = new BoletoFacilController("44765F040CC6D355B69B7660F8809E5664DE315FB287EC6C91DBCFED7924D819");
             $boletoFacil->createCharge($nome, $cpf, "Doacao para o fundo da crianca e do adolescente", $valorparcelado, "",$notification);
             $boletoFacil->payerEmail = $email;
             $boletoFacil->installments = $parcelas;
-            $boletoFacil->totalAmount = $valor; 
+            $boletoFacil->totalAmount = $valor;
             $boleto = json_decode($boletoFacil->issueCharge(), true);
             $cod = $boleto['data']['charges'][0]['payNumber'];
             $link_boleto = $boleto['data']['charges'][0]['link'];
 
             if ($boleto) {
-                for ($i=0; $i < sizeof($boleto['data']['charges']); $i++) { 
-                    $date = new DateTime($boleto['data']['charges'][$i]['dueDate']);
-                    $date->format('Y-m-d H:i:s');
+                for ($i=0; $i < sizeof($boleto['data']['charges']); $i++) {
+                    $date = $boleto['data']['charges'][$i]['dueDate'];
                     $model = new Doacao_boleto;
                     $model->doador_nome = $nome;
                     $model->doador_cpf = $cpf;
@@ -184,10 +182,10 @@ class CalculadoraController extends Controller
             }else{
                 return "Erro ao emitir cobrança tente novamente.";
             }
-          
+
 
             return  view('layouts.retorno_boleto', compact('nome', 'email' , 'cod', 'link_boleto'));
-          
+
           }else{
             return "Falta preencher algum determinado dado.";
           }
@@ -196,14 +194,14 @@ class CalculadoraController extends Controller
           $tokens = Tokens::get();
           $count =0;
           foreach ($tokens as $count => $token) {
-          $notification = new BoletoFacilController("44765F040CC6D355B69B7660F8809E5664DE315FB287EC6C91DBCFED7924D819");    
+          $notification = new BoletoFacilController("44765F040CC6D355B69B7660F8809E5664DE315FB287EC6C91DBCFED7924D819");
           $objeto_token = json_decode($notification->fetchPaymentDetails($token['paymentToken']) , true);
-            
+
 
             foreach ($objeto_token as $i => $resultado) {
 
                 $boleto = Doacao_boleto::where('code', $resultado['payment']['charge']['code'])->update(
-                   [   
+                   [
                         'status'=> $resultado['payment']['status'],
                         'data_pagamento' => $resultado['payment']['date']
 
@@ -222,7 +220,7 @@ class CalculadoraController extends Controller
 
     }
     public function notification(Request $req){
-   
+
         $token = $req->paymentToken;
         $cod_refence = $req->chargeReference;
         $chargeCode = $req ->chargeCode;
@@ -230,7 +228,7 @@ class CalculadoraController extends Controller
         $model->paymentToken = $req->paymentToken;
         $model->chargeReference = $req->chargeReference;
         $model->chargeCode = $req->chargeCode;
-    
+
         try {
             if ($resultado = $model->save()) {
                 return response('Tudo certo', 200);
@@ -238,6 +236,6 @@ class CalculadoraController extends Controller
          }catch (Exception $e) {
 
                 return response('deu ruim '.$e->code. $e->errorDescription, 404);
-         }   
+         }
     }
 }
