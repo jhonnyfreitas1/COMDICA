@@ -116,3 +116,13 @@ create table `contatos` (
   `created_at` timestamp null, 
   `updated_at` timestamp null
 ) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+
+-- migration:2019_10_02_140015_create_code_reference_payment --
+create table `code_reference_payment` (
+  `id` bigint unsigned not null auto_increment primary key, 
+  `link_recibo` varchar(255) not null, 
+  `codigo_verificacao` varchar(255) not null, 
+  `cod_boleto` int not null, 
+  `created_at` timestamp null, 
+  `updated_at` timestamp null
+) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
