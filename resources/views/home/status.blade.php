@@ -9,6 +9,7 @@
 		<tr>
 			<th>Nome</th>
 			<th>Valor total</th>
+            <th>Valor parcelado</th>
 			<th>Status</th>
 			<th>Vencimento</th>
 			<th>Recibo do pagamento</th>
@@ -19,16 +20,20 @@
 			return date("d/m/Y", strtotime($data));
 		}
 	?>
-	
+
 	@foreach ($status as $boleto)
-		<?php 
+		<?php
 		    $valortotal = $boleto->valor_total;
 			$valortotal = preg_replace("/^([0-9]+)*?([0-9]{2})$/", "$2", $valortotal);
 	    ?>
     	<tr>
 			<td>{{$boleto->doador_nome}}</td>
 			<td>R$ {{$valortotal}}</td>
-
+            @if($boleto->valor_parcelado)
+            <td>R$ {{$boleto->valor_parcelado}}</td>
+            @else
+            <td>&nbsp</td>
+            @endif
 			@if($boleto->status == 'CONFIRMED')
 
 			<td>Pagamento confirmado</td>
@@ -39,7 +44,7 @@
 
 			@elseif($boleto->status == 'AUTHORIZED')
 
-			<td>Aguardando definição da forma de pagamento</td>
+			<td>Aguardando pagamento</td>
 
 			@elseif($boleto->status == 'DECLINED')
 
@@ -75,7 +80,7 @@
 
 			@endif
 
-			<td><?php echo(data($boleto->vencimento)); ?></td>
+			<td>{{$boleto->vencimento}}</td>
 
 			@if($boleto->status == 'CONFIRMED')
 
@@ -89,7 +94,7 @@
 		</tr>
 	@endforeach
 
-	
+
 
 </table>
 <center>
@@ -104,7 +109,7 @@
   body{
     background-image: url('/img/fundeca1.png');
     background-size: 55%;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     background-position: 46% 9%;
   }
 

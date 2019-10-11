@@ -1,6 +1,6 @@
-	
+
 	<div class="card text-center">
-		  <div class="card-header bg-info"> 
+		  <div class="card-header bg-info">
 			<h1> Olá {{$nome}} !</h1>
 		  </div>
 		  <div class="card-body">
@@ -8,7 +8,7 @@
 		    <i class="fas fa-hand-holding-usd fa-3x text-info"></i>
 		    <p class="card-text"><b>Código de barras: (1̣º boleto/parcela)</b> {{$cod}} <a href="https://comdica.site/sou_doador/">Veja aqui as intruções</a></p>
 
-		    <a href="{{$link_boleto}}#body" class="btn btn-primary">Veja seu boleto ou carnê  aqui </a>
+		    <a href="{{$link_boleto}}#body" target="_blank" class="btn btn-primary">Veja seu boleto ou carnê  aqui </a>
 		    <h5 class="card-title">Foi enviado um e-mail com o mesmo boleto/carnê para o endereço de E-mail: <label class="text-muted">{{$email}}</label></h5>
 		  </div>
 		  <div class="card-footer bg-info text-muted">
@@ -16,4 +16,3 @@
 		   se desconhece esses dados contate-nos.
 		  </div>
 		</div>
-	
