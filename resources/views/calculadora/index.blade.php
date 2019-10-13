@@ -207,7 +207,7 @@
     </div>
     <input type="text" class="form-control" aria-label="Text input with checkbox" id="aceita_termo" value="Aceito e estou ciente de todas as regras" disabled="disabled">
   </div>
-  <a href="#" style="margin-top: -1em; font-size: 80%;" class="font-weight-bold col-md-4">Termos e regras</a>
+  <a href="/calculadora/termos_e_regras" style="margin-top: -1em; font-size: 80%;" class="font-weight-bold col-md-4">Termos e regras</a>
   <div class="modal-footer bg-light">
     <div class="row-2 rounded container  bg-info text-center " style="">
       <h6 class="text-light " style="text-align: center;">Ambiente seguro</h6>
@@ -275,7 +275,7 @@
     </div>
     <input type="text" class="form-control" id="aceita_termo_carne"  value="Aceito e estou ciente de todas as regras" disabled="disabled">
   </div>
-  <a href="#" style="margin-top: -1em; font-size: 80%;" class="font-weight-bold col-md-4">Termos e regras</a>
+  <a href="/calculadora/termos_e_regras" style="margin-top: -1em; font-size: 80%;" class="font-weight-bold col-md-4">Termos e regras</a>
   <div class="modal-footer bg-light">
     <div class="row-2 rounded container  bg-info text-center " style="">
       <h6 class="text-light " style="text-align: center;">Ambiente seguro</h6>
