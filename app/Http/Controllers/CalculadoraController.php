@@ -99,7 +99,7 @@ class CalculadoraController extends Controller
         if ($req->cpf && $req->nome) {
             require("BoletoFacilController.php");
 
-            $notification = "http://comdicaaracoiabape.com.br/api/transacoes/notification";
+            $notification = "https://comdicaaracoiabape.com.br/api/transacoes/notification";
             $nome = htmlspecialchars($req->nome);
             $cpf = htmlspecialchars($req->cpf);
             $email = htmlspecialchars($req->email);
@@ -151,7 +151,7 @@ class CalculadoraController extends Controller
             $valorparcelado = number_format($valor / $parcelas, 2);
 
             $email = htmlspecialchars($req->email);
-            $notification = "http://comdicaaracoiabape.com.br/api/transacoes/notification";
+            $notification = "https://comdicaaracoiabape.com.br/api/transacoes/notification";
             $boletoFacil = new BoletoFacilController("44765F040CC6D355B69B7660F8809E5664DE315FB287EC6C91DBCFED7924D819");
             $boletoFacil->createCharge($nome, $cpf, "Doacao para o fundo da crianca e do adolescente", $valorparcelado, "",$notification);
             $boletoFacil->payerEmail = $email;
