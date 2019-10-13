@@ -85,8 +85,6 @@ class HomeController extends Controller
                         $valor = number_format($boleto->valor_parcelado ?  $boleto->valor_parcelado: $boleto->valor_total , 2);
                         $data_pagamento = $boleto->data_pagamento;
                         $vencimento = $boleto->vencimento;
-                        $vencimento = new DateTime($vencimento);
-                        $vencimento =  $vencimento->format('d/m/Y');
                         $data_documento = $recibo->created_at;
                         $pdf = PDF::loadView('/home/pdf',compact('nome', 'cpf','valor','codigo','data_pagamento','vencimento'));
                          return $pdf->setPaper("A4", "portrait")->stream('Recibo comprovante de doação');
@@ -99,8 +97,6 @@ class HomeController extends Controller
                         $valor = number_format($boleto->valor_parcelado ?  $boleto->valor_parcelado: $boleto->valor_total , 2);
                         $data_pagamento = $boleto->data_pagamento;
                         $vencimento = $boleto->vencimento;
-                        $vencimento = new DateTime($vencimento);
-                        $vencimento =  $vencimento->format('d/m/Y');
 
                         $pdf = PDF::loadView('/home/pdf',compact('nome', 'cpf','valor','codigo','data_pagamento','vencimento' ));
 
@@ -117,7 +113,10 @@ class HomeController extends Controller
             return 'esse boleto nao está pago !';
         }
     }
-
+    public function termo()
+    {
+        return view('home.termo');
+    }
 
     public function contato()
     {
