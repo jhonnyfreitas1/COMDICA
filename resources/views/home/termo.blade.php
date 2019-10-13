@@ -24,6 +24,12 @@
 			 <li  class="list-group-item">Estou ciente de que devo preencher corretamente os campos de nome e cpf antes de gerar um boleto ou um carnê.</li>
 		</ol>  	
 	</li>
+	<li><b>Para verificação do recibo.</b>
+		<ol>
+			<li  class="list-group-item">Estou ciente de que para verificar o recibo devo ter a posse do código verificador contido no recibo.</li> 
+			<li  class="list-group-item">Estou ciente de que para identificar individualmente pelo recibo um boleto ou a parcela de um carnê devo comparar o código de barras do boleto contido no recibo com o mesmo código de barra aprensentado na pagína verificadora de recibo. isso confirmará que não houve nenhum tipo de erros lógico ou humano no processo.</li>
+		</ol>  
+	</li>
 </ol>
 
 <style type="text/css">
