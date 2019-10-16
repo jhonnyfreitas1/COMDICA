@@ -29,7 +29,7 @@ class CreateDoacaoBoletoTable extends Migration
              $table->string('data_pagamento')->nullable();
             $table -> string('status');
             $table->timestamps();
-            $table->Integer('fk_id_carne')->nullable();
+            $table->string('fk_id_carne')->nullable();
             $table->foreign('fk_id_carne')->references('carne_id')->on('doacao_carne')->onDelete('cascade')->unsigned();
         });
     }

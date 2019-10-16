@@ -2,14 +2,13 @@
 
 @section('content')
 
-<h1 class="title">Boletos gerados</h1>
+<h1 class="title bg-info text-white">Boletos gerados</h1>
 
-<table class="table tabelaStatus">
-	<thead class="thead-dark">
-		<tr>
-			<th>Nome</th>
+<table class="table tabelaStatus ">
+	<thead class="thead-dark " >
+		<tr >
+			<th >Nome</th>
 			<th>Valor total</th>
-            <th>Valor parcelado</th>
 			<th>Status</th>
 			<th>Vencimento</th>
 			<th>Recibo do pagamento</th>
@@ -21,7 +20,7 @@
 		}
 	?>
 
-	@foreach ($status as $boleto)
+	@foreach ($status_boleto as $boleto)
 		<?php
 		    $valortotal = $boleto->valor_total;
 			$valortotal = preg_replace("/^([0-9]+)*?([0-9]{2})$/", "$2", $valortotal);
@@ -29,11 +28,6 @@
     	<tr>
 			<td>{{$boleto->doador_nome}}</td>
 			<td>R$ {{$valortotal}}</td>
-            @if($boleto->valor_parcelado)
-            <td>R$ {{$boleto->valor_parcelado}}</td>
-            @else
-            <td>&nbsp</td>
-            @endif
 			@if($boleto->status == 'CONFIRMED')
 
 			<td>Pagamento confirmado</td>
@@ -85,6 +79,60 @@
 			@if($boleto->status == 'CONFIRMED')
 
 			<td><a href="/pdf/pagador/{{encrypt($boleto->code)}}">Baixar</a></td>
+
+			@else
+
+			<td>Disponível quando o pagamento for confirmado</td>
+
+			@endif
+		</tr>
+	@endforeach
+
+
+
+</table>
+	
+	<h1 class="title bg-success text-white mt-5">Carnês gerados</h1>
+
+<table class="table  tabelaStatus">
+	<thead class=" bg-info thead-dark">
+		<tr>
+			<th>Nome do doador</th>
+			<th>Valor total</th>
+            <th>numero de parcelas</th>
+			<th>Parcelas pagas</th>
+			<th>Status</th>
+			<th>Recibo do pagamento</th>
+
+		</tr>
+	</thead>
+
+	@foreach ($status_carne as $boleto)
+	
+    	<tr>
+			<td>{{$boleto->doador_nome}}</td>
+			<td>R$ {{$boleto->valor_total}}</td>
+           
+            <td>{{$boleto->numero_parcelas}}</td>
+            <td>{{$boleto->parcelas_pagas}} </td>
+
+			@if($boleto->status == 'CONFIRMED')
+
+			<td>Pagamento confirmado</td>
+
+			@elseif($boleto->status == 'AUTHORIZED')
+
+			<td>Aguardando confirmação do pagamento</td>
+
+			@else
+
+			<td>{{$boleto->status}}</td>
+
+			@endif
+
+			@if($boleto->status == 'CONFIRMED')
+
+			<td><a href="/pdf/pagador/carne/{{encrypt($boleto->carne_id)}}">Baixar</a></td>
 
 			@else
 

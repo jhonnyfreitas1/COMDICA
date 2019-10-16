@@ -8,7 +8,7 @@
 		<ol>
 			<li  class="list-group-item">Estou ciente de que devo pagar o boleto ou carnê gerado na calculadora no site da comdica araçoiaba PE.</li> 
 			<li  class="list-group-item">Estou ciente de que devo acessar área do <b>Sou doador</b> no site da comdica araçoiaba PE para poder baixar o meu recibo após pagamento.</li>  
-			<li  class="list-group-item">Estou ciente de que para comprovar minhas doações atravez de carnê terei que comprovar cada recibo de cada parcela do carnê, podendo comprovar só uma ou todas parcelas <b>pagas.</b></li>  
+			<li  class="list-group-item">Estou ciente de que para comprovar minhas doações atravez do carnê(parcelado) terei que pagar todas as parcelas para ter direito ao recibo.</li>  
 		</ol>  
 	</li>
 	<li><b>Dos meus documentos e dados.</b>
@@ -27,7 +27,7 @@
 	<li><b>Para verificação do recibo.</b>
 		<ol>
 			<li  class="list-group-item">Estou ciente de que para verificar o recibo devo ter a posse do código verificador contido no recibo.</li> 
-			<li  class="list-group-item">Estou ciente de que para identificar individualmente pelo recibo um boleto ou a parcela de um carnê devo comparar o código de barras do boleto contido no recibo com o mesmo código de barra aprensentado na pagína verificadora de recibo. isso confirmará que não houve nenhum tipo de erros lógico ou humano no processo.</li>
+			<li  class="list-group-item">Estou ciente de que para identificar individualmente pelo recibo um boleto ou carnê  devo comparar o código de identificação individual contido no recibo com o mesmo código de aprensentado na pagína de verificadora do recibo. isso confirmará que não houve nenhum tipo de erros lógico ou humano no processo.</li>
 		</ol>  
 	</li>
 </ol>

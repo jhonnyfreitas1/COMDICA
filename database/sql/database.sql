@@ -48,11 +48,12 @@ add
 
 -- migration:2019_06_29_030755_create_doacao_carne_table --
 create table `doacao_carne` (
-  `carne_id` int not null, 
+  `carne_id` varchar(255) not null, 
   `valor_parcelado` int null, 
   `doador_nome` varchar(255) not null, 
+  `doador_cpf` varchar(255) not null, 
   `link_carne` varchar(255) not null, 
-  `valor_total` int not null, 
+  `valor_total` varchar(255) not null, 
   `numero_parcelas` int not null, 
   `parcelas_pagas` int null, 
   `status` varchar(255) not null, 
@@ -67,22 +68,22 @@ add
 -- migration:2019_06_29_030857_create_doacao_boleto_table --
 create table `doacao_boleto` (
   `id` bigint unsigned not null auto_increment primary key, 
-  `valor_parcelado` int null, 
+  `valor_parcelado` varchar(255) null, 
   `doador_nome` varchar(255) not null, 
   `doador_cpf` varchar(255) not null, 
   `doador_email` varchar(255) not null, 
   `code` int not null, 
   `link` varchar(255) not null, 
-  `valor_total` int not null, 
+  `valor_total` varchar(255) not null, 
   `parcelas` int not null default '1', 
   `metodo_pagamento` enum('boleto', 'carne') not null, 
-  `vencimento` date not null, 
+  `vencimento` varchar(255) not null, 
   `cod_barra` varchar(255) not null, 
   `data_pagamento` varchar(255) null, 
   `status` varchar(255) not null, 
   `created_at` timestamp null, 
   `updated_at` timestamp null, 
-  `fk_id_carne` int null
+  `fk_id_carne` varchar(255) null
 ) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
 alter table 
   `doacao_boleto` 
@@ -123,6 +124,7 @@ create table `code_reference_payment` (
   `link_recibo` varchar(255) not null, 
   `codigo_verificacao` varchar(255) not null, 
   `cod_boleto` int not null, 
+  `metodo_pagamento` enum('boleto', 'carne') not null, 
   `created_at` timestamp null, 
   `updated_at` timestamp null
 ) default character set utf8mb4 collate 'utf8mb4_unicode_ci';

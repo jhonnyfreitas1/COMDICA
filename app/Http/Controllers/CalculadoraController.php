@@ -161,7 +161,24 @@ class CalculadoraController extends Controller
             $cod = $boleto['data']['charges'][0]['payNumber'];
             $link_boleto = $boleto['data']['charges'][0]['link'];
 
+
             if ($boleto) {
+                $code = false;
+                $newcarne = new Doacao_carne;
+                $newcarne->valor_parcelado = $valorparcelado;
+                $newcarne->doador_nome = $nome;
+                $newcarne->doador_cpf = $cpf;
+                $newcarne->link_carne = $link_boleto;
+                $newcarne->valor_total = $valor;
+                $newcarne->numero_parcelas = $parcelas;
+                $newcarne->parcelas_pagas = 0;
+                $newcarne->status = "aguardando pagamento de todas as parcelas";
+                 for ($i=0; $i < sizeof($boleto['data']['charges']); $i++) {
+                  $code = $code + $boleto['data']['charges'][$i]['code'];
+                 }
+                 $newcarne->carne_id = $code;
+                 $data = $newcarne->save();
+             
                 for ($i=0; $i < sizeof($boleto['data']['charges']); $i++) {
                     $date = $boleto['data']['charges'][$i]['dueDate'];
                     $model = new Doacao_boleto;
@@ -177,13 +194,13 @@ class CalculadoraController extends Controller
                     $model->cod_barra = $boleto['data']['charges'][$i]['payNumber'];
                     $model->status = "AUTHORIZED";
                     $model->valor_parcelado = $valorparcelado;
+                    $model->fk_id_carne = $code;
                     $resultado = $model->save();
                  }
             }else{
                 return "Erro ao emitir cobrança tente novamente.";
             }
-
-
+                
             return  view('layouts.retorno_boleto', compact('nome', 'email' , 'cod', 'link_boleto'));
 
           }else{
@@ -201,19 +218,45 @@ class CalculadoraController extends Controller
             foreach ($objeto_token as $i => $resultado) {
 
                 $boleto = Doacao_boleto::where('code', $resultado['payment']['charge']['code'])->update(
-                   [
+                    [
                         'status'=> $resultado['payment']['status'],
                         'data_pagamento' => $resultado['payment']['date']
-
                     ]
                 );
-
             }
                 $count += 1;
-
-
           }
 
+         $boleto_carne = Doacao_boleto::where("metodo_pagamento", "carne")->where("status", "CONFIRMED")->get();
+         
+         foreach ($boleto_carne as $i => $resultado){
+                            
+         $carne = Doacao_carne::where('carne_id', $resultado['fk_id_carne'])->get();
+
+         $quantos_pagos = Doacao_boleto::where('fk_id_carne' , $resultado['fk_id_carne'])->where('status' , "CONFIRMED")->count();
+
+         if ($carne[0]['parcelas_pagas'] <= $carne[0]['numero_parcelas']) {
+         
+            $boleto = Doacao_carne::where('carne_id', $resultado['fk_id_carne'])->update(
+                    [
+                        'parcelas_pagas'=>$quantos_pagos,
+                    ]);
+         
+            }
+                
+             if ($carne[0]['parcelas_pagas'] == $carne[0]['numero_parcelas']) {
+                    
+                    Doacao_carne::where('carne_id', $resultado['fk_id_carne'])->update(
+                    [
+                        'status'=> "CONFIRMED"
+                    ]);
+             }else{
+                  Doacao_carne::where('carne_id', $resultado['fk_id_carne'])->update(
+                    [
+                        'status'=> "aguardando pagamento de todas as parcelas"
+                    ]);
+             }
+         }
 
           return 'total de '.$count. " boletos verificados";
 
@@ -231,6 +274,7 @@ class CalculadoraController extends Controller
 
         try {
             if ($resultado = $model->save()) {
+                $this::detalhes_boleto();
                 return response('Tudo certo', 200);
             }
          }catch (Exception $e) {

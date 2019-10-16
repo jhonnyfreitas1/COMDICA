@@ -8,6 +8,7 @@ use \DateTime;
 use App\Postagem;
 use PDF;
 use App\Doacao_boleto;
+use App\Doacao_carne;
 use App\Recibo;
 
 class HomeController extends Controller
@@ -61,12 +62,12 @@ class HomeController extends Controller
 
     public function status(Request $request)
     {
-        $status = DB::table('doacao_boleto')->where('doador_cpf',$request->cpf)->get();
-        return view('home.status')->with(compact('status'));
+        $status_boleto = DB::table('doacao_boleto')->where('doador_cpf',$request->cpf)->where('metodo_pagamento','boleto')->get();
+        $status_carne = DB::table('doacao_carne')->where('doador_cpf',$request->cpf)->get();
+        return view('home.status')->with(compact('status_boleto','status_carne'));
     }
 
     public function gerarPdf($id){
-
 
         $id = decrypt(htmlspecialchars($id));
 
@@ -88,7 +89,7 @@ class HomeController extends Controller
                         $data_documento = $recibo->created_at;
                         $codigo_barra = $boleto->cod_barra;
 
-                         $valorextenso = $this::valorPorExtenso(str_replace(".",",",number_format($boleto->valor_parcelado ?  $boleto->valor_parcelado: $boleto->valor_total , 2)), true , false);
+                        $valorextenso = $this::valorPorExtenso(str_replace(".",",",number_format($boleto->valor_total , 2)), true , false);
 
                         $pdf = PDF::loadView('/home/pdf',compact('nome', 'cpf','valor','codigo','data_pagamento','vencimento', 'valorextenso','codigo_barra'));
                          return $pdf->setPaper("A4", "portrait")->stream('Recibo comprovante de doação');
@@ -98,17 +99,67 @@ class HomeController extends Controller
                         $codigo = strtoupper(uniqid());
                         $nome = $boleto->doador_nome;
                         $cpf = $boleto->doador_cpf;
-                        $valor = number_format($boleto->valor_parcelado ?  $boleto->valor_parcelado: $boleto->valor_total , 2);
+                        $valor = number_format($boleto->valor_total , 2);
                         $data_pagamento = $boleto->update_at;
                         $codigo_barra = $boleto->cod_barra;
                         $vencimento = $boleto->vencimento;
-
-                        $pdf = PDF::loadView('/home/pdf',compact('nome', 'cpf','valor','codigo','data_pagamento','vencimento', 'codigo_barra'));
+                        $valorextenso = $this::valorPorExtenso(str_replace(".",",",number_format($boleto->valor_total , 2)), true , false);
+                        $pdf = PDF::loadView('/home/pdf',compact('nome', 'cpf','valor','codigo','data_pagamento','vencimento', 'codigo_barra','valorextenso'));
 
                         $recibo = new Recibo;
                         $recibo->codigo_verificacao = $codigo;
                         $recibo->cod_boleto = $boleto->code;
                         $recibo->link_recibo = "teste";
+                        $recibo->metodo_pagamento ="boleto";
+                        $recibo ->save();
+
+                        return $pdf->setPaper("A4", "portrait")->stream('Recibo comprovante de doação');
+                }
+
+        }else{
+            return 'esse boleto nao está pago !';
+        }
+    }
+     public function gerarPdfCarne($id){
+
+
+        $id = decrypt(htmlspecialchars($id));
+
+        $boleto = Doacao_carne::where('carne_id',$id)->first();
+
+        if ($boleto->status == 'CONFIRMED') {
+
+                $recibo = Recibo::where('cod_boleto' , $id)->first();
+
+                if($recibo){
+                        $codigo = strval($recibo->codigo_verificacao);
+                        $nome = $boleto->doador_nome;
+                        $cpf = $boleto->doador_cpf;
+                        $valor = number_format($boleto->valor_total , 2);
+                        $vencimento = $boleto->vencimento;
+                        $data_documento = $recibo->created_at;
+                        $codigo_barra = $boleto->carne_id;
+
+                        $valorextenso = $this::valorPorExtenso(str_replace(".",",",number_format($boleto->valor_total , 2)), true , false);
+
+                        $pdf = PDF::loadView('/home/pdf_carne',compact('nome', 'cpf','valor','codigo','vencimento', 'valorextenso','codigo_barra'));
+                         return $pdf->setPaper("A4", "portrait")->stream('Recibo comprovante de doação');
+
+                }else{
+
+                        $codigo = strtoupper(uniqid());
+                        $nome = $boleto->doador_nome;
+                        $cpf = $boleto->doador_cpf;
+                        $valor = number_format($boleto->valor_total , 2);
+                        $codigo_barra = $boleto->carne_id;
+                        $valorextenso = $this::valorPorExtenso(str_replace(".",",",number_format($boleto->valor_total , 2)), true , false);
+                        $pdf = PDF::loadView('/home/pdf_carne',compact('nome', 'cpf','valor','codigo', 'codigo_barra','valorextenso'));
+
+                        $recibo = new Recibo;
+                        $recibo->codigo_verificacao = $codigo;
+                        $recibo->cod_boleto = $boleto->carne_id;
+                        $recibo->link_recibo = "teste";
+                        $recibo->metodo_pagamento ="carne";
                         $recibo ->save();
 
                         return $pdf->setPaper("A4", "portrait")->stream('Recibo comprovante de doação');
@@ -142,9 +193,17 @@ class HomeController extends Controller
             $recibo = Recibo::where('codigo_verificacao',$req->cod)->first();
 
             if ($recibo) {
+                if($recibo->metodo_pagamento == "boleto") {
+                    $boleto = Doacao_boleto::where('code' , $recibo->cod_boleto)->first();
+                    return view('home.recibo_valido',compact('recibo' , 'boleto'));
 
-                $boleto = Doacao_boleto::where('code' , $recibo->cod_boleto)->first();
-                return view('home.recibo_valido',compact('recibo' , 'boleto'));
+                }
+                else if($recibo->metodo_pagamento == "carne") {   
+                
+
+                    $boleto = Doacao_carne::where('carne_id' , $recibo->cod_boleto)->first();
+                    return view('home.recibo_valido',compact('recibo' , 'boleto'));
+                }
             }
             else{
                 return view('home.recibo_invalido');

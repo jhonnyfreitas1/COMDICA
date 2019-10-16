@@ -14,12 +14,13 @@ class CreateDoacaoCarneTable extends Migration
     public function up()
     {
         Schema::create('doacao_carne', function (Blueprint $table) {
-            $table->Integer('carne_id');
+            $table->string('carne_id');
             $table->primary('carne_id');
             $table->Integer('valor_parcelado')->nullable();
             $table ->string('doador_nome');
+            $table ->string('doador_cpf');
             $table ->string('link_carne');
-            $table ->Integer('valor_total');
+            $table ->string('valor_total');
             $table ->Integer('numero_parcelas');
             $table ->Integer('parcelas_pagas')->nullable();      
             $table ->string('status');

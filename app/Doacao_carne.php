@@ -15,10 +15,12 @@ class Doacao_carne extends Model
     ];
     
     protected $guarded =[
-    	'valor_parcelado','valor_total', 'parcelas_pagas',
+    	'valor_total', 'parcelas_pagas',
     ];
  	public $timestamps = true;
-}
+
      public function carne_id(){
         return $this->hasMany(Doacao_boleto::class);
     }
+
+}

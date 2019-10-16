@@ -36,6 +36,7 @@ Route::get('/contato', ['as' => 'contato', 'uses' => 'HomeController@contato']);
 Route::post('/status', ['as' => 'status', 'uses' => 'HomeController@status']);
 Route::post('/contato/save', ['as' => 'home.contato', 'uses' => 'HomeController@create_contato']);
 Route::get('/pdf/pagador/{id}','HomeController@gerarPdf');
+Route::get('/pdf/pagador/carne/{id}','HomeController@gerarPdfCarne');
 Route::get('/calculadora/termos_e_regras','HomeController@termo');
 
 Route::get('sou_doador/verificar/pagamento/','HomeController@verificar_recibo');

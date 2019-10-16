@@ -60,7 +60,7 @@ class AdminController extends Controller
     public function nova_postagem()
     {
          $contato = Contato::where('visto', false)->get()->count();
-            return view('admin.nova_postagem')->with(compact('contato' , 'postagem'));
+            return view('admin.nova_postagem')->with(compact('contato'));
     }
 
      public function doacoes_boleto()

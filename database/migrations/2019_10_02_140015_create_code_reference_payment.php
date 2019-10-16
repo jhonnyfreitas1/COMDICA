@@ -18,6 +18,7 @@ class CreateCodeReferencePayment extends Migration
             $table->string('link_recibo');
             $table->string('codigo_verificacao');
             $table->Integer('cod_boleto');
+            $table->enum('metodo_pagamento', ['boleto','carne']);
             $table->timestamps();
         });
     }
