@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-        $postagem = DB::table('postagens')->limit(3)->orderBy('id', 'DESC')->get();
+        $postagem = DB::table('postagens')->limit(7)->orderBy('id', 'DESC')->get();
            if ($request->cat){
             $categoria = decrypt(htmlspecialchars($request->cat));
             if ($categoria && $categoria == 1 || $categoria == 2  || $categoria == 3 || $categoria == 4 || $categoria == 5) {
