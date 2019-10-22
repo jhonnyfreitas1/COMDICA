@@ -11,6 +11,15 @@
 |
 */
 
+//Rotas das postagens de ajax
+Route::get('/p0', ['as' => 'post-ajax.0','uses' => 'PostagensAjaxController@id0']);
+Route::get('/p1', ['as' => 'post-ajax.1','uses' => 'PostagensAjaxController@id1']);
+Route::get('/p2', ['as' => 'post-ajax.2','uses' => 'PostagensAjaxController@id2']);
+Route::get('/p3', ['as' => 'post-ajax.3','uses' => 'PostagensAjaxController@id3']);
+Route::get('/p4', ['as' => 'post-ajax.4','uses' => 'PostagensAjaxController@id4']);
+Route::get('/p5', ['as' => 'post-ajax.5','uses' => 'PostagensAjaxController@id5']);
+
+Route::get('/testando', ['as' => 'testando', 'uses' => 'HomeController@testando']);
 
 Auth::routes();
 //Rotas da calculadora

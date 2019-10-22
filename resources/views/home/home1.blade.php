@@ -22,7 +22,6 @@
   <link rel="stylesheet" href="/css/style1.css">
   @endsection
 
-
   <div class="slide-one-item home-slider owl-carousel "  style="margin-top: -2em;">
    @foreach($postagem as $consulta)
    <div class="site-blocks-cover overlay" style="background-image: url('/upload_imagem/{{$consulta->imagem_principal}}');" data-aos="fade" data-stellar-background-ratio="0.5">
@@ -106,44 +105,19 @@
            Filtrar <i class="fas fa-sort"></i>
          </a>
          <div class="dropdown-menu bg-info " aria-labelledby="dropdownMenuLink">
-          <a class="dropdown-item border-bottom text-light" href="/">Postagens recentes</a>
-          <a class="dropdown-item border-bottom text-light" href="/?cat={{encrypt(1)}}">Projetos financiados pelo Fundeca</a>
-          <a class="dropdown-item border-bottom text-light"  href="/?cat={{encrypt(2)}}">Ordem do dia COMDICA: Reuniões, Atas, Resoluções</a>
-          <a class="dropdown-item border-bottom text-light" href="/?cat={{encrypt(3)}}">Notícias</a>
-          <a class="dropdown-item border-bottom text-light" href="/?cat={{encrypt(4)}}">Publicações, eventos, fórums, conferência</a>
-          <a class="dropdown-item border-bottom text-light" href="/?cat={{encrypt(5)}}">2º PROCESSO DE ESCOLHA</a>
+          <a class="dropdown-item border-bottom text-light listAJAX" url="p0" href="#" id="p0">Postagens recentes</a>
+          <a class="dropdown-item border-bottom text-light listAJAX" url="p1" href="#" id="p1" >Projetos financiados pelo Fundeca</a>
+          <a class="dropdown-item border-bottom text-light listAJAX" url="p2" href="#" id="p2">Ordem do dia COMDICA: Reuniões, Atas, Resoluções</a>
+          <a class="dropdown-item border-bottom text-light listAJAX" url="p3" href="#" id="p3">Notícias</a>
+          <a class="dropdown-item border-bottom text-light listAJAX" url="p4" href="#" id="p4">Publicações, eventos, fórums, conferência</a>
+          <a class="dropdown-item border-bottom text-light listAJAX" url="p5" href="#" id="p5">2º PROCESSO DE ESCOLHA</a>
         </div>
         
       </div>
     </div>
-    <div class=" row m-3 ">
-     
-      
-      @foreach($posts as $post)
-      <a href="/postagem/{{encrypt($post->id)}}">
-        <div class="col-md-3 col-12 mt-1" style=''>
-          <div class='report-module ' style="border-style: ridge;border-radius:0.4em;padding: 1em; background-color: rgba(200, 200, 226, 0.9)">
-            <div class='thumbnail' >
-              <a href="/postagem/{{encrypt($post->id)}} " class="bg-light">
-                <center>
-                  <img class="card-img-top" style="height: 20vh;
-                  width: 100%;
-                  object-fit: cover; " src="/upload_imagem/{{$post->imagem_principal}}">
-                </center>
-                <h6 class="col-md-12 col-12 " style="">{{$post->titulo}}</h6>
-              </a>
-            </div>
-            <div class='post-content'>
-              <div class='post-meta float-right'>
-                <div class="row">
-                  <a class="btn btn-success col-12 btn-block " id="but" style="border:1px solid black;" href="/postagem/{{encrypt($post->id)}}">Ver Postagem</a >
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        @endforeach
-      </div>
+    <div class=" row m-3 " id="postErickson">
+      @include('home.postagens')
+    </div>
       {!! $posts -> Links()!!} 
 
 
@@ -177,10 +151,10 @@
         }
         
         $("border-bottom").on("hover",function(e){
-
           e.css('background-color', '#babaca');
-
         });
+
+
 
       });
     </script>
@@ -200,5 +174,6 @@
       <script src="js/bootstrap.min.js"></script>
       <script src="js/jquery.stellar.min.js"></script>
       <script src="js/jquery.magnific-popup.min.js"></script>
+      <script src="js/list-ajax.js"></script>
 
       @endsection
