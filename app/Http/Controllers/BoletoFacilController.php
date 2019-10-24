@@ -36,7 +36,7 @@ class BoletoFacilController extends Controller{
     const PROD_URL = "https://www.boletobancario.com/boletofacil/integration/api/v1/";
     const SANDBOX_URL = "https://sandbox.boletobancario.com/boletofacil/integration/api/v1/";
     const RESPONSE_TYPE = "JSON";
-    function __construct($token, $sandbox = true) {
+    function __construct($token, $sandbox = false) {
         $this->token = $token;
         $this->sandbox = $sandbox;
     }

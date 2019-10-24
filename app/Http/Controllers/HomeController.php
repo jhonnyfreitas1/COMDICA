@@ -61,10 +61,17 @@ class HomeController extends Controller
 
 
     public function status(Request $request)
-    {
-        $status_boleto = DB::table('doacao_boleto')->where('doador_cpf',$request->cpf)->where('metodo_pagamento','boleto')->get();
-        $status_carne = DB::table('doacao_carne')->where('doador_cpf',$request->cpf)->get();
-        return view('home.status')->with(compact('status_boleto','status_carne'));
+    {   
+        $status_boleto = DB::table('doacao_boleto')->where('doador_cpf',$request->cpf)->where('metodo_pagamento','boleto')->paginate(5);
+        $status_carne = DB::table('doacao_carne')->where('doador_cpf',$request->cpf)->paginate(5);
+
+        if(count($status_carne) || count($status_boleto)){
+
+            return view('home.status')->with(compact('status_boleto','status_carne'));
+       
+        }
+            $mensagem  = "esse cpf não foi encontrado !";
+        return redirect()->route('soudoador')->with('mensagem',compact('mensagem'));
     }
 
     public function gerarPdf($id){

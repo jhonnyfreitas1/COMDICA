@@ -33,7 +33,7 @@ Route::get('/home1', 'HomeController@home1')->name('home1');
 Route::get('/postagem/{id}', ['as' => 'postagem', 'uses' => 'HomeController@postagem']);
 Route::get('/porque_doar', ['as' => 'porque_doar', 'uses' => 'HomeController@pq_doar']);
 Route::get('/contato', ['as' => 'contato', 'uses' => 'HomeController@contato']);
-Route::post('/status', ['as' => 'status', 'uses' => 'HomeController@status']);
+Route::get('/status', ['as' => 'status', 'uses' => 'HomeController@status']);
 Route::post('/contato/save', ['as' => 'home.contato', 'uses' => 'HomeController@create_contato']);
 Route::get('/pdf/pagador/{id}','HomeController@gerarPdf');
 Route::get('/pdf/pagador/carne/{id}','HomeController@gerarPdfCarne');
