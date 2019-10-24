@@ -110,7 +110,7 @@ class CalculadoraController extends Controller
             $valor = number_format($req->valor , 2);
                                                     //44765F040CC6D355B69B7660F8809E5664DE315FB287EC6C91DBCFED7924D819 <-- codigo do token para teste
             $boletoFacil = new BoletoFacilController("68F80F3C7D9878DA0792E10945D365D6DB7275B79546E76691B560E2866E4AB4");
-            $boletoFacil->createCharge($nome, $cpf, "Doacao para o fundo da crianca e do adolescente", $valor, "",$notification);
+            $boletoFacil->createCharge($nome, $cpf, "Doação para o fundo municipal da criança e do adolescente de araçoiaba", $valor, "",$notification);
             $boletoFacil->payerEmail = $email;
             $boleto = json_decode($boletoFacil->issueCharge(), true);
 
@@ -163,7 +163,7 @@ class CalculadoraController extends Controller
             $email = htmlspecialchars($req->email);
             $notification = "https://comdicaaracoiabape.com.br/api/transacoes/notification";
             $boletoFacil = new BoletoFacilController("68F80F3C7D9878DA0792E10945D365D6DB7275B79546E76691B560E2866E4AB4");
-            $boletoFacil->createCharge($nome, $cpf, "Doacao para o fundo da crianca e do adolescente", $valorparcelado, "",$notification);
+            $boletoFacil->createCharge($nome, $cpf, "Doação para o fundo municipal da criança e do adolescente de araçoiaba", $valorparcelado, "",$notification);
             $boletoFacil->payerEmail = $email;
             $boletoFacil->installments = $parcelas;
             $boletoFacil->totalAmount = $valor;
