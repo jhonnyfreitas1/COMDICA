@@ -109,7 +109,7 @@
 				</p>
 				<span class="text-dark">Recibo:</span>
 				@if($boleto->status == 'CONFIRMED')
-				<a href="/pdf/pagador/{{encrypt($boleto->code)}}">Baixar</a>
+				<a href="/pdf/pagador/carne/{{encrypt($boleto->carne_id)}}">Baixar</a>
 				@else
 				Disponível quando o pagamento for confirmado
 				@endif
