@@ -11,7 +11,6 @@ use App\Doacao_boleto;
 use App\Doacao_carne;
 class CalculadoraController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -96,6 +95,11 @@ class CalculadoraController extends Controller
 
     public function gerarBoleto(Request $req) {
 
+
+        if (intval($req->valor) < 6) {
+            return view('calculadora.valor_invalido');
+        }   
+
         if ($req->cpf && $req->nome) {
             require("BoletoFacilController.php");
 
@@ -104,7 +108,8 @@ class CalculadoraController extends Controller
             $cpf = htmlspecialchars($req->cpf);
             $email = htmlspecialchars($req->email);
             $valor = number_format($req->valor , 2);
-            $boletoFacil = new BoletoFacilController("44765F040CC6D355B69B7660F8809E5664DE315FB287EC6C91DBCFED7924D819");
+                                                    //44765F040CC6D355B69B7660F8809E5664DE315FB287EC6C91DBCFED7924D819 <-- codigo do token para teste
+            $boletoFacil = new BoletoFacilController("68F80F3C7D9878DA0792E10945D365D6DB7275B79546E76691B560E2866E4AB4");
             $boletoFacil->createCharge($nome, $cpf, "Doacao para o fundo da crianca e do adolescente", $valor, "",$notification);
             $boletoFacil->payerEmail = $email;
             $boleto = json_decode($boletoFacil->issueCharge(), true);
@@ -142,6 +147,12 @@ class CalculadoraController extends Controller
 
 
     public function  gerarCarne(Request $req){
+
+
+        if ((intval($req->valor) / intval($req->parcelas)) < 6) {
+            return view('calculadora.valor_invalido');
+        }   
+
          if ($req->cpf && $req->nome) {
             require("BoletoFacilController.php");
             $nome = htmlspecialchars($req->nome);
@@ -149,10 +160,9 @@ class CalculadoraController extends Controller
             $cpf = htmlspecialchars($req->cpf);
             $valor = $req->valor;
             $valorparcelado = number_format($valor / $parcelas, 2);
-
             $email = htmlspecialchars($req->email);
             $notification = "https://comdicaaracoiabape.com.br/api/transacoes/notification";
-            $boletoFacil = new BoletoFacilController("44765F040CC6D355B69B7660F8809E5664DE315FB287EC6C91DBCFED7924D819");
+            $boletoFacil = new BoletoFacilController("68F80F3C7D9878DA0792E10945D365D6DB7275B79546E76691B560E2866E4AB4");
             $boletoFacil->createCharge($nome, $cpf, "Doacao para o fundo da crianca e do adolescente", $valorparcelado, "",$notification);
             $boletoFacil->payerEmail = $email;
             $boletoFacil->installments = $parcelas;
@@ -211,7 +221,7 @@ class CalculadoraController extends Controller
           $tokens = Tokens::get();
           $count =0;
           foreach ($tokens as $count => $token) {
-          $notification = new BoletoFacilController("44765F040CC6D355B69B7660F8809E5664DE315FB287EC6C91DBCFED7924D819");
+          $notification = new BoletoFacilController("68F80F3C7D9878DA0792E10945D365D6DB7275B79546E76691B560E2866E4AB4");
           $objeto_token = json_decode($notification->fetchPaymentDetails($token['paymentToken']) , true);
 
 

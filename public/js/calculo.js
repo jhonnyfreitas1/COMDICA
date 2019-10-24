@@ -87,11 +87,7 @@ $(document).ready(function(){
              if (Number.isNaN(imposto)) { //verifica se o imposto de renda é igual a NAN para dizer que deu errado.
                  var  imposto = 'Sem IR.</br>Há erros na digitação dos valores na calculadora ?';
              }       
-         /*    console.log('imposto>'+imposto);
-             console.log('renda base'+rendacalcSujo);
-             console.log('ensino >'+despesasensino);     //só pra teste;
-             console.log('pensao>'+pensao);
-*/
+
             function Dependentes(num){
                 var valordepentes = num * 2275.08;
                 return valordepentes;
@@ -99,8 +95,6 @@ $(document).ready(function(){
             function mostrar(inssanual, rendaanual, debitos, rendabase, aliquota ,imposto, deducao, irrf){ 
                 //essa função mostra todos valores e informações referentes ao pós calculo
                 var impostopg = imposto - deducao;
-
-
                 $('#seuinss').html(inssanual.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 $('#suarendaanual').html(rendaanual.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 $('#seusdebitos').html(debitos.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
@@ -110,22 +104,22 @@ $(document).ready(function(){
                 $('#deducao').html(deducao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 var irrfvspg = impostopg  - irrf;
 
-                 impostopg = irrfvspg;
+                impostopg = irrfvspg;
                 var impostodevido = (impostopg * -1) - irrf;              
-                 var porcentagem = impostodevido  * (6/100);     //tira os 6% da para doação 
+                var porcentagem = impostodevido  * (6/100);     //tira os 6% da para doação 
 
                  
-                 console.log(impostopg);
-                 console.log(irrfvspg);
-                 console.log(irrf);
+                console.log(impostopg);
+                console.log(irrfvspg);
+                console.log(irrf);
 
-                 porcentagem = Math.round(porcentagem);
-                 var rendabase2 = rendabase - porcentagem;
-                 var aliquota2 = rendabase2 * (aliquota/100); 
+                porcentagem = Math.round(porcentagem);
+                var rendabase2 = rendabase - porcentagem;
+                var aliquota2 = rendabase2 * (aliquota/100); 
 
 
-                 var imposto =  aliquota2.toFixed(2); 
-                 var valor_doacao_formatado = (porcentagem * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+                var imposto =  aliquota2.toFixed(2); 
+                var valor_doacao_formatado = (porcentagem * -1).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
                  $('#valor_doar').val(valor_doacao_formatado);
                  $("#valor_doar_carne").val(valor_doacao_formatado);
                  if (impostopg > 1){

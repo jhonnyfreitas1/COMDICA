@@ -20,9 +20,7 @@
   <div  style="justify-content: left; display: flex; " class="m-4 card col-md-3 m-2 mt-0 float-left bg-info text-white text-center p-3">
     <blockquote class="blockquote mb-0">
       <p>Os valores resultantes da calculadora podem ser diferentes do valor resultante na declaração portanto recomendamos então a maior fidelidade de dados na hora de inserir os valores na calculadora pois não será possível o ressarcimento da diferença.</p>
-
       <hr>
-
       O benefício fiscal só é válido para aqueles que optarem pela Declaração Completa do imposto de renda.
     </p>
     <footer class="blockquote-footer text-white">
@@ -354,49 +352,58 @@
     });
   });
    function gerarBoleto(){
-
     var nome = $("#nome").val().toLowerCase();
     var cpf = $("#user_cpf").val().replace(/\.|\-/g,'');
     var valor = $("#valor_doar").maskMoney('unmasked')[0];;
     var token = $("#token").val();
     var email = $("#e-mail").val();
-      $("#mudar").hide();
-      $("#loading1").show();
-    $.post('boleto/gerar', {nome:nome , cpf:cpf , valor:valor, _token:token,email:email},function(data){
-      $("#resultado_boleto").html(data);
-      $("#modalExemplo").modal('hide');
-      $("#mudar").show();
-      $("#loading1").hide();
-      var target_offset = $("#ancora2").offset();
-      var target_top = target_offset.top;
-      $('html, body').animate({ scrollTop: target_top },50);
-    });
+      
+      if (valor >= 6) {
+          $("#mudar").hide();
+          $("#loading1").show();
+          $.post('boleto/gerar', {nome:nome , cpf:cpf , valor:valor, _token:token,email:email},function(data){
+            $("#resultado_boleto").html(data);
+            $("#modalExemplo").modal('hide');
+            $("#mudar").show();
+            $("#loading1").hide();
+            var target_offset = $("#ancora2").offset();
+            var target_top = target_offset.top;
+            $('html, body').animate({ scrollTop: target_top },50);
+          });
+      }else{
+        alert("O Valor da doação deve ser maior ou igual R$6.00, para poder custiar os gastos terceiros no processo de doação");
+      }
   }
 
   function gerarCarne(){
-      var nome = $("#nome_carne").val().toLowerCase();
-      var cpf = $("#cpf_carne").val().replace(/\.|\-/g,'');
-      var email = $("#email_carne").val();
-      var valor = $("#valor_doar_carne").maskMoney('unmasked')[0];;
-      var token = $("#token").val();
-      var quantidade_parcelas = $("#quantidade_parcelas").val();
-      $("#mudar2").hide();
-      $("#loading").show();
-      $.post('carne/gerar', {nome:nome , cpf:cpf , valor:valor, _token:token, parcelas:quantidade_parcelas,email:email},function(data){
-        console.log(data);
-        $("#mudar2").show();
-        $("#loading").hide();
-        $("#resultado_boleto").html(data);
-        $("#modalcarne").modal('hide');
-        var target_offset = $("#ancora2").offset();
-        var target_top = target_offset.top;
-        $('html, body').animate({ scrollTop: target_top },50);
-      });
+        var nome = $("#nome_carne").val().toLowerCase();
+        var cpf = $("#cpf_carne").val().replace(/\.|\-/g,'');
+        var email = $("#email_carne").val();
+        var valor = $("#valor_doar_carne").maskMoney('unmasked')[0];;
+        var token = $("#token").val();
+        var quantidade_parcelas = $("#quantidade_parcelas").val();
+        
+        if (valor / quantidade_parcelas >= 6) {
+        $("#mudar2").hide();
+        $("#loading").show();
+        $.post('carne/gerar', {nome:nome , cpf:cpf , valor:valor, _token:token, parcelas:quantidade_parcelas,email:email},function(data){
+          console.log(data);
+          $("#mudar2").show();
+         
+          $("#loading").hide();
+          $("#resultado_boleto").html(data);
+          $("#modalcarne").modal('hide');
+          var target_offset = $("#ancora2").offset();
+          var target_top = target_offset.top;
+          $('html, body').animate({ scrollTop: target_top },50);
+        });      
+      }else{
+          alert("O Valor das parcelas deve ser maior ou igual que R$6.00, para poder custiar os gastos terceiros no processo de doação diminua o numero de parcelas ou faça uma doação com boleto único");
+      }
     }
   });
 
-
-    </script>
+</script>
   </div>
 
   <p id="isento"> </p>
