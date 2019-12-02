@@ -20,7 +20,7 @@ conf-git-reni:
 	git config user.name "renissonsilva"
 
 bd-conf:
-	mysql -u jhonny -p --execute="drop database if exists comdica; create database comdica; drop user if exists 'comdica'; create user 'comdica' identified by 'comdica'; grant all privileges on comdica.* to 'comdica';"
+	mysql -u root-p --execute="drop database if exists comdica; create database comdica; drop user if exists 'comdica'; create user 'comdica' identified by 'comdica'; grant all privileges on comdica.* to 'comdica';"
 	sed -i 's/DB_DATABASE.*/DB_DATABASE=comdica/' .env
 	sed -i 's/DB_USERNAME.*/DB_USERNAME=comdica/' .env
 	sed -i 's/DB_PASSWORD.*/DB_PASSWORD=comdica/' .env	
