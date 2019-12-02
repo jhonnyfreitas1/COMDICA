@@ -12,10 +12,10 @@
         "barryvdh/laravel-dompdf": "^0.8.5",
         "fideloper/proxy": "^4.0",
         "froiden/sql-generator": "dev-master",
+        "khill/lavacharts": "3.1.*",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "mpdf/mpdf": "^8.0",
-        "khill/lavacharts" : "3.1.*"
+        "mpdf/mpdf": "^8.0"
     },
     "require-dev": {
 

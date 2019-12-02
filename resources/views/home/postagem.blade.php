@@ -3,7 +3,6 @@
 @endsection
 @section('content')
   @php($url = 'https://comdicaaracoiabape.com.br'.$_SERVER["REQUEST_URI"])
-  {{$url}}
   <div class="container col-md-10"> 
     <div class="row">
       <div class="col-lg-4  ">

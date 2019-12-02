@@ -26,18 +26,18 @@
 </div>
 </div>
 
-<form action="/admin/postagem_save" class=" mt-2 border border-light col-offset-6 centered col-md-10 row" method="post"  id='form-postagem' name="form-postagem" enctype="multipart/form-data">
-  <div class="form-row col-md-12">
+<form action="/admin/postagem_save" style="background:#dcdcdc; margin:3%; padding:1em;" class=" mt-2 border border-secondary col-offset-6 centered col-md-10 row" method="post"  id='form-postagem' name="form-postagem" enctype="multipart/form-data">
+  <div class="form-row col-md-12"> 
   <div class="form-group col-md-12 ">
     <label for="">Titulo da postagem </label><label style="color:red;">*</label>
     <input class="form-control col-md-12" value="" type="text" name="titulo" required>
   </div>
   <div class="form-group col-md-12 col-12 ">
-    <label>Imagem principal da postagem<label style="color:red;">*</label><b>"png", "jpg", "jpeg", "bmp"</b></label>
+    <label>Imagem principal da postagem<label style="color:red;">*</label><b>Tipos: ".png", ".jpg", ".jpeg", ".bmp"</b></label>
     <div class="file-field">   
       <div class="btn btn-success btn-sm col-12 col-md-12">
-        <span class="col-3">Procurar imagem</span>
-        <input type="file" id="uploadImage" name='imagem'   class='col-7 col-md-12' required>
+        <span class="float-left">Procurar imagem</span>
+        <input type="file" id="uploadImage" name='imagem'   class='float-left col-6 col-md-8' required>
       </div>	
     </div>
   </div>
@@ -67,9 +67,9 @@
       <label>Anexo de pdf <span class="text-warning">(opcional)</span><b></b></label>
       <div class="file-field">   
         <div class="btn btn-danger col-md-12 btn-sm float-left ">
-          <span>Procurar pdf</span>
+          <span class="float-left">Procurar pdf</span>
 
-          <input type="file" class="col-9 col-md-12" id="files2"  name='pdf'>
+          <input type="file" class="float-left col-9 col-md-8" id="files2"  name='pdf'>
           <div id="progress_bar1">
 
             <div class="percent1">0%</div>
@@ -84,10 +84,10 @@
     <div class="form-group col-md-12">
       <label >Anexo um segundo pdf <span class="text-warning">(opcional)</span><b></b></label>
       <div class="file-field ">   
-        <div class="btn btn-danger col-md-12  btn-sm float-left">
-          <span class="">Procurar pdf</span>
+        <div class="btn btn-danger col-md-12  btn-sm ">
+          <span class="float-left">Procurar pdf</span>
 
-          <input type="file" id="files"  class='col-9 col-md-12' name='pdf2'>
+          <input type="file" id="files"  class='col-9 col-md-8 float-left' name='pdf2'>
 
           <div id="progress_bar">
 

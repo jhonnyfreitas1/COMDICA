@@ -1,28 +1,19 @@
 @extends('layouts.app')
+
+@section('js')
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/css/index-css.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/owl.carousel.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/jquery-ui.css">
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
+    <link rel="stylesheet" href="/css/style1.css">
+@endsection
+
 @section('content')
-<head>
-  <title>Travalers &mdash; Colorlib Website Template</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  @section('js')
-  <div id="loader"  style="">
-    <img style=" position: fixed;  width: 100%;  background-color: white;  height: 100%; z-index: 1000;" src="/img/COR1.png">
-    <img class="col-4 col-md-2  position-absolute sticky-top" style=" z-index: 1002;" src="/img/carregamento.gif">
-  </div>
-  <link rel="stylesheet" href="/css/index-css.css">
-  <link rel="stylesheet" href="/css/owl.carousel.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/owl.carousel.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="/css/magnific-popup.css">
-  <link rel="stylesheet" href="/css/jquery-ui.css">
-  <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
-  <link rel="stylesheet" href="css/aos.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="/css/style1.css">
-  @endsection
-
-
   <div class="slide-one-item home-slider owl-carousel "  style="margin-top: -2em;">
    @foreach($postagem as $consulta)
    <div class="site-blocks-cover overlay" style="background-image: url('/upload_imagem/{{$consulta->imagem_principal}}');" data-aos="fade" data-stellar-background-ratio="0.5">
@@ -34,14 +25,12 @@
           <h1 class="text-white font-weight-light">{{$consulta->titulo}}</h1>
           <p class="mb-5">{{ str_limit($consulta->descricao, 30)}}</p>
           <p><a href="postagem/{{encrypt($consulta->id)}}" class="btn btn-success py-3 px-5 text-white">Veja Agora</a></p>
-
         </div>
       </div>
     </div>
   </div> 
   @endforeach 
 </div>
-
 <div class="row m-2" style="width: auto;">
  <div class=" col-md-3 col-11 m-2 " id="card-fundo" style="">
   <div class="row ">
@@ -54,7 +43,6 @@
      </div></a>
    </div>
  </div>
-
  <div class=" col-md-5 col-11 m-2 " id="card-fundo" style="">
   <div class="row">
     <div class=" col-md-12  text-dark position-top">
@@ -80,8 +68,6 @@
    </div>
  </div>
 </div>  
-
-
 </div>
 
 </div>
@@ -92,13 +78,11 @@
         <div class="row align-items-center justify-content-center text-center">
           <div class="col-md-7"  data-aos="fade-up" data-aos-delay="400">
             <a href="https://vimeo.com/346056073" class="popup-vimeo"><span class=" "><i class="fas fa-play fa-4x icon-play"></i></span>
-              <h2 class="text-white font-weight-light mb-5 h1">Nos meses de março a abril a sua doação pode ser feita diretamente na sua declaração, dê uma olhada.</h2></a>
             </div>
           </div>
         </div>
       </div>  
       <center>
-       
         <h1 id="desc_categoria" style="background-image: url('/img/colorido.jpg'); " class="m-2 text-light title border border-dark">Postagens recentes</h1>
         <div class="dropdown show col-3" style=" float:left;">
 
