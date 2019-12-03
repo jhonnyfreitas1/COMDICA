@@ -1,0 +1,16 @@
+{
+    "name": "Teste",
+    "short_name": "TestePWA",
+    "theme_color": "#00A859",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "start_url": "/denuncia",
+    "scope": "/denuncia",
+    "icons": [
+      {
+        "src": "/img/database.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }

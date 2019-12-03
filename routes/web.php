@@ -49,3 +49,7 @@ Route::get('/admin/postagem_edit/{id}', ['as' => 'admin.postagem_edit', 'uses' =
 
 //Rotas de email 
 Route::get('/email/verify/{email}', ['as' => 'status', 'uses' => 'EmailsController@verificar']);
+
+//Rotas de Denuncia 
+Route::get('/denuncia', ['as' => 'denuncia', 'uses' => 'HomeController@denuncia']);
+Route::get('/offline', ['as' => 'offline', 'uses' => 'HomeController@offline']);
