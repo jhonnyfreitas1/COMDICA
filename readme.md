@@ -20,13 +20,17 @@
 
 ## Colaboradores
 
+Erickson Ferreira
+    https://github.com/ericksonferreira
+    
+Jhonatas Rodriguez
+    https://github.com/murielson
 
 Renisson silva
 	https://github.com/RenissonSilva
 
 Jhonny de Farias
 	https://github.com/jhonnyfreitas1
-
 
 Felipe 
 	https://github.com/filipeandrev
