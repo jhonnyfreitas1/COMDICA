@@ -15,6 +15,10 @@ class CreateRespAgressorsTable extends Migration
     {
         Schema::create('resp_agressors', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('agressorNumber');
+            $table->enum('agressorGender', ['Masculino', 'Feminino', 'Ambos os Sexos', 'Outros']);
+            $table->enum('parent', ['Pai', 'Mãe', 'Padrasto', 'Madrasta', 'Cônjuge', 'Ex-Cônjuge', 'Namorado(A)', 'Ex-Namorado(A)', 'Filho(A)', 'Irmão(A)', 'Amigos/Conhecidos', 'Desconhecidos', 'Cuidador(A)', 'Patrão/Chefe', 'Pessoa com Relação Instituicional', 'Policial/Agente', 'Própria Pessoa', 'Outros']);
+            $table->boolean('alcool')->default(false);
             $table->timestamps();
         });
     }

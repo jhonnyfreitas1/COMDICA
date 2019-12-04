@@ -18,7 +18,9 @@ class CreateRespViolenciasTable extends Migration
             $table->enum('violence', ['Física', 'PsicológicaMental', 'Tortura', 'Sexual', 'Tráfico', 'FinanceiraEconômica', 'NegligênciaAbandono', 'TrabalhoInfantil', 'IntervençãoLegal', 'Outros']);
             $table->enum('agression', ['Força Corporal/Espancamento', 'Enforcamento', 'Objeto Contudente', 'Objeto Perfúro-Cortante', 'Objeto Susbtância/Objeto Quente', 'Envenenamento', 'Arma de Fogo', 'Ameaça', 'Outros']);
             $table->enum('consOcurrence', ['Aborto', 'Gravidez', 'DST', 'Tentativa de Suicídio', 'Transtorno Mental', 'Transtorno Comportamental', 'Estresse Pós-Traumático', 'Outros']);
-            $table->enum('violenceType', []);
+            $table->enum('violenceType', ['Assédio Sexual', 'Atentado Violento ao Pudor', 'Estupro', 'Exploração Sexual', 'Outros']);
+            $table->boolean('penetration')->default(false);
+            $table->enum('penetrationType', ['Anal', 'Vaginal', 'Oral']);
             $table->timestamps();
         });
     }

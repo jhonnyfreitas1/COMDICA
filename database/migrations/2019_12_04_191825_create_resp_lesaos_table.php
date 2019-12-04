@@ -14,7 +14,9 @@ class CreateRespLesaosTable extends Migration
     public function up()
     {
         Schema::create('resp_lesaos', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->enum('nature',['Contusão', 'Corte/Perfuração/Laceração', 'Entorse/Luxação', 'Fratura', 'Amputação', 'Traumatismo Dentário', 'Traumatismo Crâniano-Encefálico', 'Politraumatismo', 'Intoxicação', 'Queimadura', 'Outros']);
+            $table->enum('bodyPart', ['Cabeça/Rosto', 'Pescoço', 'Boca/Dentes','Coluna/Medula', 'Tórax/Dorso', 'Abdomên', 'Quadril/Pelve', 'Membros Superiores', 'Membros Inferiores', 'Órgãos Genitais/Ãnus', 'Múltiplos Órgãos/Regiões']);
             $table->timestamps();
         });
     }

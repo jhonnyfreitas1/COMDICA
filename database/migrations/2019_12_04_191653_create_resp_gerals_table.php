@@ -23,9 +23,9 @@ class CreateRespGeralsTable extends Migration
             $table->enum('locality', ['Itapipiré', 'Bom Jesus']);
             $table->string('street');
             $table->string('complement');
-            $table->number('residence');
+            $table->integer('residence');
             $table->string('number');
-            $table->boolen('deficient')->default(false);
+            $table->boolean('deficient')->default(false);
             $table->timestamps();
         });
     }
