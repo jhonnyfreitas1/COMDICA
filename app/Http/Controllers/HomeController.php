@@ -351,10 +351,4 @@ class HomeController extends Controller
             return $resultado;
      
         }
-    public function denuncia(){
-        return view('welcome');
-    }
-    public function offline(){
-        return view('offline');
-    }
 }

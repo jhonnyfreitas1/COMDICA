@@ -15,9 +15,9 @@ class CreateRespOcorrenciasTable extends Migration
     {
         Schema::create('resp_ocorrencias', function (Blueprint $table) {
             $table->increments('id');
-            $table->enum('occurrence',['Residencia', 'Habitação Coletiva', 'Escola', 'Local de Prática Esportiva', 'Bar/Similar', 'Via Pública', 'Comércio/Serviços', 'Indústria/Construção', 'Outros']);
-            $table->boolean('otherOcurrence')->default(false);
-            $table->boolean('autoProvocated')->default(false);
+            $table->enum('occurrence',['Residencia', 'Habitação Coletiva', 'Escola', 'Local de Prática Esportiva', 'Bar/Similar', 'Via Pública', 'Comércio/Serviços', 'Indústria/Construção', 'Outros'])->nullable();
+            $table->boolean('otherOcurrence')->nullable();
+            $table->boolean('autoProvocated')->nullable();
             $table->timestamps();
         });
     }

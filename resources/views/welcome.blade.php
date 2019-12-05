@@ -65,40 +65,40 @@ if ('serviceWorker' in navigator) {
                         </ul>
                     </div>
                     <div class="card-body" style="margin-left: -10px;">
-                        <form>
+                        <form method="post" action="{{route('denuncia.store')}}">
                             <div id="step1" class="step">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Nome :</label>
-                                        <input type="text" class="form-control" id="inputEmail4" placeholder="Nome">
+                                        <input type="text" name="name"class="form-control" id="inputEmail4" placeholder="Nome">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Sexo :</label>
-                                        <select name="" id="sexo" class="form-control">
+                                        <select name="gender" id="sexo" class="form-control">
                                             <option value="">Selecione uma opção</option>
-                                            <option value="1">Feminino</option>
-                                            <option value="2">Masculino</option>
+                                            <option value="F">Feminino</option>
+                                            <option value="M">Masculino</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Etnia :</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="ethnicity" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
-                                            <option value="1">Branco</option>
-                                            <option value="2">Pardo</option>
-                                            <option value="2">Negro</option>
-                                            <option value="2">Indígena</option>
+                                            <option value="Branco">Branco</option>
+                                            <option value="Pardo">Pardo</option>
+                                            <option value="Negro">Negro</option>
+                                            <option value="Indígena">Indígena</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Você é gestante? :</label>
                                         <fieldset id="fieldset" disabled>
-                                            <select name="" id="gestante" class="form-control">
+                                            <select name="pregnant" id="gestante" class="form-control">
                                                 <option value="">Selecione uma opção</option>
-                                                <option value="1">Sim</option>
-                                                <option value="2">Não</option>
+                                                <option value="1" >Sim</option>
+                                                <option value="0" >Não</option>
                                             </select>
                                         </fieldset>
                                     </div>
@@ -106,38 +106,38 @@ if ('serviceWorker' in navigator) {
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Nome do Responsável :</label>
-                                        <input type="text" class="form-control" id="inputEmail4" placeholder="Nome do Responsável">
+                                        <input type="text" name="responsible" class="form-control" id="inputEmail4" placeholder="Nome do Responsável">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Localidade :</label>
-                                        <input type="text" class="form-control" id="inputEmail4" placeholder="Localidade">
+                                        <input type="text" name="locality" class="form-control" id="inputEmail4" placeholder="Localidade">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="inputEmail4">Logradouro :</label>
-                                        <input type="text" class="form-control" id="inputEmail4" placeholder="Logradouro">
+                                        <input type="text" name="street" class="form-control" id="inputEmail4" placeholder="Logradouro">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputEmail4">Complemento :</label>
-                                        <input type="text" class="form-control" id="inputEmail4" placeholder="Ex : Casa, Apartamento">
+                                        <input type="text" name="complement" class="form-control" id="inputEmail4" placeholder="Ex : Casa, Apartamento">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputEmail4">Número da residência :</label>
-                                        <input type="number" min="0" class="form-control" id="inputEmail4" placeholder="Ex : 22, 30">
+                                        <input type="number" name="residence" min="0" class="form-control" id="inputEmail4" placeholder="Ex : 22, 30">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Telefone:</label>
-                                        <input type="text" class="form-control" id="inputEmail4" placeholder="Telefone">
+                                        <input type="text" name="number" class="form-control" id="inputEmail4" placeholder="Telefone">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Deficiente ? :</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="deficient" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="1">Sim</option>
-                                            <option value="2">Não</option>
+                                            <option value="0">Não</option>
                                         </select>
                                     </div>
                                 </div>
@@ -146,33 +146,33 @@ if ('serviceWorker' in navigator) {
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <label for="inputEmail4">Local da ocorrência :</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="occurrence" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
-                                            <option value="1">Residência</option>
-                                            <option value="3">Habitação Coletiva</option>
-                                            <option value="4">Escola</option>
-                                            <option value="5">Local de Prática Esportiva</option>
-                                            <option value="6">Bar ou Similar</option>
-                                            <option value="7">Via pública</option>
-                                            <option value="8">Comércio/Serviços</option>
-                                            <option value="8">Indústria/Construção</option>
-                                            <option value="8">Outros</option>
+                                            <option value="Residência">Residência</option>
+                                            <option value="Habilitação Coletiva">Habitação Coletiva</option>
+                                            <option value="Escola">Escola</option>
+                                            <option value="Local de Prática Esportiva">Local de Prática Esportiva</option>
+                                            <option value="Bar ou Similar">Bar ou Similar</option>
+                                            <option value="Via pública">Via pública</option>
+                                            <option value="Comércio/Serviços">Comércio/Serviços</option>
+                                            <option value="Indústria/Construção">Indústria/Construção</option>
+                                            <option value="Outros">Outros</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputEmail4">Ocorreu outras vezes? :</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="otherOcurrence" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="1">Sim</option>
-                                            <option value="2">Não</option>
+                                            <option value="0">Não</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputEmail4">A lesão foi autoprovocada? :</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="autoProvocated" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="1">Sim</option>
-                                            <option value="2">Não</option>
+                                            <option value="0">Não</option>
                                         </select>
                                     </div>
                                 </div>
@@ -181,77 +181,77 @@ if ('serviceWorker' in navigator) {
                                 <div class="form-row" >
                                     <div class="form-group col-md-4">
                                         <label for="inputEmail4">Tipo de violência :</label>
-                                        <select name="" id="violencia" class="form-control">
+                                        <select name="violence" id="violencia" class="form-control">
                                             <option value="">Selecione uma opção</option>
-                                            <option value="1">Física</option>
-                                            <option value="3">Psicológica/Mental</option>
-                                            <option value="4">Tortura</option>
-                                            <option value="5">Sexual</option>
-                                            <option value="6">Tráfico de Seres Humanos</option>
-                                            <option value="7">Financeira/Econômica</option>
-                                            <option value="8">Negligência/Abandono</option>
-                                            <option value="9">Trabalho Infantil</option>
-                                            <option value="10">Intervenção Legal</option>
-                                            <option value="11">Outros</option>
+                                            <option value="Física">Física</option>
+                                            <option value="Psicológica/Mental">Psicológica/Mental</option>
+                                            <option value="Tortura">Tortura</option>
+                                            <option value="Sexual">Sexual</option>
+                                            <option value="Tráfico de Seres Humanos">Tráfico de Seres Humanos</option>
+                                            <option value="Financeira/Econômica">Financeira/Econômica</option>
+                                            <option value="Negligência/Abandono">Negligência/Abandono</option>
+                                            <option value="Trabalho Infantil">Trabalho Infantil</option>
+                                            <option value="Intervenção Legal">Intervenção Legal</option>
+                                            <option value="Outros">Outros</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputEmail4">Meio de Agressão :</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="agression" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
-                                            <option value="1">Força corporal/Espancamento</option>
-                                            <option value="2">Enforcamento</option>
-                                            <option value="2">Objeto Contudente</option>
-                                            <option value="2">Objeto Pérfuro-cortante</option>
-                                            <option value="2">Objeto Substância/Objeto Quente</option>
-                                            <option value="2">Envenenamento</option>
-                                            <option value="2">Arma de Fogo</option>
-                                            <option value="2">Ameaça</option>
-                                            <option value="2">Outros</option>
+                                            <option value="Força corporal/Espancamento">Força corporal/Espancamento</option>
+                                            <option value="Enforcamento">Enforcamento</option>
+                                            <option value="Objeto Contudente">Objeto Contudente</option>
+                                            <option value="Objeto Pérfuro-cortante">Objeto Pérfuro-cortante</option>
+                                            <option value="Objeto Substância/Objeto Quente">Objeto Substância/Objeto Quente</option>
+                                            <option value="Envenenamento">Envenenamento</option>
+                                            <option value="Arma de Fogo">Arma de Fogo</option>
+                                            <option value="Ameaça">Ameaça</option>
+                                            <option value="Outros">Outros</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Consequência da Ocorrência : </label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="consOcurrence" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
-                                            <option value="1">Aborto</option>
-                                            <option value="1">Gravidez</option>
-                                            <option value="2">DST</option>
-                                            <option value="2">Tentativa de Suicídio</option>
-                                            <option value="2">Transtorno Mental</option>
-                                            <option value="2">Transtorno Comportamental</option>
-                                            <option value="2">Estresse Pós-traumático</option>
-                                            <option value="2">Outros</option>
+                                            <option value="Aborto">Aborto</option>
+                                            <option value="Gravidez">Gravidez</option>
+                                            <option value="DST">DST</option>
+                                            <option value="Tentativa de Suicídio">Tentativa de Suicídio</option>
+                                            <option value="Transtorno Mental">Transtorno Mental</option>
+                                            <option value="Transtorno Comportamental">Transtorno Comportamental</option>
+                                            <option value="Estresse Pós-traumático">Estresse Pós-traumático</option>
+                                            <option value="Outros">Outros</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-row" id="violenceType" hidden>
                                     <div class="form-group col-md-4" >
                                         <label for="inputEmail4">Tipo de Violência Sexual :</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="violenceType" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
-                                            <option value="1">Assédio Sexual</option>
-                                            <option value="2">Atentado Violento ao Pudor</option>
-                                            <option value="2">Estupro</option>
-                                            <option value="2">Exploração Sexual</option>
-                                            <option value="2">Outros</option>
+                                            <option value="Assédio Sexual">Assédio Sexual</option>
+                                            <option value="Atentado Violento ao Pudor">Atentado Violento ao Pudor</option>
+                                            <option value="Estupro">Estupro</option>
+                                            <option value="Exploração Sexual">Exploração Sexual</option>
+                                            <option value="Outros">Outros</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Ocorreu penetração? </label>
-                                        <select name="" id="penetracao" class="form-control">
+                                        <select name="penetration" id="penetracao" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="1">Sim</option>
-                                            <option value="2">Não</option>
+                                            <option value="0">Não</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4" id="penetracaoType" hidden>
                                         <label for="inputPassword4">Tipo de Penetração : </label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="penetrationType" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
-                                            <option value="1">Anal</option>
-                                            <option value="1">Oral</option>
-                                            <option value="2">Vaginal</option>
+                                            <option value="Anal">Anal</option>
+                                            <option value="Oral">Oral</option>
+                                            <option value="Vaginal">Vaginal</option>
                                         </select>
                                     </div>
                                 </div>
@@ -260,36 +260,36 @@ if ('serviceWorker' in navigator) {
                                 <div class="form row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Natureza da Lesão :</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="nature" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
-                                            <option value="">Contusão</option>
-                                            <option value="">Corte/Perfuração/Laceração</option>
-                                            <option value="">Entorse/Luxação</option>
-                                            <option value="">Fratura</option>
-                                            <option value="">Amputação</option>
-                                            <option value="">Traumatismo Dentário</option>
-                                            <option value="">Traumatismo Crâniano-Encefálico</option>
-                                            <option value="">Politraumatismo</option>
-                                            <option value="">Intoxicação</option>
-                                            <option value="">Queimadura</option>
-                                            <option value="">Outros</option>
+                                            <option value="Contusão">Contusão</option>
+                                            <option value="Corte/Perfuração/Laceração">Corte/Perfuração/Laceração</option>
+                                            <option value="Entorse/Luxação">Entorse/Luxação</option>
+                                            <option value="Fratura">Fratura</option>
+                                            <option value="Amputação">Amputação</option>
+                                            <option value="Traumatismo Dentário">Traumatismo Dentário</option>
+                                            <option value="Traumatismo Crâniano-Encefálico">Traumatismo Crâniano-Encefálico</option>
+                                            <option value="Politraumatismo">Politraumatismo</option>
+                                            <option value="Intoxicação">Intoxicação</option>
+                                            <option value="Queimadura">Queimadura</option>
+                                            <option value="Outros">Outros</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Parte do Corpo Atingida :</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="bodyPart" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
-                                            <option value="1">Cabeça/Rosto</option>
-                                            <option value="1">Pescoço</option>
-                                            <option value="2">Boca/Dentes</option>
-                                            <option value="2">Coluna/Medula</option>
-                                            <option value="2">Tórax/Dorso</option>
-                                            <option value="2">Abdômen</option>
-                                            <option value="2">Quadril/Pelve</option>
-                                            <option value="2">Membros Superiores</option>
-                                            <option value="2">Membros Inferiores</option>
-                                            <option value="2">Órgãos genitais/Ânus</option>
-                                            <option value="2">Múltiplos Órgãos/Regiões</option>
+                                            <option value="Cabeça/Rosto">Cabeça/Rosto</option>
+                                            <option value="Pescoço">Pescoço</option>
+                                            <option value="Boca/Dentes">Boca/Dentes</option>
+                                            <option value="Coluna/Medula">Coluna/Medula</option>
+                                            <option value="Tórax/Dorso">Tórax/Dorso</option>
+                                            <option value="Abdômen">Abdômen</option>
+                                            <option value="Quadril/Pelve">Quadril/Pelve</option>
+                                            <option value="Membros Superiores">Membros Superiores</option>
+                                            <option value="Membros Inferiores">Membros Inferiores</option>
+                                            <option value="Órgãos genitais/Ânus">Órgãos genitais/Ânus</option>
+                                            <option value="Múltiplos Órgãos/Regiões">Múltiplos Órgãos/Regiões</option>
                                         </select>
                                     </div>
                                 </div>
@@ -298,50 +298,50 @@ if ('serviceWorker' in navigator) {
                                 <div class="form row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Número de envolvidos :</label>
-                                        <input type="number" class="form-control" value='0'>
+                                        <input type="number" name="agressorNumber" class="form-control" value='0'>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Vínculo Social : </label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="agressorGender" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
-                                            <option value="1">Pai</option>
-                                            <option value="1">Mãe</option>
-                                            <option value="2">Padrasto</option>
-                                            <option value="2">Madrasta</option>
-                                            <option value="2">Cônjuge</option>
-                                            <option value="2">Ex-Cônjuge</option>
-                                            <option value="2">Namorado(A)</option>
-                                            <option value="2">Ex-Namorado(A)</option>
-                                            <option value="2">Filho(A)</option>
-                                            <option value="2">Irmão(A)</option>
-                                            <option value="2">Amigos/Conhecidos</option>
-                                            <option value="2">Desconhecidos</option>
-                                            <option value="2">Cuidador(A)</option>
-                                            <option value="2">Patrão/Chefe</option>
-                                            <option value="2">Pessoa Com Relação Institucional</option>
-                                            <option value="2">Policial/Agente</option>
-                                            <option value="2">Própria Pessoa</option>
-                                            <option value="2">Outros</option>
+                                            <option value="Pai">Pai</option>
+                                            <option value="Mãe">Mãe</option>
+                                            <option value="Padrasto">Padrasto</option>
+                                            <option value="Madrasta">Madrasta</option>
+                                            <option value="Cônjuge">Cônjuge</option>
+                                            <option value="Ex-Cônjuge">Ex-Cônjuge</option>
+                                            <option value="Namorado(A)">Namorado(A)</option>
+                                            <option value="Ex-Namorado(A)">Ex-Namorado(A)</option>
+                                            <option value="Filho(A)">Filho(A)</option>
+                                            <option value="Irmão(A)">Irmão(A)</option>
+                                            <option value="Amigos/Conhecidos">Amigos/Conhecidos</option>
+                                            <option value="Desconhecidos">Desconhecidos</option>
+                                            <option value="Cuidador(A)">Cuidador(A)</option>
+                                            <option value="Patrão/Chefe">Patrão/Chefe</option>
+                                            <option value="Pessoa Com Relação Institucional">Pessoa Com Relação Institucional</option>
+                                            <option value="Policial/Agente">Policial/Agente</option>
+                                            <option value="Própria Pessoa">Própria Pessoa</option>
+                                            <option value="Outros">Outros</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Sexo do Provável Agressor :</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="parent" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
-                                            <option value="1">Feminino</option>
-                                            <option value="1">Masculino</option>
-                                            <option value="1">Ambos os Sexos</option>
-                                            <option value="1">Outros</option>
+                                            <option value="Feminino">Feminino</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Ambos os Sexos">Ambos os Sexos</option>
+                                            <option value="Outros">Outros</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Provável uso de Álcool : </label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="alcool" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="1">Sim</option>
-                                            <option value="1">Não</option>
+                                            <option value="0">Não</option>
                                         </select>
                                     </div>
                                 </div>
@@ -349,6 +349,8 @@ if ('serviceWorker' in navigator) {
                             <button class="btn btn-success mt-2" id='submit'type="submit" hidden>
                                 Denunciar <i class="fa fa-correct"></i>
                             </button>
+                            {{ csrf_field() }}
+                            @method('put')
                         </form>
                     </div>
                     <div class="card-footer" style="background-color: white;">
@@ -367,7 +369,7 @@ if ('serviceWorker' in navigator) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function(){
+$(document).ready(function(){
             $('.step').hide()
             $('.step').first().show()
             //Passo exibido
@@ -422,16 +424,16 @@ if ('serviceWorker' in navigator) {
                 }
             };
             $('#sexo').change(function (){
-                if($(this).val() == 2){
+                if($(this).val() == "M"){
                     $('#fieldset').attr("disabled", "disabled");
-                }else if($(this).val() == 1){
+                }else if($(this).val() == "F"){
                     $('#fieldset').removeAttr('disabled');
                 }else{
                     $('#fieldset').attr("disabled", "disabled");
                 }
             });
             $('#violencia').change(function(){
-                if($(this).val() == 5){
+                if($(this).val() == 'Sexual'){
                     $('#violenceType').removeAttr('hidden');
                 }else{
                     $('#violenceType').attr('hidden', 'hidden');

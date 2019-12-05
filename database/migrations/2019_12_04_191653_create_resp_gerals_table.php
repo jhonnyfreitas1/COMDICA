@@ -15,17 +15,17 @@ class CreateRespGeralsTable extends Migration
     {
         Schema::create('resp_gerals', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->enum('gender', ['F', 'M'])->nullable();
             $table->enum('ethnicity', ['Branco', 'Pardo', 'Negro', 'Indígena'])->nullable();
-            $table->boolean('pregnant')->nullable()->default(false);
-            $table->string('responsible');
-            $table->enum('locality', ['Itapipiré', 'Bom Jesus']);
-            $table->string('street');
-            $table->string('complement');
-            $table->integer('residence');
-            $table->string('number');
-            $table->boolean('deficient')->default(false);
+            $table->boolean('pregnant')->nullable();
+            $table->string('responsible')->nullable();
+            $table->enum('locality', ['Itapipiré', 'Bom Jesus'])->nullable();
+            $table->string('street')->nullable();
+            $table->string('complement')->nullable();
+            $table->integer('residence')->nullable();
+            $table->string('number')->nullable();
+            $table->boolean('deficient')->nullable();
             $table->timestamps();
         });
     }

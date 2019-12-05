@@ -8,9 +8,9 @@ Route::get('/sou_doador', ['as' => 'soudoador', 'uses' => 'HomeController@sou_do
 Route::get('/calculadora/doacao/{valor}/{ir}', ['as' => 'calculadora.doacao', 'uses' => 'CalculadoraController@doacao']);
 
 //Rotas gerencianet
-Route::post('/calculadora/gerar_boleto', ['as' => 'gerencianet.gerar_boleto', 'uses' =>'GerenciaNetController@gerar_boleto']);
-Route::post('/calculadora/gerar_carne', ['as' => 'gerencianet.gerar_carne', 'uses' =>'GerenciaNetController@gerar_carne']);
-Route::get('/calculadora/cancelar_transacao/{id}', ['as' => 'gerencianet.cancelar', 'uses' =>'GerenciaNetController@cancelar_transacao']);
+// Route::post('/calculadora/gerar_boleto', ['as' => 'gerencianet.gerar_boleto', 'uses' =>'GerenciaNetController@gerar_boleto']);
+// Route::post('/calculadora/gerar_carne', ['as' => 'gerencianet.gerar_carne', 'uses' =>'GerenciaNetController@gerar_carne']);
+// Route::get('/calculadora/cancelar_transacao/{id}', ['as' => 'gerencianet.cancelar', 'uses' =>'GerenciaNetController@cancelar_transacao']);
 Route::post('boleto/gerar' , ['as' => 'gerarboleto', 'uses' => 'CalculadoraController@gerarBoleto']);
 Route::post('carne/gerar' , ['as' => 'gerarboleto', 'uses' => 'CalculadoraController@gerarCarne']);
 Route::get('boleto/detalhes' , ['as' => 'boleto_detail', 'uses' => 'CalculadoraController@detalhes_boleto']);
@@ -51,5 +51,6 @@ Route::get('/admin/postagem_edit/{id}', ['as' => 'admin.postagem_edit', 'uses' =
 Route::get('/email/verify/{email}', ['as' => 'status', 'uses' => 'EmailsController@verificar']);
 
 //Rotas de Denuncia 
-Route::get('/denuncia', ['as' => 'denuncia', 'uses' => 'HomeController@denuncia']);
-Route::get('/offline', ['as' => 'offline', 'uses' => 'HomeController@offline']);
+Route::put('/denuncia/store', ['as' => 'denuncia.store', 'uses' => 'DenunciaController@store']);
+Route::get('/denuncia', ['as' => 'denuncia', 'uses' => 'DenunciaController@denuncia']);
+Route::get('/offline', ['as' => 'offline', 'uses' => 'DenunciaController@offline']);
