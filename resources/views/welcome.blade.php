@@ -21,7 +21,7 @@
         }
     </script> -->
     <script>
-        
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js', {scope: '/'})
   .then(function(reg) {
@@ -36,7 +36,7 @@ if ('serviceWorker' in navigator) {
     </script>
 </head>
 <body>
-    <div class="container mt-1 mb-5">
+    <div class="container mb-5">
         <div class="row">
             <div class="col col1" style="">
                 <div style="margin-left:5px;"><h4><i class="fa fa-volume-up"></i> Denunciar Abuso</h4></div>
@@ -110,7 +110,23 @@ if ('serviceWorker' in navigator) {
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Localidade :</label>
-                                        <input type="text" name="locality" class="form-control" id="inputEmail4" placeholder="Localidade">
+                                        <select name="locality" id="" class="form-control">
+                                            <option value="">Selecione uma opção</option>
+                                            <option value="Centro">Centro</option>
+                                            <option value="Quinze">Quinze</option>
+                                            <option value="Bom Jesus">Bom Jesus</option>
+                                            <option value="Vila de Itapipireh">Vila de Itapipireh</option>
+                                            <option value="Nova Araçoiaba">Nova Araçoiaba</option>
+                                            <option value="Boa Esperança">Boa Esperança</option>
+                                            <option value="Loteamento Hildebrando">Loteamento Hildebrando</option>
+                                            <option value="Purgatorio">Purgatório</option>
+                                            <option value="Distrito Canaã">Distrito Canaã</option>
+                                            <option value="Engenho Vinagre">Engenho Vinagre</option>
+                                            <option value="Loteamento São Miguel Arcanjo">Loteamento São Miguel Arcanjo</option>
+                                            <option value="Loteamento Santa Helena">Loteamento Santa Helena</option>
+                                            <option value="Residencia Flores">Residência Flores</option>
+                                            <option value="Loteamento Boa Esperança">Loteamento Boa Esperança</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -455,7 +471,7 @@ $(document).ready(function(){
             });
             $("#prev").click(function(){
                 $('.step:visible').hide().prev().show();
-                
+
                 showStep();
             });
         });

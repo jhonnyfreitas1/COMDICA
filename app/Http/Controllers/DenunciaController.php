@@ -14,7 +14,7 @@ use App\DadosGerais;
 class DenunciaController extends Controller
 {
     public function store(Request $request){
-    	//Adicionando na tabela resp_gerals
+        //Adicionando na tabela resp_gerals
 		($request->pregnant == '1') ? $pregnant = true: $pregnant = false;
 		($request->deficient == '1') ? $deficient = true: $deficient = false;
 		$respGeral = new respGeral;
@@ -65,7 +65,7 @@ class DenunciaController extends Controller
 		$respAgressor->parent = isset($request->parent) ? $request->parent : null;
 		$respAgressor->alcool = isset($request->alcool) ? $request->alcool : null;
 		$respAgressor->save();
-    	
+
     	//Adicionando na tabela dados_gerais
 		$dadosGerais = new DadosGerais;
 		$dadosGerais->respGeral = $respGeral['id'];
@@ -73,13 +73,13 @@ class DenunciaController extends Controller
 		$dadosGerais->respViolencia = $respViolencia['id'];
 		$dadosGerais->respLesao = $respLesao['id'];
 		$dadosGerais->respAgressor = $respAgressor['id'];
-		$dadosGerais->save();
-
+        $dadosGerais->save();
+        return redirect()->route('success');
     }
     public function denuncia(){
         return view('welcome');
     }
     public function offline(){
         return view('offline');
-    }    
+    }
 }

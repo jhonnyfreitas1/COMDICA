@@ -15,7 +15,7 @@ Route::post('boleto/gerar' , ['as' => 'gerarboleto', 'uses' => 'CalculadoraContr
 Route::post('carne/gerar' , ['as' => 'gerarboleto', 'uses' => 'CalculadoraController@gerarCarne']);
 Route::get('boleto/detalhes' , ['as' => 'boleto_detail', 'uses' => 'CalculadoraController@detalhes_boleto']);
 
-//Rotas do site 
+//Rotas do site
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/notfound', 'HomeController@notfound')->name('home');
 Route::get('/home1', 'HomeController@home1')->name('home1');
@@ -47,10 +47,14 @@ Route::get('/admin/nova-postagem', ['as' => 'admin.nova', 'uses' => 'PostagemCon
 Route::post('/admin/postagem_save', ['as' => 'admin.salvar', 'uses' => 'PostagemController@salvar_postagem'])->middleware('auth');
 Route::get('/admin/postagem_edit/{id}', ['as' => 'admin.postagem_edit', 'uses' => 'PostagemController@edit'])->middleware('auth');
 
-//Rotas de email 
+//Rotas de email
 Route::get('/email/verify/{email}', ['as' => 'status', 'uses' => 'EmailsController@verificar']);
 
-//Rotas de Denuncia 
+//Rotas de Denuncia
 Route::put('/denuncia/store', ['as' => 'denuncia.store', 'uses' => 'DenunciaController@store']);
 Route::get('/denuncia', ['as' => 'denuncia', 'uses' => 'DenunciaController@denuncia']);
 Route::get('/offline', ['as' => 'offline', 'uses' => 'DenunciaController@offline']);
+
+Route::get('success', function () {
+    return view('success');
+})->name('success');

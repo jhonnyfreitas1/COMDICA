@@ -20,7 +20,7 @@ class CreateRespGeralsTable extends Migration
             $table->enum('ethnicity', ['Branco', 'Pardo', 'Negro', 'Indígena'])->nullable();
             $table->boolean('pregnant')->nullable();
             $table->string('responsible')->nullable();
-            $table->enum('locality', ['Itapipiré', 'Bom Jesus'])->nullable();
+            $table->enum('locality', ['Centro','Quinze','Bom Jesus','Vila de Itapipireh','Nova Araçoiaba','Boa Esperança','Loteamento Hildebrando','Purgatorio','Distrito Canaã','Engenho Vinagre','Loteamento São Miguel Arcanjo','Loteamento Santa Helena','Residencia Flores','Loteamento Boa Esperança'])->nullable();
             $table->string('street')->nullable();
             $table->string('complement')->nullable();
             $table->integer('residence')->nullable();
