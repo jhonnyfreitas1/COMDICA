@@ -11,87 +11,16 @@ use App\Doacao_boleto;
 use App\Doacao_carne;
 class CalculadoraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
         return view('calculadora.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
     public function doacao($valor ,$ir)
     {
-
         return view('calculadora.doacao', compact('valor','ir'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
 
     public function gerarBoleto(Request $req) {
 
@@ -109,32 +38,31 @@ class CalculadoraController extends Controller
             $email = htmlspecialchars($req->email);
             $valor = number_format($req->valor , 2);
                                                     //44765F040CC6D355B69B7660F8809E5664DE315FB287EC6C91DBCFED7924D819 <-- codigo do token para teste
-            $boletoFacil = new BoletoFacilController("68F80F3C7D9878DA0792E10945D365D6DB7275B79546E76691B560E2866E4AB4");
+            $boletoFacil = new BoletoFacilController("6BCF4B1F1AA3B2EBA41F4465D14EB15348EFD22728D32EF4D884BA2AB0FE5C8B");
             $data = date("d/m/Y");
             $new = date("d/m/Y" , strtotime("+10 days"));
             $boletoFacil->createCharge($nome, $cpf, "Doação para o fundo municipal da criança e do adolescente de araçoiaba", $valor, $new,$notification);
             $boletoFacil->payerEmail = $email;
             $boleto = json_decode($boletoFacil->issueCharge(), true);
-
+    
             if ($boleto != null) {
-            $date = $boleto['data']['charges'][0]['dueDate'];
-            $model = new Doacao_boleto;
-            $model->doador_nome = $nome;
-            $model->doador_cpf = $cpf;
-            $model->doador_email = $email;
-            $model->code = $boleto['data']['charges'][0]['code'];
-            $model->link = $boleto['data']['charges'][0]['link'];
-            $model->valor_total = $valor;
-            $model->metodo_pagamento = "boleto";
-            $model->vencimento = $date;
-            $model->cod_barra = $boleto['data']['charges'][0]['payNumber'];
-            $model->status = "AUTHORIZED";
-            $resultado = $model->save();
-            $link_boleto = $boleto['data']['charges'][0]['link'];
-            $cod =$boleto['data']['charges'][0]['payNumber'];
+                $date = $boleto['data']['charges'][0]['dueDate'];
+                $model = new Doacao_boleto;
+                $model->doador_nome = $nome;
+                $model->doador_cpf = $cpf;
+                $model->doador_email = $email;
+                $model->code = $boleto['data']['charges'][0]['code'];
+                $model->link = $boleto['data']['charges'][0]['link'];
+                $model->valor_total = $valor;
+                $model->metodo_pagamento = "boleto";
+                $model->vencimento = $date;
+                $model->cod_barra = $boleto['data']['charges'][0]['payNumber'];
+                $model->status = "AUTHORIZED";
+                $resultado = $model->save();
+                $link_boleto = $boleto['data']['charges'][0]['link'];
+                $cod =$boleto['data']['charges'][0]['payNumber'];
             if ($resultado == true) {
-                   return view('layouts.retorno_boleto', compact('nome','link_boleto', 'cod','email'));
-                return  "sucesso ao gerar boleto".json_encode($boleto['data']['charges'][0]);
+                return view('layouts.retorno_boleto', compact('nome','link_boleto', 'cod','email'));
             }
                 return $dado;
             }
@@ -164,7 +92,7 @@ class CalculadoraController extends Controller
             $valorparcelado = number_format($valor / $parcelas, 2);
             $email = htmlspecialchars($req->email);
             $notification = "https://comdicaaracoiabape.com.br/api/transacoes/notification";
-            $boletoFacil = new BoletoFacilController("68F80F3C7D9878DA0792E10945D365D6DB7275B79546E76691B560E2866E4AB4");
+            $boletoFacil = new BoletoFacilController("6BCF4B1F1AA3B2EBA41F4465D14EB15348EFD22728D32EF4D884BA2AB0FE5C8B");
             $data = date("d/m/Y");
             $new = date("d/m/Y" , strtotime("+10 days"));
             $boletoFacil->createCharge($nome, $cpf, "Doação para o fundo municipal da criança e do adolescente de araçoiaba", $valorparcelado, $new,$notification);
@@ -225,7 +153,7 @@ class CalculadoraController extends Controller
           $tokens = Tokens::get();
           $count =0;
           foreach ($tokens as $count => $token) {
-          $notification = new BoletoFacilController("68F80F3C7D9878DA0792E10945D365D6DB7275B79546E76691B560E2866E4AB4");
+          $notification = new BoletoFacilController("6BCF4B1F1AA3B2EBA41F4465D14EB15348EFD22728D32EF4D884BA2AB0FE5C8B");
           $objeto_token = json_decode($notification->fetchPaymentDetails($token['paymentToken']) , true);
 
 
