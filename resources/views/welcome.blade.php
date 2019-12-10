@@ -36,10 +36,38 @@ if ('serviceWorker' in navigator) {
     </script>
 </head>
 <body>
+    <!-- Modal -->
+    <div class="modal fade col-md-12 col-12" id="modaldenuncia" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog col-md-12 col-12" role="document">
+        <div class="modal-content col-md-12 col-12">
+        <div class="modal-header col-md-12 col-12">
+            <h5 class="modal-title text-danger" id="exampleModalLabel">Aviso preventivo</h5>
+            </button>
+        </div>
+        <div class="modal-body">
+            Confirmo que as informações prestadas nesse formulario de denuncia são verdadeiras e estou ciente de que 
+            o uso inapropriado da ferramenta de denuncias pode causar prisão com base no artigo
+             340 – A ao Decreto Lei nº 2.848 de
+                07 de dezembro de 1940 (Código Penal):
+                “Comunicação falsa – Trote”
+                Art. 340 – A: Comunicar a Autoridade Pública, utilizando-se de
+                qualquer meio de comunicação, a ocorrência de fato que sabe
+                ou deva saber não ser verdadeiro.
+                Pena: Detenção, de 01(um) a 03(três) anos, e multa de 01(um)
+                a 10(dez) salários mínimos, a ser revertida às Secret   rias
+                Estaduais de Segurança Pública ou órgão similar.
+        </div>
+        <div class="modal-footer">
+            <a type="button"  href="/" class="btn btn-secondary" >Não confirmo</a>
+            <button type="button" style="background:blue;" class="btn btn-primary" data-dismiss="modal">Confirmo estar ciente</button>
+        </div>
+        </div>
+    </div>
+    </div>
     <div class="container mb-5">
         <div class="row">
             <div class="col col1" style="">
-                <div style="margin-left:5px;"><h4><i class="fa fa-volume-up"></i> Denunciar Abuso</h4></div>
+                <div style="margin-left:5px;"><h4><i class="fa fa-volume-up"></i> Denunciar incidente em Araçoiaba</h4></div>
             </div>
         </div>
         <div class="row mt-2">
@@ -48,7 +76,7 @@ if ('serviceWorker' in navigator) {
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a id="bar1" class="nav-link disabled" href="#">1. Dados Gerais</a>
+                                <a id="bar1" class="nav-link disabled" href="#">1. Dados Gerais da vítima</a>
                             </li>
                             <li class="nav-item">
                                 <a id="bar2" class="nav-link disabled" href="#">2. Dados de Ocorrência</a>
@@ -69,11 +97,11 @@ if ('serviceWorker' in navigator) {
                             <div id="step1" class="step">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Nome :</label>
+                                        <label for="inputEmail4">Nome da vítima:</label>
                                         <input type="text" name="name"class="form-control" id="inputEmail4" placeholder="Nome">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Sexo :</label>
+                                        <label for="inputPassword4">Sexo da vítima:</label>
                                         <select name="gender" id="sexo" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="F">Feminino</option>
@@ -83,7 +111,7 @@ if ('serviceWorker' in navigator) {
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Etnia :</label>
+                                        <label for="inputPassword4">Etnia da vítima:</label>
                                         <select name="ethnicity" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Branco">Branco</option>
@@ -93,7 +121,7 @@ if ('serviceWorker' in navigator) {
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Você é gestante? :</label>
+                                        <label for="inputPassword4">Vítima gestante? :</label>
                                         <fieldset id="fieldset" disabled>
                                             <select name="pregnant" id="gestante" class="form-control">
                                                 <option value="">Selecione uma opção</option>
@@ -105,11 +133,11 @@ if ('serviceWorker' in navigator) {
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Nome do Responsável :</label>
+                                        <label for="inputEmail4">Nome do responsável da vítima:</label>
                                         <input type="text" name="responsible" class="form-control" id="inputEmail4" placeholder="Nome do Responsável">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Localidade :</label>
+                                        <label for="inputEmail4">Localidade da vítima:</label>
                                         <select name="locality" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Centro">Centro</option>
@@ -145,11 +173,11 @@ if ('serviceWorker' in navigator) {
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Telefone:</label>
+                                        <label for="inputEmail4">Telefone da vítima:</label>
                                         <input type="text" name="number" class="form-control" id="inputEmail4" placeholder="Telefone">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Deficiente ? :</label>
+                                        <label for="inputEmail4">Vítima deficiente ? :</label>
                                         <select name="deficient" id="" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="1">Sim</option>
@@ -388,6 +416,7 @@ if ('serviceWorker' in navigator) {
 $(document).ready(function(){
             $('.step').hide()
             $('.step').first().show()
+            $('#modaldenuncia').modal('show'); 
             //Passo exibido
             var showStep= function(){
                 var step = parseInt($(".step:visible").index());

@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="/css/owl.carousel.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/magnific-popup.css">
-    <link rel="stylesheet" href="/css/jquery-ui.css">
     <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mediaelement@4.2.7/build/mediaelementplayer.min.css">
     <link rel="stylesheet" href="/css/style1.css">
@@ -181,7 +180,6 @@
       <script src="js/jquery-migrate-3.0.1.min.js"></script>
       <script src="js/jquery-ui.js"></script>
       <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.min.js"></script>
       <script src="js/jquery.stellar.min.js"></script>
       <script src="js/jquery.magnific-popup.min.js"></script>
 
