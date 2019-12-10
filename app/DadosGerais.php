@@ -12,7 +12,7 @@ class DadosGerais extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-    	'respGeral','respOcorrencia','respViolencia','respLesao','respAgressor'
+    	'hashDenun','respGeral','respOcorrencia','respViolencia','respLesao','respAgressor'
     ];
 	protected $date 	= ['created_at','update_at'];
 

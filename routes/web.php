@@ -42,6 +42,8 @@ Route::post('/admin/update/save', ['as' => 'admin.update.save', 'uses' => 'Admin
 
 Route::post('/admin/update_save/{id}', ['as' => 'admin.update_save', 'uses' => 'PostagemController@update_save'])->middleware('auth');
 Route::get('/admin/minhas_postagens', ['as' => 'admin.minhas_postagens', 'uses' => 'PostagemController@minhas_postagens'])->middleware('auth');
+Route::get('/admin/lista_denuncias', ['as' => 'admin.lista_denuncias', 'uses' => 'DenunciaController@lista_denuncias'])->middleware('auth');
+Route::get('/admin/show_denuncia/{id}', ['as' => 'admin.show_denuncia', 'uses' => 'DenunciaController@show_denuncia'])->middleware('auth');
 Route::get('/admin/post/delete/{id}', ['as' => 'delete_postagem', 'uses' => 'PostagemController@destroy'])->middleware('auth');
 Route::get('/admin/nova-postagem', ['as' => 'admin.nova', 'uses' => 'PostagemController@nova_postagem'])->middleware('auth');
 Route::post('/admin/postagem_save', ['as' => 'admin.salvar', 'uses' => 'PostagemController@salvar_postagem'])->middleware('auth');
@@ -54,7 +56,5 @@ Route::get('/email/verify/{email}', ['as' => 'status', 'uses' => 'EmailsControll
 Route::put('/denuncia/store', ['as' => 'denuncia.store', 'uses' => 'DenunciaController@store']);
 Route::get('/denuncia', ['as' => 'denuncia', 'uses' => 'DenunciaController@denuncia']);
 Route::get('/offline', ['as' => 'offline', 'uses' => 'DenunciaController@offline']);
+Route::get('/success', ['as' => 'success', 'uses' => 'DenunciaController@success']);
 
-Route::get('success', function () {
-    return view('success');
-})->name('success');

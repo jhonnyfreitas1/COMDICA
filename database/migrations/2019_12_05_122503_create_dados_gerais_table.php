@@ -15,6 +15,7 @@ class CreateDadosGeraisTable extends Migration
     {
         Schema::create('dados_gerais', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('hashDenun')->nullable();
             
             /** Chave Estrangeira da tabela resp_gerals*/          
             $table->Integer('respGeral')->unsigned();

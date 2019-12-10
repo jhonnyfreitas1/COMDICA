@@ -9,6 +9,8 @@ use App\RespViolencia;
 use App\RespLesao;
 use App\RespAgressor;
 use App\DadosGerais;
+use Illuminate\Support\Facades\DB;
+
 
 
 class DenunciaController extends Controller
@@ -69,17 +71,50 @@ class DenunciaController extends Controller
     	//Adicionando na tabela dados_gerais
 		$dadosGerais = new DadosGerais;
 		$dadosGerais->respGeral = $respGeral['id'];
+		$dadosGerais->hashDenun = 'denun';
 		$dadosGerais->respOcorrencia = $respOcorrencia['id'];
 		$dadosGerais->respViolencia = $respViolencia['id'];
 		$dadosGerais->respLesao = $respLesao['id'];
 		$dadosGerais->respAgressor = $respAgressor['id'];
         $dadosGerais->save();
-        return redirect()->route('success');
+
+        //Adicionando o Hash na denúncia
+        $recupDenun = DadosGerais::where('id','=', $dadosGerais->id)->first();
+        $recupDenun->hashDenun = $dadosGerais->hashDenun.$dadosGerais->id;
+        $recupDenun->save();
+
+        $hash = $recupDenun->hashDenun;
+        return view('success', compact('hash'));
     }
+    public function show_denuncia($id){
+
+        $denuncia = DB::table('dados_gerais')
+            		->join('resp_gerals', 'resp_gerals.id', '=' , 'respGeral')
+            		->join('resp_ocorrencias', 'resp_ocorrencias.id', '=' , 'respOcorrencia')
+            		->join('resp_violencias', 'resp_violencias.id', '=' , 'respViolencia')
+            		->join('resp_lesaos', 'resp_lesaos.id', '=' , 'respLesao')
+            		->join('resp_agressors', 'resp_agressors.id', '=' , 'respAgressor')
+                    ->select('dados_gerais.id','dados_gerais.hashDenun','resp_gerals.*','resp_ocorrencias.*','resp_violencias.*','resp_lesaos.*','resp_agressors.*')
+        			->where('dados_gerais.id','=',$id)
+                    ->get();
+                    
+
+         // return var_dump($denuncia);
+
+        // $denuncia = DadosGerais::where('id','=', $id)->first();
+        return view('admin/show_denuncia', compact('denuncia'));
+    }
+    public function lista_denuncias(){
+		$denuncias = DB::table('dados_gerais')->paginate(8);
+		return  view('admin.lista_denuncias')->with(compact('denuncias'));    
+ 	}
     public function denuncia(){
         return view('welcome');
     }
     public function offline(){
         return view('offline');
+    }
+    public function success(){
+        return view('success');
     }
 }

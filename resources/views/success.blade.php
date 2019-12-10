@@ -86,6 +86,9 @@
             transform: rotate(-45deg);
             background-color: #f2f2f2;
         }
+        h5{
+            color: rgba(13, 97, 5);
+        }
         h6{
             color: rgba(13, 97, 5);
         }
@@ -176,7 +179,12 @@
                 <div class="icon-fix"></div>
             </div>
         </div>
-        <i><h6>Sua Denúncia Foi Realizada Com Sucesso!</h6></i>
+        <i><h5>Sua Denúncia Foi Realizada Com Sucesso!</h5></i>
+        @isset($hash)
+            <i><h6>Hash da Denúncia = {{$hash}}</h6></i>
+        @else
+            <i><h6>Hash da Denúncia = @isset($_GET['hash']) {{$_GET['hash']}} @endisset</h6></i>
+        @endisset
         <hr class="hr-1">
         {{-- <a href="{{route('denuncia.store')}}"><button class="btn btn-outline-success" style="background-color:white;color:rgba(13, 97, 5);border-color:rgba(13, 97, 5);"><i>Voltar ao Site</i></button></a> --}}
         <a href="{{route('denuncia')}}"><button class="btn btn" style="background-color:#f2f2f2;color:rgba(13, 97, 5);border-color:rgba(13, 97, 5);"><i>Realizar Outra Denúncia</i></button></a>
