@@ -1,4 +1,4 @@
-const cache_NAME = 'pwa=v1 - '+ new Date();
+const cache_NAME = 'sw - comdica';
 
 self.addEventListener('install', function(event) {
   event.waitUntil(

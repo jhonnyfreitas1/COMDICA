@@ -26,7 +26,8 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js', {scope: '/'})
   .then(function(reg) {
     // registration worked
-    console.log('Registration succeeded. Scope is ' + reg.scope);
+    reg.update();
+    // console.log('Registration succeeded. Scope is ' + reg.scope);
   }).catch(function(error) {
     // registration failed
     console.log('Registration failed with ' + error);
@@ -69,11 +70,11 @@ if ('serviceWorker' in navigator) {
                             <div id="step1" class="step">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Nome :</label>
-                                        <input type="text" name="name"class="form-control" id="inputEmail4" placeholder="Nome">
+                                        <label for="name">Nome :</label>
+                                        <input type="text" name="name"class="form-control" id="name" placeholder="Nome">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Sexo :</label>
+                                        <label for="sexo">Sexo :</label>
                                         <select name="gender" id="sexo" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="F">Feminino</option>
@@ -83,8 +84,8 @@ if ('serviceWorker' in navigator) {
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Etnia :</label>
-                                        <select name="ethnicity" id="" class="form-control">
+                                        <label for="ethnicity">Etnia :</label>
+                                        <select name="ethnicity" id="ethnicity" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Branco">Branco</option>
                                             <option value="Pardo">Pardo</option>
@@ -93,7 +94,7 @@ if ('serviceWorker' in navigator) {
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Você é gestante? :</label>
+                                        <label for="fieldset">Você é gestante? :</label>
                                         <fieldset id="fieldset" disabled>
                                             <select name="pregnant" id="gestante" class="form-control">
                                                 <option value="">Selecione uma opção</option>
@@ -105,12 +106,12 @@ if ('serviceWorker' in navigator) {
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Nome do Responsável :</label>
-                                        <input type="text" name="responsible" class="form-control" id="inputEmail4" placeholder="Nome do Responsável">
+                                        <label for="responsible">Nome do Responsável :</label>
+                                        <input type="text" name="responsible" class="form-control" id="responsible" placeholder="Nome do Responsável">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Localidade :</label>
-                                        <select name="locality" id="" class="form-control">
+                                        <label for="locality">Localidade :</label>
+                                        <select name="locality" id="locality" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Centro">Centro</option>
                                             <option value="Quinze">Quinze</option>
@@ -131,26 +132,26 @@ if ('serviceWorker' in navigator) {
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail4">Logradouro :</label>
-                                        <input type="text" name="street" class="form-control" id="inputEmail4" placeholder="Logradouro">
+                                        <label for="street">Logradouro :</label>
+                                        <input type="text" name="street" class="form-control" id="street" placeholder="Logradouro">
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail4">Complemento :</label>
-                                        <input type="text" name="complement" class="form-control" id="inputEmail4" placeholder="Ex : Casa, Apartamento">
+                                        <label for="complement">Complemento :</label>
+                                        <input type="text" name="complement" class="form-control" id="complement" placeholder="Ex : Casa, Apartamento">
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail4">Número da residência :</label>
-                                        <input type="number" name="residence" min="0" class="form-control" id="inputEmail4" placeholder="Ex : 22, 30">
+                                        <label for="residence">Número da residência :</label>
+                                        <input type="number" name="residence" min="0" class="form-control" id="residence" placeholder="Ex : 22, 30">
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Telefone:</label>
-                                        <input type="text" name="number" class="form-control" id="inputEmail4" placeholder="Telefone">
+                                        <label for="number">Telefone:</label>
+                                        <input type="text" name="number" class="form-control" id="number" placeholder="Telefone">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Deficiente ? :</label>
-                                        <select name="deficient" id="" class="form-control">
+                                        <label for="deficient">Deficiente ? :</label>
+                                        <select name="deficient" id="deficient" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="1">Sim</option>
                                             <option value="0">Não</option>
@@ -161,8 +162,8 @@ if ('serviceWorker' in navigator) {
                             <div id="step2" class="step">
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail4">Local da ocorrência :</label>
-                                        <select name="occurrence" id="" class="form-control">
+                                        <label for="ocurrence">Local da ocorrência :</label>
+                                        <select name="occurrence" id="ocurrence" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Residência">Residência</option>
                                             <option value="Habilitação Coletiva">Habitação Coletiva</option>
@@ -176,16 +177,16 @@ if ('serviceWorker' in navigator) {
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail4">Ocorreu outras vezes? :</label>
-                                        <select name="otherOcurrence" id="" class="form-control">
+                                        <label for="otherOcurrence">Ocorreu outras vezes? :</label>
+                                        <select name="otherOcurrence" id="otherOcurrence" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="1">Sim</option>
                                             <option value="0">Não</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail4">A lesão foi autoprovocada? :</label>
-                                        <select name="autoProvocated" id="" class="form-control">
+                                        <label for="autoProvocated">A lesão foi autoprovocada? :</label>
+                                        <select name="autoProvocated" id="autoProvocated" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="1">Sim</option>
                                             <option value="0">Não</option>
@@ -196,7 +197,7 @@ if ('serviceWorker' in navigator) {
                             <div id="step3" class="step">
                                 <div class="form-row" >
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail4">Tipo de violência :</label>
+                                        <label for="violencia">Tipo de violência :</label>
                                         <select name="violence" id="violencia" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Física">Física</option>
@@ -212,8 +213,8 @@ if ('serviceWorker' in navigator) {
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail4">Meio de Agressão :</label>
-                                        <select name="agression" id="" class="form-control">
+                                        <label for="agression">Meio de Agressão :</label>
+                                        <select name="agression" id="agression" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Força corporal/Espancamento">Força corporal/Espancamento</option>
                                             <option value="Enforcamento">Enforcamento</option>
@@ -227,8 +228,8 @@ if ('serviceWorker' in navigator) {
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputPassword4">Consequência da Ocorrência : </label>
-                                        <select name="consOcurrence" id="" class="form-control">
+                                        <label for="consOcurrence">Consequência da Ocorrência : </label>
+                                        <select name="consOcurrence" id="consOcurrence" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Aborto">Aborto</option>
                                             <option value="Gravidez">Gravidez</option>
@@ -243,8 +244,8 @@ if ('serviceWorker' in navigator) {
                                 </div>
                                 <div class="form-row" id="violenceType" hidden>
                                     <div class="form-group col-md-4" >
-                                        <label for="inputEmail4">Tipo de Violência Sexual :</label>
-                                        <select name="violenceType" id="" class="form-control">
+                                        <label for="violenceType">Tipo de Violência Sexual :</label>
+                                        <select name="violenceType" id="violenceType" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Assédio Sexual">Assédio Sexual</option>
                                             <option value="Atentado Violento ao Pudor">Atentado Violento ao Pudor</option>
@@ -254,7 +255,7 @@ if ('serviceWorker' in navigator) {
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputPassword4">Ocorreu penetração? </label>
+                                        <label for="penetracao">Ocorreu penetração? </label>
                                         <select name="penetration" id="penetracao" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="1">Sim</option>
@@ -262,8 +263,8 @@ if ('serviceWorker' in navigator) {
                                         </select>
                                     </div>
                                     <div class="form-group col-md-4" id="penetracaoType" hidden>
-                                        <label for="inputPassword4">Tipo de Penetração : </label>
-                                        <select name="penetrationType" id="" class="form-control">
+                                        <label for="penetrationType">Tipo de Penetração : </label>
+                                        <select name="penetrationType" id="penetrationType" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Anal">Anal</option>
                                             <option value="Oral">Oral</option>
@@ -275,8 +276,8 @@ if ('serviceWorker' in navigator) {
                             <div id="step4" class="step">
                                 <div class="form row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Natureza da Lesão :</label>
-                                        <select name="nature" id="" class="form-control">
+                                        <label for="nature">Natureza da Lesão :</label>
+                                        <select name="nature" id="nature" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Contusão">Contusão</option>
                                             <option value="Corte/Perfuração/Laceração">Corte/Perfuração/Laceração</option>
@@ -292,8 +293,8 @@ if ('serviceWorker' in navigator) {
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Parte do Corpo Atingida :</label>
-                                        <select name="bodyPart" id="" class="form-control">
+                                        <label for="bodyPart">Parte do Corpo Atingida :</label>
+                                        <select name="bodyPart" id="bodyPart" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Cabeça/Rosto">Cabeça/Rosto</option>
                                             <option value="Pescoço">Pescoço</option>
@@ -313,8 +314,8 @@ if ('serviceWorker' in navigator) {
                             <div id="step5" class="step">
                                 <div class="form row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Número de envolvidos :</label>
-                                        <input type="number" name="agressorNumber" class="form-control" value='0'>
+                                        <label for="agressorNumber">Número de envolvidos :</label>
+                                        <input type="number" name="agressorNumber" id="agressorNumber" class="form-control" value='0'>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Vínculo Social : </label>
@@ -343,8 +344,8 @@ if ('serviceWorker' in navigator) {
                                 </div>
                                 <div class="form row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Sexo do Provável Agressor :</label>
-                                        <select name="parent" id="" class="form-control">
+                                        <label for="parent">Sexo do Provável Agressor :</label>
+                                        <select name="parent" id="parent" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Feminino">Feminino</option>
                                             <option value="Masculino">Masculino</option>
@@ -353,8 +354,8 @@ if ('serviceWorker' in navigator) {
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Provável uso de Álcool : </label>
-                                        <select name="alcool" id="" class="form-control">
+                                        <label for="alcool">Provável uso de Álcool : </label>
+                                        <select name="alcool" id="alcool" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="1">Sim</option>
                                             <option value="0">Não</option>
