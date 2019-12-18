@@ -59,16 +59,19 @@
         <div class="" style="">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="btn btn-info my-2 my-sm-0 m-1 font-weight-bold " style="" href="/sou_doador">Sou doador<span class="sr-only">(Página atual)</span></a>
+              <a class="btn btn-warning text-light  my-2 my-sm-0 m-1 font-weight-bold " style=" background:none; border:none;" href="/sou_doador">Sou doador<span class="sr-only">(Página atual)</span></a>
             </li>
             <li class="nav-item active">
-            <a class="btn btn-info my-2 my-sm-0 m-1 font-weight-bold " style="" href="/calculadora">Calculadora de IR</a>
+            <a class="btn btn-warning text-light  my-2 my-sm-0 m-1 font-weight-bold " style=" background:none; border:none; " href="/calculadora">Calculadora de IR</a>
             </li>
             <li class="nav-item active">  
-              <a class="btn btn-info my-2 my-sm-0 m-1 font-weight-bold " style="" href="/contato">Contato</a>
+              <a class="btn btn-warning text-light  my-2 my-sm-0 m-1 font-weight-bold " style=" background:none; border:none; " href="/contato">Contato</a>
             </li>
             <li class="nav-item active">  
-              <a class="btn btn-info my-2 my-sm-0 m-1 font-weight-bold " style="" href="/porque_doar">Por que doar?</a>
+              <a class="btn btn-warning text-light  my-2 my-sm-0 m-1 font-weight-bold " style=" background:none; border:none; " href="/porque_doar">Por que doar?</a>
+            </li>
+            <li class="nav-item active">  
+              <a class="btn btn-warning text-light  my-2 my-sm-0 m-1 font-weight-bold " style=" background:none; border:none; " href="/denuncia">Denuncias Araçoiaba</a>
             </li>
           </ul>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

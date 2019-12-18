@@ -37,10 +37,38 @@ if ('serviceWorker' in navigator) {
     </script>
 </head>
 <body>
+    <!-- Modal -->
+    <div class="modal fade col-md-12 col-12" id="modaldenuncia" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog col-md-12 col-12" role="document">
+        <div class="modal-content col-md-12 col-12">
+        <div class="modal-header col-md-12 col-12">
+            <h5 class="modal-title text-danger" id="exampleModalLabel">Aviso preventivo</h5>
+            </button>
+        </div>
+        <div class="modal-body">
+            Confirmo que as informações prestadas nesse formulario de denuncia são verdadeiras e estou ciente de que 
+            o uso inapropriado da ferramenta de denuncias pode causar prisão com base no artigo
+             340 – A ao Decreto Lei nº 2.848 de
+                07 de dezembro de 1940 (Código Penal):
+                “Comunicação falsa – Trote”
+                Art. 340 – A: Comunicar a Autoridade Pública, utilizando-se de
+                qualquer meio de comunicação, a ocorrência de fato que sabe
+                ou deva saber não ser verdadeiro.
+                Pena: Detenção, de 01(um) a 03(três) anos, e multa de 01(um)
+                a 10(dez) salários mínimos, a ser revertida às Secret   rias
+                Estaduais de Segurança Pública ou órgão similar.
+        </div>
+        <div class="modal-footer">
+            <a type="button"  href="/" class="btn btn-secondary" >Não confirmo</a>
+            <button type="button" style="background:blue;" class="btn btn-primary" data-dismiss="modal">Confirmo estar ciente</button>
+        </div>
+        </div>
+    </div>
+    </div>
     <div class="container mb-5">
         <div class="row">
             <div class="col col1" style="">
-                <div style="margin-left:5px;"><h4><i class="fa fa-volume-up"></i> Denunciar Abuso</h4></div>
+                <div style="margin-left:5px;"><h4><i class="fa fa-volume-up"></i> Denunciar incidente em Araçoiaba</h4></div>
             </div>
         </div>
         <div class="row mt-2">
@@ -49,7 +77,7 @@ if ('serviceWorker' in navigator) {
                     <div class="card-header">
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a id="bar1" class="nav-link disabled" href="#">1. Dados Gerais</a>
+                                <a id="bar1" class="nav-link disabled" href="#">1. Dados Gerais da vítima</a>
                             </li>
                             <li class="nav-item">
                                 <a id="bar2" class="nav-link disabled" href="#">2. Dados de Ocorrência</a>
@@ -389,6 +417,7 @@ if ('serviceWorker' in navigator) {
 $(document).ready(function(){
             $('.step').hide()
             $('.step').first().show()
+            $('#modaldenuncia').modal('show'); 
             //Passo exibido
             var showStep= function(){
                 var step = parseInt($(".step:visible").index());
