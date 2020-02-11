@@ -66,5 +66,17 @@ Route::post('/admin/update_save/{id}', ['as' => 'admin.update_save', 'uses' => '
 Route::get('/admin/postagem_edit/{id}', ['as' => 'admin.postagem_edit', 'uses' => 'AdminController@edit'])->middleware('auth');
 
 
+//Rotas de instituições
+Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
+	Route::get('/instituicoes', ['as' => 'instituicao.index', 'uses' => 'instituicoesController@index']);
+	Route::get('/instituicoes/create',['as' => 'instituicao.create', 'uses' => 'instituicoesController@create']);
+	Route::post('/instituicoes/store',['as' => 'instituicao.store', 'uses' => 'instituicoesController@store']);
+	Route::get('/instituicoes/{id}',['as' => 'instituicao.show', 'uses' => 'instituicoesController@show']);
+	Route::get('/instituicoes/edit/{id}',['as' => 'instituicao.edit', 'uses' => 'instituicoesController@edit']);
+	Route::put('/instituicoes/update/{id}',['as' => 'instituicao.update', 'uses' => 'instituicoesController@update']);
+	Route::get('/instituicoes/destroy/{id}',['as' => 'instituicao.destroy', 'uses' => 'instituicoesController@destroy']);
+});
+
+
 //Rotas de email 
 Route::get('/email/verify/{email}', ['as' => 'status', 'uses' => 'EmailsController@verificar']);
