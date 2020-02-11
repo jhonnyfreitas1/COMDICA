@@ -19,6 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            /** Chave Estrangeira do banco tipos_users*/          
+            $table->Integer('tipo_user')->unsigned();
+            $table->foreign('tipo_user')->references('id')->on('tipos_users')->onDelete('cascade');
+
             $table->rememberToken();
             $table->timestamps();
         });
