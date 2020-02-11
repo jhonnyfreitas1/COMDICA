@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\hasMany;
 use App\User;
-use Illuminate\Database\Eloquent\Relations\belongsTo;
+
 class Postagem extends Model
 {
       public $timestamps = true;
@@ -20,7 +21,7 @@ class Postagem extends Model
       ];
 
       public function user_id(){
-      	return $this->belongsTo(User::class);
+      	return $this->hasMany(User::class);
       }
 
  }
