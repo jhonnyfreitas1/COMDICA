@@ -30,24 +30,37 @@ Route::get('/calculadora/termos_e_regras','HomeController@termo');
 Route::get('sou_doador/verificar/pagamento/','HomeController@verificar_recibo');
 
 //Rotas admin
-Route::get('/admin/comdica', ['as' => 'admin', 'uses' => 'AdminController@index'])->middleware('auth');
-Route::get('/admin/contato', ['as' => 'admin.contato', 'uses' => 'AdminController@contato'])->middleware('auth');
-Route::get('/admin/contato/{id}', ['as' => 'admin.contato.id', 'uses' => 'AdminController@contato_single'])->middleware('auth');
-Route::get('/admin/doacoes', ['as' => 'admin.boleto', 'uses' => 'AdminController@doacoes_boleto'])->middleware('auth');
-Route::get('/admin/back', ['as' => 'admin.back', 'uses' => 'AdminController@back'])->middleware('auth');
 Route::get('/auth/logout', 'Auth\LoginController@logout')->middleware('auth');
-Route::get('/admin/update', ['as' => 'admin.update', 'uses' => 'AdminController@update'])->middleware('auth');
-Route::post('/admin/update/save', ['as' => 'admin.update.save', 'uses' => 'AdminController@store'])->middleware('auth');
+Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
+	
+	Route::get('/comdica', ['as' => 'admin', 'uses' => 'AdminController@index']);
+	Route::get('/contato', ['as' => 'admin.contato', 'uses' => 'AdminController@contato']);
+	Route::get('/contato/{id}', ['as' => 'admin.contato.id', 'uses' => 'AdminController@contato_single']);
+	Route::get('/doacoes', ['as' => 'admin.boleto', 'uses' => 'AdminController@doacoes_boleto']);
+	Route::get('/back', ['as' => 'admin.back', 'uses' => 'AdminController@back']);
+	Route::get('/update', ['as' => 'admin.update', 'uses' => 'AdminController@update']);
+	Route::post('/update/save', ['as' => 'admin.update.save', 'uses' => 'AdminController@store']);
+
+	Route::post('/update_save/{id}', ['as' => 'admin.update_save', 'uses' => 'PostagemController@update_save']);
+	Route::get('/minhas_postagens', ['as' => 'admin.minhas_postagens', 'uses' => 'PostagemController@minhas_postagens']);
+	Route::get('/lista_denuncias', ['as' => 'admin.lista_denuncias', 'uses' => 'DenunciaController@lista_denuncias']);
+	Route::get('/show_denuncia/{id}', ['as' => 'admin.show_denuncia', 'uses' => 'DenunciaController@show_denuncia']);
+	Route::get('/post/delete/{id}', ['as' => 'delete_postagem', 'uses' => 'PostagemController@destroy']);
+	Route::get('/nova-postagem', ['as' => 'admin.nova', 'uses' => 'PostagemController@nova_postagem']);
+	Route::post('/postagem_save', ['as' => 'admin.salvar', 'uses' => 'PostagemController@salvar_postagem']);
+	Route::get('/postagem_edit/{id}', ['as' => 'admin.postagem_edit', 'uses' => 'PostagemController@edit']);
+
+//Rotas de instituições
+	Route::get('/instituicoes', ['as' => 'instituicao.index', 'uses' => 'instituicoesController@index']);
+	Route::get('/instituicoes/create',['as' => 'instituicao.create', 'uses' => 'instituicoesController@create']);
+	Route::post('/instituicoes/store',['as' => 'instituicao.store', 'uses' => 'instituicoesController@store']);
+	Route::get('/instituicoes/{id}',['as' => 'instituicao.show', 'uses' => 'instituicoesController@show']);
+	Route::get('/instituicoes/edit/{id}',['as' => 'instituicao.edit', 'uses' => 'instituicoesController@edit']);
+	Route::put('/instituicoes/update/{id}',['as' => 'instituicao.update', 'uses' => 'instituicoesController@update']);
+	Route::get('/instituicoes/destroy/{id}',['as' => 'instituicao.destroy', 'uses' => 'instituicoesController@destroy']);
+});
 
 
-Route::post('/admin/update_save/{id}', ['as' => 'admin.update_save', 'uses' => 'PostagemController@update_save'])->middleware('auth');
-Route::get('/admin/minhas_postagens', ['as' => 'admin.minhas_postagens', 'uses' => 'PostagemController@minhas_postagens'])->middleware('auth');
-Route::get('/admin/lista_denuncias', ['as' => 'admin.lista_denuncias', 'uses' => 'DenunciaController@lista_denuncias'])->middleware('auth');
-Route::get('/admin/show_denuncia/{id}', ['as' => 'admin.show_denuncia', 'uses' => 'DenunciaController@show_denuncia'])->middleware('auth');
-Route::get('/admin/post/delete/{id}', ['as' => 'delete_postagem', 'uses' => 'PostagemController@destroy'])->middleware('auth');
-Route::get('/admin/nova-postagem', ['as' => 'admin.nova', 'uses' => 'PostagemController@nova_postagem'])->middleware('auth');
-Route::post('/admin/postagem_save', ['as' => 'admin.salvar', 'uses' => 'PostagemController@salvar_postagem'])->middleware('auth');
-Route::get('/admin/postagem_edit/{id}', ['as' => 'admin.postagem_edit', 'uses' => 'PostagemController@edit'])->middleware('auth');
 
 //Rotas de email
 Route::get('/email/verify/{email}', ['as' => 'status', 'uses' => 'EmailsController@verificar']);
