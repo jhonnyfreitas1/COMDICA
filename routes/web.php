@@ -33,6 +33,8 @@ Route::get('sou_doador/verificar/pagamento/','HomeController@verificar_recibo');
 Route::get('/auth/logout', 'Auth\LoginController@logout')->middleware('auth');
 Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 	
+	Route::get('/register', ['as' => 'admin', 'uses' => 'Auth\RegisterController@redirectCreate']);
+
 	Route::get('/comdica', ['as' => 'admin', 'uses' => 'AdminController@index']);
 	Route::get('/contato', ['as' => 'admin.contato', 'uses' => 'AdminController@contato']);
 	Route::get('/contato/{id}', ['as' => 'admin.contato.id', 'uses' => 'AdminController@contato_single']);
