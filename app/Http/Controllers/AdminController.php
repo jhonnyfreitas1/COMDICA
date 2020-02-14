@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Doacao_boleto;
 use App\Contato;
 use App\User;
+use App\Tipo_user;
 use App\Postagem;
 use Illuminate\Support\Facades\Redirect;
 
@@ -102,4 +103,17 @@ class AdminController extends Controller
         $user = User::find(Auth::id());
         return view('admin.admin_update' , compact('user'))->with(compact('user'));
     } 
+
+    // Métodos do usuário
+    public function list_users(){
+        $usuarios = DB::table('users')->paginate(10);
+        return view('auth.listusers' , compact('usuarios'));
+    }
+    public function show_user($id){
+        $usuario = User::where('id', $id)->get();
+        $usuario = $usuario[0];
+        $tipos = Tipo_user::all();
+        return view('auth.showuser' , compact('usuario','tipos'));
+    }
+
 }
