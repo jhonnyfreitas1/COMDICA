@@ -44,26 +44,26 @@
 
 				<li class="grid-1-3">
 					<div class="produtos_icone">
-						<img src="{{asset('img/database.png')}} "alt="">
+						<img src="{{asset('img/Denun.png')}} "alt="">
 					</div>
 					<h3>Denúncias</h3>
-					<p>O Comdica tem um sistema único de denúncias para todas as idades. :).</p>
+					<p>O Comdica tem um sistema único de denúncias para adultos e crianças de todas as idades.</p>
 				</li>
 
 				<li class="grid-1-3">
 					<div class="produtos_icone">
-						<img src="{{asset('img/database.png')}}" alt="">
+						<img src="{{asset('img/calculadora.png')}}" alt="">
 					</div>
 					<h3>Doar</h3>
-					<p>Ainda assim, existem dúvidas a respeito de como a necessidade de renovação.</p>
+					<p>Você sabia que você pode doar até 6% do seu imposto de renda para o nosso fundo de projetos?. Nossa calculadora Facilita tudo isso para você :)</p>
 				</li>
 
 				<li class="grid-1-3">
 					<div class="produtos_icone">
-						<img src="{{asset('img/database.png')}}" alt="">
+						<img src="{{asset('img/Port.png')}}" alt="">
 					</div>
 					<h3>Portifólio</h3>
-					<p>Ainda assim, existem dúvidas a respeito de como a necessidade de renovação.</p>
+					<p>Portifólio Exclusivo para nossas Entidades, com o intuito de divulgar seu trabalho.</p>
 				</li>
 
 			</ul>
@@ -89,7 +89,7 @@
 				<div class="container">
 
 					<div class="grid-8 footer_historia">
-						<h3>Um Pouco de Nós</h3>
+						<h3>Área Restrita</h3>
 						<p>Comdica...</p>
 					</div>
 
