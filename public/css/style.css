@@ -223,7 +223,7 @@ h1 , h2, h3{
 }
 
 .produtos_lista li{
-	background: #f8ffe6;
+	background: #f7fffa;
 	text-align: center;
 }
 
@@ -253,7 +253,7 @@ h1 , h2, h3{
 }
 
 .produtos_icone {
-	background: #000;
+	background: #ffff;
 	padding: 20px;
 }
 
@@ -317,18 +317,17 @@ h1 , h2, h3{
 
 .footer {
 	width: 100%;
-	background: black;
-	color: #fff;
+	background:#f7fffa;
+	color: #5BA479;
 	padding: 20px 0;
 }
 
 .footer h3 {
 	font-size: 18px;
 	line-height: 25px;
-	color: #fff;
+	color: #5BA479;
 	text-transform: uppercase;
 	letter-spacing: .1em;
-	font-weight: bold;
 }
 
 .footer h3:after {
