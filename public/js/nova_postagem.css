@@ -8,6 +8,24 @@ body {
     font-family: sans-serif;
  
 }
+#anexos_pdf{
+ padding:-2px !important;
+}
+#newpdf:hover{
+  background-color: #babaca;
+}
+.remove_pdf{
+  background:yellowgreen;
+  color:white;
+  font-weight: bold;
+  font-size: 23px;
+  right:-1px;
+  top:-1px;
+  border-radius: 0 4px 5px 0;
+  width:1.2em;
+  padding:2px;
+  position: absolute;
+}
   #progress_bar1 {
     margin: 10px 0;
     padding: 3px;

@@ -14,11 +14,14 @@
     <link href="/css/simple-sidebar.css" rel="stylesheet">
   </head>
   <body>
+  <div style='width:100%; height:100%; align-items:center; justify-content:center; display:flex; z-index:60;background-color:rgba(0,0,0,0.75);position:absolute;' id='floating-display' class='floating-div-carregamento'>
+      <img style='position:absolute; z-index:50;' class='admin-carregamento' src='/img/carregamento2.gif'> 
+  </div>
     <div class="d-flex " id="wrapper">
       <div class="bg-info  border-right " id="sidebar-wrapper">
         <div class="sidebar-heading"><a href="/"><img src="/img/comdica3.png" style="width: 10em;"></a></div>
         <div class="list-group list-group-flush">
-          <a href="nova-postagem.php" id='postagem' class="list-group-item bg-info border list-group-item-action ">Nova postagem <i class="fas fa-plus-square"></i> </a>
+          <a href="/admin/nova-postagem" id='postagem' class="list-group-item bg-info border list-group-item-action ">Nova postagem <i class="fas fa-plus-square"></i> </a>
           <a href="/admin/minhas_postagens" id='minhas_postagens'  class="list-group-item bg-info border list-group-item-action ">Minhas postagens <i class="fas fa-user"></i></a>
           <a href="/admin/lista_denuncias" id='denuncias'  class="list-group-item bg-info border list-group-item-action ">Todas as denúncias <i class="fas fa-user"></i></a>
           <a href="/admin/instituicoes" id='instituicoes'  class="list-group-item bg-info border list-group-item-action ">Instituições <i class="fas fa-user"></i></a>
@@ -33,10 +36,9 @@
         
         </div>
       </div>
-
+      
       <!-- Page Content -->
       <div id="page-content-wrapper">
-
         <nav class="navbar navbar-expand-lg navbar-light bg-info border-bottom">
           <button class="btn btn-primary fechar-abrir " id="menu-toggle">Fechar Menu</button>
           <a href="/admin/comdica" class="ml-3 text-dark"><i class="fas fa-home fa-3x"></i></a>
@@ -72,12 +74,28 @@
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/dashboard.js"></script>
 </body>
+<script>
+  
+  $(document).on('DOMContentLoaded', () => {
+    setInterval(() => {
+      const floating = document.getElementById('floating-display');
+      floating.style.display = `none`;
+      
+    }, 1000);
+  });
+  document.addEventListener('load',() => {
+});
+</script>
 <style type="text/css">
 /*.list-group-item{ 
   color: white;
   background-repeat: no-repeat;
 }*/
+.floating-div-carregamento{
+ 
+}
 body{
+  transition:all 2s;
   text-decoration-color: black;
 }
 }

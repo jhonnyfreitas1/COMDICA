@@ -7,6 +7,7 @@ use App\Contato;
 use \DateTime;
 use App\Postagem;
 use PDF;
+use App\Anexos_Pdf_Postagem;
 use App\Doacao_boleto;
 use App\Doacao_carne;
 use App\Recibo;
@@ -38,14 +39,17 @@ class HomeController extends Controller
 
         $id = decrypt(htmlspecialchars($id));
         $postagem = Postagem::find($id);
+        $anexosPost = Anexos_Pdf_Postagem::get()->where('id_post', $id);
 
         $posts  = Postagem::inRandomOrder()->where('categoria', $postagem->categoria)->skip(5)->take(5)->orderBy('id', 'DESC')->paginate(6);
 
         if ($postagem) {
-            return view('home.postagem')->with(compact('postagem', 'posts'));
+            return view('home.postagem')->with(compact('postagem', 'posts', 'anexosPost'));
          }else{
             return redirect('/notfound');
         }
+        
+
     }
     public function pq_doar()
     {

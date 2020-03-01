@@ -8,12 +8,10 @@
       <div class="col-lg-4  ">
         <h1 class=" my-4 text-light bg-success text-center" style="text-shadow: 2px 2px black;">{{$postagem->titulo}}</h1>
         <div class="list-group">
-        @if($postagem->pdf1 != false)
-          <a href="/upload_pdf/{{$postagem->pdf1}}" class="list-group-item "><i class="far fa-file-pdf text-danger"></i>  Anexo pdf 1</a>
-        @endif  
-        @if($postagem->pdf2 != false)
-          <a href="/upload_pdf/{{$postagem->pdf2}}" class="list-group-item "><i class="far fa-file-pdf text-danger"></i>  Anexo pdf 2</a>
-        @endif  
+        @foreach($anexosPost  as $anexo)
+          <a href="/upload_pdf/{{$anexo->src_pdf}}" class="list-group-item "><i class="far fa-file-pdf text-danger"></i> {{$anexo->nome_pdf}}.pdf</a>
+        @endforeach  
+       
         <div id="fb-root"></div>
           <iframe src="https://www.facebook.com/plugins/share_button.php?href={{$url}}&layout=button&size=large&width=121&height=28&appId" width="121" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
           <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="true"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

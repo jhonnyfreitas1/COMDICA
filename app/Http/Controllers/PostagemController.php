@@ -8,11 +8,13 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Contato;
 use App\Postagem;
+use App\Anexos_Pdf_Postagem;
 class PostagemController extends Controller
 {
     public function nova_postagem(){
-         $contato = Contato::where('visto', false)->get()->count();
-            return view('admin.nova_postagem')->with(compact('contato'));
+        $contato = Contato::where('visto', false)->get()->count();
+
+        return view('admin.nova_postagem')->with(compact('contato'));
     }
 
     public function minhas_postagens(){
@@ -31,6 +33,9 @@ class PostagemController extends Controller
             return 'Uma postagem com esse titulo já existe';
         }
         $data =  date('Y-m-d H:i:s');
+
+        //return $request->all();
+
         if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {   
                 $imagem = $request->file()['imagem'];
                 $numero = rand(11111,99999).$data;
@@ -40,28 +45,23 @@ class PostagemController extends Controller
                 $imagem->move($dir,$nomeImagem);
                 $request->file()['imagem'] = $nomeImagem;
             }
+            $anexosPdf = [];
 
-            if ($request->hasFile('pdf') && $request->file('pdf')->isValid()) {   
-                $pdf1 = $request->file()['pdf'];
-                $numero = rand(11111,99999).$data;
-                $diretorio = "upload_pdf";
-                $ex = strtolower(substr($request->pdf, -4));
-                $nomepdf = "pdf_".$numero.".pdf";
-                $pdf1->move($diretorio,$nomepdf);
-                $request->file()['pdf'] = $nomepdf;
-            }else{
-                $nomepdf = null;
+            for($i =0; $i < 10; $i++){
+                $namePdf = 'pdf'.$i;
+                if ($request->hasFile($namePdf) && $request->file($namePdf)->isValid()) {   
+                    $pdf1 = $request->file()[$namePdf];
+                    $numero = rand(11111,99999).$data;
+                    $diretorio = "upload_pdf";
+                    $ex = $pdf1->extension();
+                    $nomepdf = "pdf_".$numero.".pdf";
+                    $pdf1->move($diretorio,$nomepdf);
+                    $request->file()['pdf'] = $nomepdf;
+                    array_push($anexosPdf, $nomepdf);
+                }
             }
-            if ($request->hasFile('pdf2') && $request->file('pdf2')->isValid()) {   
-                $pdf2 = $request->file()['pdf2'];
-                $numero1 = md5(rand(11111,99999).$data);
-                $diretorio = "upload_pdf";
-                $nomepdf2 = "pdf_".$numero1.".pdf"; 
-                $pdf2->move($diretorio,$nomepdf2);
-                $request->file()['pdf2'] = $nomepdf2;
-            }else{
-                $nomepdf2 = null;
-            }
+          
+
             if ($request['yt'] != "") {
                 $url = explode("watch?v=", $request['yt']);
                 $embed = $url[0]."embed/".$url[1];
@@ -75,10 +75,21 @@ class PostagemController extends Controller
             $model->link_yt = $embed;
             $model->imagem_principal = $nomeImagem;
             $model->categoria = $categorianumber;
-            $model->pdf1 = $nomepdf;
-            $model->pdf2 = $nomepdf2;
             $model->user_id = Auth::id();
             $resultado = $model->save();
+
+            $idPostagem = $model->id;
+
+            for($y = 0; $y < sizeof($anexosPdf); $y++){
+                $modelAnexo = new Anexos_Pdf_Postagem;
+                $modelAnexo->nome_pdf =$request['name_pdf'.$y];
+                $modelAnexo->src_pdf =$anexosPdf[$y];
+                $modelAnexo->id_post= $idPostagem;
+                $modelAnexo->save();
+               // return 'sucesso ao fazer o o lancamento dos anexos porra';
+            }
+
+
         if ($resultado == true) {
             return 'Postagem feita com sucesso';
         }else {

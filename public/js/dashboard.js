@@ -7,19 +7,19 @@ $("#menu-toggle").click(function(e) {
         $("#menu-toggle").html('Fechar Menu');
     }
 });
-$("#postagem").click(function(e) {
-    e.preventDefault();
-     $('#area-principal').html("<center><progress style='width:80%; margin-top:8em;'></progress> </center>");
-    $.ajax({
-        type:'get',
-        url:'/admin/nova-postagem',
-        datatype:'json',    //metodo ajax que busca arquivo de formulario do post e coloca em uma div '#area-principal'
-        success: function(response){
-            $('#area-principal').html(response).fadeIn(1500);
-        }
-    })
 
-});
+// $("#postagem").click(function(e) {
+//     e.preventDefault();
+//      $('#area-principal').html("<center><progress style='width:80%; margin-top:8em;'></progress> </center>");
+//     $.ajax({
+//         type:'get',
+//         url:'/admin/nova-postagem',
+//         datatype:'json',    //metodo ajax que busca arquivo de formulario do post e coloca em uma div '#area-principal'
+//         success: function(response){
+//             $('#area-principal').html(response).fadeIn(1500);
+//         }
+//     })
+// });
 
 $("#recarregar").click(function(e) {
     e.preventDefault();
