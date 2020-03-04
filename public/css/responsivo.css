@@ -10,6 +10,27 @@
 	padding: 0 10px;
 }
 
+.produto_item h2{
+	top: -150px;
+	margin-bottom: -56px;
+}
+
+.produto_icone {
+	padding: 41px 0;
+}
+
+.produto_info p{
+	font-size: 14px;
+	line-height: 20px;
+	height: 122px;
+	padding: 20px 30px;
+}
+
+.produto_info ul li {
+	width: 181px;
+	height: 49px;
+}
+
 /*Footer*/
 
 .footer_redes ul li a {
@@ -79,6 +100,37 @@
 /*Qualidade Home*/
 .qualidade:after {
 	display: none;
+}
+.produto_item h2{
+	top: -100px;
+	margin-bottom: -68px;
+}
+
+.produto_icone {
+	padding: 41px 0;
+}
+
+.produto_info p{
+	font-size: 14px;
+	line-height: 20px;
+	height: auto;
+	padding: 20px 30px;
+}
+
+.produto_info ul li {
+	width: 149px;
+	height: 49px;
+	font-size: 14px;
+	line-height: 20px;
+	padding-top: 14px;
+}
+
+.form {
+	padding-right: 0px;
+}
+
+.orcamento_dados ul {
+	padding-right: 0px;
 }
 
 }

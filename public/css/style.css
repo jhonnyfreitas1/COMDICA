@@ -202,7 +202,6 @@ h1 , h2, h3{
 
 .introducao-interna h1 {
 	font-size: 36px;
-	font-weight: bold;
 	text-transform: uppercase;
 }
 
@@ -317,15 +316,15 @@ h1 , h2, h3{
 
 .footer {
 	width: 100%;
-	background:#f7fffa;
-	color: #5BA479;
+	background:#5BA479;
+	color: white;
 	padding: 20px 0;
 }
 
 .footer h3 {
 	font-size: 18px;
 	line-height: 25px;
-	color: #5BA479;
+	color: white;
 	text-transform: uppercase;
 	letter-spacing: .1em;
 }
@@ -335,7 +334,7 @@ h1 , h2, h3{
 	display: block;
 	width: 60px;
 	height: 3px;
-	background: #5BA479;
+	background: white;
 	margin: 6px 0 12px 0;
 }
 
@@ -355,19 +354,19 @@ h1 , h2, h3{
 }
 
 .footer_redes ul li a {
-	border: 3px solid  #5BA479;
+	border: 3px solid #0a5429;
 	display: block;
 	padding: 10px;
-	color: black;
+	color: white;
 }
 
 .footer_redes ul li a:hover {
-	border-color:#75C587;
+	border-color:white;
 }
 
 .copy {
 	width: 100%;
-	background:  #5BA479;
+	background:  #0a5429;
 	padding: 20px 0;
 }
 .copy{
