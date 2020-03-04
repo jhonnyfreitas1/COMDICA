@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="{{asset('css/grid.css')}}">
 		<link rel="stylesheet" href="{{asset('css/style.css')}}">
 		<link rel="stylesheet" href="{{asset('css/produtos.css')}}">
+		<link rel="stylesheet" href="{{asset('css/sobre.css')}}">
 		<link rel="stylesheet" href="{{asset('css/responsivo.css')}}">
 	</head>
 	<body>
@@ -18,7 +19,7 @@
 				</a>
 				<nav class="grid-12 header_menu">
 					<ul>
-						<li><a href="">Sobre</a></li>
+						<li><a href="{{route('sobre')}}">Sobre</a></li>
 						<li><a href="">Denunciar</a></li>
 						<li><a href="{{route('portifolio')}}">Portfólio</a></li>
 						<li><a href="">Contato</a></li>
