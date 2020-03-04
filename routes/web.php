@@ -28,7 +28,7 @@ Route::get('/pdf/pagador/{id}','HomeController@gerarPdf');
 Route::get('/pdf/pagador/carne/{id}','HomeController@gerarPdfCarne');
 Route::get('/calculadora/termos_e_regras','HomeController@termo');
 Route::get('sou_doador/verificar/pagamento/','HomeController@verificar_recibo');
-
+Route::get('carousel','HomeController@carousel');
 //Rotas admin
 Route::get('/auth/logout', 'Auth\LoginController@logout')->middleware('auth');
 Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){

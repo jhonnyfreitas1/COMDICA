@@ -62,7 +62,9 @@ class HomeController extends Controller
     public function notfound(){
         return view('home.notfound');
     }
-
+    public function carousel(){
+        return view('home.carousel');
+    }
 
     public function status(Request $request)
     {   

@@ -1,0 +1,44 @@
+.post-slider{
+    border: 1px solid red;
+    position:relative;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.center-slider{
+    display: flex;
+    align-items: center;
+}
+.next .post-slider{
+    position: absolute;
+   
+    font-size: 2em;
+    color:#006669;
+    cursor: pointer;
+}
+
+.prev .post-slider{
+    position: absolute;;
+    font-size: 2em;
+    color:#006669;
+    cursor: pointer ;
+    
+}
+.post-slider .post-wrapper{
+    border:1px dashed red;
+    height: 350px;
+    width: 84%;
+    margin: 0 auto;
+    overflow: hidden;
+    
+}
+.post-slider .slider-title{
+    text-align: center;
+    margin: 30px    auto;
+}
+.post-slider .post-wrapper .post{
+    height: 350px;
+    background:#05f7ff;
+    display:inline-block;
+    margin:0px 10px;
+}
