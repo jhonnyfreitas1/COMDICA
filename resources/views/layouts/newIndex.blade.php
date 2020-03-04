@@ -20,7 +20,7 @@
 				<nav class="grid-12 header_menu">
 					<ul>
 						<li><a href="{{route('sobre')}}">Sobre</a></li>
-						<li><a href="">Denunciar</a></li>
+						<li><a href="{{route('denuncias')}}">Denunciar</a></li>
 						<li><a href="{{route('portifolio')}}">Portfólio</a></li>
 						<li><a href="">Contato</a></li>
 					</ul>
