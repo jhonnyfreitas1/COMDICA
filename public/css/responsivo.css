@@ -1,6 +1,8 @@
 /*Estilo para tablets*/
 @media only screen and (min-width: 788px) and (max-width: 979px) {
-
+	.foto_equipe{
+		margin-left: 0px;
+	}
 /*Qualidade Home*/
 .qualidade:after {
 	right: 66px;
@@ -49,7 +51,9 @@
 
 /*Estilo para smartphone*/
 @media only screen and (max-width: 787px) {
-
+.foto_equipe{
+	margin-left: 0px;
+}
 /*Header*/
 .header {
 	position: relative;
