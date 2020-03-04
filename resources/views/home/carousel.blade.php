@@ -25,27 +25,13 @@
         </div>
     </div>
     <script>
-       
-window.addEventListener('change', () =>{
-    if (window.matchMedia("(min-width: 100px)").matches) {
-        console.log('entrei')
-        $('.post-wrapper').slick({
+    $('.post-wrapper').slick({
             slidesToShow: 3,
             slidesToScroll: 1,
             autoplay: true,
             autoplaySpeed: 2000,
             nextArrow:$('.next'),
-            prevArrow:$('.prev')
-            });
-    }
-    else {
-        $('.post-wrapper').slick({
-            dots: true,
-            infinite: true,
-            speed: 300,
-            autoplaySpeed: 2000,
-            slidesToShow: 1,
-            slidesToScroll: 1,
+            prevArrow:$('.prev'),
             responsive: [
             {
                 breakpoint: 1024,
@@ -78,11 +64,8 @@ window.addEventListener('change', () =>{
             }
 
             ]
-        });
-    }
-
-
-});
+            });
+    
 
 
             // You can unslick at a given breakpoint now by adding:
