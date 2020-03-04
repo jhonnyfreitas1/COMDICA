@@ -10,7 +10,7 @@
 
 <section class="missao_sobre container fadeInDown" data-anime="1200">
     <div class="grid-10">
-        <h2 class="subtitulo-interno"> História, Missão e Visão</h2>
+        <h2 class="subtitulo-interno"> Quem somos?, O que Fazemos?</h2>
         <p>O Conselho Municipal de Defesa e Promoção dos Direitos da Criança e do Adolescente -COMDICA é um órgão regido no artigo 88 da lei n° 8.069/1990 – Estatuto da Criança e do Adolescente</p>
     </div>
     <div class="grid-6">
