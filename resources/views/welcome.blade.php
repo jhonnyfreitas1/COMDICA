@@ -95,6 +95,7 @@ if ('serviceWorker' in navigator) {
                     </div>
                     <div class="card-body" style="margin-left: -10px;">
                         <form method="post" action="{{route('denuncia.store')}}">
+                            @csrf
                             <div id="step1" class="step">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
@@ -405,6 +406,11 @@ if ('serviceWorker' in navigator) {
                         <button class="btn btn-success" id="next">
                             <i class="fa fa-arrow-right"></i>
                         </button>
+                        <a href="{{route('newIndex')}}">
+                            <button class="btn btn-success" id="next">
+                                Voltar Para a Página Principal
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>
