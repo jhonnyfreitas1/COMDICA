@@ -14,7 +14,10 @@ Route::get('/calculadora/doacao/{valor}/{ir}', ['as' => 'calculadora.doacao', 'u
 Route::post('boleto/gerar' , ['as' => 'gerarboleto', 'uses' => 'CalculadoraController@gerarBoleto']);
 Route::post('carne/gerar' , ['as' => 'gerarboleto', 'uses' => 'CalculadoraController@gerarCarne']);
 Route::get('boleto/detalhes' , ['as' => 'boleto_detail', 'uses' => 'CalculadoraController@detalhes_boleto']);
-Route::view('newIndex', 'newFront.index');
+
+//New Front Routes
+Route::view('newIndex', 'newFront.index')->name('newIndex');
+Route::view('portifolio', 'newFront.portifolio')->name('portifolio');
 //Rotas do site
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/notfound', 'HomeController@notfound')->name('home');
