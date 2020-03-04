@@ -18,6 +18,7 @@ Route::get('boleto/detalhes' , ['as' => 'boleto_detail', 'uses' => 'CalculadoraC
 //New Front Routes
 Route::view('newIndex', 'newFront.index')->name('newIndex');
 Route::view('portifolio', 'newFront.portifolio')->name('portifolio');
+Route::view('sobre', 'newFront.sobre')->name('sobre');
 //Rotas do site
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/notfound', 'HomeController@notfound')->name('home');
