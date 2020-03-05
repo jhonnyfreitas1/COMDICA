@@ -20,6 +20,8 @@ Route::view('newIndex', 'newFront.index')->name('newIndex');
 Route::view('portifolio', 'newFront.portifolio')->name('portifolio');
 Route::view('denuncias', 'newFront.denuncias')->name('denuncias');
 Route::view('sobre', 'newFront.sobre')->name('sobre');
+Route::view('postagens', 'newFront.postagens')->name('postagens');
+Route::view('postagemVer', 'newFront.verPostagem')->name('postagemVer');
 //Rotas do site
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/notfound', 'HomeController@notfound')->name('home');

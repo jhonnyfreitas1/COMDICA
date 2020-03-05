@@ -406,11 +406,6 @@ if ('serviceWorker' in navigator) {
                         <button class="btn btn-success" id="next">
                             <i class="fa fa-arrow-right"></i>
                         </button>
-                        <a href="{{route('newIndex')}}">
-                            <button class="btn btn-success" id="next">
-                                Voltar Para a Página Principal
-                            </button>
-                        </a>
                     </div>
                 </div>
             </div>
