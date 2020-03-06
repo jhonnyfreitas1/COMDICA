@@ -1,5 +1,4 @@
 .post-slider{
-    border: 1px solid red;
     position:relative;
     display: flex;
     flex-direction: column;
@@ -16,29 +15,102 @@
     color:#006669;
     cursor: pointer;
 }
-
+.prev , .next{
+    margin: auto;
+    display: flex;
+    padding:3px;
+    background-color: #6c757d;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 100%;
+}
+.prev:hover , .next:hover{
+    
+    background-color: #006669;
+}
 .prev .post-slider{
     position: absolute;;
     font-size: 2em;
     color:#006669;
-    cursor: pointer ;
-    
+    cursor: pointer;
+    color:#09d3b8;
 }
 .post-slider .post-wrapper{
-    border:1px dashed red;
-    height: 350px;
-    width: 84%;
+    height: 380px;
+    width: 85%;
     margin: 0 auto;
     overflow: hidden;
-    
 }
 .post-slider .slider-title{
     text-align: center;
     margin: 30px    auto;
+    
+}
+.slide-title{
 }
 .post-slider .post-wrapper .post{
     height: 350px;
+    
     background:#05f7ff;
     display:inline-block;
     margin:0px 10px;
 }
+.card {
+    width: 100%;
+    height: 22%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin:1em;
+    object-fit: cover;
+    align-items: center;
+    text-align: center;
+    align-items: center;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #fff;
+    box-shadow: 10px 10px 10px gray;
+  }
+  .card:hover {
+    background: rgb(230, 225, 225);
+  }
+  .text-title {
+    top: -3em;
+    display: flex;
+    flex-wrap: no-wrap;
+    color: #07ac96;
+    font-size: 30px;
+    text-align: center;
+    font-family: Stencil Std;
+  }
+  .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+  }
+  .title {
+    color: #09d3b8;
+    border-bottom: solid 1px #0f0f11;
+    font-family: serif;
+  }
+  .image {
+    width: 80%;
+    height:17em;
+    object-fit: contain;
+    background-color: white;
+    border-radius: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .img-container{
+      width: 100%;
+      height:17em;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+  }

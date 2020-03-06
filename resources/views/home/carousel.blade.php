@@ -9,21 +9,58 @@
     @section('content')
     <div class='page-wrapper'>
         <div class="post-slider">
-            <h1 class="slide-title">codigo dos outros lib tambem</h1>
+            <h1 class="slide-title   font-italic   font-weight-bolder text-light title ">Postagens recentes</h1>
            <div class='center-slider'>
             <i class='fas fa-chevron-left prev fa-2x'> </i> 
             <div class="post-wrapper">
-                <div class="post col-12 shadow-lg">1</div>
-                <div class="post col-12">2</div>
-                <div class="post col-12">3</div>
-                <div class="post col-12">4</div>
-                <div class="post col-12">5</div>            
+                <li class="card">
+                    <p class="text-title" disabled>
+                    </p>
+                    <div class='img-container'> 
+                        <img class="image" src="https://avatars0.githubusercontent.com/u/9892522?v=4"alt="..." disabled />
+                    </div>  
+                    <h3 class="text-justify badge badge-primary text-wrap">sempre é visto aquilo que é sempre visto é feito feito feito feito feito</h3>    
+                </li>
+                <li class="card">
+                    <p class="text-title" disabled>
+                    </p>
+                    <div class='img-container'> 
+                        <img class="image" src="https://cdn.pixabay.com/photo/2018/08/21/23/29/fog-3622519__340.jpg"alt="..." disabled />
+                    </div>  
+                    <h3 class="text-justify badge badge-primary text-wrap">sempre é visto aquilo que é sempre visto é feito feito feito feito feito</h3>    
+                </li>
+                <li class="card">
+                    <p class="text-title" disabled>
+                    </p>
+                    <div class='img-container'> 
+                        <img class="image" src="https://cdn.pixabay.com/photo/2018/02/08/22/27/flower-3140492__340.jpg"alt="..." disabled />
+                    </div>  
+                    <h3 class="text-justify badge badge-primary text-wrap">sempre é visto aquilo que é sempre visto é feito feito feito feito feito</h3>    
+                </li>
+                <li class="card">
+                    <p class="text-title" disabled>
+                    </p>
+                    <div class='img-container'> 
+                        <img class="image" src="https://www.intz.com.br/wp-content/uploads/wallpapers/WallpaperApollo_Mobile.png"alt="..." disabled />
+                    </div>  
+                    <h3 class="text-justify badge badge-primary text-wrap">sempre é visto aquilo que é sempre visto é feito feito feito feito feito</h3>    
+                </li>
+                <li class="card">
+                    <p class="text-title" disabled>
+                    </p>
+                    <div class='img-container'> 
+                        <img class="image" src="https://i.pinimg.com/originals/67/f7/9c/67f79c2f393ef84880b507429d24fa43.png"alt="..." disabled />
+                    </div>  
+                    <h3 class="text-justify badge badge-primary text-wrap">sempre é visto aquilo que é sempre visto é feito feito feito feito feito</h3>    
+                </li>
+                           
             </div>
            
             <i class='fas fa-chevron-right next fa-2x'> </i> 
             </div>
         </div>
     </div>
+   
     <script>
     $('.post-wrapper').slick({
             slidesToShow: 3,
