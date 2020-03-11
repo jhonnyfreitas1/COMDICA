@@ -10,6 +10,40 @@
 		<link rel="stylesheet" href="{{asset('css/produtos.css')}}">
 		<link rel="stylesheet" href="{{asset('css/sobre.css')}}">
 		<link rel="stylesheet" href="{{asset('css/responsivo.css')}}">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+		<style type="text/css">
+			.slider {
+				width: 100%;
+				margin: 100px auto;
+			}
+		
+			.slick-slide {
+			  margin: 0px 20px;
+			}
+		
+			.slick-slide img {
+			  width: 100%;
+			}	
+			.slick-prev:before,
+			.slick-next:before {
+			  color: green;
+			}
+		
+		
+			.slick-slide {
+			  transition: all ease-in-out .3s;
+			  opacity: .2;
+			}
+		
+			.slick-active {
+			  opacity: .5;
+			}
+		
+			.slick-current {
+			  opacity: 1;
+			}
+		  </style>
 	</head>
 	<body>
 		<header class="header">
@@ -65,6 +99,16 @@
 				</div>
 			</div>
 		</footer>
-
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).on('ready', function() {
+		$(".variable").slick({
+				dots: true,
+				infinite: true,
+				variableWidth: true
+			});
+		});
+		</script>
 	</body>
 </html>

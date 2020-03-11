@@ -2,7 +2,7 @@
 
 @section('content')
 <section class="produtos container">
-    <br><br><br><br><br>
+    <br><br><br><br><br><br>
     <h2 class="subtitulo">Postagens</h2>
     <div class="divImg grid-12">
         <img src="{{asset('img/children.jpeg')}}" alt="">

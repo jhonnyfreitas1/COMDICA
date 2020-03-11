@@ -12,7 +12,7 @@
 		</div>
 	</section>
 	
-	<section class="produtos container">
+	<section class="produtos container" >
 		<h2 class="subtitulo">Ideias</h2>
 		<ul class="produtos_lista">
 
@@ -47,6 +47,52 @@
 			<a href="" class="btn btn-preto">Sobre</a>
 		</div>
 
+	</section>
+	<section class="produtos container">
+		<h2 class="subtitulo">Postagens Recentes</h2>
+		<section class="variable slider">
+			<ul class="produtos_lista">
+				<li class="grid-1-3">
+					<div class="produtos_icone">
+						<img src="{{asset('img/fundo_criancas.jpg')}}" alt="">
+					</div>
+					<h3>Titulo da mecânica</h3>
+					<p>Então nos dados são dados os dados que tềm nove lados, nos dados são dados os lados dos lados que foram dados, ao Cubo, um cubo que era um cubo e um dado que era um cubo do succubus dos demonios marcados ideias.</p>
+				</li>
+			</ul>
+			<ul class="produtos_lista">
+				<li class="grid-1-3">
+					<div class="produtos_icone">
+						<img src="{{asset('img/fundo_criancas.jpg')}}" alt="">
+					</div>
+					<h3>Titulo da mecânica</h3>
+					<p>Então nos dados são dados os dados que tềm nove lados, nos dados são dados os lados dos lados que foram dados, ao Cubo, um cubo que era um cubo e um dado que era um cubo do succubus dos demonios marcados ideias.</p>
+				</li>
+			</ul>
+			<ul class="produtos_lista">
+				<li class="grid-1-3">
+					<div class="produtos_icone">
+						<img src="{{asset('img/fundo_criancas.jpg')}}" alt="">
+					</div>
+					<h3>Titulo da mecânica</h3>
+					<p>Então nos dados são dados os dados que tềm nove lados, nos dados são dados os lados dos lados que foram dados, ao Cubo, um cubo que era um cubo e um dado que era um cubo do succubus dos demonios marcados ideias.</p>
+				</li>
+			</ul>
+			<ul class="produtos_lista">
+				<li class="grid-1-3">
+					<div class="produtos_icone">
+						<img src="{{asset('img/fundo_criancas.jpg')}}" alt="">
+					</div>
+					<h3>Titulo da mecânica</h3>
+					<p>Então nos dados são dados os dados que tềm nove lados, nos dados são dados os lados dos lados que foram dados, ao Cubo, um cubo que era um cubo e um dado que era um cubo do succubus dos demonios marcados ideias.</p>
+				</li>
+			</ul>
+		  </section>
+		<div class="call font">
+			<p>Temos muito mais postagens em nossa seção especial ;)</p>
+			<br>
+			<a href="" class="btn btn-preto">Ver Postagens</a>
+		</div>
 	</section>
 	<!-- Fecha Produtos -->
 	<section class="quebra">
