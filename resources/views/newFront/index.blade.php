@@ -44,7 +44,7 @@
 		<div class="call font">
 			<p>Nossa equipe trás o melhor para atender o público jovem. Conheça-nos :)</p>
 			<br>
-			<a href="" class="btn btn-preto">Sobre</a>
+			<a href="{{route('sobre')}}" class="btn btn-preto">Sobre</a>
 		</div>
 
 	</section>

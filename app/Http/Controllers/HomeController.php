@@ -34,6 +34,11 @@ class HomeController extends Controller
                 return view('newFront.index')->with(compact('postagens' ,'posts','mensagem'));
             }
     }
+    public function sobre()
+    {
+        return view('newFront.sobre');
+    }   
+
     public function postagem($id)
     {
 

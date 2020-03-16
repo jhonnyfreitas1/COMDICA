@@ -16,15 +16,16 @@ Route::post('carne/gerar' , ['as' => 'gerarboleto', 'uses' => 'CalculadoraContro
 Route::get('boleto/detalhes' , ['as' => 'boleto_detail', 'uses' => 'CalculadoraController@detalhes_boleto']);
 
 //New Front Routes
+// newIndex tem os imports
 Route::view('newIndex', 'newFront.index')->name('newIndex'); /*-> Tem que ir pro Controller para pegar o php, por isso estou alterando para a principal */
 Route::view('portifolio', 'newFront.portifolio')->name('portifolio');
 Route::view('denuncias', 'newFront.denuncias')->name('denuncias');
-Route::view('sobre', 'newFront.sobre')->name('sobre');
+Route::get('sobre', ['as' => 'sobre', 'uses' => 'HomeController@sobre']);
 Route::view('postagens', 'newFront.postagens')->name('postagens');
 Route::view('postagemVer', 'newFront.verPostagem')->name('postagemVer');
 //Rotas do site
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/notfound', 'HomeController@notfound')->name('home');
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+Route::get('/notfound', 'HomeController@notfound')->name('notfound');
 Route::get('/home1', 'HomeController@home1')->name('home1');
 Route::get('/postagem/{id}', ['as' => 'postagem', 'uses' => 'HomeController@postagem']);
 Route::get('/porque_doar', ['as' => 'porque_doar', 'uses' => 'HomeController@pq_doar']);
