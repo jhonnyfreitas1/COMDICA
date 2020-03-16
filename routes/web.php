@@ -16,7 +16,7 @@ Route::post('carne/gerar' , ['as' => 'gerarboleto', 'uses' => 'CalculadoraContro
 Route::get('boleto/detalhes' , ['as' => 'boleto_detail', 'uses' => 'CalculadoraController@detalhes_boleto']);
 
 //New Front Routes
-Route::view('newIndex', 'newFront.index')->name('newIndex');
+Route::view('newIndex', 'newFront.index')->name('newIndex'); /*-> Tem que ir pro Controller para pegar o php, por isso estou alterando para a principal */
 Route::view('portifolio', 'newFront.portifolio')->name('portifolio');
 Route::view('denuncias', 'newFront.denuncias')->name('denuncias');
 Route::view('sobre', 'newFront.sobre')->name('sobre');

@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-        $postagem = DB::table('postagens')->limit(7)->orderBy('id', 'DESC')->get();
+        $postagens = DB::table('postagens')->limit(7)->orderBy('id', 'DESC')->get();
            if ($request->cat){
             $categoria = decrypt(htmlspecialchars($request->cat));
             if ($categoria && $categoria == 1 || $categoria == 2  || $categoria == 3 || $categoria == 4 || $categoria == 5) {
@@ -26,12 +26,12 @@ class HomeController extends Controller
                $mensagem = $categoria;
                 $posts = DB::table('postagens')->orderBy('id', 'DESC')->where('categoria', $categoria)->paginate(8);
 
-                return view('home.home1')->with(compact('postagem' ,'posts','mensagem'));
+                return view('newFront.index')->with(compact('postagens' ,'posts','mensagem'));
            }
             }else{
                 $mensagem = "Postagens recentes";
                 $posts = DB::table('postagens')->orderBy('id', 'DESC')->paginate(8);
-                return view('home.home1')->with(compact('postagem' ,'posts','mensagem'));
+                return view('newFront.index')->with(compact('postagens' ,'posts','mensagem'));
             }
     }
     public function postagem($id)

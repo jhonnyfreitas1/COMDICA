@@ -51,42 +51,22 @@
 	<section class="produtos container">
 		<h2 class="subtitulo">Postagens Recentes</h2>
 		<section class="variable slider">
+			@foreach($postagens as $postagem)
 			<ul class="produtos_lista">
 				<li class="grid-1-3">
 					<div class="produtos_icone">
-						<img src="{{asset('img/fundo_criancas.jpg')}}" alt="">
+						<img src=" @if($postagem->imagem_principal)
+									'/upload_imagem/'{{$postagem->imagem_principal}}
+								   @else
+									{{asset('img/fundo_criancas.jpg')}}
+								   @endisset
+									" alt="">
 					</div>
-					<h3>Titulo da mecânica</h3>
-					<p>Então nos dados são dados os dados que tềm nove lados, nos dados são dados os lados dos lados que foram dados, ao Cubo, um cubo que era um cubo e um dado que era um cubo do succubus dos demonios marcados ideias.</p>
+					<h3>{{$postagem->titulo}}</h3>
+					<p>{{$postagem->descricao}}</p>
 				</li>
 			</ul>
-			<ul class="produtos_lista">
-				<li class="grid-1-3">
-					<div class="produtos_icone">
-						<img src="{{asset('img/fundo_criancas.jpg')}}" alt="">
-					</div>
-					<h3>Titulo da mecânica</h3>
-					<p>Então nos dados são dados os dados que tềm nove lados, nos dados são dados os lados dos lados que foram dados, ao Cubo, um cubo que era um cubo e um dado que era um cubo do succubus dos demonios marcados ideias.</p>
-				</li>
-			</ul>
-			<ul class="produtos_lista">
-				<li class="grid-1-3">
-					<div class="produtos_icone">
-						<img src="{{asset('img/fundo_criancas.jpg')}}" alt="">
-					</div>
-					<h3>Titulo da mecânica</h3>
-					<p>Então nos dados são dados os dados que tềm nove lados, nos dados são dados os lados dos lados que foram dados, ao Cubo, um cubo que era um cubo e um dado que era um cubo do succubus dos demonios marcados ideias.</p>
-				</li>
-			</ul>
-			<ul class="produtos_lista">
-				<li class="grid-1-3">
-					<div class="produtos_icone">
-						<img src="{{asset('img/fundo_criancas.jpg')}}" alt="">
-					</div>
-					<h3>Titulo da mecânica</h3>
-					<p>Então nos dados são dados os dados que tềm nove lados, nos dados são dados os lados dos lados que foram dados, ao Cubo, um cubo que era um cubo e um dado que era um cubo do succubus dos demonios marcados ideias.</p>
-				</li>
-			</ul>
+			@endforeach
 		  </section>
 		<div class="call font">
 			<p>Temos muito mais postagens em nossa seção especial ;)</p>
