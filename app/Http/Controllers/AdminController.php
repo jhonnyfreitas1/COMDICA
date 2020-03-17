@@ -48,29 +48,6 @@ class AdminController extends Controller
         $contato = Contato::where('visto', false)->get()->count();
         return view('admin.doacoes')->with(compact('doacoes','contato'));
     }
-    public function store(Request $request)
-    {
-         $this->validate(request(), [
-            'name' => 'required',
-            'password' => 'required|min:8|confirmed',
-            'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
-            'password2' => 'min:8'
-        ]);
-
-         
-        $user  = User::find(Auth::user()->id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);     
-
-        if ($user->save()) {
-                $mensagem = "Dados alterados com sucesso";
-                return back()->with(compact('mensagem' , $mensagem));  
-        }else{
-            $mensagem = "erro na atualizacao dos dados";
-            return back()->with(compact('fail' ,$mensagem));
-        }
-    }
     public function back(){
         return back()->withInput();
     }
@@ -105,6 +82,63 @@ class AdminController extends Controller
     } 
 
     // Métodos do usuário
+
+    // Método que edit
+    // public function store(Request $request)
+    // {
+    //      $this->validate(request(), [
+    //         'name' => 'required',
+    //         'password' => 'required|min:8|confirmed',
+    //         'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
+    //         'password2' => 'min:8'
+    //     ]);
+
+         
+    //     $user  = User::find(Auth::user()->id);
+    //     $user->name = $request->name;
+    //     $user->email = $request->email;
+    //     $user->password = bcrypt($request->password);     
+
+    //     if ($user->save()) {
+    //             $mensagem = "Dados alterados com sucesso";
+    //             return back()->with(compact('mensagem' , $mensagem));  
+    //     }else{
+    //         $mensagem = "erro na atualizacao dos dados";
+    //         return back()->with(compact('fail' ,$mensagem));
+    //     }
+    // }
+
+    public function add_user(Request $request){
+        $this->validate(request(), [
+            'name' => 'required|max:50',
+            'email' => 'required|email|',
+            'password' => 'required|min:8',
+            'password2' => 'min:8|required_with:password|same:password',
+        ],[ 
+            'name.required' => 'Preencha o nome do usuário',
+            'name.max'      => 'Digite no máximo 50 caracteres neste campo',
+            'email.required' => 'Preencha o e-mail do usuário',
+            'email.email'      => 'Utilize o @ pois este é um campo de e-mail',
+            'password.required' => 'Os campos de senhas são obrigatorios',
+            'password.min'      => 'Digite no mínimo 8 caracteres neste campo',
+            'password2.required' => 'Os campos de senhas são obrigatorios',
+            'password2.min'      => 'Digite no mínimo 8 caracteres neste campo',
+            'password2.same' => 'Os campos senha e confirmação de senha devem ter os mesmos valores',
+        ]);
+
+        $user  = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->tipo_user = $request->tipo_user;
+        $user->password = bcrypt($request->password);    
+        if ($user->save()) {
+                $mensagem = "Dados alterados com sucesso";
+                return back()->with(compact('mensagem' , $mensagem));  
+        }else{
+            $mensagem = "erro na atualizacao dos dados";
+            return back()->with(compact('fail' ,$mensagem));
+        }
+    }
     public function list_users(){
         $usuarios = DB::table('users')->paginate(10);
         return view('auth.listusers' , compact('usuarios'));
@@ -115,5 +149,51 @@ class AdminController extends Controller
         $tipos = Tipo_user::all();
         return view('auth.showuser' , compact('usuario','tipos'));
     }
-
+    public function edit_user($id){
+        $usuario = User::where('id', $id)->get()->first();
+        $tipos = Tipo_user::all();
+        return view('auth.register' , compact('usuario','tipos'));
+    }
+    
+    public function update_user(Request $request, $id){
+        $this->validate(request(), [
+            'name' => 'required|max:50',
+            'email' => 'required|email|',
+            'password' => 'required|min:8',
+            'password2' => 'min:8|required_with:password|same:password',
+        ],[ 
+            'name.required' => 'Preencha o nome do usuário',
+            'name.max'      => 'Digite no máximo 50 caracteres neste campo',
+            'email.required' => 'Preencha o e-mail do usuário',
+            'email.email'      => 'Utilize o @ pois este é um campo de e-mail',
+            'password.required' => 'Os campos de senhas são obrigatorios',
+            'password.min'      => 'Digite no mínimo 8 caracteres neste campo',
+            'password2.required' => 'Os campos de senhas são obrigatorios',
+            'password2.min'      => 'Digite no mínimo 8 caracteres neste campo',
+            'password2.required_with:password'      => 'Digite no mínimo 8 caracteres neste campo',
+            'password2.same' => 'Os campos senha e confirmação de senha devem ter os mesmos valores',
+            ]);
+            
+            $user  = User::find($id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->tipo_user = $request->tipo_user;
+            $user->password = bcrypt($request->password);    
+            // return $user;
+        if ($user->save()) {
+                $mensagem = "Dados alterados com sucesso";
+                return back()->with(compact('mensagem' , $mensagem));  
+        }else{
+            $mensagem = "erro na atualizacao dos dados";
+            return back()->with(compact('fail' ,$mensagem));
+        }
+    }
+    public function destroy_user($id)
+    {
+        
+        // Deleta as tabelas e redireciona 
+        $user  = User::find($id);
+        $user->delete();
+        return redirect('/admin/listusers');        
+    }
 }

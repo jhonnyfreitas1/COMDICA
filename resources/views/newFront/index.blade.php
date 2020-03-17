@@ -71,7 +71,7 @@
 		<div class="call font">
 			<p>Temos muito mais postagens em nossa seção especial ;)</p>
 			<br>
-			<a href="" class="btn btn-preto">Ver Postagens</a>
+			<a href="{{route('postagens')}}" class="btn btn-preto">Ver Postagens</a>
 		</div>
 	</section>
 	<!-- Fecha Produtos -->
@@ -80,7 +80,7 @@
 			<p class="">“É a intenção, e não a doação, que faz o doador.”</p>
 			<div class="font">Gotthold Lessing</div>
 			<br><br>
-			<a href="" class="btn-full">Doar</a>
+			<a href="#" class="btn-full">Doar</a>
 		</blockquote>
 	</section>
 @endsection

@@ -40,12 +40,15 @@ Route::get('carousel','HomeController@carousel');
 //Rotas admin
 Route::get('/auth/logout', 'Auth\LoginController@logout')->middleware('auth');
 Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
-	// rotas do usuario
 	Route::get('/register', ['as' => 'admin.register', 'uses' => 'Auth\RegisterController@redirectCreate']);	
+	
+	// rotas do usuario
 	Route::get('/listusers', ['as' => 'admin.list_users', 'uses' => 'AdminController@list_users']);
+	Route::post('/adduser', ['as' => 'admin.add_user', 'uses' => 'AdminController@add_user']);	
 	Route::get('/showuser/{id}', ['as' => 'admin.show_user', 'uses' => 'AdminController@show_user']);
 	Route::get('/edituser/{id}', ['as' => 'admin.edit_user', 'uses' => 'AdminController@edit_user']);
-	Route::get('/destroyuser/{id}', ['as' => 'admin.destroy_user', 'uses' => 'AdminController@destroy_user']);
+	Route::put('/updateuser/{id}', ['as' => 'admin.update_user', 'uses' => 'AdminController@update_user']);
+	Route::post('/destroyuser/{id}', ['as' => 'admin.destroy_user', 'uses' => 'AdminController@destroy_user']);
 
 	Route::get('/', ['as' => 'admin', 'uses' => 'AdminController@index']);
 	Route::get('/comdica', ['as' => 'admin.comdica', 'uses' => 'AdminController@index']);

@@ -21,8 +21,11 @@
 		      </td>
 		      @can('admin')
 			      <td>
-			      	<a href="{{route('admin.edit_user', $usuario->id)}}">Editar</a> 
-			      	<a href="{{route('admin.destroy_user', $usuario->id)}}">Excluir</a> 
+			      	<a href="{{route('admin.edit_user', $usuario->id)}}">Editar</a>
+					<form action="{{route('admin.destroy_user', $usuario->id)}}" method="POST">
+						{{ csrf_field() }}
+						<button type="submit">Excluir</button>
+					</form> 
 			      </td>
 		      @endcan
 		    </tr>
