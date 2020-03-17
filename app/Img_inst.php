@@ -7,7 +7,7 @@ use App\Instituicao;
 class Img_inst extends Model
 {
     /*nome da tabela*/
-	protected $table 	= 	"Imgs_insts";
+	protected $table 	= 	"imgs_insts";
 
     /*nome da chave primaria da tabela*/
 	protected $primaryKey = 'img_id';
