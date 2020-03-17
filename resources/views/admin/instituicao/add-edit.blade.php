@@ -17,20 +17,22 @@
 
         		<label>Nome da Instituição*</label>  
                 <input type="text" name="name" id="name"  value="{{ isset($instituicoes->name) ? $instituicoes->name : '' }}" placeholder="Ex: Comdica" required><br>
-                <label>Visão Instituição*</label>  
-                <input type="text" name="visao" id="visao"  value="{{ isset($instituicoes->visao) ? $instituicoes->visao : '' }}" placeholder="Digite a visão da instituição..." required><br>
-                <label>Valor da Instituição*</label>  
-                <input type="text" name="valor" id="valor"  value="{{ isset($instituicoes->valor) ? $instituicoes->valor : '' }}" placeholder="Digite o valor da instituição..." required><br>
-                <label>Missão da Instituição*</label>  
-                <input type="text" name="missao" id="missao"  value="{{ isset($instituicoes->missao) ? $instituicoes->missao : '' }}" placeholder="Digite a missão da instituição..." required><br>
+                <label>Descrição da Instituição*</label>  
+                <input type="text" name="desc" id="desc"  value="{{ isset($instituicoes->desc) ? $instituicoes->desc : '' }}" placeholder="Digite a descricao da instituição..." required><br>
+                <label>Telefone da Instituição*</label>  
+                <input type="text" name="telefone" id="telefone"  value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" placeholder="Digite o telefone da instituição..."><br>
+                <label>Endereço da Instituição*</label>  
+                <input type="text" name="endereco" id="endereco"  value="{{ isset($instituicoes->endereco) ? $instituicoes->endereco : '' }}" placeholder="Digite o endereço da instituição..."><br>
+                <label>E-mail da Instituição*</label>  
+                <input type="text" name="email" id="email"  value="{{ isset($instituicoes->email) ? $instituicoes->email : '' }}" placeholder="Digite o e-mail da instituição..."><br>
+                <label>Site da Instituição*</label>  
+                <input type="text" name="site" id="site"  value="{{ isset($instituicoes->site) ? $instituicoes->site : '' }}" placeholder="Digite o site da instituição..."><br>
                 <label>Imagem principal da Instituição*</label>  
                 <input type="file" name="imagem_princ" id="imagem_princ"  value="{{ isset($instituicoes->imagem_princ) ? $instituicoes->imagem_princ : '' }}"><br>
                 <label>Imagem secundária da Instituição</label>  
                 <input type="file" name="imagem_sec" id="imagem_sec"  value="{{ isset($instituicoes->imagem_sec) ? $instituicoes->imagem_sec : '' }}"><br>
                 <label>Imagem terciária da Instituição</label>  
                 <input type="file" name="imagem_ter" id="imagem_ter"  value="{{ isset($instituicoes->imagem_ter) ? $instituicoes->imagem_ter : '' }}"><br>
-                <label>Imagem quaternária da Instituição</label>  
-                <input type="file" name="imagem_qua" id="imagem_qua"  value="{{ isset($instituicoes->imagem_qua) ? $instituicoes->imagem_qua : '' }}"><br>
             @isset($instituicoes)
                 <button type="submit">Editar Instituição</button>
             @else

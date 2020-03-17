@@ -7,16 +7,17 @@ class InstituicaoSeeder extends Seeder
     public function run()
     {
         DB::table('imgs_insts')->insert([
-        'imagem_princ' => 'img_1',
-        'imagem_sec' => 'img_2',
-        'imagem_ter' => 'img_3',
-        'imagem_qua' => 'img_4',
+        'imagem_princ' => 'img_1.jpg',
+        'imagem_sec' => 'img_2.jpg',
+        'imagem_ter' => 'img_3.jpg',
         ]);
         DB::table('instituicoes')->insert([
         'name' => 'Comdica',
-        'visao' => 'Pretendemos crescer e nos multiplicar',
-        'valor' => 'Paz, amor e confiança',
-        'missao' => 'Melhorar a vida das crianças do nosso municipio',
+        'desc' => 'Pretendemos crescer e nos multiplicar a paz nas familias protegendo as crianças',
+        'telefone' => '(81)9998',
+        'endereco' => 'Rua Comdica Aracoiaba, nº 01',
+        'email' => 'comdica@aracoiaba.com',
+        'site' => 'www.comdicaaracoiaba.com',
         'inst_img' => 1,
         ]);
     }

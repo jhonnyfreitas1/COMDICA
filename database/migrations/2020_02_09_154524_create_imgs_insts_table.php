@@ -18,7 +18,6 @@ class CreateImgsInstsTable extends Migration
             $table->string('imagem_princ');
             $table->string('imagem_sec');
             $table->string('imagem_ter');
-            $table->string('imagem_qua');
             $table->timestamps();
         });
     }

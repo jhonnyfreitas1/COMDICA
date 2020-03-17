@@ -13,7 +13,7 @@ class Img_inst extends Model
 	protected $primaryKey = 'img_id';
 
 	/*nome dos atributos que poderão ser alterados*/
-	protected $fillable = ['imagem_princ', 'imagem_sec', 'imagem_ter', 'imagem_qua'];
+	protected $fillable = ['imagem_princ', 'imagem_sec', 'imagem_ter'];
 
 	/*Função que representa o relacionamento de muitos para um*/
 	 public function img_insts(){

@@ -16,9 +16,11 @@ class CreateInstituicoesTable extends Migration
         Schema::create('instituicoes', function (Blueprint $table) {
             $table->Increments('id');
             $table->string('name');
-            $table->string('visao');
-            $table->string('valor');
-            $table->string('missao');
+            $table->string('desc');
+            $table->string('telefone');
+            $table->string('endereco');
+            $table->string('email');
+            $table->string('site');
 
             /** Chave Estrangeira do banco insts_imgs*/          
             $table->Integer('inst_img')->unsigned();
@@ -27,6 +29,7 @@ class CreateInstituicoesTable extends Migration
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

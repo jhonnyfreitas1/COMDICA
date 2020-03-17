@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\iseet;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\Rule;
@@ -30,84 +31,119 @@ class InstituicoesController extends Controller
 
     public function store(Request $request)
     {
+
         // dd($request->name);
 
         /*Validando os dados*/
         $validar            =   $request->validate([
             'name'           => 'required | max:30',
-            'visao'           => 'required | max:100',
-            'valor'           => 'required | max:100',
-            'missao'           => 'required | max:100',
+            'desc'           => 'required | max:100',
+            'telefone'           => 'max:20',
+            'endereco'           => 'max:50',
+            'email'           => 'max:50',
+            'site'           => 'max:50',
         ],[ 
             'name.required' => 'Preencha o nome da instituição',
             'name.max'      => 'Digite no máximo 30 caracteres neste campo',
-            'visao.required' => 'Preencha a visão da instituição',
-            'visao.max'      => 'Digite no máximo 100 caracteres neste campo',
-            'valor.required' => 'Preencha o valor da instituição',
-            'valor.max'      => 'Digite no máximo 100 caracteres neste campo',
-            'missao.required' => 'Preencha a missão da instituição',
-            'missao.max'      => 'Digite no máximo 100 caracteres neste campo',
+            'desc.required' => 'Preencha a descrição da instituição',
+            'desc.max'      => 'Digite no máximo 100 caracteres neste campo',
+            'telefone.max' => 'Digite no máximo 20 caracteres neste campo',
+            'endereco.max'      => 'Digite no máximo 50 caracteres neste campo',
+            'email.max' => 'Digite no máximo 50 caracteres neste campo',
+            'site.max'      => 'Digite no máximo 50 caracteres neste campo',
         ]);
-
+        
+         // Verificando se são realmente imagens
+        $extensoes = ['jpg','jpeg','png'];
+        $resp = 0; 
+        if($request->file('imagem_princ') != NULL){
+            $ex1 = strtolower($request->file('imagem_princ')->extension());
+            for($c = 0; sizeof($extensoes) > $c; $c++){
+                if ($ex1 == $extensoes[$c]) {
+                    $resp++;
+                }
+            }
+            if($resp == 0){
+                $mensagemExtensao = "Adicione uma imagem valida na imagem principal";
+                return redirect('admin/instituicoes/create')->with('danger',$mensagemExtensao);
+            }
+        }
+        if($request->file('imagem_sec') != NULL){
+            $ex2 = strtolower($request->file('imagem_sec')->extension()); 
+            for($c = 0; sizeof($extensoes) > $c; $c++){
+                if ($ex2 == $extensoes[$c]) {
+                    $resp++;
+                }
+            }
+            if($resp == 0){
+                $mensagemExtensao = "Adicione uma imagem valida na imagem principal";
+                return redirect('admin/instituicoes/create')->with('danger',$mensagemExtensao);
+            }
+        }
+        if($request->file('imagem_ter') != NULL){
+            $ex3 = strtolower($request->file('imagem_ter')->extension()); 
+            for($c = 0; sizeof($extensoes) > $c; $c++){
+                if ($ex3 == $extensoes[$c]) {
+                    $resp++;
+                }
+            }
+            if($resp == 0){
+                $mensagemExtensao = "Adicione uma imagem valida na imagem principal";
+                return redirect('admin/instituicoes/create')->with('danger',$mensagemExtensao);
+            }        
+        }
+        
         /*Adicionando imagens*/
         $images = new Img_inst;
         $images->imagem_princ = "";
         $images->imagem_sec = "";
         $images->imagem_ter = "";
-        $images->imagem_qua = "";
 
         $images->save();
 
         /*Adicionando instituição*/
         $instituicao = new Instituicao;
-        $instituicao->name = $request->name;
-        $instituicao->visao = $request->visao;
-        $instituicao->valor = $request->valor;
-        $instituicao->missao = $request->missao;
+        $instituicao->name = $request->name == null ? '' : $request->name;
+        $instituicao->desc = $request->desc == null ? '' : $request->desc;
+        $instituicao->telefone = $request->telefone == null ? '' : $request->telefone ;
+        $instituicao->endereco = $request->endereco == null ? '' : $request->endereco;
+        $instituicao->email = $request->email == null ? '' : $request->email;
+        $instituicao->site = $request->site == null ? '' : $request->site;
         $instituicao->inst_img = $images->img_id;
         $instituicao->save();
+
+
 
         // Guardando as imagens
         $dir = "upload_imagem/instituicoes/".$request->name.$instituicao->id."/";
         if ($request->name) {
             if ($request->imagem_princ == null) {
             }else{
-                $img1 = $request->file('imagem_princ'); 
-                $ex = $img1->extension();
-                $nomeImagem = "img_1.".$ex;
+                $img1 = $request->file('imagem_princ');
+                $nomeImagem = "img_1.".$ex1;
                 $img1->move($dir,$nomeImagem);
                 $request->imagem_princ = $nomeImagem;
             }
             if ($request->imagem_sec == null) {
             }else{
-                $img2 = $request->file('imagem_sec'); 
-                $ex = $img2->extension();
-                $nomeImagem = "img_2.".$ex;
+                $img2 = $request->file('imagem_sec');
+                $nomeImagem = "img_2.".$ex2;
                 $img2->move($dir,$nomeImagem);
                 $request->imagem_sec = $nomeImagem;
             }
             if ($request->imagem_ter == null) {
             }else{
-                $img3 = $request->file('imagem_ter'); 
-                $ex = $img3->extension();
-                $nomeImagem = "img_3.".$ex;
+                $img3 = $request->file('imagem_ter');
+                $nomeImagem = "img_3.".$ex3;
                 $img3->move($dir,$nomeImagem);
                 $request->imagem_ter = $nomeImagem;
             }
-            if ($request->imagem_qua == null){
-            }else{
-                $img4 = $request->file('imagem_qua'); 
-                $ex = $img4->extension();
-                $nomeImagem = "img_4.".$ex;
-                $img4->move($dir,$nomeImagem);
-                $request->imagem_qua = $nomeImagem;
-            }
+
         }
         // Editando o nome das imagens
         $images->imagem_princ = $request->imagem_princ ? $request->imagem_princ : "";
         $images->imagem_sec = $request->imagem_sec ? $request->imagem_sec : "";
         $images->imagem_ter = $request->imagem_ter ? $request->imagem_ter : "";
-        $images->imagem_qua = $request->imagem_qua ? $request->imagem_qua : "";
         $images->save();
 
         /*Voltando para a pagina e listar instituições*/
@@ -136,66 +172,86 @@ class InstituicoesController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = $request; 
-
    /*Validando os dados*/
         $validar            =   $request->validate([
             'name'           => 'required | max:30',
-            'visao'           => 'required | max:100',
-            'valor'           => 'required | max:100',
-            'missao'           => 'required | max:100',
+            'desc'           => 'required | max:100',
+            'telefone'           => 'max:20',
+            'endereco'           => 'max:50',
+            'email'           => 'max:50',
+            'site'           => 'max:50',
         ],[ 
             'name.required' => 'Preencha o nome da instituição',
             'name.max'      => 'Digite no máximo 30 caracteres neste campo',
-            'visao.required' => 'Preencha a visão da instituição',
-            'visao.max'      => 'Digite no máximo 100 caracteres neste campo',
-            'valor.required' => 'Preencha o valor da instituição',
-            'valor.max'      => 'Digite no máximo 100 caracteres neste campo',
-            'missao.required' => 'Preencha a missão da instituição',
-            'missao.max'      => 'Digite no máximo 100 caracteres neste campo',
+            'desc.required' => 'Preencha a descrição da instituição',
+            'desc.max'      => 'Digite no máximo 100 caracteres neste campo',
+            'telefone.max' => 'Digite no máximo 20 caracteres neste campo',
+            'endereco.max'      => 'Digite no máximo 50 caracteres neste campo',
+            'email.max' => 'Digite no máximo 50 caracteres neste campo',
+            'site.max'      => 'Digite no máximo 50 caracteres neste campo',
         ]);
 
-        
+        // Verificando se são realmente imagens
+        $extensoes = ['jpg','jpeg','png'];
+        $resp = 0; 
+        if($request->file('imagem_princ') != NULL){
+            $ex1 = strtolower($request->file('imagem_princ')->extension());
+            for($c = 0; sizeof($extensoes) > $c; $c++){
+                if ($ex1 == $extensoes[$c]) {
+                    $resp++;
+                }
+            }
+            if($resp == 0){
+                $mensagemExtensao = "Adicione uma imagem valida na imagem principal";
+                return redirect('admin/instituicoes/edit/'.$id)->with('danger',$mensagemExtensao);
+            }
+        }
+        if($request->file('imagem_sec') != NULL){
+            $ex2 = strtolower($request->file('imagem_sec')->extension()); 
+            for($c = 0; sizeof($extensoes) > $c; $c++){
+                if ($ex2 == $extensoes[$c]) {
+                    $resp++;
+                }
+            }
+            if($resp == 0){
+                $mensagemExtensao = "Adicione uma imagem valida na imagem principal";
+                return redirect('admin/instituicoes/edit/'.$id)->with('danger',$mensagemExtensao);
+            }
+        }
+        if($request->file('imagem_ter') != NULL){
+            $ex3 = strtolower($request->file('imagem_ter')->extension()); 
+            for($c = 0; sizeof($extensoes) > $c; $c++){
+                if ($ex3 == $extensoes[$c]) {
+                    $resp++;
+                }
+            }
+            if($resp == 0){
+                $mensagemExtensao = "Adicione uma imagem valida na imagem principal";
+                return redirect('admin/instituicoes/edit/'.$id)->with('danger',$mensagemExtensao);
+            }        
+        }
         /*Pegando os dados da instituição*/
-        $instituicao = Instituicao::find($id)->first();
-
-            $dir = "upload_imagem/instituicoes/".$instituicao->name.$instituicao->id;
+        $instituicao = Instituicao::find($id);
+        $dir = "upload_imagem/instituicoes/".$instituicao->name.$id;
 
         // Renomeando a pasta caso a instituição mude de nome
         if(isset($request->name) && $request->name != $instituicao->name){
             /*Pegando o diretório da instituição*/
-            $novoDir = "upload_imagem/instituicoes/".$request->name.$instituicao->id;
+            $novoDir = "upload_imagem/instituicoes/".$request->name.$id;
             // Renomeando
             if(is_dir($dir)){
                 $rename = rename($dir, $novoDir);
+                $dir = $novoDir;
             }
         }
 
         /*Alterando os dados da instituição*/
-        if(isset($request->name)){ 
-            $instituicao->name = $data->name;
-        }else{
-            $instituicao->name = $instituicao->name;
-        };
-
-        if(isset($request->visao)){ 
-            $instituicao->visao = $request->visao;
-        }else{
-            $instituicao->visao = $instituicao->visao;
-        };
-
-        if(isset($request->valor)){ 
-            $instituicao->valor = $request->valor;
-        }else{
-            $instituicao->valor = $instituicao->valor;
-        };
-
-        if(isset($request->missao)){ 
-            $instituicao->missao = $request->missao;
-        }else{
-            $instituicao->missao = $instituicao->missao;
-        };
-        
+        $instituicao->name = $instituicao->name == $request->name ?  $instituicao->name : $request->name;
+        $instituicao->desc = $instituicao->desc == $request->desc ?  $instituicao->desc : $request->desc;
+        $instituicao->telefone = $instituicao->telefone == $request->telefone ?  $instituicao->telefone : $request->telefone ;
+        $instituicao->endereco = $instituicao->endereco == $request->endereco ?  $instituicao->endereco : $request->endereco;
+        $instituicao->email = $instituicao->email == $request->email ?  $instituicao->email : $request->email;
+        $instituicao->site = $instituicao->site == $request->site ?  $instituicao->site : $request->site;
         $instituicao->inst_img = $instituicao->inst_img;
         $instituicao->save();
 
@@ -226,14 +282,6 @@ class InstituicoesController extends Controller
                 $img3->move($dir,$nomeImagem);
                 $request->imagem_ter = $nomeImagem;
             }
-            if ($request->imagem_qua == null) {
-            }else{                
-                $img4 = $request->file('imagem_qua'); 
-                $ex = $img4->extension();
-                $nomeImagem = "img_4.".$ex;
-                $img4->move($dir,$nomeImagem);
-                $request->imagem_qua = $nomeImagem;
-            }
         }
 
         /*Alterando as imagens*/
@@ -252,12 +300,6 @@ class InstituicoesController extends Controller
 
         if(isset($img3)){ 
             $images->imagem_ter = $request->imagem_ter ? $request->imagem_ter : "";
-        }else{ 
-            $images->imagem_princ = $images->imagem_princ;
-        };
-        
-        if(isset($img4)){ 
-            $images->imagem_qua = $request->imagem_qua ? $request->imagem_qua : "";
         }else{ 
             $images->imagem_princ = $images->imagem_princ;
         };
@@ -281,7 +323,6 @@ class InstituicoesController extends Controller
         $img1 = $instituicao[0]->imagem_princ;
         $img2 = $instituicao[0]->imagem_sec;
         $img3 = $instituicao[0]->imagem_ter;
-        $img4 = $instituicao[0]->imagem_qua;
 
         // Vê se existe a imagem/pasta para exclui-lá
         if (File::exists($ex.$img1)) {
@@ -293,9 +334,7 @@ class InstituicoesController extends Controller
         if (File::exists($ex.$img3)) {
             File::delete($ex.$img3);
         }
-        if (File::exists($ex.$img4)) {
-            File::delete($ex.$img4);
-        }
+
         if (File::exists($ex)) {
             $rm = rmdir($ex);
         }

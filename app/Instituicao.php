@@ -14,7 +14,7 @@ class Instituicao extends Model
 	protected $primaryKey = 'id';
 
 	/*nome dos atributos que poderão ser alterados*/
-	protected $fillable = ['name', 'visao', 'valor', 'missao', 'inst_img'];
+	protected $fillable = ['name', 'desc', 'telefone', 'endereco', 'email', 'site', 'inst_img'];
 
 	/*Função que representa o relacionamento de muitos para um*/
 	 public function inst_img(){

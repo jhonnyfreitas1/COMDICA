@@ -13,19 +13,29 @@
 					<strong>name: </strong>{{$instituicao[0]->name}}
 				</li>
 			@endif
-			@if($instituicao[0]->visao)
+			@if($instituicao[0]->desc)
 				<li>
-					<strong>visao: </strong>{{$instituicao[0]->visao}}
+					<strong>desc: </strong>{{$instituicao[0]->desc}}
 				</li>
 			@endif
-			@if($instituicao[0]->valor)
+			@if($instituicao[0]->telefone)
 				<li>
-					<strong>valor: </strong>{{$instituicao[0]->valor}}
+					<strong>telefone: </strong>{{$instituicao[0]->telefone}}
 				</li>
 			@endif
-			@if($instituicao[0]->missao)
+			@if($instituicao[0]->endereco)
 				<li>
-					<strong>missao: </strong>{{$instituicao[0]->missao}}
+					<strong>endereco: </strong>{{$instituicao[0]->endereco}}
+				</li>
+			@endif
+			@if($instituicao[0]->email)
+				<li>
+					<strong>email: </strong>{{$instituicao[0]->email}}
+				</li>
+			@endif
+			@if($instituicao[0]->site)
+				<li>
+					<strong>site: </strong>{{$instituicao[0]->site}}
 				</li>
 			@endif
 			@if($instituicao[0]->imagem_princ)
@@ -41,11 +51,6 @@
 			@if($instituicao[0]->imagem_ter)
 				<li>
 					<strong>imagem_ter: </strong>{{$instituicao[0]->imagem_ter}}
-				</li>
-			@endif
-			@if($instituicao[0]->imagem_qua)
-				<li>
-					<strong>imagem_qua: </strong>{{$instituicao[0]->imagem_qua}}
 				</li>
 			@endif
 		</ul>
