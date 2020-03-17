@@ -55,12 +55,12 @@
 			<ul class="produtos_lista">
 				<li class="grid-1-3">
 					<div class="produtos_icone">
-						<img src=" @if($postagem->imagem_principal)
-									'/upload_imagem/'{{$postagem->imagem_principal}}
+						<img src=@if($postagem->imagem_principal)
+									"/upload_imagem/{{$postagem->imagem_principal}}"
 								   @else
 									{{asset('img/fundo_criancas.jpg')}}
 								   @endisset
-									" alt="">
+									alt="">
 					</div>
 					<h3>{{$postagem->titulo}}</h3>
 					<p>{{$postagem->descricao}}</p>

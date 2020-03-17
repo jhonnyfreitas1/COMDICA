@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\DB;
 
 class TypeUserSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
     public function run()
     {
         DB::table('tipos_users')->insert([

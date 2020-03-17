@@ -17,7 +17,7 @@ class InstituicoesController extends Controller
     public function index()
     {
         $instituicoes = DB::table('instituicoes')
-                           ->join('Imgs_insts', 'instituicoes.inst_img','Imgs_insts.img_id')->paginate(10);
+                           ->join('imgs_insts', 'instituicoes.inst_img','imgs_insts.img_id')->paginate(10);
                            // return $instituicoes;
         return view('admin.instituicao.index', compact('instituicoes'));
     }
@@ -155,7 +155,7 @@ class InstituicoesController extends Controller
     public function show($id)
     {
         $instituicao = DB::table('instituicoes')
-                           ->join('Imgs_insts', 'instituicoes.inst_img','Imgs_insts.img_id')
+                           ->join('imgs_insts', 'instituicoes.inst_img','imgs_insts.img_id')
                            ->where('id',$id)->get();
         return view('/admin/instituicao/show', compact('instituicao'));
     }
@@ -315,7 +315,7 @@ class InstituicoesController extends Controller
     {
         // Faz join de instituições com as suas imagens
         $instituicao = DB::table('instituicoes')
-                           ->join('Imgs_insts', 'instituicoes.inst_img','Imgs_insts.img_id')
+                           ->join('imgs_insts', 'instituicoes.inst_img','imgs_insts.img_id')
                            ->where('id',$id)->get();
 
 

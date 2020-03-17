@@ -66,13 +66,13 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 	Route::get('/postagem_edit/{id}', ['as' => 'admin.postagem_edit', 'uses' => 'PostagemController@edit']);
 
 //Rotas de instituições
-	Route::get('/instituicoes', ['as' => 'instituicao.index', 'uses' => 'instituicoesController@index']);
-	Route::get('/instituicoes/create',['as' => 'instituicao.create', 'uses' => 'instituicoesController@create']);
-	Route::post('/instituicoes/store',['as' => 'instituicao.store', 'uses' => 'instituicoesController@store']);
-	Route::get('/instituicoes/{id}',['as' => 'instituicao.show', 'uses' => 'instituicoesController@show']);
-	Route::get('/instituicoes/edit/{id}',['as' => 'instituicao.edit', 'uses' => 'instituicoesController@edit']);
-	Route::put('/instituicoes/update/{id}',['as' => 'instituicao.update', 'uses' => 'instituicoesController@update']);
-	Route::get('/instituicoes/destroy/{id}',['as' => 'instituicao.destroy', 'uses' => 'instituicoesController@destroy']);
+	Route::get('/instituicoes', ['as' => 'instituicao.index', 'uses' => 'InstituicoesController@index']);
+	Route::get('/instituicoes/create',['as' => 'instituicao.create', 'uses' => 'InstituicoesController@create']);
+	Route::post('/instituicoes/store',['as' => 'instituicao.store', 'uses' => 'InstituicoesController@store']);
+	Route::get('/instituicoes/{id}',['as' => 'instituicao.show', 'uses' => 'InstituicoesController@show']);
+	Route::get('/instituicoes/edit/{id}',['as' => 'instituicao.edit', 'uses' => 'InstituicoesController@edit']);
+	Route::put('/instituicoes/update/{id}',['as' => 'instituicao.update', 'uses' => 'InstituicoesController@update']);
+	Route::get('/instituicoes/destroy/{id}',['as' => 'instituicao.destroy', 'uses' => 'InstituicoesController@destroy']);
 });
 
 

@@ -14,7 +14,7 @@ class InstituicaoSeeder extends Seeder
         DB::table('instituicoes')->insert([
         'name' => 'Comdica',
         'desc' => 'Pretendemos crescer e nos multiplicar a paz nas familias protegendo as crianças',
-        'telefone' => '(81)9998',
+        'telefone' => '(81)9999-9999',
         'endereco' => 'Rua Comdica Aracoiaba, nº 01',
         'email' => 'comdica@aracoiaba.com',
         'site' => 'www.comdicaaracoiaba.com',
