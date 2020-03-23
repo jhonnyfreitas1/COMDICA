@@ -133,7 +133,7 @@ class AdminController extends Controller
         $user->password = bcrypt($request->password);    
         if ($user->save()) {
                 $mensagem = "Dados alterados com sucesso";
-                return back()->with(compact('mensagem' , $mensagem));  
+                return back()->with(compact('mensagem'));  
         }else{
             $mensagem = "erro na atualizacao dos dados";
             return back()->with(compact('fail' ,$mensagem));
@@ -182,7 +182,7 @@ class AdminController extends Controller
             // return $user;
         if ($user->save()) {
                 $mensagem = "Dados alterados com sucesso";
-                return back()->with(compact('mensagem' , $mensagem));  
+                return back()->with(compact('mensagem'));  
         }else{
             $mensagem = "erro na atualizacao dos dados";
             return back()->with(compact('fail' ,$mensagem));
@@ -194,6 +194,6 @@ class AdminController extends Controller
         // Deleta as tabelas e redireciona 
         $user  = User::find($id);
         $user->delete();
-        return redirect('/admin/listusers');        
+        return redirect('/admin/users/index');        
     }
 }

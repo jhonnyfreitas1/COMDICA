@@ -15,28 +15,32 @@
   </head>
   <body>
   <div style='width:100%; height:100%; align-items:center; justify-content:center; display:flex; z-index:60;background-color:rgba(0,0,0,0.75);position:absolute;' id='floating-display' class='floating-div-carregamento'>
-      <img style='position:absolute; z-index:50;' class='admin-carregamento' src='/img/carregamento2.gif'> 
+      <img style='position:absolute; z-index:50;' class='admin-carregamento' src='/img/carregamento2.gif'>
   </div>
     <div class="d-flex " id="wrapper">
       <div class="bg-info  border-right " id="sidebar-wrapper">
         <div class="sidebar-heading"><a href="/"><img src="/img/comdica3.png" style="width: 10em;"></a></div>
         <div class="list-group list-group-flush">
-          <a href="/admin/nova-postagem" id='postagem' class="list-group-item bg-info border list-group-item-action ">Nova postagem <i class="fas fa-plus-square"></i> </a>
-          <a href="/admin/minhas_postagens" id='minhas_postagens'  class="list-group-item bg-info border list-group-item-action ">Minhas postagens <i class="fas fa-user"></i></a>
+          <a href="{{route('postagens.create')}}" id='postagem' class="list-group-item bg-info border list-group-item-action ">Nova postagem <i class="fas fa-plus-square"></i> </a>
+          <a href="{{route('postagens.minhas_postagens')}}" id='minhas_postagens'  class="list-group-item bg-info border list-group-item-action ">Minhas postagens <i class="fas fa-user"></i></a>
+          @can('admin')
+            <a href="{{route('postagens.index')}}" id='todas_postagens'  class="list-group-item bg-info border list-group-item-action ">Todas as postagens <i class="fas fa-user"></i></a>
+            <a href="{{route('postagens.arquivadas')}}" id='postagens_arquivadas'  class="list-group-item bg-info border list-group-item-action ">Postagens Arquivadas <i class="fas fa-user"></i></a>
+          @endcan
           <a href="/admin/lista_denuncias" id='denuncias'  class="list-group-item bg-info border list-group-item-action ">Todas as denúncias <i class="fas fa-user"></i></a>
           <a href="/admin/instituicoes" id='instituicoes'  class="list-group-item bg-info border list-group-item-action ">Instituições <i class="fas fa-user"></i></a>
           <a href="/admin/doacoes" id='doacao_imposto' class="list-group-item bg-info border list-group-item-action ">Doações por boleto <i class="fas fa-file-invoice-dollar"></i></a>
-          <a href="/admin/register" id='adc_user' class="list-group-item list-group-item-action bg-info border">Adicionar Usuarios <i class="fas fa-users"></i></a>
+          <a href="{{route('admin.register')}}" id='adc_user' class="list-group-item list-group-item-action bg-info border">Adicionar Usuarios <i class="fas fa-users"></i></a>
           <a href="{{route('admin.list_users')}}" id='users' class="list-group-item list-group-item-action bg-info border">Usuarios <i class="fas fa-users"></i></a>
           <a href="/admin/contato" class="list-group-item list-group-item-action bg-info border">Mensagens de contato <i class="far fa-comments"></i>
             @isset($contato)
             <span class="bg-danger rounded p-1">{{$contato}}</span>
             @endisset
           </a>
-        
+
         </div>
       </div>
-      
+
       <!-- Page Content -->
       <div id="page-content-wrapper">
         <nav class="navbar navbar-expand-lg navbar-light bg-info border-bottom">
@@ -54,7 +58,7 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  
+
                   <a class="dropdown-item" href="{{route('admin.update')}}">Edite sua conta <i class="far fa-edit"></i></a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/auth/logout">Sair do sistema <i class="fas fa-sign-out-alt"></i> </a>
@@ -65,7 +69,7 @@
         </nav>
 
         <div class="container-fluid" id="area-principal" style="width: 100%;" >
-        
+
             @yield('area-principal')
 
       </div>
@@ -75,24 +79,24 @@
     <script src="/js/dashboard.js"></script>
 </body>
 <script>
-  
+
   $(document).on('DOMContentLoaded', () => {
     setInterval(() => {
       const floating = document.getElementById('floating-display');
       floating.style.display = `none`;
-      
+
     }, 1000);
   });
   document.addEventListener('load',() => {
 });
 </script>
 <style type="text/css">
-/*.list-group-item{ 
+/*.list-group-item{
   color: white;
   background-repeat: no-repeat;
 }*/
 .floating-div-carregamento{
- 
+
 }
 body{
   transition:all 2s;
