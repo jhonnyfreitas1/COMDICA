@@ -43,6 +43,12 @@
 			.slick-current {
 			  opacity: 1;
 			}
+			.tag{
+				color: white;
+			}
+			.tag:hover{
+				color:darkgreen;
+			}
 		  </style>
 	</head>
 	<body>
@@ -70,7 +76,7 @@
 
 					<div class="grid-8 footer_historia">
 						<h3>Área Restrita</h3>
-						<p>Comdica...</p>
+						<a href="{{route('admin')}}" class="tag"><b>Painel Admin<b></a>
 					</div>
 
 					<div class="grid-4 footer_contato">
@@ -85,9 +91,9 @@
 					<div class="grid-4 footer_redes">
 						<h3>Redes Sociais</h3>
 						<ul>
-							<li><a href="http://facebook.com" target="_blank"><img src="img/redes-sociais/facebook.sv"></a></li>
-							<li><a href="http://instagram.com" target="_blank"><img src="img/redes-sociais/instagram.sv"></a></li>
-							<li><a href="http://twitter.com" target="_blank"><img src="img/redes-sociais/twitter.sv"></a></li>
+							<li><a href="http://facebook.com" target="_blank"><img src="img/redes-sociais/Facebook.png"></a></li>
+							<li><a href="http://instagram.com" target="_blank"><img src="img/redes-sociais/Instagram.png"></a></li>
+							<li><a href="http://twitter.com" target="_blank"><img src="img/redes-sociais/Twiiter.png"></a></li>
 						</ul>
 					</div>
 
