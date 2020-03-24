@@ -59,7 +59,7 @@
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                  <a class="dropdown-item" href="{{route('admin.update')}}">Edite sua conta <i class="far fa-edit"></i></a>
+                  <a class="dropdown-item" href="{{route('admin.auth.edit')}}">Edite sua conta <i class="far fa-edit"></i></a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/auth/logout">Sair do sistema <i class="fas fa-sign-out-alt"></i> </a>
                 </div>

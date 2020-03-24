@@ -20,7 +20,7 @@ class AdminController extends Controller
         $cancelados = Doacao_boleto::where('status' , 'FAILED')->count();
         $pagos =Doacao_boleto::where('status' , 'CONFIRMED')->count();
         $wating= Doacao_boleto::where('status' , 'AUTHORIZED')->count();
-        
+
         $lava = new Lavacharts;
         $reasons = $lava->DataTable();
         $reasons->addStringColumn('Reasons')
@@ -42,7 +42,7 @@ class AdminController extends Controller
 
         return View('admin.index', compact('lava'))->with(compact('contato'));
     }
-    
+
     public function doacoes_boleto(){
         $doacoes = Doacao_boleto::orderBy('id', 'DESC')->paginate(10);
         $contato = Contato::where('visto', false)->get()->count();
@@ -55,7 +55,7 @@ class AdminController extends Controller
     public function contato_single($id){
         $model = Contato::where('id', '=' , $id)->first();
         $contato = Contato::where('visto', false)->get()->count();
-        if ($model) {   
+        if ($model) {
             $model->visto = true;
             $model->save();
             return view('admin.mensagem')->with(compact('model','contato'));
@@ -71,42 +71,43 @@ class AdminController extends Controller
             return view('admin.contato')->with(compact('mensagens','contato'));
         }else{
             $mensagens = 'Sem mensagens no momento.';
-            return view('admin.contato')->with(compact('mensagens')); 
+            return view('admin.contato')->with(compact('mensagens'));
         }
     }
-  
-    public function update(){
-    
+
+    public function edit()
+    {
         $user = User::find(Auth::id());
         return view('admin.admin_update' , compact('user'))->with(compact('user'));
-    } 
+
+    }
 
     // Métodos do usuário
 
     // Método que edit
-    // public function store(Request $request)
-    // {
-    //      $this->validate(request(), [
-    //         'name' => 'required',
-    //         'password' => 'required|min:8|confirmed',
-    //         'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
-    //         'password2' => 'min:8'
-    //     ]);
+    public function update(Request $request)
+    {
+         $this->validate(request(), [
+            'name' => 'required',
+            'password' => 'required|min:8|confirmed',
+            'password' => 'min:8|required_with:password_confirmation|same:password_confirmation',
+            'password2' => 'min:8'
+        ]);
 
-         
-    //     $user  = User::find(Auth::user()->id);
-    //     $user->name = $request->name;
-    //     $user->email = $request->email;
-    //     $user->password = bcrypt($request->password);     
 
-    //     if ($user->save()) {
-    //             $mensagem = "Dados alterados com sucesso";
-    //             return back()->with(compact('mensagem' , $mensagem));  
-    //     }else{
-    //         $mensagem = "erro na atualizacao dos dados";
-    //         return back()->with(compact('fail' ,$mensagem));
-    //     }
-    // }
+        $user  = User::find(Auth::user()->id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+
+        if ($user->save()) {
+                $mensagem = "Dados alterados com sucesso";
+                return back()->with(compact('mensagem'));
+        }else{
+            $mensagem = "erro na atualizacao dos dados";
+            return back()->with(compact('fail'));
+        }
+    }
 
     public function add_user(Request $request){
         $this->validate(request(), [
@@ -114,7 +115,7 @@ class AdminController extends Controller
             'email' => 'required|email|',
             'password' => 'required|min:8',
             'password2' => 'min:8|required_with:password|same:password',
-        ],[ 
+        ],[
             'name.required' => 'Preencha o nome do usuário',
             'name.max'      => 'Digite no máximo 50 caracteres neste campo',
             'email.required' => 'Preencha o e-mail do usuário',
@@ -130,10 +131,10 @@ class AdminController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->tipo_user = $request->tipo_user;
-        $user->password = bcrypt($request->password);    
+        $user->password = bcrypt($request->password);
         if ($user->save()) {
                 $mensagem = "Dados alterados com sucesso";
-                return back()->with(compact('mensagem'));  
+                return back()->with(compact('mensagem'));
         }else{
             $mensagem = "erro na atualizacao dos dados";
             return back()->with(compact('fail' ,$mensagem));
@@ -154,14 +155,14 @@ class AdminController extends Controller
         $tipos = Tipo_user::all();
         return view('auth.register' , compact('usuario','tipos'));
     }
-    
+
     public function update_user(Request $request, $id){
         $this->validate(request(), [
             'name' => 'required|max:50',
             'email' => 'required|email|',
             'password' => 'required|min:8',
             'password2' => 'min:8|required_with:password|same:password',
-        ],[ 
+        ],[
             'name.required' => 'Preencha o nome do usuário',
             'name.max'      => 'Digite no máximo 50 caracteres neste campo',
             'email.required' => 'Preencha o e-mail do usuário',
@@ -173,16 +174,16 @@ class AdminController extends Controller
             'password2.required_with:password'      => 'Digite no mínimo 8 caracteres neste campo',
             'password2.same' => 'Os campos senha e confirmação de senha devem ter os mesmos valores',
             ]);
-            
+
             $user  = User::find($id);
             $user->name = $request->name;
             $user->email = $request->email;
             $user->tipo_user = $request->tipo_user;
-            $user->password = bcrypt($request->password);    
+            $user->password = bcrypt($request->password);
             // return $user;
         if ($user->save()) {
                 $mensagem = "Dados alterados com sucesso";
-                return back()->with(compact('mensagem'));  
+                return back()->with(compact('mensagem'));
         }else{
             $mensagem = "erro na atualizacao dos dados";
             return back()->with(compact('fail' ,$mensagem));
@@ -190,10 +191,10 @@ class AdminController extends Controller
     }
     public function destroy_user($id)
     {
-        
-        // Deleta as tabelas e redireciona 
+
+        // Deleta as tabelas e redireciona
         $user  = User::find($id);
         $user->delete();
-        return redirect('/admin/users/index');        
+        return redirect('/admin/users/index');
     }
 }

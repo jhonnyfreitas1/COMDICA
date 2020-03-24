@@ -66,7 +66,7 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 
     //Rotas de postagens
 	Route::group(['prefix' => '/postagens'],function(){
-		Route::get('/', ['as' => 'postagens.index', 'uses' => 'PostagemController@index']);
+        Route::get('/', ['as' => 'postagens.index', 'uses' => 'PostagemController@index']);
 		Route::get('/create',['as' => 'postagens.create', 'uses' => 'PostagemController@create']);
 		Route::post('/store',['as' => 'postagens.store', 'uses' => 'PostagemController@store']);
 		Route::get('/edit/{id}',['as' => 'postagens.edit', 'uses' => 'PostagemController@edit']);
@@ -77,14 +77,18 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 		Route::get('/arquivar/{id}', ['as' => 'postagens.arquivar', 'uses' => 'PostagemController@arquivar']);
 	});
 
-	Route::get('/', ['as' => 'admin', 'uses' => 'AdminController@index']);
+    //Rotas de Auth
+    Route::group(['prefix' => '/auth'],function(){
+        Route::get('/edit', ['as' => 'admin.auth.edit', 'uses' => 'AdminController@edit']);
+        Route::post('/update', ['as' => 'admin.auth.update', 'uses' => 'AdminController@update']);
+    });
+
+    Route::get('/', ['as' => 'admin', 'uses' => 'AdminController@index']);
 	Route::get('/comdica', ['as' => 'admin.comdica', 'uses' => 'AdminController@index']);
 	Route::get('/contato', ['as' => 'admin.contato', 'uses' => 'AdminController@contato']);
 	Route::get('/contato/{id}', ['as' => 'admin.contato.id', 'uses' => 'AdminController@contato_single']);
 	Route::get('/doacoes', ['as' => 'admin.boleto', 'uses' => 'AdminController@doacoes_boleto']);
 	Route::get('/back', ['as' => 'admin.back', 'uses' => 'AdminController@back']);
-	Route::get('/update', ['as' => 'admin.update', 'uses' => 'AdminController@update']);
-	Route::post('/update/save', ['as' => 'admin.update.save', 'uses' => 'AdminController@store']);
 
 	Route::get('/lista_denuncias', ['as' => 'admin.lista_denuncias', 'uses' => 'DenunciaController@lista_denuncias']);
     Route::get('/show_denuncia/{id}', ['as' => 'admin.show_denuncia', 'uses' => 'DenunciaController@show_denuncia']);

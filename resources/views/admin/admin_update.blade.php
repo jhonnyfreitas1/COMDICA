@@ -10,10 +10,10 @@
 
    @endif
    @if(session('mensagem'))
-                <p class="float-right alert alert-success fade col-md-4 show mt-2" role="alert">              
+                <p class="float-right alert alert-success fade col-md-4 show mt-2" role="alert">
                     {{session('mensagem')}}
-                </p> 
-                <?php Session::pull('mensagem')?>         
+                </p>
+                <?php Session::pull('mensagem')?>
               @endif
 <div class="container mb-5 mt-5">
     <div class="row justify-content-center">
@@ -22,7 +22,7 @@
                 <div class="card-header bg-info text-light">{{ __('Atualizar dados do administrador') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.update.save') }}">
+                    <form method="POST" action="{{ route('admin.auth.update') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -87,7 +87,7 @@
             </div>
         </div>
     </div>
-   
+
 </div>
 
 @endsection
