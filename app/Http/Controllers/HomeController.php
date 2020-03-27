@@ -34,6 +34,11 @@ class HomeController extends Controller
                 return view('newFront.index')->with(compact('postagens' ,'posts','mensagem'));
             }
     }
+    public function postList(){
+        $posts = DB::table('postagens')->orderBy('created_at')->paginate(1);
+        $postRecent = DB::table('postagens')->orderBy('created_at')->first();
+        return view('newFront.postagens')->with(compact('posts', 'postRecent'));  
+    }
     public function sobre()
     {
         return view('newFront.sobre');
@@ -49,7 +54,7 @@ class HomeController extends Controller
         $posts  = Postagem::inRandomOrder()->where('categoria', $postagem->categoria)->skip(5)->take(5)->orderBy('id', 'DESC')->paginate(6);
 
         if ($postagem) {
-            return view('home.postagem')->with(compact('postagem', 'posts', 'anexosPost'));
+            return view('newFront.verPostagem')->with(compact('postagem', 'posts', 'anexosPost'));
          }else{
             return redirect('/notfound');
         }

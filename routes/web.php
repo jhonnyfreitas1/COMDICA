@@ -21,7 +21,7 @@ Route::view('newIndex', 'newFront.index')->name('newIndex'); /*-> Tem que ir pro
 Route::view('portifolio', 'newFront.portifolio')->name('portifolio');
 Route::view('denuncias', 'newFront.denuncias')->name('denuncias');
 Route::get('sobre', ['as' => 'sobre', 'uses' => 'HomeController@sobre']);
-Route::view('postagens', 'newFront.postagens')->name('postagens');
+Route::get('postagens', 'HomeController@postList')->name('postagens');
 Route::view('postagemVer', 'newFront.verPostagem')->name('postagemVer');
 //Rotas do site
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
