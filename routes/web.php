@@ -69,7 +69,6 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
         Route::get('/', ['as' => 'postagens.index', 'uses' => 'PostagemController@index']);
 		Route::get('/create',['as' => 'postagens.create', 'uses' => 'PostagemController@create']);
 		Route::post('/store',['as' => 'postagens.store', 'uses' => 'PostagemController@store']);
-		Route::post('/stora',['as' => 'postagens.stora', 'uses' => 'PostagemController@stora']);
 		Route::get('/edit/{id}',['as' => 'postagens.edit', 'uses' => 'PostagemController@edit']);
 		Route::put('/update/{id}',['as' => 'postagens.update', 'uses' => 'PostagemController@update']);
 		Route::get('/destroy/{id}',['as' => 'postagens.destroy', 'uses' => 'PostagemController@destroy']);
