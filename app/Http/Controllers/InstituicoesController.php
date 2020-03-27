@@ -12,8 +12,8 @@ use App\Instituicao;
 use App\Img_inst;
 
 class InstituicoesController extends Controller
-{   
-    
+{
+
     public function index()
     {
         $instituicoes = DB::table('instituicoes')
@@ -42,7 +42,7 @@ class InstituicoesController extends Controller
             'endereco'           => 'max:50',
             'email'           => 'max:50',
             'site'           => 'max:50',
-        ],[ 
+        ],[
             'name.required' => 'Preencha o nome da instituição',
             'name.max'      => 'Digite no máximo 30 caracteres neste campo',
             'desc.required' => 'Preencha a descrição da instituição',
@@ -52,10 +52,10 @@ class InstituicoesController extends Controller
             'email.max' => 'Digite no máximo 50 caracteres neste campo',
             'site.max'      => 'Digite no máximo 50 caracteres neste campo',
         ]);
-        
+
          // Verificando se são realmente imagens
         $extensoes = ['jpg','jpeg','png'];
-        $resp = 0; 
+        $resp = 0;
         if($request->file('imagem_princ') != NULL){
             $ex1 = strtolower($request->file('imagem_princ')->extension());
             for($c = 0; sizeof($extensoes) > $c; $c++){
@@ -69,7 +69,7 @@ class InstituicoesController extends Controller
             }
         }
         if($request->file('imagem_sec') != NULL){
-            $ex2 = strtolower($request->file('imagem_sec')->extension()); 
+            $ex2 = strtolower($request->file('imagem_sec')->extension());
             for($c = 0; sizeof($extensoes) > $c; $c++){
                 if ($ex2 == $extensoes[$c]) {
                     $resp++;
@@ -81,7 +81,7 @@ class InstituicoesController extends Controller
             }
         }
         if($request->file('imagem_ter') != NULL){
-            $ex3 = strtolower($request->file('imagem_ter')->extension()); 
+            $ex3 = strtolower($request->file('imagem_ter')->extension());
             for($c = 0; sizeof($extensoes) > $c; $c++){
                 if ($ex3 == $extensoes[$c]) {
                     $resp++;
@@ -90,10 +90,10 @@ class InstituicoesController extends Controller
             if($resp == 0){
                 $mensagemExtensao = "Adicione uma imagem valida na imagem principal";
                 return redirect('admin/instituicoes/create')->with('danger',$mensagemExtensao);
-            }        
+            }
         }
-        
-        /*Adicionando imagens*/
+
+        /*Adicionando imagens vazio para depois adicionar os nomes verdadeiros*/
         $images = new Img_inst;
         $images->imagem_princ = "";
         $images->imagem_sec = "";
@@ -180,7 +180,7 @@ class InstituicoesController extends Controller
             'endereco'           => 'max:50',
             'email'           => 'max:50',
             'site'           => 'max:50',
-        ],[ 
+        ],[
             'name.required' => 'Preencha o nome da instituição',
             'name.max'      => 'Digite no máximo 30 caracteres neste campo',
             'desc.required' => 'Preencha a descrição da instituição',
@@ -193,7 +193,7 @@ class InstituicoesController extends Controller
 
         // Verificando se são realmente imagens
         $extensoes = ['jpg','jpeg','png'];
-        $resp = 0; 
+        $resp = 0;
         if($request->file('imagem_princ') != NULL){
             $ex1 = strtolower($request->file('imagem_princ')->extension());
             for($c = 0; sizeof($extensoes) > $c; $c++){
@@ -207,7 +207,7 @@ class InstituicoesController extends Controller
             }
         }
         if($request->file('imagem_sec') != NULL){
-            $ex2 = strtolower($request->file('imagem_sec')->extension()); 
+            $ex2 = strtolower($request->file('imagem_sec')->extension());
             for($c = 0; sizeof($extensoes) > $c; $c++){
                 if ($ex2 == $extensoes[$c]) {
                     $resp++;
@@ -219,7 +219,7 @@ class InstituicoesController extends Controller
             }
         }
         if($request->file('imagem_ter') != NULL){
-            $ex3 = strtolower($request->file('imagem_ter')->extension()); 
+            $ex3 = strtolower($request->file('imagem_ter')->extension());
             for($c = 0; sizeof($extensoes) > $c; $c++){
                 if ($ex3 == $extensoes[$c]) {
                     $resp++;
@@ -228,7 +228,7 @@ class InstituicoesController extends Controller
             if($resp == 0){
                 $mensagemExtensao = "Adicione uma imagem valida na imagem principal";
                 return redirect('admin/instituicoes/edit/'.$id)->with('danger',$mensagemExtensao);
-            }        
+            }
         }
         /*Pegando os dados da instituição*/
         $instituicao = Instituicao::find($id);
@@ -259,7 +259,7 @@ class InstituicoesController extends Controller
         if ($instituicao) {
             if ($request->imagem_princ == null) {
             }else{
-                $img1 = $request->file('imagem_princ'); 
+                $img1 = $request->file('imagem_princ');
                 $ex = $img1->extension();
                 $nomeImagem = "img_1.".$ex;
                 $img1->move($dir,$nomeImagem);
@@ -267,7 +267,7 @@ class InstituicoesController extends Controller
             }
             if ($request->imagem_sec == null) {
             }else{
-                $img2 = $request->file('imagem_sec'); 
+                $img2 = $request->file('imagem_sec');
                 $ex = $img2->extension();
                 $nomeImagem = "img_2.".$ex;
                 $img2->move($dir,$nomeImagem);
@@ -275,8 +275,8 @@ class InstituicoesController extends Controller
 
             }
             if ($request->imagem_ter == null) {
-            }else{                
-                $img3 = $request->file('imagem_ter'); 
+            }else{
+                $img3 = $request->file('imagem_ter');
                 $ex = $img3->extension();
                 $nomeImagem = "img_3.".$ex;
                 $img3->move($dir,$nomeImagem);
@@ -286,21 +286,21 @@ class InstituicoesController extends Controller
 
         /*Alterando as imagens*/
         $images = Img_inst::find($instituicao->inst_img);
-        if(isset($img1)){ 
+        if(isset($img1)){
             $images->imagem_princ =  $request->imagem_princ ? $request->imagem_princ : "";
-        }else{ 
+        }else{
             $images->imagem_princ = $images->imagem_princ;
         };
 
-        if(isset($img2)){ 
+        if(isset($img2)){
             $images->imagem_sec = $request->imagem_sec ? $request->imagem_sec : "";
-        }else{ 
+        }else{
             $images->imagem_princ = $images->imagem_princ;
         };
 
-        if(isset($img3)){ 
+        if(isset($img3)){
             $images->imagem_ter = $request->imagem_ter ? $request->imagem_ter : "";
-        }else{ 
+        }else{
             $images->imagem_princ = $images->imagem_princ;
         };
         $images->save();
@@ -339,7 +339,7 @@ class InstituicoesController extends Controller
             $rm = rmdir($ex);
         }
 
-        // Deleta as tabelas e redireciona 
+        // Deleta as tabelas e redireciona
         $inst = Instituicao::find($id);
         $img = Img_inst::find($inst->inst_img)->delete();
         $inst->delete();

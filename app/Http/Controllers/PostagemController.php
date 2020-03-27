@@ -20,86 +20,95 @@ class PostagemController extends Controller
 
    public function create(){
        $contato = Contato::where('visto', false)->get()->count();
-       return view('admin.postagens.nova_postagem')->with(compact('contato'));
+       return view('admin.postagens.add')->with(compact('contato'));
    }
 
-   public function store(){
-       if (strlen($request->titulo) > 50){
-           return 'O titulo de sua postagem não pode ultrapassar 50 caracteres';
-       }
-       $validPost = DB::table('postagens')->where('titulo',$request->titulo)->first();
-
-       if ($validPost){
-           return 'Uma postagem com esse titulo já existe';
-       }
-       $data =  date('Y-m-d H:i:s');
-
-       //return $request->all();
+   public function store(Request $request){
+    $validar = $request->validate([
+        'titulo'    =>  'max:50 | unique:postagens,titulo',
+        'imagem'    =>  'mimes:jpeg,jpg,png,bmp | required',
+    ],[
+        // 'titulo.unique'      => 'Já existe uma postagem com este nome',
+        'titulo.max' => 'Digite no máximo 50 caracteres neste campo',
+    ]);
+    // return $request->file('pdf0')->extension();
+    for($y=0;$y < 10;$y++){
+        if( $request->file('pdf'.$y) != null){
+            if($request->file('pdf'.$y)->extension() != 'pdf'){
+                return back()->withErrors(['pdf'=>'O campo pdf deve conter arquivos do tipo pdf']);
+            }
+        }
+    }
+       $model = new Postagem;
+       $model->titulo = $request['titulo'];
+       $model->descricao = $request['descricao'];
+       $model->link_yt = "";
+       $model->imagem_principal = "";
+       $model->categoria = intval($request['categoria']);
+       $model->user_id = Auth::id();
+       $model->save();
 
        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-               $imagem = $request->file()['imagem'];
-               $numero = rand(11111,99999).$data;
-               $dir = "upload_imagem";
-               $ex = strtolower(substr($request->imagem, -4));
-               $nomeImagem = "imagem_".$numero.".".$ex;
-               $imagem->move($dir,$nomeImagem);
-               $request->file()['imagem'] = $nomeImagem;
-           }
-           $anexosPdf = [];
+           $imagem = $request->file()['imagem'];
 
-           for($i =0; $i < 10; $i++){
-               $namePdf = 'pdf'.$i;
-               if ($request->hasFile($namePdf) && $request->file($namePdf)->isValid()) {
-                   $pdf1 = $request->file()[$namePdf];
-                   $numero = rand(11111,99999).$data;
-                   $diretorio = "upload_pdf";
-                   $ex = $pdf1->extension();
-                   $nomepdf = "pdf_".$numero.".pdf";
-                   $pdf1->move($diretorio,$nomepdf);
-                   $request->file()['pdf'] = $nomepdf;
-                   array_push($anexosPdf, $nomepdf);
-               }
-           }
+           $ex = $request->file('imagem')->extension();
+           $nomeImagem = "img.".$ex;
 
+           // Adicionar imagem no diretorio
+           $dir = "upload_imagem/postagens/".$model->id;
+           $imagem->move($dir,$nomeImagem);
+           $request->file()['imagem'] = $nomeImagem;
 
-           if ($request['yt'] != "") {
-               $url = explode("watch?v=", $request['yt']);
-               $embed = $url[0]."embed/".$url[1];
-           }else{
-               $embed = null;
-           }
-           $categorianumber= intval($request['categoria']);
-           $model = new Postagem;
-           $model->titulo = $request['titulo'];
-           $model->descricao = $request['descricao'];
-           $model->link_yt = $embed;
+           // Adicionar o nome da imagem no banco
            $model->imagem_principal = $nomeImagem;
-           $model->categoria = $categorianumber;
-           $model->user_id = Auth::id();
-           $resultado = $model->save();
-
-           $idPostagem = $model->id;
-
-           for($y = 0; $y < sizeof($anexosPdf); $y++){
-               $modelAnexo = new Anexos_Pdf_Postagem;
-               $modelAnexo->nome_pdf =$request['name_pdf'.$y];
-               $modelAnexo->src_pdf =$anexosPdf[$y];
-               $modelAnexo->id_post= $idPostagem;
-               $modelAnexo->save();
-              // return 'sucesso ao fazer o o lancamento dos anexos porra';
-           }
+           $model->save();
+        }
 
 
-       if ($resultado == true) {
-           return 'Postagem feita com sucesso';
-       }else {
-           return 'Falha ao fazer postagem, tente novamente.';
-       }
-   }
-   public function edit($id){
+        if ($request['yt'] != "") {
+            $url = explode("watch?v=", $request['yt']);
+            $embed = $url[0]."embed/".$url[1];
+
+        }else{
+            $embed = null;
+        }
+        // Adicionar o link do youtube no banco
+         $model->link_yt = $embed;
+         $model->save();
+
+        $idPostagem = $model->id;
+        $anexosPdf = [];
+
+        // Arrumar um meio de ver quantos pdfs existem para fazer o foreach na sua quantidade
+        for($i =0; $i < 10; $i++){
+            $namePdf = 'pdf'.$i;
+            if ($request->hasFile($namePdf) && $request->file($namePdf)->isValid()) {
+                $pdf1 = $request->file()[$namePdf];
+                $random = bin2hex(random_bytes(5));
+                $srcPdf = "pdf".$random.".pdf";
+                // $request->file()['pdf'] = $srcPdf;
+                // return $model->id;
+                // Adiciona pdf no banco
+                $modelAnexo = new Anexos_Pdf_Postagem;
+                $modelAnexo->nome_pdf =$request['name_pdf'.$i];
+                $modelAnexo->src_pdf =$srcPdf;
+                $modelAnexo->id_post= intval($model->id);
+                $modelAnexo->save();
+
+                // Adicionar pdf no diretorio
+                $diretorio = "upload_pdf/postagens/".$model->id;
+                $pdf1->move($diretorio,$modelAnexo->src_pdf);
+            }
+        }
+        /*Voltando para a pagina de adicionar postagens*/
+        $message = 'Postagem cadastrada com Sucesso!';
+        return redirect('/admin/postagens/create')->with('mensagem',$message);
+    }
+
+    public function edit($id){
        $postagem = Postagem::find($id);
        return view('admin.postagens.edit_postagem')->with(compact('postagem'));
-   }
+    }
 
    public function update(){
     if (strlen($request->titulo) > 50)
