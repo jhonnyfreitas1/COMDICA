@@ -5,22 +5,22 @@
 	@section('area-principal')
 
   @if(session('success'))
-                <ol class="float-right alert alert-success alert-dismissible fade col-md-4 show mt-2" role="alert">              
+                <ol class="float-right alert alert-success alert-dismissible fade col-md-4 show mt-2" role="alert">
                     {{session('success')}}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </ol> 
-                <?php Session::pull('success')?>         
+                </ol>
+                <?php Session::pull('success')?>
               @endif
               @if(session('fail'))
-                <ol class="float-right alert alert-warning alert-dismissible fade col-md-4 show mt-2" role="alert">              
+                <ol class="float-right alert alert-warning alert-dismissible fade col-md-4 show mt-2" role="alert">
                     {{session('fail')}}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </ol> 
-                <?php Session::pull('fail')?>         
+                </ol>
+                <?php Session::pull('fail')?>
               @endif
 
 
@@ -32,8 +32,12 @@
                     <div class='thumbnail' >
                       <a href="/postagem/{{encrypt($post->id)}} " class="bg-light">
                         <center>
-                        <img class="card-img-top"  style="height: 20vh; width: 100%;" src="/upload_imagem/{{$post->imagem_principal}}">
-                      </center>
+                            @if($post->imagem_principal != null and $post->imagem_principal != '../img/fundo_criancas.jpg')
+                                <img class="card-img-top"  style="height: 20vh; width: 100%;" src="/upload_imagem/postagens/{{$post->id}}/{{$post->imagem_principal}}">
+                            @else
+                                <img class="card-img-top"  style="height: 20vh; width: 100%;" src="/img/fundo_criancas.jpg">
+                            @endif
+                        </center>
                         <h6 class="col-md-12 col-12 title" style="">{{$post->titulo}}</h6>
                       </a>
                     </div>
@@ -41,10 +45,10 @@
                       <h6 class='description col-md-12 col-12' style="">{{ str_limit($post->descricao, 30)}}</h6>
                       <div class='post-meta float-right'>
                       <div class="row">
-                      <a class="btn btn-primary btn-block col-md-3 col-3 m-1" id="but" style="" href=""><i class="fas fa-eye"></i></a>
+                      <a class="btn btn-primary btn-block col-md-3 col-3 m-1" id="but" style="" href="{{route('postagem', encrypt($post->id))}}"><i class="fas fa-eye"></i></a>
                       <a class="btn btn-danger btn-block col-md-3 col-3  m-1 "  data-toggle="modal" data-target="#delete{{$count}}" id='delete'><i class="far fa-trash-alt"></i></a>
-                      <a class="btn btn-warning btn-block col-md-3 col-3  m-1 " id="but" style="" href="/admin/postagem_edit/{{$post->id}}"> <i class="fas fa-edit"></i></a>
-                  </div> 
+                      <a class="btn btn-warning btn-block col-md-3 col-3  m-1 " id="but" style="" href="{{route('postagens.edit', $post->id)}}"> <i class="fas fa-edit"></i></a>
+                  </div>
                       </div>
                     </div>
                   </div>
@@ -72,16 +76,16 @@
                               <h3 class='title' style=""></h3>
                               <p class='description' style="">{{ str_limit($post->descricao, 30)}}</p>
                               <div class='post-meta float-right'>
-                              <div class="row">      
-                            </div> 
+                              <div class="row">
+                            </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                 <input type="hidden" name="category_id" id="cat_id" value="">       
+                 <input type="hidden" name="category_id" id="cat_id" value="">
                     <div class="modal-footer">
                         <div style="margin-right: 10em;">
-                            <a href="/admin/post/delete/{{$post->id}}" count="{{$count}}"  class="btn btn-success deletar-sucesso">Sim</a>
+                        <a href="{{route('postagens.destroy', $post->id)}}" count="{{$count}}"  class="btn btn-success deletar-sucesso">Sim</a>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
                         </div>
                     </div>
@@ -92,9 +96,9 @@
 
           @endforeach
 
-		
+
    </div>
-   {!! $posts -> Links()!!} 
+   {!! $posts -> Links()!!}
 
 
 

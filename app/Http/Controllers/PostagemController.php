@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Auth;
+use File;
 use App\Anexos_Pdf_Postagem;
 use App\Contato;
 use App\Postagem;
 use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class PostagemController extends Controller
 {
@@ -20,18 +22,19 @@ class PostagemController extends Controller
 
    public function create(){
        $contato = Contato::where('visto', false)->get()->count();
-       return view('admin.postagens.add')->with(compact('contato'));
+       return view('admin.postagens.add-edit')->with(compact('contato'));
    }
 
    public function store(Request $request){
     $validar = $request->validate([
         'titulo'    =>  'max:50 | unique:postagens,titulo',
         'imagem'    =>  'mimes:jpeg,jpg,png,bmp | required',
+        'descricao'    =>  'required',
+        'categoria'    =>  'required',
     ],[
-        // 'titulo.unique'      => 'Já existe uma postagem com este nome',
         'titulo.max' => 'Digite no máximo 50 caracteres neste campo',
     ]);
-    // return $request->file('pdf0')->extension();
+    //validação dos pdfs
     for($y=0;$y < 10;$y++){
         if( $request->file('pdf'.$y) != null){
             if($request->file('pdf'.$y)->extension() != 'pdf'){
@@ -39,18 +42,22 @@ class PostagemController extends Controller
             }
         }
     }
-       $model = new Postagem;
-       $model->titulo = $request['titulo'];
-       $model->descricao = $request['descricao'];
-       $model->link_yt = "";
-       $model->imagem_principal = "";
-       $model->categoria = intval($request['categoria']);
-       $model->user_id = Auth::id();
-       $model->save();
 
+    // Adicionando dados, posteriormente irei adicionar os dados que estão "" caso tenham sido enviados
+    $model = new Postagem;
+    $model->titulo = $request['titulo'];
+    $model->descricao = $request['descricao'];
+    $model->link_yt = "";
+    $model->imagem_principal = "";
+    $model->categoria = intval($request['categoria']);
+    $model->user_id = Auth::id();
+    $model->save();
+
+        //Adicionar imagem
        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
            $imagem = $request->file()['imagem'];
 
+           // Nome da imagem
            $ex = $request->file('imagem')->extension();
            $nomeImagem = "img.".$ex;
 
@@ -65,6 +72,7 @@ class PostagemController extends Controller
         }
 
 
+        // validação do link
         if ($request['yt'] != "") {
             $url = explode("watch?v=", $request['yt']);
             $embed = $url[0]."embed/".$url[1];
@@ -72,22 +80,20 @@ class PostagemController extends Controller
         }else{
             $embed = null;
         }
+
         // Adicionar o link do youtube no banco
          $model->link_yt = $embed;
          $model->save();
 
-        $idPostagem = $model->id;
-        $anexosPdf = [];
-
-        // Arrumar um meio de ver quantos pdfs existem para fazer o foreach na sua quantidade
+         // Arrumar um meio de ver quantos pdfs existem para fazer o foreach na sua quantidade
+         $idPostagem = $model->id;
         for($i =0; $i < 10; $i++){
             $namePdf = 'pdf'.$i;
             if ($request->hasFile($namePdf) && $request->file($namePdf)->isValid()) {
                 $pdf1 = $request->file()[$namePdf];
                 $random = bin2hex(random_bytes(5));
                 $srcPdf = "pdf".$random.".pdf";
-                // $request->file()['pdf'] = $srcPdf;
-                // return $model->id;
+
                 // Adiciona pdf no banco
                 $modelAnexo = new Anexos_Pdf_Postagem;
                 $modelAnexo->nome_pdf =$request['name_pdf'.$i];
@@ -107,80 +113,109 @@ class PostagemController extends Controller
 
     public function edit($id){
        $postagem = Postagem::find($id);
-       return view('admin.postagens.edit_postagem')->with(compact('postagem'));
+       $query = Anexos_Pdf_Postagem::where('id_post',$id)->get();
+       if( sizeof($query) > 0){
+           $pdf = $query;
+        }else{
+            $pdf = null;
+       }
+       return view('admin.postagens.add-edit')->with(compact('postagem','pdf'));
     }
 
-   public function update(){
-    if (strlen($request->titulo) > 50)
-       {
-           return 'O titulo de sua postagem não pode ultrapassar 50 caracteres';
-       }
+    public function update(Request $request, $id){
+        $validar = $request->validate([
+            'titulo'    =>  'max:50 | required',
+            'imagem'    =>  'mimes:jpeg,jpg,png,bmp',
+            'descricao'    =>  'required',
+            'categoria'    =>  'required',
+        ],[
+            'titulo.max' => 'Digite no máximo 50 caracteres neste campo',
+        ]);
+        //validação do titulo
+        $titulos = Postagem::all();
+        foreach($titulos as $titulo){
+            if( $request->titulo == $titulo->titulo and $titulo->id != $id){
+                return back()->withErrors(['titulo'=>'O valor informado para o campo titulo já está em uso.']);
+            }
+        }
+        //validação dos pdfs
+        for($y=0;$y < 10;$y++){
+            if( $request->file('pdf'.$y) != null){
+                if($request->file('pdf'.$y)->extension() != 'pdf'){
+                    return back()->withErrors(['pdf'=>'O campo pdf deve conter arquivos do tipo pdf']);
+                }
+            }
+        }
 
-       $post = Postagem::find($id);
-       $model = Postagem::find($id);
+        //consultando a postagem no banco
+        $model = Postagem::where('id', $id)->first();
 
-       $data =  date('Y-m-d H:i:s');
-           if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
-                   $imagem = $request->file()['imagem'];
-                   $numero = rand(11111,99999).$data;
-                   $dir = "upload_imagem";
-                   $ex = strtolower(substr($request->imagem, -4));
-                   $nomeImagem = "imagem_".$numero.".".$ex;
-                   $imagem->move($dir,$nomeImagem);
-                   $request->file()['imagem'] = $nomeImagem;
-                   $model->imagem_principal = $nomeImagem;
-               }
+        //Alterar imagem
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            $imagem = $request->file()['imagem'];
 
-               if ($request->hasFile('pdf') && $request->file('pdf')->isValid()) {
-                   $pdf1 = $request->file()['pdf'];
-                   $numero = rand(11111,99999).$data;
-                   $diretorio = "upload_pdf";
-                   $ex = strtolower(substr($request->pdf, -4));
-                   $nomepdf = "pdf_".$numero.".pdf";
-                   $pdf1->move($diretorio,$nomepdf);
-                   $request->file()['pdf'] = $nomepdf;
-                    $model->pdf1 = $nomepdf;
-               }else{
-                   $nomepdf = null;
-               }
-               if ($request->hasFile('pdf2') && $request->file('pdf2')->isValid()) {
-                   $pdf2 = $request->file()['pdf2'];
-                   $numero1 = md5(rand(11111,99999).$data);
-                   $diretorio = "upload_pdf";
-                   $nomepdf2 = "pdf_".$numero1.".pdf";
-                   $pdf2->move($diretorio,$nomepdf2);
-                   $request->file()['pdf2'] = $nomepdf2;
-                    $model->pdf2 = $nomepdf2;
-               }else{
-                   $nomepdf2 = null;
-               }
-               if ($request['yt'] != "") {
-                   $url = explode("watch?v=", $request['yt']);
-                   $embed = $url[0]."embed/".$url[1];
+            // Adicionar nome da imagem
+            $ex = $request->file('imagem')->extension();
+            $nomeImagem = "img.".$ex;
 
-               }else{
-                   $embed = null;
-               }
+            // Adicionar imagem no diretorio
+            $dir = "upload_imagem/postagens/".$id;
+            $imagem->move($dir,$nomeImagem);
+            $request->file()['imagem'] = $nomeImagem;
 
-                   $categorianumber= intval($request['categoria']);
+            // Adicionar o nome da imagem no banco
+            $model->imagem_principal = $nomeImagem;
+            // $model->save();
+        }
 
-                  $model->titulo = $request['titulo'] ? $request['titulo'] : $post->titulo;
-                  $model->descricao = $request['descricao'] ? $request['descricao'] : $post->descricao;
+        // Validação do link
+        if ($request['yt'] != "") {
+            $url = explode("watch?v=", $request['yt']);
+            $embed = $url[0]."embed/".$url[1];
 
-                  $model->categoria = $categorianumber;
-                 $model->link_yt = $embed;
-                  $model->user_id = Auth::id();
-                 $resultado = $model->update();
+        }else{
+            $embed = null;
+        }
+        // Adicionar o link do youtube no banco
+        $model->link_yt = $embed;
 
-       if ($resultado == true) {
-           $mensagem = 'Atualização feita com sucesso';
-           return $mensagem;
+        // Arrumar um meio de ver quantos pdfs existem para fazer o foreach na sua quantidade
+        $idPostagem = $model->id;
+        for($i =0; $i < 10; $i++){
+            $namePdf = 'pdf'.$i;
+            if ($request->hasFile($namePdf) && $request->file($namePdf)->isValid()) {
+                $pdf1 = $request->file()[$namePdf];
+                $random = bin2hex(random_bytes(5));
+                $srcPdf = "pdf".$random.".pdf";
 
-       }else {
-           $mensagem = 'Falha ao atualizar postagem';
-                return $mensagem;
-       }
-   }
+                // Adiciona pdf no banco
+                $modelAnexo = new Anexos_Pdf_Postagem;
+                $modelAnexo->nome_pdf =$request['name_pdf'.$i];
+                $modelAnexo->src_pdf =$srcPdf;
+                $modelAnexo->id_post= intval($model->id);
+                $modelAnexo->save();
+
+                // Adicionar pdf no diretorio
+                $diretorio = "upload_pdf/postagens/".$model->id;
+                $pdf1->move($diretorio,$modelAnexo->src_pdf);
+            }
+        }
+
+        // Editando postagem
+        $post = Postagem::where('id', $id)
+                    ->update([
+                                'titulo'=>$request['titulo'],
+                                'descricao'=>$request['descricao'],
+                                'imagem_principal'=>$model->imagem_principal,
+                                'link_yt'=>$embed,
+                                'arquivada'=>$request['arquivada'],
+                                'categoria'=>intval($request['categoria']),
+                             ]);
+
+        /*Voltando para a pagina de adicionar postagens*/
+        $message = 'Postagem editada com Sucesso!';
+        return back()->with('mensagem',$message);
+    }
    public function destroy($id){
        $query = Postagem::where('id', $id)->first();
        unlink("upload_imagem/".$query->imagem_principal);
@@ -208,13 +243,30 @@ class PostagemController extends Controller
    public function arquivar($id){
        $post = Postagem::where('id', $id)->first();
 
-        // Arquivando ou desarquivando a postagem
-        if($post->arquivada == 1){
-            $post->update(['arquivada' => 0]);
+       // Arquivando ou desarquivando a postagem
+       if($post->arquivada == 1){
+           $post->update(['arquivada' => 0]);
         }else{
             $post->update(['arquivada' => 1]);
         }
 
         return back();
-   }
+    }
+    public function destroyPdf($id){
+        // Pegando os dados do pdf no banco
+        $query = Anexos_Pdf_Postagem::where('id', $id)->first();
+
+        // Deletando pdf da pasta
+        $ex = "upload_pdf/postagens/".$query->id_post.'/';
+        if (File::exists($ex.$query['src_pdf'])) {
+            File::delete($ex.$query['src_pdf']);
+        }
+
+        // Deletando pdf do banco
+        $query->delete();
+
+        // Redirecionando para a última pagina
+        $message = 'PDF apagado com Sucesso!';
+        return back()->with('mensagem',$message);
+    }
 }

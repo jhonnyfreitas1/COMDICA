@@ -65,6 +65,11 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 	});
 
     //Rotas de postagens
+	Route::group(['prefix' => '/pdf'],function(){
+        Route::get('/destroy/{id}',['as' => 'pdf.destroy', 'uses' => 'PostagemController@destroyPdf']);
+    });
+
+    //Rotas de postagens
 	Route::group(['prefix' => '/postagens'],function(){
         Route::get('/', ['as' => 'postagens.index', 'uses' => 'PostagemController@index']);
 		Route::get('/create',['as' => 'postagens.create', 'uses' => 'PostagemController@create']);
