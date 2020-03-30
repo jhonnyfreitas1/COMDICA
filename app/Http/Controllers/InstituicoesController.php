@@ -147,8 +147,8 @@ class InstituicoesController extends Controller
         $images->save();
 
         /*Voltando para a pagina e listar instituições*/
-        $message = 'Instituição cadastrada com Sucesso!';
-        return redirect('/admin/instituicoes')->with('success',$message);
+        $mensagem = 'Instituição cadastrada com Sucesso!';
+        return redirect('/admin/instituicoes')->with('mensagem',$mensagem);
 
     }
 
@@ -307,8 +307,8 @@ class InstituicoesController extends Controller
 
 
         /*Voltando para a pagina e listar instituições*/
-        $message = 'Instituição cadastrada com Sucesso!';
-        return redirect('/admin/instituicoes');
+        $mensagem = 'Instituição cadastrada com Sucesso!';
+        return redirect('/admin/instituicoes')->with('mensagem',$mensagem);
     }
 
     public function destroy($id)

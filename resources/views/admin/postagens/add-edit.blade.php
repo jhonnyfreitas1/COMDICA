@@ -1,19 +1,6 @@
 @extends('layouts.admin')
 
     @section('area-principal')
-    @if(isset($errors) && count($errors) > 0)
-        @foreach ($errors->all() as $error)
-            {{$error}}
-        @endforeach
-    @endif
-    @if(session('mensagem'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <p>{{session('mensagem')}}</p>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
 
     @section('admin-js')
         <script src='/js/nova_postagem.js'> </script>

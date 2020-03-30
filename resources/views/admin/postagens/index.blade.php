@@ -4,26 +4,6 @@
 	@endsection
 	@section('area-principal')
 
-  @if(session('success'))
-                <ol class="float-right alert alert-success alert-dismissible fade col-md-4 show mt-2" role="alert">
-                    {{session('success')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </ol>
-                <?php Session::pull('success')?>
-              @endif
-              @if(session('fail'))
-                <ol class="float-right alert alert-warning alert-dismissible fade col-md-4 show mt-2" role="alert">
-                    {{session('fail')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </ol>
-                <?php Session::pull('fail')?>
-              @endif
-
-
         <div class="row m-2 " style=" " >
             @foreach($posts as $count => $post)
               <a href="/postagem/{{encrypt($post->id)}}">

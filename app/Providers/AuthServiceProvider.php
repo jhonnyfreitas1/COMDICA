@@ -31,5 +31,11 @@ class AuthServiceProvider extends ServiceProvider
         $gate->define('admin', function(User $user){
             return $user->tipo_user == '1';
         });
+
+        $gate->define('admin-comdica', function(User $user){
+            if($user->tipo_user == '1' || $user->tipo_user == '2'){
+                return true;
+            }
+        });
     }
 }

@@ -218,11 +218,11 @@ class PostagemController extends Controller
     }
    public function destroy($id){
        $query = Postagem::where('id', $id)->first();
-       unlink("upload_imagem/".$query->imagem_principal);
+       unlink("upload_imagem/postagens/".$id.'/'.$query->imagem_principal);
        $resultado=  $query->delete();
        if ($resultado == true) {
            $mensagem = "Sucesso ao deletar o item";
-          return redirect()->back()->with('success',$mensagem);
+          return redirect()->back()->with('mensagem',$mensagem);
        }else{
            $mensagem = "Falha ao deletar o item";
         return redirect()->back()->with('fail',$mensagem);
@@ -246,11 +246,13 @@ class PostagemController extends Controller
        // Arquivando ou desarquivando a postagem
        if($post->arquivada == 1){
            $post->update(['arquivada' => 0]);
+           $mensagem = 'Postagem desarquivada com Sucesso!';
         }else{
             $post->update(['arquivada' => 1]);
+            $mensagem = 'Postagem arquivada com Sucesso!';
         }
 
-        return back();
+        return back()->with('mensagem',$mensagem);;
     }
     public function destroyPdf($id){
         // Pegando os dados do pdf no banco
@@ -266,7 +268,7 @@ class PostagemController extends Controller
         $query->delete();
 
         // Redirecionando para a última pagina
-        $message = 'PDF apagado com Sucesso!';
-        return back()->with('mensagem',$message);
+        $mensagem = 'PDF apagado com Sucesso!';
+        return back()->with('mensagem',$mensagem);
     }
 }

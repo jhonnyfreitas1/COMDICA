@@ -2,19 +2,7 @@
 
 @section('area-principal')
 
-   @if(!empty($message))
 
-   <div class="alert alert-success float-right col-md-3">
-            <p class="">{{$message}}</p>
-   </div>
-
-   @endif
-   @if(session('mensagem'))
-                <p class="float-right alert alert-success fade col-md-4 show mt-2" role="alert">
-                    {{session('mensagem')}}
-                </p>
-                <?php Session::pull('mensagem')?>
-              @endif
 <div class="container mb-5 mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">

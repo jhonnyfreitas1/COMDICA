@@ -195,6 +195,7 @@ class AdminController extends Controller
         // Deleta as tabelas e redireciona
         $user  = User::find($id);
         $user->delete();
-        return redirect('/admin/users/index');
+        $mensagem = "Usuário deletado com sucesso";
+        return redirect()->route('admin.list_users')->with(compact('mensagem'));
     }
 }
