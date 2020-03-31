@@ -5,7 +5,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow-lg">
-                <div class="card-header bg-success text-light">{{ __('Login do administrador') }}</div>
+                <div class="card-header bg-info text-light">
+                    <center>
+                        {{ __('Área administrativa do site') }}
+                    </center>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
@@ -45,7 +49,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                                        {{ __('Mantenha-me conectado') }}
                                     </label>
                                 </div>
                             </div>

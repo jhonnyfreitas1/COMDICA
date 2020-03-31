@@ -1,42 +1,96 @@
 @extends('layouts.admin')
 
     @section('area-principal')
-        @isset($instituicoes)
-            <h2 id="titulo"> Editar Instituição </h2>
-        @else
-            <h2 id="titulo"> Cadastro de Instituição </h2>
-        @endisset
-        @isset($instituicoes)
-            <form method="post" action="{{route('instituicao.update', $instituicoes->id)}}" enctype="multipart/form-data">
-        		@method('put')
-        @else
-            <form method="post" action="{{route('instituicao.store')}}" enctype="multipart/form-data">
-        @endisset
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg">
+                @isset($instituicoes)
+                    <div  class="card-header bg-info text-light"> Editar Instituição </div >
+                @else
+                    <div  class="card-header bg-info text-light"> Cadastro de Instituição </div >
+                @endisset
+                    <div class="card-body">
+                        @isset($instituicoes)
+                            <form method="post" action="{{route('instituicao.update', $instituicoes->id)}}" enctype="multipart/form-data">
+                                @method('put')
+                        @else
+                            <form method="post" action="{{route('instituicao.store')}}" enctype="multipart/form-data">
+                        @endisset
+                        @csrf
+                            <!-- Nome -->
+                            <div class="form-group">
+                                <label for="name" class="text-dark col-form-label text-md-right">{{ __('Nome') }}</label>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ isset($instituicoes->name) ? $instituicoes->name : '' }}" required autocomplete="name" autofocus>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
-        		@csrf
+                            <!-- Descrição -->
+                            <div class="form-group green-border-focus">
+                                <label for="desc" class="text-dark col-form-label text-md-right">{{ __('Descrição') }}</label>
+                                <textarea class="form-control" name="desc" id="desc" rows="3" required autocomplete="desc" autofocus></textarea>
+                                    @error('desc')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                            </div>
 
-        		<label>Nome da Instituição*</label>  
-                <input type="text" name="name" id="name"  value="{{ isset($instituicoes->name) ? $instituicoes->name : '' }}" placeholder="Ex: Comdica" required><br>
-                <label>Descrição da Instituição*</label>  
-                <input type="text" name="desc" id="desc"  value="{{ isset($instituicoes->desc) ? $instituicoes->desc : '' }}" placeholder="Digite a descricao da instituição..." required><br>
-                <label>Telefone da Instituição*</label>  
-                <input type="text" name="telefone" id="telefone"  value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" placeholder="Digite o telefone da instituição..."><br>
-                <label>Endereço da Instituição*</label>  
-                <input type="text" name="endereco" id="endereco"  value="{{ isset($instituicoes->endereco) ? $instituicoes->endereco : '' }}" placeholder="Digite o endereço da instituição..."><br>
-                <label>E-mail da Instituição*</label>  
-                <input type="text" name="email" id="email"  value="{{ isset($instituicoes->email) ? $instituicoes->email : '' }}" placeholder="Digite o e-mail da instituição..."><br>
-                <label>Site da Instituição*</label>  
-                <input type="text" name="site" id="site"  value="{{ isset($instituicoes->site) ? $instituicoes->site : '' }}" placeholder="Digite o site da instituição..."><br>
-                <label>Imagem principal da Instituição*</label>  
-                <input type="file" name="imagem_princ" id="imagem_princ"  value="{{ isset($instituicoes->imagem_princ) ? $instituicoes->imagem_princ : '' }}"><br>
-                <label>Imagem secundária da Instituição</label>  
-                <input type="file" name="imagem_sec" id="imagem_sec"  value="{{ isset($instituicoes->imagem_sec) ? $instituicoes->imagem_sec : '' }}"><br>
-                <label>Imagem terciária da Instituição</label>  
-                <input type="file" name="imagem_ter" id="imagem_ter"  value="{{ isset($instituicoes->imagem_ter) ? $instituicoes->imagem_ter : '' }}"><br>
+                            <div class="form-row">
+                            <!-- E-mail -->
+                                <div class="form-group col-md-6">
+                                    <label for="email" class="text-dark col-form-label text-md-right">{{ __('E-mail') }}</label>
+                                    <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ isset($instituicoes->email) ? $instituicoes->email : '' }}" required autocomplete="email" autofocus>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                            <!-- Site -->
+                                <div class="form-group col-md-6">
+                                    <label for="site" class="text-dark col-form-label text-md-right">{{ __('Site') }}</label>
+                                    <input id="site" type="text" class="form-control @error('site') is-invalid @enderror" name="site" value="{{ isset($instituicoes->site) ? $instituicoes->site : '' }}" required autocomplete="site" autofocus>
+                                    @error('site')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                            <!-- Endereço -->
+                                <div class="form-group col-md-6">
+                                    <label for="endereco" class="text-dark col-form-label text-md-right">{{ __('Endereço') }}</label>
+                                    <input id="endereco" type="text" class="form-control @error('endereco') is-invalid @enderror" name="endereco" value="{{ isset($instituicoes->endereco) ? $instituicoes->endereco : '' }}" required autocomplete="endereco" autofocus>
+                                    @error('desc')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
+                            <!-- Telefone -->
+                                <div class="form-group col-md-6">
+                                    <label for="telefone" class="text-dark col-form-label text-md-right">{{ __('Telefone') }}</label>
+                                    <input id="telefone" type="text" class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" required autocomplete="telefone" autofocus>
+                                    @error('telefone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
             @isset($instituicoes)
-                <button type="submit">Editar Instituição</button>
+                <button type="submit" class="btn btn-primary col-md-12">Editar Instituição</button>
             @else
-                <button type="submit">Adicionar</button>
+                <button type="submit" class="btn btn-primary col-md-12">Adicionar</button>
             @endisset
             </form>
     @endsection

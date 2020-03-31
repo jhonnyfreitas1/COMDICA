@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Pega a url -->
     @php($urlRequest = $_SERVER['REQUEST_URI'])
     <!-- Separa a url com o separador '/' -->
@@ -34,8 +34,8 @@
     <script src="{{asset('js/app.js')}}" defer></script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v5.0"></script>
      @yield('js')
-    
-    <style type="text/css"> 
+
+    <style type="text/css">
         a{
           color:#1766D5;
           font-weight: bolder;
@@ -45,105 +45,15 @@
         }
         .font-weight-bold{
         }
+        .container{
+            margin-top: 6em
+        }
     </style>
-  </head> 
-  <header> 
-  <nav class="navbar navbar-expand-lg navbar-light " style="background-color:#01DF74;" >
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Alterna navegação">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse"  id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="/">
-          <img src="/img/comdica3.png" style="width: 150px; ">
-        </a>
-        <div class="" style="">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <a class="btn btn-warning text-light  my-2 my-sm-0 m-1 font-weight-bold " style=" background:none; border:none;" href="/sou_doador">Sou doador<span class="sr-only">(Página atual)</span></a>
-            </li>
-            <li class="nav-item active">
-            <a class="btn btn-warning text-light  my-2 my-sm-0 m-1 font-weight-bold " style=" background:none; border:none; " href="/calculadora">Calculadora de IR</a>
-            </li>
-            <li class="nav-item active">  
-              <a class="btn btn-warning text-light  my-2 my-sm-0 m-1 font-weight-bold " style=" background:none; border:none; " href="/contato">Contato</a>
-            </li>
-            <li class="nav-item active">  
-              <a class="btn btn-warning text-light  my-2 my-sm-0 m-1 font-weight-bold " style=" background:none; border:none; " href="/porque_doar">Por que doar?</a>
-            </li>
-            <li class="nav-item active">  
-              <a class="btn btn-warning text-light  my-2 my-sm-0 m-1 font-weight-bold " style=" background:none; border:none; " href="/denuncia">Denuncias Araçoiaba</a>
-            </li>
-          </ul>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/minha/doacao">Sou doador</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/gerar/boleto/2">Gerar segunda via de boleto</a>
-          </div>
-        </div>
-      </div>
-    </nav> 
+  </head>
+  <header>
   </header>
   <main class="py-4">
       @yield('content')
   </main>
 
-  <footer class="   page-footer font-small unique-color-dark  d-inline-block"  style="  width: 100%;">
-    <div  style="background-color:#01DF74; " class="mt-1" style="">
-      <div class="container" >
-        <div class="row py-2 d-flex align-items-center">
-          <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-            <h6 class="mb-0 footer">
-          </div>
-          <div class="col-md-6 col-lg-7 text-center text-md-right" style='z-index: 999;'></div>
-        </div>
-      </div>
-      <div  class="container text-center text-md-left mt-5"  >
-        <div class="row mt-3" >
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4" >
-            <h6 class="text-uppercase font-weight-bold text " style="color:   #006400;">COMDICA - Conselho Municipal dos Direitos da Criança e do Adolescente</h6>
-            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto " style="width: 60px;">
-            <p class="text">O Conselho Municipal dos Direitos da Criança e do Adolescente - COMDICA é um órgão controlador das ações relativas ao atendimento dos direitos da criança e do adolescente.</p>
-          </div>
-          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4" >
-            <h6 class="text-uppercase font-weight-bold text" style="color:  #006400;">Redes sociais</h6>
-            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <p>
-              <a href="https://www.facebook.com/cmdcaaracoiabape/" > 
-              <i style="font-size: 25px;" class="fab fa-facebook-f col-md-2 mr-4"> </i>  </a>
-            </p>
-          </div>
-          <div  class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-            <h6 class="text-uppercase font-weight-bold  text" style=" color:  #006400;">Links úteis</h6>
-            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-            <p>
-              <a  href="/admin/comdica" class="">Área restrita</a>
-            </p>
-            <p>
-              <a href="/doacoes">Como doar</a>
-            </p>
-            <p>
-              <a href="/calculadora">Cálculo do imposto de renda</a>
-            </p>
-          </div>
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-10">
-            <h6 class="text-uppercase font-weight-bold text" style=" color: #006400 ;">Contato</h6>
-            <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px; ">
-            <p class="text">
-              <i class="fas fa-home mr-2 text"></i> Araçoiaba, n 10012, PE
-            </p>
-            <p class="text">
-              <i class="fas fa-envelope mr-2 text"></i >cmdcaaracoiabape@gmail.com
-            </p>
-            <p class="text">
-              <i class="fas fa-phone mr-3 text"></i > + 01 234 567 88
-            </p>
-          </div>
-        </div>
-        <img src="/img/prefeitura.png" class="col-md-3 ">
-      </div>
-      <div class="footer-copyright text-center py-3">© 2019 Copyright:
-        <b> FUNDECA</b>
-      </div>
-    </div>
-  </footer>
 </html>

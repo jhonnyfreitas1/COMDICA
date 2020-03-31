@@ -6,7 +6,7 @@
    <div class="alert alert-success float-right col-md-3">
             <p class="">{{$mensagem}}</p>
    </div>
-            
+
    @endif
     @if ($errors->any())
         <div class="alert alert-danger">
@@ -22,9 +22,9 @@
         <div class="col-md-8">
             <div class="card shadow-lg">
             @isset($usuario)
-                <div class="card-header bg-success text-light">{{ __('Edite esse usuário') }}</div>
+                <div class="card-header bg-info text-light">{{ __('Edite esse usuário') }}</div>
             @else
-                <div class="card-header bg-success text-light">{{ __('Cadastre um novo usuário') }}</div>
+                <div class="card-header bg-info text-light">{{ __('Cadastre um novo usuário') }}</div>
             @endisset
 
                 <div class="card-body">
@@ -63,7 +63,7 @@
                                 @enderror
                             </div>
                         </div>
-                        
+
                         <div class="form-group row">
                             <label for="tipo_user" class="text-dark col-md-4 col-form-label text-md-right">{{ __('Tipo de Usuario ') }}</label>
                             <div class="col-md-6">
