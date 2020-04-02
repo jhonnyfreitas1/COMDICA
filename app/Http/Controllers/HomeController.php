@@ -39,6 +39,14 @@ class HomeController extends Controller
         $postRecent = DB::table('postagens')->orderBy('created_at')->first();
         return view('newFront.postagens')->with(compact('posts', 'postRecent'));  
     }
+    public function entidadeList(){
+        $inst = DB::table('instituicoes')->join('imgs_insts', 'inst_img', '=', 'img_id')->paginate(4);
+        // dd($inst);
+        return view('newFront.portifolio')->with(compact('inst'));
+    }
+    public function entidade($id){
+
+    }
     public function sobre()
     {
         return view('newFront.sobre');

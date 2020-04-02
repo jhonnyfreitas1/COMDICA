@@ -8,7 +8,22 @@
             <p data-anime="800" class="fadeInDown">Conheça o Trabalho das nossas entidades</p>
         </div>
     </section>
-    <section class="container produto_item">
+    <section class="produtos container">
+        <br><br><br><br><br><br>
+        <ul class="produtos_lista">
+            @foreach ($inst as $instData)
+                <li class="grid-4">
+                    <div class="produtos_icone">
+                        <img src="/upload_imagem/"alt="">
+                    </div>
+                    <h3>{{$instData->name}}</h3>
+                    <p>{{$instData->desc}}</p>
+                    <a href="/portifolio/{{$instData->id}}" class="btn-full">Ver Mais</a>
+                </li>
+            @endforeach
+        </ul>
+    </section>
+    {{-- <section class="container produto_item">
         <div class="grid-11">
             <img src="{{asset('img/wallpaper.jpg')}}" alt="Bikcraft Esporte" class="black">
             <h2>FUNDECA</h2>
@@ -24,5 +39,5 @@
                 <li>site.com.br</li>
             </ul>
         </div>
-    </section>
+    </section> --}}
 @endsection
