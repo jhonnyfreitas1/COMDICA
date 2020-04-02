@@ -1,5 +1,12 @@
 @extends('layouts.admin')
-
+    <style>
+.custom-file-input ~ .custom-file-label::after {
+    content: "Procurar";
+}
+.custom-file-input ~ .custom-file-label::nbefore {
+    content: "Alterar";
+}
+    </style>
     @section('area-principal')
     <div class="container mb-5">
         <div class="row justify-content-center">
@@ -32,7 +39,8 @@
                             <!-- Descrição -->
                             <div class="form-group green-border-focus">
                                 <label for="desc" class="text-dark col-form-label text-md-right">{{ __('Descrição') }}</label>
-                                <textarea class="form-control" name="desc" id="desc" rows="3" required autocomplete="desc" autofocus></textarea>
+                                <textarea class="form-control" name="desc" id="desc" rows="3" required autocomplete="desc" autofocus>{{ isset($instituicoes->name) ? $instituicoes->name : '' }}
+                                </textarea>
                                     @error('desc')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -87,6 +95,51 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-row">
+                            <!-- Imagem Principal -->
+                                <div class="form-group col-md-4">
+                                <label for="imagem_princ" class="text-dark col-form-label text-md-center">{{ __('Imagem principal*') }}</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="imagem_princ" name="imagem_princ" value="{{ isset($instituicoes->imagem_princ) ? $instituicoes->imagem_princ : '' }}" lang="br" required>
+                                        <label class="custom-file-label" for="imagem_princ">Ache o arquivo</label>
+                                        @error('imagem_princ')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                            <!-- Imagem Secundária -->
+                                <div class="form-group col-md-4">
+                                <label for="imagem_sec" class="text-dark col-form-label text-md-right">{{ __('Imagem secudária*') }}</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="imagem_sec" lang="br" name="imagem_sec" value="{{ isset($instituicoes->imagem_sec) ? $instituicoes->imagem_sec : '' }}" required>
+                                        <label class="custom-file-label" for="imagem_sec">Ache o arquivo</label>
+                                        @error('imagem_sec')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+
+                            <!-- Imagem Terciária -->
+                                <div class="form-group col-md-4">
+                                <label for="imagem_ter" class="text-dark col-form-label text-md-right">{{ __('Imagem terciária*') }}</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="imagem_ter" lang="br" name="imagem_ter" value="{{ isset($instituicoes->imagem_ter) ? $instituicoes->imagem_ter : '' }}" required>
+                                        <label class="custom-file-label" for="imagem_ter">Ache o arquivo</label>
+                                        @error('imagem_ter')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
             @isset($instituicoes)
                 <button type="submit" class="btn btn-primary col-md-12">Editar Instituição</button>
             @else
