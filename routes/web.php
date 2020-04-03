@@ -17,8 +17,9 @@ Route::get('boleto/detalhes' , ['as' => 'boleto_detail', 'uses' => 'CalculadoraC
 
 //New Front Routes
 // newIndex tem os imports
-Route::view('newIndex', 'newFront.index')->name('newIndex'); /*-> Tem que ir pro Controller para pegar o php, por isso estou alterando para a principal */
+Route::view('newIndex', 'newFront.index')->name('newIndex'); /*-> Tem ''''''que ir pro Controller para pegar o php, por isso estou alterando para a principal */
 Route::get('portifolio', 'HomeController@entidadeList')->name('portifolio');
+Route::get('portifolio/{id}', 'HomeController@entidade')->name('portifolioVer');
 Route::view('denuncias', 'newFront.denuncias')->name('denuncias');
 Route::get('sobre', ['as' => 'sobre', 'uses' => 'HomeController@sobre']);
 Route::get('postagens', 'HomeController@postList')->name('postagens');

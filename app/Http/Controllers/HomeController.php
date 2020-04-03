@@ -45,7 +45,8 @@ class HomeController extends Controller
         return view('newFront.portifolio')->with(compact('inst'));
     }
     public function entidade($id){
-
+        $instVer = DB::table('instituicoes')->join('imgs_insts', 'inst_img', '=', 'img_id')->where('id', $id)->first();
+        return view ('newFront.portifolioVer')->with(compact('instVer'));
     }
     public function sobre()
     {
