@@ -77,9 +77,9 @@ class AdminController extends Controller
 
     public function edit()
     {
-        $user = User::find(Auth::id());
-        return view('admin.admin_update' , compact('user'))->with(compact('user'));
-
+        $usuario = User::where('id', Auth::user()->id)->get()->first();
+        $tipos = Tipo_user::all();
+        return view('auth.register' , compact('usuario','tipos'));
     }
 
     // Métodos do usuário
