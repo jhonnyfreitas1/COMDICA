@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Comdica - Araçoiaba PE</title>
+		<meta name="viewport" content="width=device-width", initial-scale="1.0">
 		<link rel="stylesheet" href="{{asset('css/normalize.css')}}">
 		<link rel="stylesheet" href="{{asset('css/reset.css')}}">
 		<link rel="stylesheet" href="{{asset('css/grid.css')}}">
