@@ -56,7 +56,7 @@
 				<li class="grid-1-3">
 					<div class="produtos_icone">
 						<img src=@if($postagem->imagem_principal)
-									"/upload_imagem/{{$postagem->imagem_principal}}"
+									"/upload_imagem/postagens/{{$postagem->id}}/{{$postagem->imagem_principal}}"
 								   @else
 									{{asset('img/fundo_criancas.jpg')}}
 								   @endisset

@@ -12,12 +12,12 @@
         <h2 class="subtitulo-interno">Links Úteis</h2>
         <ul>
             @foreach($anexosPost  as $anexo)
-                <li>- <a href="/upload_pdf/{{$anexo->src_pdf}}">{{$anexo->nome_pdf}}.pdf</a></li>
+                <li>- <a href="/upload_pdf/postagens/{{$postagem->id}}/{{$anexo->src_pdf}}">{{$anexo->nome_pdf}}.pdf</a></li>
             @endforeach  
         </ul>
     </div>
     <div class="divImg grid-4" style="width:60%;">
-        <img src="/upload_imagem/{{$postagem->imagem_principal}}" alt="">
+        <img src="/upload_imagem/postagens/{{$postagem->id}}/{{$postagem->imagem_principal}}" alt="">
     </div>
 </section>
 @endsection

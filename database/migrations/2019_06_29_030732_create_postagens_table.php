@@ -19,7 +19,7 @@ class CreatePostagensTable extends Migration
             $table->text('descricao');
             $table->string('imagem_principal');
             $table->string('link_yt')->nullable();
-            $table->boolean('arquivada');
+            $table->boolean('arquivada')->default(0);
             $table->enum('categoria', [1,2,3,4,5]);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
