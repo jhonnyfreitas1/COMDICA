@@ -13,8 +13,12 @@
             <img src="{{asset('img/wallpaper.jpg')}}" alt="Bikcraft Esporte" class="black">
             <h2>{{$instVer->name}}</h2>
         </div>
-        <div class="grid-5 produto_icone"><img src="/upload_imagem/instituicoes/{{$instVer->name.$instVer->id}}/img_2.jpeg"></div>
-        <div class="grid-8"><img src="/upload_imagem/instituicoes/{{$instVer->name.$instVer->id}}/img_3.jpeg" alt="Bikcraft Esporte"></div>
+        <div class="grid-5 produto_icone">
+            <img src="/upload_imagem/instituicoes/{{$instVer->name.$instVer->id}}/{{$instVer->imagem_princ}}">
+        </div>
+        <div class="grid-8">
+            <img src="/upload_imagem/instituicoes/{{$instVer->name.$instVer->id}}/{{$instVer->imagem_sec}}">
+        </div>
         <div class="grid-8 produto_info">
             <p style="color:black">{{$instVer->desc}}</p>
             <ul>

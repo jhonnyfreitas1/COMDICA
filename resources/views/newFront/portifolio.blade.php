@@ -32,7 +32,7 @@
             @foreach ($inst as $instData)
                 <li class="grid-4">
                     <div class="produtos_icone">
-                        <img src="/upload_imagem/instituicoes/{{$instData->name.$instData->id}}/img_1.jpeg"alt="">
+                        <img src="/upload_imagem/instituicoes/{{$instData->name.$instData->id}}/{{$instData->imagem_princ}}"alt="">
                     </div>
                     <h3>{{$instData->name}}</h3>
                     <p>{{$instData->desc}}</p>

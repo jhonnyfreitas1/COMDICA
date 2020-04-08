@@ -52,7 +52,7 @@
                             <!-- E-mail -->
                                 <div class="form-group col-md-6">
                                     <label for="email" class="text-dark col-form-label text-md-right">{{ __('E-mail') }}</label>
-                                    <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ isset($instituicoes->email) ? $instituicoes->email : '' }}" required autocomplete="email" autofocus>
+                                    <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ isset($instituicoes->email) ? $instituicoes->email : '' }}" autocomplete="email" autofocus>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -63,7 +63,7 @@
                             <!-- Site -->
                                 <div class="form-group col-md-6">
                                     <label for="site" class="text-dark col-form-label text-md-right">{{ __('Site') }}</label>
-                                    <input id="site" type="text" class="form-control @error('site') is-invalid @enderror" name="site" value="{{ isset($instituicoes->site) ? $instituicoes->site : '' }}" required autocomplete="site" autofocus>
+                                    <input id="site" type="text" class="form-control @error('site') is-invalid @enderror" name="site" value="{{ isset($instituicoes->site) ? $instituicoes->site : '' }}" autocomplete="site" autofocus>
                                     @error('site')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -76,7 +76,7 @@
                             <!-- Endereço -->
                                 <div class="form-group col-md-6">
                                     <label for="endereco" class="text-dark col-form-label text-md-right">{{ __('Endereço') }}</label>
-                                    <input id="endereco" type="text" class="form-control @error('endereco') is-invalid @enderror" name="endereco" value="{{ isset($instituicoes->endereco) ? $instituicoes->endereco : '' }}" required autocomplete="endereco" autofocus>
+                                    <input id="endereco" type="text" class="form-control @error('endereco') is-invalid @enderror" name="endereco" value="{{ isset($instituicoes->endereco) ? $instituicoes->endereco : '' }}" autocomplete="endereco" autofocus>
                                     @error('desc')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -87,7 +87,7 @@
                             <!-- Telefone -->
                                 <div class="form-group col-md-6">
                                     <label for="telefone" class="text-dark col-form-label text-md-right">{{ __('Telefone') }}</label>
-                                    <input id="telefone" type="text" class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" required autocomplete="telefone" autofocus>
+                                    <input id="telefone" type="text" class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" autocomplete="telefone" autofocus>
                                     @error('telefone')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
