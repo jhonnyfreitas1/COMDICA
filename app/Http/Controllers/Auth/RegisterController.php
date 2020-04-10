@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/register';
+    protected $redirectTo = '/admin/usuario/add-edit';
 
     /**
      * Create a new controller instance.
@@ -77,7 +77,7 @@ class RegisterController extends Controller
     protected function redirectCreate(){
         $tipos = DB::table('tipos_users')->get();
         // dd($tipos);
-        return view('auth.register', compact('tipos'));
+        return view('admin.usuario.adc-edit', compact('tipos'));
     }
 
 }

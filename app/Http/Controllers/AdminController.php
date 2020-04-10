@@ -142,18 +142,18 @@ class AdminController extends Controller
     }
     public function list_users(){
         $usuarios = DB::table('users')->paginate(10);
-        return view('auth.listusers' , compact('usuarios'));
+        return view('admin.usuario.index' , compact('usuarios'));
     }
     public function show_user($id){
         $usuario = User::where('id', $id)->get();
         $usuario = $usuario[0];
         $tipos = Tipo_user::all();
-        return view('auth.showuser' , compact('usuario','tipos'));
+        return view('admin.usuario.show' , compact('usuario','tipos'));
     }
     public function edit_user($id){
         $usuario = User::where('id', $id)->get()->first();
         $tipos = Tipo_user::all();
-        return view('auth.register' , compact('usuario','tipos'));
+        return view('admin.usuario.adc-edit' , compact('usuario','tipos'));
     }
 
     public function update_user(Request $request, $id){
@@ -196,6 +196,6 @@ class AdminController extends Controller
         $user  = User::find($id);
         $user->delete();
         $mensagem = "Usuário deletado com sucesso";
-        return redirect()->route('admin.list_users')->with(compact('mensagem'));
+        return redirect()->route('admin.usuario.index')->with(compact('mensagem'));
     }
 }
