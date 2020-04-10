@@ -15,7 +15,7 @@ use App\User;
 class PostagemController extends Controller
 {
     public function index(){
-        $posts = DB::table('postagens')->paginate(8);
+        $posts = DB::table('postagens')->where('arquivada', 0)->paginate(8);
         $contato = Contato::where('visto', false)->get()->count();
         return  view('admin.postagens.index')->with(compact('posts','contato'));
    }
@@ -216,6 +216,7 @@ class PostagemController extends Controller
         $message = 'Postagem editada com Sucesso!';
         return back()->with('mensagem',$message);
     }
+
    public function destroy($id){
        $query = Postagem::where('id', $id)->first();
        unlink("upload_imagem/postagens/".$id.'/'.$query->imagem_principal);
@@ -254,6 +255,7 @@ class PostagemController extends Controller
 
         return back()->with('mensagem',$mensagem);;
     }
+
     public function destroyPdf($id){
         // Pegando os dados do pdf no banco
         $query = Anexos_Pdf_Postagem::where('id', $id)->first();
