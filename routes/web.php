@@ -65,7 +65,7 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 		Route::get('/destroy/{id}',['as' => 'instituicao.destroy', 'uses' => 'InstituicoesController@destroy']);
 	});
 
-    //Rotas de postagens
+    //Rotas de pdf
 	Route::group(['prefix' => '/pdf'],function(){
         Route::get('/destroy/{id}',['as' => 'pdf.destroy', 'uses' => 'PostagemController@destroyPdf']);
     });
