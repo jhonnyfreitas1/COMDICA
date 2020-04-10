@@ -80,24 +80,11 @@ class InstituicoesController extends Controller
                 return redirect('admin/instituicoes/create')->with('danger',$mensagemExtensao);
             }
         }
-        if($request->file('imagem_ter') != NULL){
-            $ex3 = strtolower($request->file('imagem_ter')->extension());
-            for($c = 0; sizeof($extensoes) > $c; $c++){
-                if ($ex3 == $extensoes[$c]) {
-                    $resp++;
-                }
-            }
-            if($resp == 0){
-                $mensagemExtensao = "Adicione uma imagem valida na imagem principal";
-                return redirect('admin/instituicoes/create')->with('danger',$mensagemExtensao);
-            }
-        }
 
         /*Adicionando imagens vazio para depois adicionar os nomes verdadeiros*/
         $images = new Img_inst;
         $images->imagem_princ = "";
         $images->imagem_sec = "";
-        $images->imagem_ter = "";
 
         $images->save();
 
@@ -131,19 +118,11 @@ class InstituicoesController extends Controller
                 $img2->move($dir,$nomeImagem);
                 $request->imagem_sec = $nomeImagem;
             }
-            if ($request->imagem_ter == null) {
-            }else{
-                $img3 = $request->file('imagem_ter');
-                $nomeImagem = "img_3.".$ex3;
-                $img3->move($dir,$nomeImagem);
-                $request->imagem_ter = $nomeImagem;
-            }
 
         }
         // Editando o nome das imagens
         $images->imagem_princ = $request->imagem_princ ? $request->imagem_princ : "";
         $images->imagem_sec = $request->imagem_sec ? $request->imagem_sec : "";
-        $images->imagem_ter = $request->imagem_ter ? $request->imagem_ter : "";
         $images->save();
 
         /*Voltando para a pagina e listar instituições*/
@@ -218,18 +197,7 @@ class InstituicoesController extends Controller
                 return redirect('admin/instituicoes/edit/'.$id)->with('danger',$mensagemExtensao);
             }
         }
-        if($request->file('imagem_ter') != NULL){
-            $ex3 = strtolower($request->file('imagem_ter')->extension());
-            for($c = 0; sizeof($extensoes) > $c; $c++){
-                if ($ex3 == $extensoes[$c]) {
-                    $resp++;
-                }
-            }
-            if($resp == 0){
-                $mensagemExtensao = "Adicione uma imagem valida na imagem principal";
-                return redirect('admin/instituicoes/edit/'.$id)->with('danger',$mensagemExtensao);
-            }
-        }
+
         /*Pegando os dados da instituição*/
         $instituicao = Instituicao::find($id);
         $dir = "upload_imagem/instituicoes/".$instituicao->name.$id;
@@ -274,14 +242,6 @@ class InstituicoesController extends Controller
                 $request->imagem_sec = $nomeImagem;
 
             }
-            if ($request->imagem_ter == null) {
-            }else{
-                $img3 = $request->file('imagem_ter');
-                $ex = $img3->extension();
-                $nomeImagem = "img_3.".$ex;
-                $img3->move($dir,$nomeImagem);
-                $request->imagem_ter = $nomeImagem;
-            }
         }
 
         /*Alterando as imagens*/
@@ -298,11 +258,6 @@ class InstituicoesController extends Controller
             $images->imagem_princ = $images->imagem_princ;
         };
 
-        if(isset($img3)){
-            $images->imagem_ter = $request->imagem_ter ? $request->imagem_ter : "";
-        }else{
-            $images->imagem_princ = $images->imagem_princ;
-        };
         $images->save();
 
 
@@ -330,9 +285,6 @@ class InstituicoesController extends Controller
         }
         if (File::exists($ex.$img2)) {
             File::delete($ex.$img2);
-        }
-        if (File::exists($ex.$img3)) {
-            File::delete($ex.$img3);
         }
 
         if (File::exists($ex)) {

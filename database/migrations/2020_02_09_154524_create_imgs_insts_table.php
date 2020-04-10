@@ -17,7 +17,6 @@ class CreateImgsInstsTable extends Migration
             $table->Increments('img_id');
             $table->string('imagem_princ');
             $table->string('imagem_sec');
-            $table->string('imagem_ter');
             $table->timestamps();
         });
     }
