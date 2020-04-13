@@ -5,10 +5,10 @@
     <nav class="mb-2">
         <ol class="breadcrumb">
             <li  class="breadcrumb-item">
-                <a href="{{route('admin.comdica')}}">Home</a>
+                <a href="{{route('usuario.index')}}">Home</a>
             </li>
             <li class="breadcrumb-item" >
-                <a href="{{route('admin.list_users')}}">Usuários</a></a>
+                <a href="{{route('usuario.index')}}">Usuários</a></a>
             </li>
             <li class="breadcrumb-item" >
                 <span class="text-secondary">
@@ -32,18 +32,13 @@
             @endif
             </h1>
         </div>
-        <div class="col-md-3 text-right" >
-            <a href="{{ url()->previous() }}" class="btn btn-light">
-                << Voltar
-            </a>
-        </div>
     </div>
 
 @isset($usuario)
-    <form method="post" action="{{route('admin.update_user', $usuario->id)}}">
+    <form method="post" action="{{route('usuario.update', $usuario->id)}}">
     @method('put')
 @else
-    <form method="POST" action="{{ route('admin.add_user') }}">
+    <form method="POST" action="{{ route('usuario.store') }}">
 @endisset
 @csrf
 <div class="card">

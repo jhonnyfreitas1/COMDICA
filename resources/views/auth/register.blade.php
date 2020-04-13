@@ -29,10 +29,10 @@
 
                 <div class="card-body">
                 @isset($usuario)
-                    <form method="post" action="{{route('admin.update_user', $usuario->id)}}">
+                    <form method="post" action="{{route('usuario.update', $usuario->id)}}">
                     @method('put')
                 @else
-                    <form method="POST" action="{{ route('admin.add_user') }}">
+                    <form method="POST" action="{{ route('usuario.store') }}">
                 @endisset
                         @csrf
 

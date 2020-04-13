@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\iseet;
 use Illuminate\Support\Facades\DB;
@@ -270,8 +271,8 @@ class InstituicoesController extends Controller
     {
         // Faz join de instituições com as suas imagens
         $instituicao = DB::table('instituicoes')
-                           ->join('imgs_insts', 'instituicoes.inst_img','imgs_insts.img_id')
-                           ->where('id',$id)->get();
+        ->join('imgs_insts', 'instituicoes.inst_img','imgs_insts.img_id')
+        ->where('id',$id)->get();
 
 
         $ex = "upload_imagem/instituicoes/".$instituicao[0]->name.$instituicao[0]->id.'/';
@@ -288,14 +289,15 @@ class InstituicoesController extends Controller
         }
 
         if (File::exists($ex)) {
-            $rm = rmdir($ex);
-        }
+                $rm = rmdir($ex);
+            }
 
         // Deleta as tabelas e redireciona
         $inst = Instituicao::find($id);
         $img = Img_inst::find($inst->inst_img)->delete();
         $inst->delete();
-        return redirect('/admin/instituicoes');
+        $mensagem = 'Instituição excluida com Sucesso!';
+        return redirect('/admin/instituicoes')->with('mensagem',$mensagem);
     }
 
 }

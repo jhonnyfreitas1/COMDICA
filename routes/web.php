@@ -45,56 +45,56 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 
 	// rotas do usuario
 	Route::group(['prefix' => '/users'],function(){
-		Route::get('/', ['as' => 'admin.list_users', 'uses' => 'AdminController@list_users']);
-		Route::get('/create', ['as' => 'admin.register', 'uses' => 'Auth\RegisterController@redirectCreate']);
-		Route::post('/store', ['as' => 'admin.add_user', 'uses' => 'AdminController@add_user']);
-		Route::get('/show/{id}', ['as' => 'admin.show_user', 'uses' => 'AdminController@show_user']);
-		Route::get('/edit/{id}', ['as' => 'admin.edit_user', 'uses' => 'AdminController@edit_user']);
-		Route::put('/update/{id}', ['as' => 'admin.update_user', 'uses' => 'AdminController@update_user']);
-		Route::post('/destroy/{id}', ['as' => 'admin.destroy_user', 'uses' => 'AdminController@destroy_user']);
+		Route::get('/', ['as' => 'usuario.index', 'uses' => 'Admin\UserController@index']);
+		Route::get('/create', ['as' => 'usuario.register', 'uses' => 'Admin\UserController@create']);
+		Route::post('/store', ['as' => 'usuario.store', 'uses' => 'Admin\UserController@store']);
+		Route::get('/show/{id}', ['as' => 'usuario.show', 'uses' => 'Admin\UserController@show']);
+		Route::get('/edit/{id}', ['as' => 'usuario.edit', 'uses' => 'Admin\UserController@edit']);
+		Route::put('/update/{id}', ['as' => 'usuario.update', 'uses' => 'Admin\UserController@update']);
+		Route::post('/destroy/{id}', ['as' => 'usuario.destroy', 'uses' => 'Admin\UserController@destroy']);
 	});
 
 	//Rotas de instituições
 	Route::group(['prefix' => '/instituicoes'],function(){
-		Route::get('', ['as' => 'instituicao.index', 'uses' => 'InstituicoesController@index']);
-		Route::get('/create',['as' => 'instituicao.create', 'uses' => 'InstituicoesController@create']);
-		Route::post('/store',['as' => 'instituicao.store', 'uses' => 'InstituicoesController@store']);
-		Route::get('/{id}',['as' => 'instituicao.show', 'uses' => 'InstituicoesController@show']);
-		Route::get('/edit/{id}',['as' => 'instituicao.edit', 'uses' => 'InstituicoesController@edit']);
-		Route::put('/update/{id}',['as' => 'instituicao.update', 'uses' => 'InstituicoesController@update']);
-		Route::get('/destroy/{id}',['as' => 'instituicao.destroy', 'uses' => 'InstituicoesController@destroy']);
+		Route::get('', ['as' => 'instituicao.index', 'uses' => 'Admin\InstituicoesController@index']);
+		Route::get('/create',['as' => 'instituicao.create', 'uses' => 'Admin\InstituicoesController@create']);
+		Route::post('/store',['as' => 'instituicao.store', 'uses' => 'Admin\InstituicoesController@store']);
+		Route::get('/{id}',['as' => 'instituicao.show', 'uses' => 'Admin\InstituicoesController@show']);
+		Route::get('/edit/{id}',['as' => 'instituicao.edit', 'uses' => 'Admin\InstituicoesController@edit']);
+		Route::put('/update/{id}',['as' => 'instituicao.update', 'uses' => 'Admin\InstituicoesController@update']);
+		Route::get('/destroy/{id}',['as' => 'instituicao.destroy', 'uses' => 'Admin\InstituicoesController@destroy']);
 	});
 
     //Rotas de pdf
 	Route::group(['prefix' => '/pdf'],function(){
-        Route::get('/destroy/{id}',['as' => 'pdf.destroy', 'uses' => 'PostagemController@destroyPdf']);
+        Route::get('/destroy/{id}',['as' => 'pdf.destroy', 'uses' => 'Admin\PostagemController@destroyPdf']);
     });
 
     //Rotas de postagens
 	Route::group(['prefix' => '/postagens'],function(){
-        Route::get('/', ['as' => 'postagens.index', 'uses' => 'PostagemController@index']);
-		Route::get('/create',['as' => 'postagens.create', 'uses' => 'PostagemController@create']);
-		Route::post('/store',['as' => 'postagens.store', 'uses' => 'PostagemController@store']);
-		Route::get('/edit/{id}',['as' => 'postagens.edit', 'uses' => 'PostagemController@edit']);
-		Route::put('/update/{id}',['as' => 'postagens.update', 'uses' => 'PostagemController@update']);
-		Route::get('/destroy/{id}',['as' => 'postagens.destroy', 'uses' => 'PostagemController@destroy']);
-		Route::get('/minhaspostagens', ['as' => 'postagens.minhas_postagens', 'uses' => 'PostagemController@minhas_postagens']);
-		Route::get('/arquivadas', ['as' => 'postagens.arquivadas', 'uses' => 'PostagemController@arquivadas']);
-		Route::get('/arquivar/{id}', ['as' => 'postagens.arquivar', 'uses' => 'PostagemController@arquivar']);
+        Route::get('/', ['as' => 'postagens.index', 'uses' => 'Admin\PostagemController@index']);
+		Route::get('/create',['as' => 'postagens.create', 'uses' => 'Admin\PostagemController@create']);
+		Route::post('/store',['as' => 'postagens.store', 'uses' => 'Admin\PostagemController@store']);
+		Route::get('/edit/{id}',['as' => 'postagens.edit', 'uses' => 'Admin\PostagemController@edit']);
+		Route::put('/update/{id}',['as' => 'postagens.update', 'uses' => 'Admin\PostagemController@update']);
+		Route::get('/destroy/{id}',['as' => 'postagens.destroy', 'uses' => 'Admin\PostagemController@destroy']);
+		Route::get('/minhaspostagens', ['as' => 'postagens.minhas_postagens', 'uses' => 'Admin\PostagemController@minhas_postagens']);
+		Route::get('/arquivadas', ['as' => 'postagens.arquivadas', 'uses' => 'Admin\PostagemController@arquivadas']);
+		Route::get('/arquivar/{id}', ['as' => 'postagens.arquivar', 'uses' => 'Admin\PostagemController@arquivar']);
 	});
 
     //Rotas de Auth
     Route::group(['prefix' => '/auth'],function(){
-        Route::get('/edit', ['as' => 'admin.auth.edit', 'uses' => 'AdminController@edit']);
-        Route::post('/update', ['as' => 'admin.auth.update', 'uses' => 'AdminController@update']);
+        Route::get('/edit', ['as' => 'admin.auth.edit', 'uses' => 'Admin\AdminController@edit']);
+        Route::post('/update', ['as' => 'admin.auth.update', 'uses' => 'Admin\AdminController@update']);
     });
 
-    Route::get('/', ['as' => 'admin', 'uses' => 'AdminController@index']);
-	Route::get('/comdica', ['as' => 'admin.comdica', 'uses' => 'AdminController@index']);
-	Route::get('/contato', ['as' => 'admin.contato', 'uses' => 'AdminController@contato']);
-	Route::get('/contato/{id}', ['as' => 'admin.contato.id', 'uses' => 'AdminController@contato_single']);
-	Route::get('/doacoes', ['as' => 'admin.boleto', 'uses' => 'AdminController@doacoes_boleto']);
-	Route::get('/back', ['as' => 'admin.back', 'uses' => 'AdminController@back']);
+    Route::get('/', ['as' => 'admin', 'uses' => 'Admin\AdminController@index']);
+	Route::get('/comdica', ['as' => 'admin.comdica', 'uses' => 'Admin\AdminController@index']);
+	Route::get('/contato', ['as' => 'admin.contato', 'uses' => 'Admin\AdminController@contato']);
+	Route::get('/contato/{id}', ['as' => 'admin.contato.id', 'uses' => 'Admin\AdminController@contato_single']);
+	Route::get('/doacoes', ['as' => 'admin.boleto', 'uses' => 'Admin\AdminController@doacoes_boleto']);
+	Route::get('/back', ['as' => 'admin.back', 'uses' => 'Admin\AdminController@back']);
 
 	Route::get('/lista_denuncias', ['as' => 'admin.lista_denuncias', 'uses' => 'DenunciaController@lista_denuncias']);
     Route::get('/show_denuncia/{id}', ['as' => 'admin.show_denuncia', 'uses' => 'DenunciaController@show_denuncia']);

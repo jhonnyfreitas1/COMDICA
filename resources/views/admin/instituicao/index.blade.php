@@ -37,7 +37,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($instituicoes as $instituicao)
+            @foreach($instituicoes as $count => $instituicao)
             <tr>
                 <th scope="row">{{$instituicao->id}}</th>
                 <td>
@@ -47,10 +47,21 @@
                 </td>
                 <td>
                     <a href="{{route('instituicao.edit', $instituicao->id)}}" class="btn btn-outline-info btn-sm mr-2">Editar</a>
-                    <a href="{{route('instituicao.destroy', $instituicao->id)}}" class="btn btn-outline-danger btn-sm mr-2">Excluir</a>
-                </td>
-            </tr>
+                    <a href="#"  class="btn btn-outline-danger btn-sm mr-2" onClick="confirmExclusao();">Excluir</a>
+                </tr>
             @endforeach
         </tbody>
     </table>
+
+    <!-- Mensagem de confirmação -->
+    <script type="text/javascript">
+        function confirmExclusao() {
+            var message = "Tem certeza que deseja excluir essa instituição?";
+            if ( confirm(message) ) {
+                window.location.href = "{{ route('instituicao.destroy', $instituicao->id)}}";
+            } else {
+                return false;
+            }
+        }
+    </script>
 @endsection

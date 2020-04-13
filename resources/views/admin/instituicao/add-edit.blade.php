@@ -7,6 +7,7 @@
     content: "Alterar";
 }
     </style>
+
     @section('area-principal')
     <br>
     <nav class="mb-2">
@@ -39,11 +40,6 @@
             @endif
             </h1>
         </div>
-        <div class="col-md-3 text-right" >
-            <a href="{{ url()->previous() }}" class="btn btn-light">
-                << Voltar
-            </a>
-        </div>
     </div>
 
     @isset($instituicoes)
@@ -62,7 +58,7 @@
                 <!-- nome -->
                 <div class="form-group col-md-4">
                     <label for="name">{{ __('Nome') }}</label>
-                    <input  id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ isset($instituicoes->name) ? $instituicoes->name : '' }}" required autocomplete="name" autofocus>
+                    <input  id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ||  isset($instituicoes->name) ? $instituicoes->name : '' }}" required autocomplete="name" autofocus>
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -97,7 +93,7 @@
 
             <div class="form-row">
             <!-- endereco -->
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-4">
                     <label for="endereco">{{ __('Endereço') }}</label>
                     <input id="endereco" type="text" class="form-control @error('endereco') is-invalid @enderror" name="endereco" value="{{ isset($instituicoes->endereco) ? $instituicoes->endereco : '' }}" autocomplete="endereco" autofocus>
                     @error('desc')
@@ -108,9 +104,9 @@
                 </div>
 
             <!-- telefone -->
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <label for="telefone">{{ __('Telefone') }}</label>
-                    <input id="telefone" type="text" class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" autocomplete="telefone" autofocus>
+                    <input id="telefone" type="text"  class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" autocomplete="telefone" autofocus  maxlength="17" placeholder="(__) ____-____"  />
                     @error('telefone')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -122,7 +118,7 @@
                 <div class="form-group col-md-3">
                 <label for="imagem_princ" class="text-dark col-form-label text-md-center">{{ __('Imagem principal*') }}</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imagem_princ" name="imagem_princ" value="{{ isset($instituicoes->imagem_princ) ? $instituicoes->imagem_princ : '' }}" lang="br" required>
+                        <input type="file" class="custom-file-input" id="imagem_princ" name="imagem_princ" value="{{ isset($instituicoes->imagem_princ) ? $instituicoes->imagem_princ : '' }}" lang="br">
                         <label class="custom-file-label" for="imagem_princ">Ache o arquivo</label>
                         @error('imagem_princ')
                             <span class="invalid-feedback" role="alert">
@@ -136,7 +132,7 @@
                 <div class="form-group col-md-3">
                 <label for="imagem_sec" class="text-dark col-form-label text-md-right">{{ __('Imagem secudária*') }}</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="imagem_sec" lang="br" name="imagem_sec" value="{{ isset($instituicoes->imagem_sec) ? $instituicoes->imagem_sec : '' }}" required>
+                        <input type="file" class="custom-file-input" id="imagem_sec" lang="br" name="imagem_sec" value="{{ isset($instituicoes->imagem_sec) ? $instituicoes->imagem_sec : '' }}">
                         <label class="custom-file-label" for="imagem_sec">Ache o arquivo</label>
                         @error('imagem_sec')
                             <span class="invalid-feedback" role="alert">
@@ -167,7 +163,44 @@
     @endisset
         </div>
     </div>
-
 </form>
+
+<!-- Imports do Jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function($){
+
+        // Máscara de telefone
+        $("#telefone").blur( () => {
+            var tel = $("#telefone");
+            var len = tel.val().replace(/\D/g, '').length;
+
+            val = tel.val().replace(/\D/g, '');
+            if( len == 1){
+                ini = val.replace(/\D/g, '');
+                tel.val('('+ini);
+            }else if(len == 2){
+                ini = val.replace(/\D/g, '');
+                tel.val('('+ini+')');
+            }else if(len > 2 && len < 7){
+                ini =  tel.val().replace(/\D/g, '').substring(0,2) ;
+                med =  tel.val().replace(/\D/g, '').substring(2,7) ;
+                tel.val('('+ini+') '+med);
+            }else if(len > 6 && len < 11){
+                ini =  tel.val().replace(/\D/g, '').substring(0,2) ;
+                med =  tel.val().replace(/\D/g, '').substring(2,6) ;
+                fim =  tel.val().replace(/\D/g, '').substring(6,10) ;
+                tel.val('('+ini+') '+med+' - '+fim);
+            }else if(len == 11){
+                ini =  tel.val().replace(/\D/g, '').substring(0,2) ;
+                med =  tel.val().replace(/\D/g, '').substring(2,7) ;
+                fim =  tel.val().replace(/\D/g, '').substring(7,11) ;
+                tel.val('('+ini+') '+med+' - '+fim);
+            }
+        })
+
+    });
+</script>
     @endsection
 

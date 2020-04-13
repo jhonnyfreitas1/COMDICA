@@ -54,7 +54,7 @@
           <a href="/admin/lista_denuncias" id='denuncias'  class="list-group-item bg-info border list-group-item-action ">Todas as denúncias <i class="fas fa-user"></i></a>
           @can('admin-comdica')
           <a href="/admin/instituicoes" id='instituicoes'  class="list-group-item bg-info border list-group-item-action ">Instituições <i class="fas fa-warehouse"></i></a>
-          <a href="{{route('admin.list_users')}}" id='users' class="list-group-item list-group-item-action bg-info border">Usuarios <i class="fas fa-users"></i></a>
+          <a href="{{route('usuario.index')}}" id='users' class="list-group-item list-group-item-action bg-info border">Usuarios <i class="fas fa-users"></i></a>
           <a href="/admin/doacoes" id='doacao_imposto' class="list-group-item bg-info border list-group-item-action ">Doações por boleto <i class="fas fa-file-invoice-dollar"></i></a>
           <a href="/admin/contato" class="list-group-item list-group-item-action bg-info border">Mensagens de contato <i class="far fa-comments"></i>
           @endcan
