@@ -106,7 +106,8 @@
             <!-- telefone -->
                 <div class="form-group col-md-2">
                     <label for="telefone">{{ __('Telefone') }}</label>
-                    <input id="telefone" type="text"  class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" autocomplete="telefone" autofocus  maxlength="17" placeholder="(__) ____-____"  />
+                    <input id="telefone" type="text"  class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" autocomplete="telefone" autofocus maxlength="11" placeholder="(__) ____-____"
+                        />
                     @error('telefone')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -169,6 +170,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <script type="text/javascript">
+
     $(document).ready(function($){
 
         // Máscara de telefone
@@ -197,9 +199,28 @@
                 med =  tel.val().replace(/\D/g, '').substring(2,7) ;
                 fim =  tel.val().replace(/\D/g, '').substring(7,11) ;
                 tel.val('('+ini+') '+med+' - '+fim);
+            }else if( isNaN(tel.val()) ){
+                tel.val('');
             }
         })
 
+        $("#telefone").on('focus',() => {
+            var tel = $("#telefone");
+            tel.val(tel.val().replace('(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})'));
+        })
+
+        $("#telefone").on('keydown',() => {
+            var tel = $("#telefone");
+            tel.val(tel.val().replace('(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})'));
+        })
+        $("#telefone").on('click',() => {
+            var tel = $("#telefone");
+            tel.val(tel.val().replace(/\D/g, ''));
+        })
+
+        // $("#telefone").keypress( () => {
+        //     this.val() = this.val().replace(/[^a-zA-Z.]/g,'');
+        // })
     });
 </script>
     @endsection
