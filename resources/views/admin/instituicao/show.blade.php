@@ -1,18 +1,32 @@
 @extends('layouts.admin')
 
     @section('area-principal')
-		<h1>Dados:</h1>
+    <br>
+    <nav class="mb-2">
+        <ol class="breadcrumb">
+            <li  class="breadcrumb-item">
+                <a href="{{route('admin.comdica')}}">Home</a>
+            </li>
+            <li class="breadcrumb-item" >
+                <a href="{{route('instituicao.index')}}">Instituições</a></a>
+            </li>
+            <li class="breadcrumb-item" >
+                <span class="text-secondary">
+                    {{$instituicao[0]->name}}
+                </span>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="row mb-1">
+        <div class="col-md-9">
+            <h1 class="h2 border-left pl-2">
+                {{$instituicao[0]->name}}
+            </h1>
+        </div>
+    </div>
+
 		<ul>
-			@if($instituicao[0]->id)
-				<li>
-					<strong>ID: </strong>{{$instituicao[0]->id}}
-				</li>
-			@endif
-			@if($instituicao[0]->name)
-				<li>
-					<strong>name: </strong>{{$instituicao[0]->name}}
-				</li>
-			@endif
 			@if($instituicao[0]->desc)
 				<li>
 					<strong>desc: </strong>{{$instituicao[0]->desc}}
@@ -48,11 +62,7 @@
 					<strong>imagem_sec: </strong>{{$instituicao[0]->imagem_sec}}
 				</li>
 			@endif
-			@if($instituicao[0]->imagem_ter)
-				<li>
-					<strong>imagem_ter: </strong>{{$instituicao[0]->imagem_ter}}
-				</li>
-			@endif
+
 		</ul>
-		<a href="{{route('instituicao.index')}}">Voltar</a>
+		<!-- <a href="{{route('instituicao.index')}}">Voltar</a> -->
 	@endsection

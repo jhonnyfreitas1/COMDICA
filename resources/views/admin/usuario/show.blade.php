@@ -1,18 +1,32 @@
 @extends('layouts.admin')
 
     @section('area-principal')
-		<h1>Dados:</h1>
+    <br>
+    <nav class="mb-2">
+        <ol class="breadcrumb">
+            <li  class="breadcrumb-item">
+                <a href="{{route('usuario.index')}}">Home</a>
+            </li>
+            <li class="breadcrumb-item" >
+                <a href="{{route('usuario.index')}}">Usuários</a></a>
+            </li>
+            <li class="breadcrumb-item" >
+                <span class="text-secondary">
+                    {{$usuario->name}}
+                </span>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="row mb-1">
+        <div class="col-md-9">
+            <h1 class="h2 border-left pl-2">
+                {{$usuario->name}}
+            </h1>
+        </div>
+    </div>
+
 		<ul>
-			@if($usuario->id)
-				<li>
-					<strong>ID: </strong>{{$usuario->id}}
-				</li>
-			@endif
-			@if($usuario->name)
-				<li>
-					<strong>name: </strong>{{$usuario->name}}
-				</li>
-			@endif
 			@if($usuario->email)
 				<li>
 					<strong>email: </strong>{{$usuario->email}}

@@ -20,7 +20,7 @@
             </li>
             <li class="breadcrumb-item" >
                 <span class="text-secondary">
-                @isset($instituicoe)
+                @isset($instituicoes)
                     Editando Instituição: {{$instituicoes->name}}
                 @else
                     Cadastro de nova Instituição
