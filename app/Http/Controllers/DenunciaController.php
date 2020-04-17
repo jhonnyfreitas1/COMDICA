@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\DB;
 
 class DenunciaController extends Controller
 {
+    public function index(){
+		$denuncias = DB::table('dados_gerais')->paginate(8);
+        return view('admin.denuncia.index', compact('denuncias'));
+     }
+
     public function store(Request $request){
         //Adicionando na tabela resp_gerals
 		($request->pregnant == '1') ? $pregnant = true: $pregnant = false;
@@ -86,7 +91,7 @@ class DenunciaController extends Controller
         $hash = $recupDenun->hashDenun;
         return view('success', compact('hash'));
     }
-    public function show_denuncia($id){
+    public function show($id){
 
         $denuncia = DB::table('dados_gerais')
             		->join('resp_gerals', 'resp_gerals.id', '=' , 'respGeral')
@@ -97,17 +102,9 @@ class DenunciaController extends Controller
                     ->select('dados_gerais.id','dados_gerais.hashDenun','resp_gerals.*','resp_ocorrencias.*','resp_violencias.*','resp_lesaos.*','resp_agressors.*')
         			->where('dados_gerais.id','=',$id)
                     ->get();
-                    
 
-         // return var_dump($denuncia);
-
-        // $denuncia = DadosGerais::where('id','=', $id)->first();
-        return view('admin/show_denuncia', compact('denuncia'));
+         return view('admin.denuncia.show', compact('denuncia'));
     }
-    public function lista_denuncias(){
-		$denuncias = DB::table('dados_gerais')->paginate(8);
-		return  view('admin.lista_denuncias')->with(compact('denuncias'));    
- 	}
     public function denuncia(){
         return view('welcome');
     }

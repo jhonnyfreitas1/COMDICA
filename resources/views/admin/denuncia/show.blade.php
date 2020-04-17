@@ -18,7 +18,7 @@
     .hash{
       text-align: center;
       font-family:courier;
-      font-weight: bold;    
+      font-weight: bold;
       margin: 1em;
     }
     .titulo{
@@ -34,9 +34,31 @@
       font-family:helvetica;
       /*border: 1px solid black;*/
     }
-  </style>
-  <div class="content">
-    <h2 class="hash">Hash da denúncia - {{$denuncia[0]->hashDenun}}</h2>
+  </style>    <br>
+    <nav class="mb-2">
+        <ol class="breadcrumb">
+            <li  class="breadcrumb-item">
+                <a href="{{route('admin.comdica')}}">Home</a>
+            </li>
+            <li class="breadcrumb-item" >
+                <a href="{{route('denuncias.index')}}">Denúncia</a>
+            </li>
+            <li class="breadcrumb-item" >
+                <span class="text-secondary">
+                    Hash da denúncia - denun1
+                </span>
+            </li>
+        </ol>
+    </nav>
+
+    <div class="row mb-1">
+        <div class="col-md-9">
+            <h1 class="h2 border-left pl-2">
+            Hash da denúncia - denun1
+            </h1>
+        </div>
+    </div>
+  <!-- <div class="content"> -->
     <ul class="list-group">
       <div class="section">
         <div class="titulo">
@@ -105,5 +127,5 @@
       </div>
       <hr>
     </ul>
-  </div>
+  <!-- </div> -->
 	@endsection

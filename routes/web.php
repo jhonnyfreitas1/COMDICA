@@ -83,6 +83,12 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 		Route::get('/arquivar/{id}', ['as' => 'postagens.arquivar', 'uses' => 'Admin\PostagemController@arquivar']);
 	});
 
+    //Rotas de Denuncia
+    Route::group(['prefix' => '/denuncia'],function(){
+        Route::get('/', ['as' => 'denuncias.index', 'uses' => 'DenunciaController@index']);
+        Route::get('/{id}', ['as' => 'denuncias.show', 'uses' => 'DenunciaController@show']);
+    });
+
     //Rotas de Auth
     Route::group(['prefix' => '/auth'],function(){
         Route::get('/edit', ['as' => 'admin.auth.edit', 'uses' => 'Admin\AdminController@edit']);
@@ -96,8 +102,6 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 	Route::get('/doacoes', ['as' => 'admin.boleto', 'uses' => 'Admin\AdminController@doacoes_boleto']);
 	Route::get('/back', ['as' => 'admin.back', 'uses' => 'Admin\AdminController@back']);
 
-	Route::get('/lista_denuncias', ['as' => 'admin.lista_denuncias', 'uses' => 'DenunciaController@lista_denuncias']);
-    Route::get('/show_denuncia/{id}', ['as' => 'admin.show_denuncia', 'uses' => 'DenunciaController@show_denuncia']);
 
 	// Route::post('/update_save/{id}', ['as' => 'admin.update_save', 'uses' => 'PostagemController@update_save']);
 	// Route::get('/post/delete/{id}', ['as' => 'delete_postagem', 'uses' => 'PostagemController@destroy']);
