@@ -51,30 +51,6 @@
 				color:darkgreen;
 			}
 
-        /* imagem antes de carregar o site */
-            .loading-back{
-                width:100vw;
-                heigth:100vh;
-                 margin:0 auto
-            }
-            .image-back{
-                max-height: calc(100vh - 25px);
-                position: relative;
-                width: auto;
-                height: auto;
-                display: block;
-                margin: 0 auto
-            }
-            @media only screen and (min-width: 767px) and (max-width: 1024px) {
-                .image-back{
-                    margin-top:20%;
-                }
-            }
-            @media only screen and (max-width: 767px) {
-                .image-back{
-                    margin-top: 40%;
-                }
-            }
 		  </style>
 	</head>
 	<body>
@@ -134,28 +110,21 @@
                 </div>
             </footer>
         </div>
+        <!-- Div da imagem de back ao entrar na index -->
+        <div id="loading" class="loading-back" style="display:none">
+			<img src="/img/fundeca1.png" class="image-back">
+		</div>
+        <!-- links de Js -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(document).on('ready', function() {
-                $("#conteudo").hide();
-                $("#loading").show();
-
                 $(".variable").slick({
                     dots: true,
                     infinite: true,
                     variableWidth: true
                 });
-
-                setTimeout(() => {
-                    $('#loading').fadeOut("fast")
-                    $('#conteudo').show();
-                }, 2000);
-
 			});
 		</script>
-		<div id="loading" class="loading-back">
-			<img src="/img/fundeca1.png" class="image-back">
-		</div>
 	</body>
 </html>
