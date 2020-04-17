@@ -106,7 +106,8 @@
             <!-- telefone -->
                 <div class="form-group col-md-2">
                     <label for="telefone">{{ __('Telefone') }}</label>
-                    <input id="telefone" type="text"  class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" autocomplete="telefone" autofocus maxlength="11" placeholder="(__) ____-____"
+                    <input id="telefone" type="text"  class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" autocomplete="telefone" autofocus maxlength="14" placeholder="(__)____-____"
+                        onkeyup="maskTel()"
                         />
                     @error('telefone')
                         <span class="invalid-feedback" role="alert">
@@ -170,58 +171,53 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <script type="text/javascript">
+    // Função que coloca a mascara
+    function maskTel(){
 
-    $(document).ready(function($){
+        const tel = $("#telefone");
+        const val = tel.val().replace(/\D/g, '');
+        const len = tel.val().replace(/\D/g, '').length;
+        const c = 0;
 
-        // Máscara de telefone
-        $("#telefone").blur( () => {
-            var tel = $("#telefone");
-            var len = tel.val().replace(/\D/g, '').length;
+        if( !isNaN(tel.val()) ){
+            addMask(tel, val, len, c)
+        }else{
+            tel.val().replace(/[^0-9]/g,'');
+            addMask(tel, val, len, c)
+        }
 
-            val = tel.val().replace(/\D/g, '');
-            if( len == 1){
+    }
+    function addMask(tel, val, len, c) {
+        if(c == 0){
+            c++;
+            if( len == 0){
                 ini = val.replace(/\D/g, '');
                 tel.val('('+ini);
+                addMask(tel, val, len, c)
             }else if(len == 2){
                 ini = val.replace(/\D/g, '');
-                tel.val('('+ini+')');
+                tel.val('('+ini);
+                addMask(tel, val, len, c)
             }else if(len > 2 && len < 7){
                 ini =  tel.val().replace(/\D/g, '').substring(0,2) ;
                 med =  tel.val().replace(/\D/g, '').substring(2,7) ;
-                tel.val('('+ini+') '+med);
-            }else if(len > 6 && len < 11){
+                tel.val('('+ini+')'+med);
+                addMask(tel, val, len, c);
+            }else if(len > 6  && len < 11){
                 ini =  tel.val().replace(/\D/g, '').substring(0,2) ;
                 med =  tel.val().replace(/\D/g, '').substring(2,6) ;
                 fim =  tel.val().replace(/\D/g, '').substring(6,10) ;
-                tel.val('('+ini+') '+med+' - '+fim);
+                tel.val('('+ini+')'+med+'-'+fim);
+                addMask(tel, val, len, c)
             }else if(len == 11){
                 ini =  tel.val().replace(/\D/g, '').substring(0,2) ;
                 med =  tel.val().replace(/\D/g, '').substring(2,7) ;
                 fim =  tel.val().replace(/\D/g, '').substring(7,11) ;
-                tel.val('('+ini+') '+med+' - '+fim);
-            }else if( isNaN(tel.val()) ){
-                tel.val('');
+                tel.val('('+ini+')'+med+'-'+fim);
+                addMask(tel, val, len, c)
             }
-        })
-
-        $("#telefone").on('focus',() => {
-            var tel = $("#telefone");
-            tel.val(tel.val().replace('(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})'));
-        })
-
-        $("#telefone").on('keydown',() => {
-            var tel = $("#telefone");
-            tel.val(tel.val().replace('(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})'));
-        })
-        $("#telefone").on('click',() => {
-            var tel = $("#telefone");
-            tel.val(tel.val().replace(/\D/g, ''));
-        })
-
-        // $("#telefone").keypress( () => {
-        //     this.val() = this.val().replace(/[^a-zA-Z.]/g,'');
-        // })
-    });
+        }
+    }
 </script>
     @endsection
 
