@@ -106,7 +106,7 @@
             <!-- telefone -->
                 <div class="form-group col-md-2">
                     <label for="telefone">{{ __('Telefone') }}</label>
-                    <input id="telefone" type="text"  class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" autocomplete="telefone" autofocus maxlength="14" placeholder="(__)____-____"
+                    <input id="telefone" type="text"  class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" autocomplete="telefone" autofocus maxlength="14" placeholder="(__) ____-____"
                         onkeyup="maskTel()"
                         />
                     @error('telefone')
@@ -190,7 +190,7 @@
     function addMask(tel, val, len, c) {
         if(c == 0){
             c++;
-            if( len == 0){
+            if( len == 1){
                 ini = val.replace(/\D/g, '');
                 tel.val('('+ini);
                 addMask(tel, val, len, c)
@@ -218,6 +218,14 @@
             }
         }
     }
+    $(document).ready(function(){
+
+        // Corrigindo um erro que deu no HTML
+        if( $("#desc").val() == "                        "){
+            $("#desc").val('');
+        };
+
+    })
 </script>
     @endsection
 
