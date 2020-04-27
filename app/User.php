@@ -24,15 +24,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
 
     /*Função que representa o relacionamento de um para muitos*/
     public function user_tipo(){
         return $this->hasMany(Tipo_user::class);
-    } 
+    }
 
     /*Função que representa o relacionamento de muitos para um*/
-    public function id(){
+    public function user_postagem(){
         return $this->BelongsTo(Postagens::class);
     }
 }

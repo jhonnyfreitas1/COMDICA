@@ -40,12 +40,16 @@ Route::get('sou_doador/verificar/pagamento/','HomeController@verificar_recibo');
 Route::get('carousel','HomeController@carousel');
 
 //Rotas admin
-Route::get('/auth/logout', 'Auth\LoginController@logout')->middleware('auth');
 Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 
-	// rotas do usuario
-	Route::group(['prefix' => '/users'],function(){
-		Route::get('/', ['as' => 'usuario.index', 'uses' => 'Admin\UserController@index']);
+    //Rotas das padrões do administrador
+    Route::get('/', ['as' => 'admin', 'uses' => 'Admin\AdminController@index']);
+    Route::get('/comdica', ['as' => 'admin.comdica', 'uses' => 'Admin\AdminController@index']);
+    Route::get('/back', ['as' => 'admin.back', 'uses' => 'Admin\AdminController@back']);
+
+	//Rotas do usuario
+	Route::group(['prefix' => '/users', 'middleware'=> 'admin-comdica'],function(){
+        Route::get('/', ['as' => 'usuario.index', 'uses' => 'Admin\UserController@index']);
 		Route::get('/create', ['as' => 'usuario.register', 'uses' => 'Admin\UserController@create']);
 		Route::post('/store', ['as' => 'usuario.store', 'uses' => 'Admin\UserController@store']);
 		Route::get('/show/{id}', ['as' => 'usuario.show', 'uses' => 'Admin\UserController@show']);
@@ -55,8 +59,8 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 	});
 
 	//Rotas de instituições
-	Route::group(['prefix' => '/instituicoes'],function(){
-		Route::get('', ['as' => 'instituicao.index', 'uses' => 'Admin\InstituicoesController@index']);
+	Route::group(['prefix' => '/instituicoes', 'middleware'=> 'admin-comdica'],function(){
+        Route::get('', ['as' => 'instituicao.index', 'uses' => 'Admin\InstituicoesController@index']);
 		Route::get('/create',['as' => 'instituicao.create', 'uses' => 'Admin\InstituicoesController@create']);
 		Route::post('/store',['as' => 'instituicao.store', 'uses' => 'Admin\InstituicoesController@store']);
 		Route::get('/{id}',['as' => 'instituicao.show', 'uses' => 'Admin\InstituicoesController@show']);
@@ -66,12 +70,12 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 	});
 
     //Rotas de pdf
-	Route::group(['prefix' => '/pdf'],function(){
+	Route::group(['prefix' => '/pdf', 'middleware'=> 'admin-comdica'],function(){
         Route::get('/destroy/{id}',['as' => 'pdf.destroy', 'uses' => 'Admin\PostagemController@destroyPdf']);
     });
 
     //Rotas de postagens
-	Route::group(['prefix' => '/postagens'],function(){
+	Route::group(['prefix' => '/postagens', 'middleware'=> 'admin-comdica'],function(){
         Route::get('/', ['as' => 'postagens.index', 'uses' => 'Admin\PostagemController@index']);
 		Route::get('/create',['as' => 'postagens.create', 'uses' => 'Admin\PostagemController@create']);
 		Route::post('/store',['as' => 'postagens.store', 'uses' => 'Admin\PostagemController@store']);
@@ -93,23 +97,17 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
     Route::group(['prefix' => '/auth'],function(){
         Route::get('/edit', ['as' => 'admin.auth.edit', 'uses' => 'Admin\AdminController@edit']);
         Route::post('/update', ['as' => 'admin.auth.update', 'uses' => 'Admin\AdminController@update']);
+        Route::get('/logout', ['as' => 'admin.auth.logout','uses' => 'Auth\LoginController@logout']);
     });
 
-    Route::get('/', ['as' => 'admin', 'uses' => 'Admin\AdminController@index']);
-	Route::get('/comdica', ['as' => 'admin.comdica', 'uses' => 'Admin\AdminController@index']);
-	Route::get('/contato', ['as' => 'admin.contato', 'uses' => 'Admin\AdminController@contato']);
-	Route::get('/contato/{id}', ['as' => 'admin.contato.id', 'uses' => 'Admin\AdminController@contato_single']);
-	Route::get('/doacoes', ['as' => 'admin.boleto', 'uses' => 'Admin\AdminController@doacoes_boleto']);
-	Route::get('/back', ['as' => 'admin.back', 'uses' => 'Admin\AdminController@back']);
+    //Rotas de Contato
+    Route::group(['prefix' => '/contato', 'middleware'=> 'admin-comdica'],function(){
+        Route::get('/', ['as' => 'admin.contato', 'uses' => 'Admin\AdminController@contato']);
+        Route::get('/{id}', ['as' => 'admin.contato.id', 'uses' => 'Admin\AdminController@contato_single']);
+    });
 
-
-	// Route::post('/update_save/{id}', ['as' => 'admin.update_save', 'uses' => 'PostagemController@update_save']);
-	// Route::get('/post/delete/{id}', ['as' => 'delete_postagem', 'uses' => 'PostagemController@destroy']);
-	// Route::get('/nova-postagem', ['as' => 'admin.nova', 'uses' => 'PostagemController@nova_postagem']);
-	// Route::post('/postagem_save', ['as' => 'admin.salvar', 'uses' => 'PostagemController@salvar_postagem']);
-	// Route::get('/postagem_edit/{id}', ['as' => 'admin.postagem_edit', 'uses' => 'PostagemController@edit']);
-	// Route::post('/postagem__arquivada', ['as' => 'admin.postagem_arquivada', 'uses' => 'PostagemController@postagens_arquivadas']);
-
+    //Rotas das doações de boleto
+    Route::get('/doacoes', ['as' => 'admin.boleto', 'uses' => 'Admin\AdminController@doacoes_boleto'])->middleware('admin-comdica');
 });
 
 

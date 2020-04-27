@@ -44,10 +44,10 @@
         <div class="sidebar-heading"><a href="/"><img src="/img/comdica3.png" style="width: 10em;"></a></div>
         <div class="list-group list-group-flush">
           @can('admin-comdica')
-          <a href="{{route('postagens.create')}}" id='postagem' class="list-group-item bg-info border list-group-item-action ">Nova postagem <i class="fas fa-plus-square"></i> </a>
+          <a href="{{route('postagens.create')}}" id='postagem' class="list-group-item bg-info border list-group-item-action" onClick="activate('postagem')">Nova postagem <i class="fas fa-plus-square"></i> </a>
           <a href="{{route('postagens.minhas_postagens')}}" id='minhas_postagens'  class="list-group-item bg-info border list-group-item-action ">Minhas postagens <i class="fas fa-user"></i></a>
           @endcan
-          @can('admin')
+          @can('admin-comdica')
             <a href="{{route('postagens.index')}}" id='todas_postagens'  class="list-group-item bg-info border list-group-item-action ">Todas as postagens <i class="fas fa-user"></i></a>
             <a href="{{route('postagens.arquivadas')}}" id='postagens_arquivadas'  class="list-group-item bg-info border list-group-item-action ">Postagens Arquivadas <i class="fas fa-user"></i></a>
           @endcan
@@ -57,10 +57,10 @@
           <a href="{{route('usuario.index')}}" id='users' class="list-group-item list-group-item-action bg-info border">Usuarios <i class="fas fa-users"></i></a>
           <a href="/admin/doacoes" id='doacao_imposto' class="list-group-item bg-info border list-group-item-action ">Doações por boleto <i class="fas fa-file-invoice-dollar"></i></a>
           <a href="/admin/contato" class="list-group-item list-group-item-action bg-info border">Mensagens de contato <i class="far fa-comments"></i>
-          @endcan
             @isset($contato)
             <span class="bg-danger rounded p-1">{{$contato}}</span>
             @endisset
+          @endcan
           </a>
 
         </div>
@@ -86,7 +86,7 @@
 
                   <a class="dropdown-item" href="{{route('admin.auth.edit')}}">Edite sua conta <i class="far fa-edit"></i></a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="/auth/logout">Sair do sistema <i class="fas fa-sign-out-alt"></i> </a>
+                  <a class="dropdown-item" href="{{route('admin.auth.logout')}}">Sair do sistema <i class="fas fa-sign-out-alt"></i> </a>
                 </div>
               </li>
             </ul>
@@ -115,13 +115,17 @@
   document.addEventListener('load',() => {
 });
 
+
+
     // Apaga a ensagem após 4 segundos
     $().ready(function() {
+        active();
         setTimeout(function()    {
             $('.message').fadeOut(1000, function(){
                 $('.message').hide();
             });
         },4000);
+
     })
 </script>
 <style type="text/css">
@@ -138,6 +142,10 @@
     width: 60%;
     padding-top: 10px;
     z-index: 9999
+}
+.activated{
+    background-color:#77a2b8!important;
+    color: gray;
 }
 body{
   transition:all 2s;

@@ -70,39 +70,41 @@
             </div>
 
             <!-- Tipo Usuário -->
-            <div class="form-group col-md-4">
-                <label for="tipo_user" class="my-1 mr-2">{{ __('Tipo de Usuario ') }}</label>
-                <select name="tipo_user" class="custom-select my-1 mr-sm-2" id="tipo_user">
-                    @foreach ($tipos as $tipo)
-                        @if(Auth::user()->tipo_user == 1)
-                            <option value="{{$tipo->id}}"
-                                @isset($usuario)
-                                    @if($usuario->tipo_user == $tipo->id)
-                                        {{'selected'}}
-                                    @endif
-                                @endisset
-                            >{{$tipo->name}}</option>
-                        @else
-                            @if($tipo->id != 1)
+            @can('admin-comdica')
+                <div class="form-group col-md-4">
+                    <label for="tipo_user" class="my-1 mr-2">{{ __('Tipo de Usuario ') }}</label>
+                    <select name="tipo_user" class="custom-select my-1 mr-sm-2" id="tipo_user">
+                        @foreach ($tipos as $tipo)
+                            @if(Auth::user()->tipo_user == 1)
                                 <option value="{{$tipo->id}}"
                                     @isset($usuario)
                                         @if($usuario->tipo_user == $tipo->id)
-                                        {{'selected'}}
+                                            {{'selected'}}
                                         @endif
                                     @endisset
                                 >{{$tipo->name}}</option>
+                            @else
+                                @if($tipo->id != 1)
+                                    <option value="{{$tipo->id}}"
+                                        @isset($usuario)
+                                            @if($usuario->tipo_user == $tipo->id)
+                                            {{'selected'}}
+                                            @endif
+                                        @endisset
+                                    >{{$tipo->name}}</option>
 
+                                @endif
                             @endif
-                        @endif
-                    @endforeach
-                </select>
+                        @endforeach
+                    </select>
 
-                @error('tipo_user')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
+                    @error('tipo_user')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            @endcan
         </div>
 
         <div class="form-row">

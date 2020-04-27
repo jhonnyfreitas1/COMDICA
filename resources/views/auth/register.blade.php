@@ -64,41 +64,43 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="tipo_user" class="text-dark col-md-4 col-form-label text-md-right">{{ __('Tipo de Usuario ') }}</label>
-                            <div class="col-md-6">
-                               <select name="tipo_user" id="tipo_user">
-                                    @foreach ($tipos as $tipo)
-                                        @if(Auth::user()->tipo_user == 1)
-                                            <option value="{{$tipo->id}}"
-                                                @isset($usuario)
-                                                    @if($usuario->tipo_user == $tipo->id)
-                                                        {{'selected'}}
-                                                    @endif
-                                                @endisset
-                                            >{{$tipo->name}}</option>
-                                        @else
-                                            @if($tipo->id != 1)
+                        @can('admin-comdica')
+                            <div class="form-group row">
+                                <label for="tipo_user" class="text-dark col-md-4 col-form-label text-md-right">{{ __('Tipo de Usuario ') }}</label>
+                                <div class="col-md-6">
+                                <select name="tipo_user" id="tipo_user">
+                                        @foreach ($tipos as $tipo)
+                                            @if(Auth::user()->tipo_user == 1)
                                                 <option value="{{$tipo->id}}"
                                                     @isset($usuario)
                                                         @if($usuario->tipo_user == $tipo->id)
-                                                        {{'selected'}}
+                                                            {{'selected'}}
                                                         @endif
                                                     @endisset
                                                 >{{$tipo->name}}</option>
+                                            @else
+                                                @if($tipo->id != 1)
+                                                    <option value="{{$tipo->id}}"
+                                                        @isset($usuario)
+                                                            @if($usuario->tipo_user == $tipo->id)
+                                                            {{'selected'}}
+                                                            @endif
+                                                        @endisset
+                                                    >{{$tipo->name}}</option>
 
+                                                @endif
                                             @endif
-                                        @endif
-                                    @endforeach
-                               </select>
+                                        @endforeach
+                                </select>
 
-                                @error('tipo_user')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    @error('tipo_user')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
+                        @endcan
 
                         <div class="form-group row">
                             <label for="password" class="text-dark col-md-4 col-form-label text-md-right">{{ __('Senha') }}</label>
