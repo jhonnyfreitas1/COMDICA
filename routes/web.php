@@ -67,8 +67,49 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 		Route::get('/edit/{id}',['as' => 'instituicao.edit', 'uses' => 'Admin\InstituicoesController@edit']);
 		Route::put('/update/{id}',['as' => 'instituicao.update', 'uses' => 'Admin\InstituicoesController@update']);
 		Route::get('/destroy/{id}',['as' => 'instituicao.destroy', 'uses' => 'Admin\InstituicoesController@destroy']);
+    });
+// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
+                // NEW ROTAS
+// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
+	//Rotas de atas
+	Route::group(['prefix' => '/atas', 'middleware'=> 'admin-comdica'],function(){
+        Route::get('', ['as' => 'atas.index', 'uses' => 'Admin\AtasController@index']);
+		Route::get('/create',['as' => 'atas.create', 'uses' => 'Admin\AtasController@create']);
+		Route::post('/store',['as' => 'atas.store', 'uses' => 'Admin\AtasController@store']);
+		Route::get('/{id}',['as' => 'atas.show', 'uses' => 'Admin\AtasController@show']);
+		Route::get('/edit/{id}',['as' => 'atas.edit', 'uses' => 'Admin\AtasController@edit']);
+		Route::put('/update/{id}',['as' => 'atas.update', 'uses' => 'Admin\AtasController@update']);
+		Route::get('/destroy/{id}',['as' => 'atas.destroy', 'uses' => 'Admin\AtasController@destroy']);
+    });
+
+	//Rotas de resoluções
+	Route::group(['prefix' => '/resolucoes', 'middleware'=> 'admin-comdica'],function(){
+        Route::get('', ['as' => 'resolucao.index', 'uses' => 'Admin\ResolucoesController@index']);
+		Route::get('/create',['as' => 'resolucao.create', 'uses' => 'Admin\ResolucoesController@create']);
+		Route::post('/store',['as' => 'resolucao.store', 'uses' => 'Admin\ResolucoesController@store']);
+		Route::get('/{id}',['as' => 'resolucao.show', 'uses' => 'Admin\ResolucoesController@show']);
+		Route::get('/edit/{id}',['as' => 'resolucao.edit', 'uses' => 'Admin\ResolucoesController@edit']);
+		Route::put('/update/{id}',['as' => 'resolucao.update', 'uses' => 'Admin\ResolucoesController@update']);
+		Route::get('/destroy/{id}',['as' => 'resolucao.destroy', 'uses' => 'Admin\ResolucoesController@destroy']);
 	});
 
+    //Rotas de galeria
+	Route::group(['prefix' => '/galeria', 'middleware'=> 'admin-comdica'],function(){
+        Route::get('', ['as' => 'galeria.index', 'uses' => 'Admin\GaleriaController@index']);
+		Route::get('/create',['as' => 'galeria.create', 'uses' => 'Admin\GaleriaController@create']);
+		Route::post('/store',['as' => 'galeria.store', 'uses' => 'Admin\GaleriaController@store']);
+		Route::get('/{id}',['as' => 'galeria.show', 'uses' => 'Admin\GaleriaController@show']);
+		Route::get('/edit/{id}',['as' => 'galeria.edit', 'uses' => 'Admin\GaleriaController@edit']);
+		Route::put('/update/{id}',['as' => 'galeria.update', 'uses' => 'Admin\GaleriaController@update']);
+		Route::get('/destroy/{id}',['as' => 'galeria.destroy', 'uses' => 'Admin\GaleriaController@destroy']);
+	});
+
+// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
     //Rotas de pdf
 	Route::group(['prefix' => '/pdf', 'middleware'=> 'admin-comdica'],function(){
         Route::get('/destroy/{id}',['as' => 'pdf.destroy', 'uses' => 'Admin\PostagemController@destroyPdf']);
@@ -120,4 +161,3 @@ Route::put('/denuncia/store', ['as' => 'denuncia.store', 'uses' => 'DenunciaCont
 Route::get('/denuncia', ['as' => 'denuncia', 'uses' => 'DenunciaController@denuncia']);
 Route::get('/offline', ['as' => 'offline', 'uses' => 'DenunciaController@offline']);
 Route::get('/success', ['as' => 'success', 'uses' => 'DenunciaController@success']);
-
