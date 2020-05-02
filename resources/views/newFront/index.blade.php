@@ -40,31 +40,33 @@
     <section class="produtos container" >
         <h2 class="subtitulo">Ideias</h2>
         <ul class="produtos_lista">
-
-            <li class="grid-1-3">
-                <div class="produtos_icone">
-                    <img src="{{asset('img/Denun.png')}} "alt="">
-                </div>
-                <h3>Denúncias</h3>
-                <p>O Comdica tem um sistema único de denúncias para adultos e crianças de todas as idades.</p>
-            </li>
-
-            <li class="grid-1-3">
-                <div class="produtos_icone">
-                    <img src="{{asset('img/calculadora.png')}}" alt="">
-                </div>
-                <h3>Doar</h3>
-                <p>Você sabia que você pode doar até 6% do seu imposto de renda para o nosso fundo de projetos?. Nossa calculadora Facilita tudo isso para você :)</p>
-            </li>
-
-            <li class="grid-1-3">
-                <div class="produtos_icone">
-                    <img src="{{asset('img/Port.png')}}" alt="">
-                </div>
-                <h3>Portifólio</h3>
-                <p>Portifólio Exclusivo para nossas Entidades, com o intuito de divulgar seu trabalho.</p>
-            </li>
-
+            <a href="{{route('denuncia')}}">
+                <li class="grid-1-3">
+                    <div class="produtos_icone produtos_list">
+                        <img src="{{asset('img/Denun.png')}} "alt="">
+                    </div>
+                    <h3>Denúncias</h3>
+                    <p>O Comdica tem um sistema único de denúncias para adultos e crianças de todas as idades.</p>
+                </li>
+            </a>
+            <a href="">
+                <li class="grid-1-3">
+                    <div class="produtos_icone produtos_list">
+                        <img src="{{asset('img/calculadora.png')}}" alt="">
+                    </div>
+                    <h3>Doar</h3>
+                    <p>Você sabia que você pode doar até 6% do seu imposto de renda para o nosso fundo de projetos?. Nossa calculadora Facilita tudo isso para você :)</p>
+                </li>
+            </a> 
+            <a href="{{route('portifolio')}}">
+                <li class="grid-1-3 ">
+                    <div class="produtos_icone produtos_list">
+                        <img src="{{asset('img/Port.png')}}" alt="">
+                    </div>
+                    <h3>Portifólio</h3>
+                    <p>Portifólio Exclusivo para nossas Entidades, com o intuito de divulgar seu trabalho.</p>
+                </li>
+            </a>
         </ul>
         <div class="call font">
             <p>Nossa equipe trás o melhor para atender o público jovem. Conheça-nos :)</p>
