@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
 use Illuminate\Database\Eloquent\Relations\belongsTo;
+use App\User;
+
 class Postagem extends Model
 {
       public $timestamps = true;

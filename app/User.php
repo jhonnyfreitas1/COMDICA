@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Relations\hasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Postagens;
 use App\Tipo_user;
+use App\Resolucao;
+use App\Ata;
+use App\AlbumGaleria;
 
 class User extends Authenticatable
 {
@@ -28,6 +31,18 @@ class User extends Authenticatable
     /*Função que representa o relacionamento de um para muitos*/
     public function user_tipo(){
         return $this->hasMany(Tipo_user::class);
+    }
+    /*Função que representa o relacionamento de um para muitos*/
+    public function user_resolucao(){
+        return $this->hasMany(Resolucao::class);
+    }
+    /*Função que representa o relacionamento de um para muitos*/
+    public function user_ata(){
+        return $this->hasMany(Ata::class);
+    }
+    /*Função que representa o relacionamento de um para muitos*/
+    public function user_album(){
+        return $this->hasMany(AlbumGaleria::class);
     }
 
     /*Função que representa o relacionamento de muitos para um*/
