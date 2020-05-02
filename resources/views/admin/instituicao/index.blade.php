@@ -47,7 +47,7 @@
                 </td>
                 <td>
                     <a href="{{route('instituicao.edit', $instituicao->id)}}" class="btn btn-outline-info btn-sm mr-2">Editar</a>
-                    <a href="#"  class="btn btn-outline-danger btn-sm mr-2" onClick="confirmExclusao();">Excluir</a>
+                    <a href="#" id="{{$instituicao->id}}" url="{{ route('instituicao.destroy', $instituicao->id)}}" class="btn btn-outline-danger btn-sm mr-2" onClick="confirmExclusao({{$instituicao->id}}, 'essa instituicao');">Excluir</a>
                 </tr>
             @endforeach
         </tbody>

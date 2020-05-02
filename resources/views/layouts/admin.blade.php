@@ -107,6 +107,17 @@
     <script src="/js/dashboard.js"></script>
 </body>
 <script>
+// Chama o modal e confirma ao excluir
+    function confirmExclusao(id, nome) {
+        id = '#'+id;
+        var message = "Tem certeza que deseja excluir "+nome+"?";
+        if ( confirm(message) ) {
+            url = $(id).attr('url');
+            window.location.href = url;
+        } else {
+            return false;
+        }
+    }
 
   $(document).on('DOMContentLoaded', () => {
     setInterval(() => {
@@ -122,7 +133,6 @@
 
     // Apaga a ensagem após 4 segundos
     $().ready(function() {
-        active();
         setTimeout(function()    {
             $('.message').fadeOut(1000, function(){
                 $('.message').hide();

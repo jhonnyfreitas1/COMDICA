@@ -33,36 +33,32 @@
             <tr  class="bg-info text-light">
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
+                <th scope="col">Data</th>
                 <th scope="col">Ações</th>
             </tr>
         </thead>
-        @if(sizeOf($atas) > 1)
+        @if(sizeOf($atas) >= 1)
         <tbody>
             @foreach($atas as $count => $ata)
             <tr>
                 <th scope="row">{{$ata->id}}</th>
                 <td>
                     <strong>
-                        <a href="{{route('atas.show', $ata->id)}}" class="text-dark">{{$ata->nome}}</a>
+                        <a href="{{route('atas.show', $ata->id)}}" class="text-dark">{{ substr($ata->nome,0,-4) }}</a>
+                    </strong>
+                </td>
+                <td>
+                    <strong>
+                        <a href="{{route('atas.show', $ata->id)}}" class="text-dark">{{ str_replace('-', '/', $ata->data) }}</a>
                     </strong>
                 </td>
                 <td>
                     <a href="{{route('atas.edit', $ata->id)}}" class="btn btn-outline-info btn-sm mr-2">Editar</a>
-                    <a href="#"  class="btn btn-outline-danger btn-sm mr-2" onClick="confirmExclusao();">Excluir</a>
+                    <a href="#"  id="{{$ata->id}}" url="{{ route('atas.destroy', $ata->id)}}" class="btn btn-outline-danger btn-sm mr-2" onClick="confirmExclusao({{$ata->id}}, 'essa ata');">Excluir</a>
                 </tr>
             @endforeach
         </tbody>
         @endif
     </table>
 
-    <!-- Mensagem de confirmação -->
-    <script type="text/javascript">
-        function confirmExclusao() {
-            var message = "Tem certeza que deseja excluir essa instituição?";
-            if ( confirm(message) ) {
-            } else {
-                return false;
-            }
-        }
-    </script>
 @endsection

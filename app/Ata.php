@@ -14,7 +14,7 @@ class Ata extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'nome'
+        'nome','data', 'created_at', 'updated_at'
     ];
 
     protected $guarded = [

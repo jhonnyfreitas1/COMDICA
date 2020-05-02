@@ -20,8 +20,8 @@
             </li>
             <li class="breadcrumb-item" >
                 <span class="text-secondary">
-                @isset($atas)
-                    Editando Ata: {{$atas->name}}
+                @isset($ata)
+                    Editando Ata: {{substr($ata->nome,0,-4)}}
                 @else
                     Cadastro de nova Ata
                 @endif
@@ -33,8 +33,8 @@
     <div class="row mb-1">
         <div class="col-md-9">
             <h1 class="h2 border-left pl-2">
-            @isset($atas)
-               Editando Ata: {{$atas->name}}
+            @isset($ata)
+               Editando Ata: {{substr($ata->nome,0,-4)}}
             @else
                Cadastro de nova Ata
             @endif
@@ -57,20 +57,20 @@
             <div class="form-row">
                 <!-- nome -->
                 <div class="form-group col-md-4">
-                    <label for="name">{{ __('Nome do Arquivo') }}</label>
-                    <input  id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ||  isset($ata->name) ? $ata->name : '' }}" required autocomplete="name" autofocus>
-                    @error('name')
+                    <label for="nome">{{ __('Nome do Arquivo*') }}</label>
+                    <input  id="nome" type="text" class="form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome') ||  isset($ata->nome) ? substr($ata->nome,0,-4) : '' }}" required autocomplete="nome" autofocus>
+                    @error('nome')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
 
-            <!-- Ata -->
+                <!-- pdf -->
                 <div class="form-group col-md-3">
-                <label for="pdf" class="text-dark col-form-label text-md-center">{{ __('PDF*') }}</label>
+                    <label for="pdf" class="text-dark col-form-label text-md-center">{{ __('PDF*') }}</label>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="pdf" name="pdf" value="{{ isset($ata->pdf) ? $ata->pdf : '' }}" lang="br">
+                        <input type="file" class="custom-file-input" id="pdf" name="pdf" value="{{ isset($ata->pdf) ? $ata->pdf : '' }}" lang="br" @empty($ata) required @endisset>
                         <label class="custom-file-label" for="pdf">Ache o arquivo</label>
                         @error('pdf')
                             <span class="invalid-feedback" role="alert">
@@ -78,6 +78,22 @@
                             </span>
                         @enderror
                     </div>
+                </div>
+
+                <!-- data -->
+                <div class="form-group col-md-4">
+                    <label for="data">{{ __('Mês da Ata*') }}</label>
+                    <!-- Corrigindo a data para o input -->
+                    @isset($ata->data)
+                        @php( $data =  explode('-',$ata->data) )
+                        @php( $ata->data = $data[1].'-'.$data[0] )
+                    @endisset
+                    <input  id="data" type="month" class="form-control @error('data') is-invalid @enderror" name="data" value="{{ old('data') ||  isset($ata->data) ? $ata->data : '' }}" required autocomplete="data" autofocus>
+                    @error('data')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -95,6 +111,7 @@
 
 <!-- Imports do Jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
+<script>
+</script>
     @endsection
 
