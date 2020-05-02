@@ -3,8 +3,8 @@
     /* imagem antes de carregar o site */
     .loading-back{
         width:100vw;
-        heigth:100vh;
-            margin:0 auto
+        height:100vh;
+        margin:0 auto
     }
     .image-back{
         max-height: calc(100vh - 25px);

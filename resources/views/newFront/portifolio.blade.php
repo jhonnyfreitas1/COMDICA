@@ -3,7 +3,7 @@
 @section('content')
 <style>
     .pagination{
-        margin-top: 300px;
+        margin-top: 800px;
         width: 100%;
         height: 100%;
     }
@@ -18,6 +18,11 @@
         border: 5px solid ;
         display: inline-block;
     }
+    @media only screen and (max-width: 787px) {
+        .pagination{
+            margin-top: 200px;
+        }
+    }
 </style>
     <br><br>
     <section class="introducao-interna interna_produtos">
@@ -29,6 +34,11 @@
     <section class="produtos container">
         <br><br><br><br><br><br>
         <ul class="produtos_lista">
+            <div class="divImg grid-12" style="background-color:white">
+                <img src="/img/mc2.png"> 
+               <h1>COMDICA</h1>
+               <a href="/portifolio/1"><h3>Ver Mais</h3></a>
+           </div>
             @foreach ($inst as $instData)
                 <li class="grid-4">
                     <div class="produtos_icone">
@@ -42,21 +52,4 @@
         </ul>
         {!! $inst->Links()!!} 
     </section>
-    {{-- <section class="container produto_item">
-        <div class="grid-11">
-            <img src="{{asset('img/wallpaper.jpg')}}" alt="Bikcraft Esporte" class="black">
-            <h2>FUNDECA</h2>
-        </div>
-        <div class="grid-5 produto_icone"><img src="{{asset('img/COR1.png')}}"></div>
-        <div class="grid-8"><img src="{{asset('img/fundeca.png')}}" alt="Bikcraft Esporte"></div>
-        <div class="grid-8 produto_info">
-            <p style="color:black">Fundeca tem o objetivo de reunir fundos para financiar os projetos..</p>
-            <ul>
-                <li>(81) 9999-999</li>
-                <li>Araçoiaba, n 0000 - PE</li>
-                <li>Entidade@entidade.com</li>
-                <li>site.com.br</li>
-            </ul>
-        </div>
-    </section> --}}
 @endsection
