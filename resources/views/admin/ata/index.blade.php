@@ -49,7 +49,6 @@
                 </td>
                 <td>
                     <strong>
-                        <a href="{{route('atas.show', $ata->id)}}" class="text-dark">{{ str_replace('-', '/', $ata->data) }}</a>
                     </strong>
                 </td>
                 <td>

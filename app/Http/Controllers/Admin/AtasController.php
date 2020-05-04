@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-// use App\Http\Controllers\iseet;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\Rule;
@@ -35,54 +34,90 @@ class AtasController extends Controller
             'nome'           => 'required | max:30',
             'pdf'           => 'required',
             'data'           => 'required',
+            'tipo'           => 'required',
 
         ],[
             'nome.required' => 'Preencha o nome da ata',
             'nome.max'      => 'Digite no máximo 30 caracteres no nome',
             'pdf.required'  => 'Adicione o arquivo em pdf',
-            'pdf.required'  => 'Adicione uma data',
+            'data.required'  => 'Adicione uma data',
+            'tipo.required'  => 'Selecione o tipe de ata',
         ]);
+
+        // Nomeando as variaveis do request
+        $nome = $request['nome'];
+        $tipo = $request['tipo'];
+
+        $data =  explode('-',$request['data']);
+        $mes = $data[1];
+        $ano = $data[0];
 
         //validação dos pdfs
         if( $request->file('pdf') != null){
             if($request->file('pdf')->extension() != 'pdf'){
                 return back()->withErrors(['pdf'=>'O campo pdf deve conter arquivos do tipo pdf']);
             }
-       }
+        }
 
-       // Corrigindo a data
-        $data =  explode('-',$request['data']);
-        if($data[0] > 2040 or $data[0] < 1999){
+        // Correção no nome da ata
+        if($nome > 0 && $nome <= 9 && strlen($nome) == 1 ){
+            $nome = '0'.$nome;
+        }
+        if( strlen($nome) > 2 && $nome[0] == 0 ){
+            $nome = substr($nome, 1);
+        }
+
+        // Apenas atas com data mínima 2017 e no máximo um ano após o ano atual
+        $anoAtualMaisUm = intval( date('Y') ) + 1;
+        if($ano > $anoAtualMaisUm or $ano < 2017){
             return back()->withErrors(['data'=>'Digite uma data válida']);
         }
 
-        //corrigindo a variavel
-        $data = $data[1].'-'.$data[0];
-
-        //Verificação se existe alguma ata com o mesmo nome
-        $atasMesmoNome = DB::table('atas')->where('data',  $data)->where('nome',$request['nome'].'.pdf')->get();
-        if(sizeOf($atasMesmoNome) >= 1){
-            return back()->withErrors(['pdf'=>'Já existe um pdf com esse nome no mês solicitado!']);
+        // Apenas uma ata ordinária por mês
+        $quantOrdinaria = DB::table('atas')->where('ano', $ano)->where('mes',$mes)->where('tipo', 'ordinaria')->count();
+        if($quantOrdinaria >= 1){
+            return back()->withErrors(['data'=>'Já existe uma ata ordinária neste mês e ano!']);
         }
 
-        // Verificação da quantidade de atas do mês
-        $atasMesmoMes = DB::table('atas')->where('data',  $data)->get();
-        if(sizeOf($atasMesmoMes) <= 3){
-
-            // Adiciona pdf no banco
-            $ata            = new Ata;
-            $ata->nome      = $request['nome'].'.pdf';
-            $ata->data      = $data;
-            $ata->user_id   = Auth::id();
-            $ata->save();
-
-            // Adicionar pdf no diretorio
-            $diretorio = "upload_pdf/atas/".$ata->data;
-            $request->file()['pdf']->move($diretorio,$ata->nome);
-
-        }else{
-            return back()->withErrors(['pdf'=>'Já foi adicionado três atas no mês solicitado!']);
+        // Apenas uma ata ordinária com o nome
+        $nomeOrdinaria = DB::table('atas')->where('ano', $ano)->where('nome',$nome.'.pdf')->where('tipo', 'ordinaria')->count();
+        if($nomeOrdinaria >= 1){
+            return back()->withErrors(['data'=>'Já existe uma ata ordinária com esse nome neste ano!']);
         }
+
+        // Apenas uma ata extraordinária com o nome
+        $nomeExtraordinaria = DB::table('atas')->where('ano', $ano)->where('nome',$nome.'.pdf')->where('tipo', 'extraordinaria')->count();
+        if($nomeOrdinaria >= 1){
+            return back()->withErrors(['data'=>'Já existe uma ata extraordinária com esse nome!']);
+        }
+
+        // No máximo três atas extraordinárias por mês;
+        $quantextraordinaria = DB::table('atas')->where('ano', $ano)->where('mes',$mes)->where('tipo', 'extraordinaria')->count();
+        if($quantOrdinaria >= 3){
+            return back()->withErrors(['data'=>'Já foi adicionadas três atas extraordinárias no mês solicitado!']);
+        }
+/*
+        Roles:
+        Data mínima para adicionar uma ata é de 2017;
+        Data máxima para adicionar uma ata é a de 1 ano após o ano atual;
+        Apenas uma ata ordinária por mês;
+        No máximo três atas extraordinárias por mês;
+        Apenas uma ata ordinária com o nome no ano;
+        Apenas uma ata extraordinária com o nome no ano;
+*/
+
+        // Adicionando no banco
+        $ata            = new Ata;
+        $ata->nome      = $nome.'.pdf';
+        $ata->mes       = $mes;
+        $ata->ano       = $ano;
+        $ata->tipo      = $tipo;
+        $ata->user_id   = Auth::id();
+        $ata->save();
+
+        // Adicionar pdf no diretorio
+        $diretorio = "upload_pdf/atas/".$ata->ano;
+        $request->file()['pdf']->move($diretorio,$ata->nome);
 
         /*Voltando para a pagina e listar instituições*/
         $mensagem = 'Ata cadastrada com Sucesso!';
@@ -100,6 +135,7 @@ class AtasController extends Controller
     public function edit($id)
     {
         $ata = Ata::where('id','=', $id)->first();
+        $ata->data = $ata->mes.'-'.$ata->ano;
         return view('/admin/ata/add-edit', compact('ata'));
     }
 
@@ -109,12 +145,22 @@ class AtasController extends Controller
         $validar            =   $request->validate([
             'nome'           => 'required | max:30',
             'data'           => 'required',
+            'tipo'           => 'required',
 
         ],[
             'nome.required' => 'Preencha o nome da ata',
             'nome.max'      => 'Digite no máximo 30 caracteres no nome',
-            'pdf.required'  => 'Adicione uma data',
+            'data.required'  => 'Adicione uma data',
+            'tipo.required'  => 'Selecione o tipe de ata',
         ]);
+
+        // Nomeando as variaveis do request
+        $nome = $request['nome'];
+        $tipo = $request['tipo'];
+
+        $data =  explode('-',$request['data']);
+        $mes = $data[1];
+        $ano = $data[0];
 
         //validação dos pdfs
         if( $request->file('pdf') != null){
@@ -123,41 +169,110 @@ class AtasController extends Controller
             }
         }
 
-        // Corrigindo a data
-        $data =  explode('-',$request['data']);
-        if($data[0] > 2040 or $data[0] < 1999){
+        // Correção no nome da ata
+        if($nome > 0 && $nome <= 9 && strlen($nome) == 1 ){
+            $nome = '0'.$nome;
+        }
+        if( strlen($nome) > 2 && $nome[0] == 0 ){
+            $nome = substr($nome, 1);
+        }
+
+        // Apenas atas com data mínima 2017 e no máximo um ano após o ano atual
+        $anoAtualMaisUm = intval( date('Y') ) + 1;
+        if($ano > $anoAtualMaisUm or $ano < 2017){
             return back()->withErrors(['data'=>'Digite uma data válida']);
         }
 
-        //corrigindo a variavel
-        $data = $data[1].'-'.$data[0];
+
+        // Apenas uma ata ordinária por mês
+        $quantOrdinaria = DB::table('atas')->where('ano', $ano)->where('mes',$mes)->where('tipo', 'ordinaria')->get();
+        if( $quantOrdinaria->count() == 1){
+            if($quantOrdinaria[0]->id != $id){
+                return back()->withErrors(['data'=>'Já existe uma ata ordinária neste mês e ano!']);
+            }
+        }
+
+        // Apenas uma ata ordinária com o nome
+        $nomeOrdinaria = DB::table('atas')->where('ano', $ano)->where('nome',$nome.'.pdf')->where('tipo', 'ordinaria')->get();
+        if( $nomeOrdinaria->count() == 1){
+            if($nomeOrdinaria[0]->id != $id){
+                return back()->withErrors(['data'=>'Já existe uma ata ordinária com esse nome neste ano!']);
+            }
+        }
+
+        // No máximo três atas extraordinárias por mês;
+        $quantExtraordinaria = DB::table('atas')->where('ano', $ano)->where('mes',$mes)->where('tipo', 'extraordinaria')->get();
+        if($quantExtraordinaria->count() == 3){
+            if($quantExtraordinaria[0]->id != $id){
+                return back()->withErrors(['dagta'=>'Já foi adicionadas três atas extraordinárias no mês e ano solicitado!']);
+            }
+        }
+
+        // Apenas uma ata extraordinária com o nome
+        $nomeExtraordinaria = DB::table('atas')->where('ano', $ano)->where('nome',$nome.'.pdf')->where('tipo', 'extraordinaria')->get();
+        if($nomeExtraordinaria->count() == 1){
+            if($nomeExtraordinaria[0]->id != $id){
+                return back()->withErrors(['data'=>'Já existe uma ata extraordinária com esse nome neste ano!']);
+            }
+        }
 
         //Pegando as informações da ata
         $ata = Ata::where('id',$id)->first();
 
-        // Verificação da quantidade de atas do mês
-        $atasMesmoMes = DB::table('atas')->where('data',  $data)->get();
-        if(sizeOf($atasMesmoMes) <= 3){
 
-            // Renomeando pasta e arquivo
-            $renomearPasta = rename("upload_pdf/atas/".$ata->data, "upload_pdf/atas/".$data);
-            $renomearArquivo = rename("upload_pdf/atas/".$data."/".$ata->nome, "upload_pdf/atas/".$data."/".$request['nome'].'.pdf');
+        // Verifica se está enviando um arquivo pdf
+        $ex = "upload_pdf/atas/";
+        if($request->file('pdf') != null){
 
-            // Editando pdf no banco
-            $ata->nome = $request['nome'].'.pdf';
-            $ata->data = $data;
-            $ata->user_id =  Auth::id();
-            $ata->save();
+            // Verifica se o ano enviado é igual ao do banco
+            if($ata->ano == $ano){
+                $diretorio = $ex.$ano;
+                unlink($diretorio."/".$ata->nome);
+                $request->file()['pdf']->move($diretorio,$nome.'.pdf');
 
-            // Removendo pdf e adicionando outro no diretorio
-            if(!empty($request->file('pdf'))){
-                unlink("upload_pdf/atas/".$data."/".$ata->nome);
-                $diretorio = "upload_pdf/atas/".$data;
-                $request->file()['pdf']->move($diretorio, $request['nome'].'.pdf');
-            };
+            // Se o ano enviado é diferte ao do banco
+            }else{
+                $diretorio = $ex;
+                unlink($diretorio.$ata->ano."/".$ata->nome);
+                $request->file()['pdf']->move($diretorio.$ano,$nome.'.pdf');
+            }
+
+        // Caso não esteja enviando um arquivo pdf
         }else{
-            return back()->withErrors(['pdf'=>'Já foi adicionado três atas no mês solicitado!']);
+
+            // Verifica se o ano enviado é igual ao do banco
+            if($ata->ano == $ano){
+
+                // Verifica se o nome enviado é igual ao do banco
+                if($ata->nome != $nome){
+                    rename($ex.$ata->ano."/".$ata->nome, $ex.$ata->ano."/".$nome.'.pdf');
+                }
+
+            // Se o ano enviado for diferente ao do banco
+            }else{
+
+                // Verifica se o nome enviado é igual ao do banco
+                if($ata->nome == $nome){
+                    $anoAntigo = $ex.$ata->ano."/".$ata->nome;
+                    $anoNovo = $ex.$ano."/".$ata->nome;
+                    rename($anoAntigo, $anoNovo);
+
+                // Se o nome enviado for diferente ao do banco
+                }else{
+                    $anoAntigo = $ex.$ata->ano."/".$ata->nome;
+                    $anoNovo = $ex.$ano."/".$nome.'.pdf';
+                    rename($anoAntigo, $anoNovo);
+                }
+            }
         }
+
+        // Editando pdf no banco
+        $ata->nome = $nome.'.pdf';
+        $ata->mes = $mes;
+        $ata->ano = $ano;
+        $ata->tipo = $tipo;
+        $ata->user_id = $ata->user_id;
+        $ata->save();
 
         /*Voltando para a pagina e listar instituições*/
         $mensagem = 'Ata atualizada com Sucesso!';
@@ -166,22 +281,18 @@ class AtasController extends Controller
 
     public function destroy($id)
     {
+        // Consulta ata no banco
         $query = DB::table('atas')->where('id',$id);
         $ata = $query->get();
 
-        // Consulta ata asno banco
-        $ex = "upload_pdf/atas/".$ata[0]->data.'/';
+        // diretorio e nome
+        $diretorio = "upload_pdf/atas/".$ata[0]->ano.'/';
         $nome = $ata[0]->nome;
 
-        // Vê se existe a pasta/pdf para exclui-lá
-        if (File::exists($ex.$nome)) {
-            File::delete($ex.$nome);
+        // Vê se existe o arquivo pdf para exclui-lo
+        if (File::exists($diretorio.$nome)) {
+            File::delete($diretorio.$nome);
         }
-
-        if (File::exists($ex)) {
-            $rm = rmdir($ex);
-        }
-
         // Deleta as tabelas e redireciona
         $query->delete();
         $mensagem = 'Ata excluida com Sucesso!';

@@ -16,7 +16,10 @@ class CreateAtasTable extends Migration
         Schema::create('atas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
-            $table->string('data');
+            $table->string('ano');
+            $table->string('mes');
+            $table->enum('tipo', ['ordinaria', 'extraordinaria'])->nullable();
+
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

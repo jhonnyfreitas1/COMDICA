@@ -56,9 +56,9 @@
         <div class="card-body">
             <div class="form-row">
                 <!-- nome -->
-                <div class="form-group col-md-4">
-                    <label for="nome">{{ __('Nome do Arquivo*') }}</label>
-                    <input  id="nome" type="text" class="form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome') ||  isset($ata->nome) ? substr($ata->nome,0,-4) : '' }}" required autocomplete="nome" autofocus>
+                <div class="form-group col-md-3">
+                    <label for="nome">{{ __('Numero da Ata*') }}</label>
+                    <input  id="nome" type="number" class="form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome') ||  isset($ata->nome) ? substr($ata->nome,0,-4) : '' }}" required autocomplete="nome" autofocus>
                     @error('nome')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -67,8 +67,8 @@
                 </div>
 
                 <!-- pdf -->
-                <div class="form-group col-md-3">
-                    <label for="pdf" class="text-dark col-form-label text-md-center">{{ __('PDF*') }}</label>
+                <div class="form-group col-md-3 ">
+                    <label for="pdf" class="text-dark col-form-label text-md-center mt-n1">{{ __('PDF*') }}</label>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="pdf" name="pdf" value="{{ isset($ata->pdf) ? $ata->pdf : '' }}" lang="br" @empty($ata) required @endisset>
                         <label class="custom-file-label" for="pdf">Ache o arquivo</label>
@@ -81,8 +81,8 @@
                 </div>
 
                 <!-- data -->
-                <div class="form-group col-md-4">
-                    <label for="data">{{ __('Mês da Ata*') }}</label>
+                <div class="form-group col-md-3">
+                    <label for="data">{{ __('Mês/Ano da Ata*') }}</label>
                     <!-- Corrigindo a data para o input -->
                     @isset($ata->data)
                         @php( $data =  explode('-',$ata->data) )
@@ -90,6 +90,33 @@
                     @endisset
                     <input  id="data" type="month" class="form-control @error('data') is-invalid @enderror" name="data" value="{{ old('data') ||  isset($ata->data) ? $ata->data : '' }}" required autocomplete="data" autofocus>
                     @error('data')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <!-- tipo -->
+                <div class="form-group col-md-3">
+                    <label for="tipo" class="">{{ __('Tipo de Ata*') }}</label>
+                    <select name="tipo" class="custom-select" id="tipo">
+                        <option value="ordinaria"
+                            @isset($ata)
+                                @if($ata->tipo == 'ordinaria')
+                                    Selected
+                                @endif
+                            @endisset
+                             >Ordinaria</option>
+                        <option value="extraordinaria"
+                            @isset($ata)
+                                @if($ata->tipo == 'extraordinaria')
+                                    Selected
+                                @endif
+                            @endisset
+                             >Extraordinaria</option>
+                    </select>
+
+                    @error('tipo')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
