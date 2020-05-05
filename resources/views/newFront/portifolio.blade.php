@@ -34,11 +34,6 @@
     <section class="produtos container">
         <br><br><br><br><br><br>
         <ul class="produtos_lista">
-            <div class="divImg grid-12" style="background-color:white">
-                <img src="/img/mc2.png"> 
-               <h1>COMDICA</h1>
-               <a href="/portifolio/1"><h3>Ver Mais</h3></a>
-           </div>
             @foreach ($inst as $instData)
                 <li class="grid-4">
                     <div class="produtos_icone">

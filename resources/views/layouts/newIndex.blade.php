@@ -64,7 +64,7 @@
                     <nav class="grid-12 header_menu">
                         <ul>
                             <li><a href="{{route('denuncia')}}">Denunciar</a></li>
-                            <li><a href="{{route('portifolio')}}">Portfólio</a></li>
+                            <li><a href="{{route('comdicaEC')}}">Portfólio</a></li>
                             <li><a href="{{route('postagens')}}">Postagens</a></li>
                             <li><a href="{{route('sobre')}}">Sobre</a></li>
                         </ul>
