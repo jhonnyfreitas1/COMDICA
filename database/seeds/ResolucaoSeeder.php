@@ -12,18 +12,27 @@ class ResolucaoSeeder extends Seeder
     public function run()
     {
         DB::table('resolucoes')->insert([
-        	'nome' => 'Resolução Nº8002',
-            'user_id' => 1,
+        	'nome'      => '01',
+        	'nome_pdf'      => '01.pdf',
+        	'mes'       => '02',
+        	'ano'       => '2020',
+            'user_id'   => 1,
         ]);
 
         DB::table('resolucoes')->insert([
-        	'nome' => 'Resolução Nº2231',
-            'user_id' => 1,
+            'nome'      => '02',
+            'nome_pdf'      => '02.pdf',
+            'mes'       => '04',
+            'ano'       => '2019',
+            'user_id'   => 1,
         ]);
 
         DB::table('resolucoes')->insert([
-        	'nome' => 'Resolução Nº434',
-            'user_id' => 1,
+            'nome'      => '03',
+            'nome_pdf'      => '03.pdf',
+            'mes'       => '06',
+            'ano'       => '2020',
+            'user_id'   => 1,
         ]);
     }
 }

@@ -33,6 +33,7 @@
             <tr  class="bg-info text-light">
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
+                <th scope="col">Ano</th>
                 <th scope="col">Ações</th>
             </tr>
         </thead>
@@ -43,27 +44,21 @@
                 <th scope="row">{{$resolucao->id}}</th>
                 <td>
                     <strong>
-                        <a href="{{route('resolucao.show', $resolucao->id)}}" class="text-dark">{{$resolucao->nome}}</a>
+                        <a href="{{route('resolucao.show', $resolucao->id)}}" class="text-dark">{{ $resolucao->nome }}</a>
+                    </strong>
+                </td>
+                <td>
+                    <strong>
+                        <a href="{{route('resolucao.show', $resolucao->id)}}" class="text-dark">{{ $resolucao->ano }}</a>
                     </strong>
                 </td>
                 <td>
                     <a href="{{route('resolucao.edit', $resolucao->id)}}" class="btn btn-outline-info btn-sm mr-2">Editar</a>
-                    <a href="#"  class="btn btn-outline-danger btn-sm mr-2" onClick="confirmExclusao();">Excluir</a>
+                    <a href="#"   id="{{$resolucao->id}}" url="{{ route('resolucao.destroy', $resolucao->id)}}" class="btn btn-outline-danger btn-sm mr-2"onClick="confirmExclusao({{$resolucao->id}}, 'essa resolução');">Excluir</a>
                 </tr>
             @endforeach
         </tbody>
         @endif
     </table>
-
-    <!-- Mensagem de confirmação -->
-    <script type="text/javascript">
-        function confirmExclusao() {
-            var message = "Tem certeza que deseja excluir essa instituição?";
-            if ( confirm(message) ) {
-            } else {
-                return false;
-            }
-        }
-    </script>
 @endsection
 

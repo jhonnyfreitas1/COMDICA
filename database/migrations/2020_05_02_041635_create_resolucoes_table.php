@@ -16,10 +16,14 @@ class CreateResolucoesTable extends Migration
         Schema::create('resolucoes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
+            $table->string('nome_pdf');
+            $table->string('mes');
+            $table->string('ano');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
+            $table->timestamps();
         });
     }
 
