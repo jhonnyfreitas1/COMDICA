@@ -1,6 +1,5 @@
 <?php
 
-
 Auth::routes();
 //Rotas da calculadora
 Route::get('/calculadora', ['as' => 'calculadora.index', 'uses' => 'CalculadoraController@index']);
@@ -26,6 +25,7 @@ Route::get('postagens', 'HomeController@postList')->name('postagens');
 Route::view('postagemVer', 'newFront.verPostagem')->name('postagemVer');
 Route::view('portifolioComdica', 'newFront.portifolioComdica')->name('comdica');
 Route::view('portifolioComdicaEntidadesCards', 'newFront.portifolioComdicaEntidadesCards')->name('comdicaEC');
+Route::view('portifolioComdicaGaleria', 'newFront.portifolioGaleria')->name('comdicaGaleria');
 //Rotas do site
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('/notfound', 'HomeController@notfound')->name('notfound');
