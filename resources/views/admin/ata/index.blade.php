@@ -33,7 +33,7 @@
             <tr  class="bg-info text-light">
                 <th scope="col">#</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Data</th>
+                <th scope="col">Ano</th>
                 <th scope="col">Ações</th>
             </tr>
         </thead>
@@ -44,11 +44,12 @@
                 <th scope="row">{{$ata->id}}</th>
                 <td>
                     <strong>
-                        <a href="{{route('atas.show', $ata->id)}}" class="text-dark">{{ substr($ata->nome,0,-4) }}</a>
+                        <a href="{{route('atas.show', $ata->id)}}" class="text-dark">{{ $ata->nome }}</a>
                     </strong>
                 </td>
                 <td>
                     <strong>
+                        <a href="{{route('atas.show', $ata->id)}}" class="text-dark">{{ $ata->ano }}</a>
                     </strong>
                 </td>
                 <td>

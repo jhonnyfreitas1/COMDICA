@@ -16,6 +16,7 @@ class CreateAtasTable extends Migration
         Schema::create('atas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome');
+            $table->string('nome_pdf');
             $table->string('ano');
             $table->string('mes');
             $table->enum('tipo', ['ordinaria', 'extraordinaria'])->nullable();
