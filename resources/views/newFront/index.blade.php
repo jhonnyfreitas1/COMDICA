@@ -58,7 +58,7 @@
                     <p>Você sabia que você pode doar até 6% do seu imposto de renda para o nosso fundo de projetos?. Nossa calculadora Facilita tudo isso para você :)</p>
                 </li>
             </a> 
-            <a href="{{route('portifolio')}}">
+            <a href="{{route('comdicaEC')}}">
                 <li class="grid-1-3 ">
                     <div class="produtos_icone produtos_list">
                         <img src="{{asset('img/Port.png')}}" alt="">
