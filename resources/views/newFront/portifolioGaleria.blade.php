@@ -60,11 +60,11 @@
         position: relative;
     }
     .img1{
-        background: url("/img/child.jpeg") no-repeat center;
+        background: url("/img/child3.jpeg") no-repeat center;
         background-size: cover;
     }
     .img2{
-        background: url("/img/child2.jpeg") no-repeat center;
+        background: url("/img/child4.jpeg") no-repeat center;
         background-size: cover;
     }
     @media only screen and (max-width: 787px) {
@@ -86,16 +86,16 @@
         <br><br><br><br><br><br>
         <ul class="produtos_lista">
                 <div class="grid-4 cardLink img1">
-                    <h1>COMDICA</h1>
+                    <h1>GALERIA</h1>
                     <blockquote class="quote-externo">
-                        <p>Nosso Ambiente próprio para o conselho, aqui temos nossa galeria e as nossas atas e demonstrações de todo nosso trabalho para com as crianças.</p>                    
+                        <p>Nós fazemos questão de armazenar todos os momentos incríveis que participamos em prol do bem-estar infatil em araçoiaba.</p>                    
                     </blockquote>
-                    <a href="{{route('comdicaGaleria')}}" class="btn-full">Ver mais</a>                    
+                    <a href="/portifolio/1" class="btn-full">Ver mais</a>                    
                 </div>
                 <div class="grid-4 cardLink img2">
-                    <h1>ENTIDADES</h1>                    
+                    <h1>ATAS</h1>                    
                     <blockquote class="quote-externo">
-                        <p>Ambiente para nossas entidades, aqui você terá acesso a todas as organizações que ajudam o COMDICA a ajudar crianças.</p>                    
+                        <p></p>
                     </blockquote>
                     <a href="{{route('portifolio')}}" class="btn-full">Ver mais</a>                    
                 </div>

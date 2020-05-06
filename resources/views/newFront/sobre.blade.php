@@ -7,7 +7,6 @@
         <p data-anime="800" class="fadeInDown">conheça mais sobre o COMDICA</p>
     </div>
 </section>
-
 <section class="missao_sobre container fadeInDown" data-anime="1200">
     <div class="grid-10">
         <h2 class="subtitulo-interno"> Quem somos?, O que Fazemos?</h2>
