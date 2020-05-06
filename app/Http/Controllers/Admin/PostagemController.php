@@ -28,7 +28,7 @@ class PostagemController extends Controller
    public function store(Request $request){
     $validar = $request->validate([
         'titulo'    =>  'max:50 | unique:postagens,titulo',
-        'imagem'    =>  'mimes:jpeg,jpg,png,bmp | required',
+        'imagem'    =>  'mimes:jpeg,jpg,png,bmp,svg | required',
         'descricao'    =>  'required',
         'categoria'    =>  'required',
     ],[
