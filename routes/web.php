@@ -106,6 +106,8 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 		Route::get('/edit/{id}',['as' => 'galeria.edit', 'uses' => 'Admin\GaleriaController@edit']);
 		Route::put('/update/{id}',['as' => 'galeria.update', 'uses' => 'Admin\GaleriaController@update']);
 		Route::get('/destroy/{id}',['as' => 'galeria.destroy', 'uses' => 'Admin\GaleriaController@destroy']);
+        //Rotas de excluir imagem da galeria
+		Route::get('imagem/destroy/{id}',['as' => 'galeria.destroyImagem', 'uses' => 'Admin\GaleriaController@destroyImagem']);
 	});
 
 // --------------------------------------------------------------------------------------------------------------------

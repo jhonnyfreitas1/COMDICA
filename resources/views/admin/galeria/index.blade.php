@@ -47,7 +47,7 @@
                 </td>
                 <td>
                     <a href="{{route('galeria.edit', $album->id)}}" class="btn btn-outline-info btn-sm mr-2">Editar</a>
-                    <a href="#"  class="btn btn-outline-danger btn-sm mr-2" onClick="confirmExclusao();">Excluir</a>
+                    <a href="#"  href="#"  id="{{$album->id}}" url="{{ route('galeria.destroy', $album->id)}}" class="btn btn-outline-danger btn-sm mr-2"  onClick="confirmExclusao({{$album->id}}, 'esse álbum');">Excluir</a>
                 </tr>
             @endforeach
         </tbody>
