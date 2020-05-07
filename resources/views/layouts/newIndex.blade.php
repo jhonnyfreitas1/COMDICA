@@ -111,8 +111,9 @@
             </footer>
         </div>
         <!-- Div da imagem de back ao entrar na index -->
-        <div id="loading" class="loading-back" style="display:none">
-			<img src="/img/fundeca1.png" class="image-back">
+        <div id="loading" style="display:none">
+            <img style=" position: fixed;  width: 100%;  background-color: white;  height: 100%; z-index: -1;" src="/img/COR1.png">
+            <img class="col-4 col-md-2  position-absolute sticky-top" style=" z-index: 1;" src="/img/carregamento.gif">
 		</div>
         <!-- links de Js -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

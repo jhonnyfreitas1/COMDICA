@@ -26,6 +26,12 @@
     }
 </style>
 @section('content')
+    <!-- Fundeca Pulsando -->
+    <!-- <div id="loader"  style="">
+          <img style=" position: fixed;  width: 100%;  background-color: white;  height: 100%; z-index: 1000;" src="/img/COR1.png">
+          <img class="col-4 col-md-2  position-absolute sticky-top" style=" z-index: 1002;" src="/img/carregamento.gif">
+     </div> -->
+
     <section class="introducao">
         <div class="container">
             <h1>COMDICA Araçoiaba - PE</h1>
@@ -57,7 +63,7 @@
                     <h3>Doar</h3>
                     <p>Você sabia que você pode doar até 6% do seu imposto de renda para o nosso fundo de projetos?. Nossa calculadora Facilita tudo isso para você :)</p>
                 </li>
-            </a> 
+            </a>
             <a href="{{route('comdicaEC')}}">
                 <li class="grid-1-3 ">
                     <div class="produtos_icone produtos_list">
@@ -113,12 +119,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <script type="text/javascript">
-			$(document).on('ready', function() {
+        $(document).on('ready', function() {
                 $("#conteudo").hide();
                 $("#loading").show();
 
                 setTimeout(() => {
-                    $('#loading').fadeOut("fast")
+                    $('#loading').delay(2000).fadeOut("slow");
                     $('#conteudo').show();
                 }, 2000);
 
