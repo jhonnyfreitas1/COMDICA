@@ -25,17 +25,15 @@
         text-align: center;
         padding-top: 40px;
         color: white;
+        border-radius: 10px;
         position: relative;
         margin-left: 100px;
-        padding: 40px;
-        border-radius: 10px;
     }
     .cardLink img{}
     .cardLink h1, p{
         padding-top:20px;
         position: relative;
         color: #fff;
-        
     }
     .cardLink h1{
         font-size: 32px;
@@ -43,12 +41,9 @@
     .cardLink p{
         font-family: Georgia, 'Times New Roman', Times, serif;
         font-size: 20px;
-        font-style: italic;
         text-align: center;
         color: #fff;
-        padding: 10px;
-        margin-top: 25px;
-        margin-bottom: 25px;
+        padding: 20px;
     }
 
     /* .cardLink:before{
@@ -59,20 +54,20 @@
         height: 100%;
         content: '';
         background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
     } */
     .btn-full{
         position: relative;
     }
     .img1{
-        background: url("/img/p8.png") no-repeat center;
+        background: url("/img/p7.png") no-repeat center;
         background-size: cover;
-        background-color: #017DB9;
-        background-position-x: -10px;
+        background-color: #3E4095;
     }
     .img2{
-        background: url("/img/p5.png") no-repeat center;
+        background: url("/img/p4.png") no-repeat center;
         background-size: cover;
-        background-color: rgba(220, 170, 119, 10);
+        background-color: #50A8B1;
     }
     @media only screen and (max-width: 787px) {
         .pagination{
@@ -93,18 +88,18 @@
         <br><br><br><br><br><br>
         <ul class="produtos_lista">
                 <div class="grid-4 cardLink img1">
-                    <h1>GALERIA</h1>
+                    <h1>Doar - Declaração</h1>
                     <blockquote class="quote-externo">
-                        <p>Nós fazemos questão de armazenar todos os momentos incríveis que participamos em prol do bem-estar infatil em araçoiaba.</p>                    
-                        <a href="/portifolio/1" class="btn-full">Ver mais</a>                    
+                        <p>Aqui você poderá fazer a doação de acordo com o seu imposto de renda. Você sabia que pode destinar até 6% para ajudar o conselho ? ;)</p>                    
                     </blockquote>
+                    <a href="{{route('comdicaGaleria')}}" class="btn-full">Doar</a>                    
                 </div>
                 <div class="grid-4 cardLink img2">
-                    <h1>ATAS</h1>                    
+                    <h1>Doar - Projetos</h1>                    
                     <blockquote class="quote-externo">
-                        <p></p>
+                        <p>Temos projetos específicos a qual você também poderá está doando para uma determinada fundação ou para as próprias ideias internas do COMDICA.</p>                    
                     </blockquote>
-                    <a href="{{route('portifolio')}}" class="btn-full">Ver mais</a>                    
+                    <a href="{{route('portifolio')}}" class="btn-full">Doar</a>                    
                 </div>
             {{-- @foreach ($inst as $instData)
                 <li class="grid-4">

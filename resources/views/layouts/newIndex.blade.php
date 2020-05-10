@@ -59,7 +59,7 @@
                 <div class="container">
                     <!-- newIndex tem os imports do Css -->
                     <a href="{{route('home')}}" class="grid-4">
-                        <img src="{{asset('img/comdica3.png')}}" alt="Comdica">
+                        <img src="{{asset('img/mc21.png')}}" alt="Comdica">
                     </a>
                     <nav class="grid-12 header_menu">
                         <ul>

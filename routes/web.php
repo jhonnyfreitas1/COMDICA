@@ -26,6 +26,8 @@ Route::view('postagemVer', 'newFront.verPostagem')->name('postagemVer');
 Route::view('portifolioComdica', 'newFront.portifolioComdica')->name('comdica');
 Route::view('portifolioComdicaEntidadesCards', 'newFront.portifolioComdicaEntidadesCards')->name('comdicaEC');
 Route::view('portifolioComdicaGaleria', 'newFront.portifolioGaleria')->name('comdicaGaleria');
+Route::view('doacaoCards', 'newFront.doacaoCards')->name('doacaoCards');
+
 //Rotas do site
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('/notfound', 'HomeController@notfound')->name('notfound');

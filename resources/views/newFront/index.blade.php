@@ -55,7 +55,7 @@
                     <p>O Comdica tem um sistema único de denúncias para adultos e crianças de todas as idades.</p>
                 </li>
             </a>
-            <a href="">
+            <a href="{{route('doacaoCards')}}">
                 <li class="grid-1-3">
                     <div class="produtos_icone produtos_list">
                         <img src="{{asset('img/calculadora.png')}}" alt="">
@@ -113,7 +113,7 @@
             <p class="">“É a intenção, e não a doação, que faz o doador.”</p>
             <div class="font">Gotthold Lessing</div>
             <br><br>
-            <a href="#" class="btn-full">Doar</a>
+            <a href="{{route('doacaoCards')}}" class="btn-full">Doar</a>
         </blockquote>
     </section>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

@@ -41,12 +41,12 @@
     .cardLink p{
         font-family: Georgia, 'Times New Roman', Times, serif;
         font-size: 20px;
-        text-align: left;
+        text-align: center;
         color: #fff;
         padding: 20px;
     }
 
-    .cardLink:before{
+    /* .cardLink:before{
         position: absolute;
         top:0;
         left:0;
@@ -55,17 +55,19 @@
         content: '';
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 10px;
-    }
+    } */
     .btn-full{
         position: relative;
     }
     .img1{
-        background: url("/img/child.jpeg") no-repeat center;
+        background: url("/img/p4.png") no-repeat center;
         background-size: cover;
+        background-color: #5BA479;
     }
     .img2{
-        background: url("/img/child2.jpeg") no-repeat center;
+        background: url("/img/p7.png") no-repeat center;
         background-size: cover;
+        background-color: #EF92BE;
     }
     @media only screen and (max-width: 787px) {
         .pagination{
