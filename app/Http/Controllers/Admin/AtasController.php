@@ -17,7 +17,7 @@ class AtasController extends Controller
 {
     public function index()
     {
-        $atas = DB::table('atas')->paginate(10);
+        $atas = Ata::all();
         return view('admin.ata.index', compact('atas'));
     }
 
