@@ -69,7 +69,7 @@
                     <div class="form-group col">
                         <!-- descricao -->
                         <label for="desc" >{{ __('Descrição') }}</label>
-                        <textarea id="desc"class="form-control" name="desc" id="desc" autocomplete="desc" rows="3" required autofocus>{{ isset($album->descricao) ? $album->descricao : '' }}
+                        <textarea id="desc"class="form-control" name="desc" autocomplete="desc" rows="3" required autofocus>{{ isset($album->descricao) ? $album->descricao : '' }}
                         </textarea>
                         @error('desc')
                             <span class="invalid-feedback" role="alert">
@@ -107,13 +107,13 @@
                             <!-- {{$count}} -->
                             @if($c == 0)
                                 <div id="r{{$r}}" class="row mt-3">
-                                    <a href="{{route('galeria.destroyImagem',$imagem->id)}}">
+                                    <a id="{{$imagem->id}}" href="#" url="{{route('galeria.destroyImagem',$imagem->id)}}" onClick="confirmExclusao({{$imagem->id}}, 'essa imagem')">
                                         <img id="visu{{$count}}" class="rounded float-left excluir verifImg" src="/upload_imagem/albuns/{{$album->id}}/{{$imagem->nome}}"style="width: 150px; height: 100px; margin-left: 5px; border: none; display: block;">
                                     </a>
                                 @php($c++)
                             @else
-                                <a href="{{route('galeria.destroyImagem',$imagem->id)}}">
-                                    <img id="visu{{$count}}" class="rounded float-left excluir verifImg" src="/upload_imagem/albuns/{{$album->id}}/{{$imagem->nome}}" style="width: 150px; height: 100px; margin-left: 5px; border: none; display: block;">
+                                <a id="{{$imagem->id}}" href="#" url="{{route('galeria.destroyImagem',$imagem->id)}}" onClick="confirmExclusao({{$imagem->id}}, 'essa imagem')">
+                                    <img id="visu{{$count}}" class="rounded float-left excluir verifImg mt-1" src="/upload_imagem/albuns/{{$album->id}}/{{$imagem->nome}}" style="width: 150px; height: 100px; margin-left: 5px; border: none; display: block;">
                                 </a>
                                 @php($c++)
                                 @if($c == 4)
@@ -150,7 +150,7 @@
         font-size: 18px;
     }
     .excluir:hover{
-        filter: grayscale(0.2);
+        filter: grayscale(1);
     }
     .novas{
         border: 1px solid red;
@@ -161,6 +161,7 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+
     $(document).ready(function(){
 
         // Corrigindo um erro que deu no HTML
@@ -186,14 +187,14 @@
                     $('#cards').append("<div id='r"+r+"' class='row mt-3'></div>");
                     $('#r'+r).append("<img id='visu"+t+"' class='rounded float-left'></img>");
                     $('#visu'+t).css({"width":"150px","height":"100px","margin-left":"5px","border": "1px solid red","display":"none"});
-                    $('#visu'+t).addClass('verifImg');
+                    $('#visu'+t).addClass('verifImg mt-1');
                     j++;
                 }else{
                     $("#visu"+t).removeClass();
                     $('#r'+r).append("<img id='visu"+t+"' class='rounded float-left'></img>");
                     console.log('visu'+t);
                     $('#visu'+t).css({"width":"150px","height":"100px","margin-left":"5px","border": "1px solid red","display":"none"});
-                    $('#visu'+t).addClass('verifImg');
+                    $('#visu'+t).addClass('verifImg mt-1');
                     j++;
                     if(j == 4){
                         j=0;

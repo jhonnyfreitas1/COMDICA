@@ -1,6 +1,11 @@
 @extends('layouts.admin')
 
 	@section('area-principal')
+
+    <!-- Import Css Datatables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+
 <br>
     <nav class="mb-2">
         <ol class="breadcrumb">
@@ -28,7 +33,7 @@
         </div>
     </div>
 
-    <table class="table table-hover">
+    <table class="table table-hover" id="table">
         <thead>
             <tr  class="bg-info text-light">
                 <th scope="col">#</th>
@@ -42,7 +47,7 @@
                 <th scope="row">{{$album->id}}</th>
                 <td>
                     <strong>
-                        <a href="{{route('galeria.show', $album->id)}}" class="text-dark">{{$album->titulo}}</a>
+                        <a style="cursor:default" class="text-dark">{{$album->titulo}}</a>
                     </strong>
                 </td>
                 <td>
@@ -53,14 +58,44 @@
         </tbody>
     </table>
 
-    <!-- Mensagem de confirmação -->
-    <script type="text/javascript">
-        function confirmExclusao() {
-            var message = "Tem certeza que deseja excluir essa instituição?";
-            if ( confirm(message) ) {
-            } else {
-                return false;
-            }
-        }
+    <!-- Import Js Datatables -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+
+    <script>
+    $.noConflict();
+    jQuery( document ).ready(function( $ ) {
+
+        // Datatables
+        $('#table').DataTable( {
+            oLanguage:{
+                sProcessing: "Processando...",
+                sLengthMenu: "Mostar _MENU_ registros pro página",
+                sZeroRecords: "Nada encontrado com esse critérios",
+                sEmptyTable: "Não há dados para serem mostrados",
+                sLoadingRecords: "Carregando...",
+                sInfo: "Mostrando _START_ a _END_ de _TOTAL_ registros",
+                sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
+                sInfoFiltered: "(filtro aplicado em _MAX_ registros)",
+                sInfoPostFix: "",
+                sInfoThousands: ".",
+                sSearch: "Pesquisar:",
+                sUrl: "",
+                oPaginate:{
+                    sFirst: "Primeira",
+                    sPrevious: "Anterior",
+                    sNext: "Próxima",
+                    sLast: "Última",
+                },
+            },
+
+            bPaginate: true, //Next and Previous embaixo da tabela
+            bLengthChange: false,  //Show and entries em cima da tabela
+            bFilter: true, //Search em cima da tabela
+            bInfo: false,  //Showing em baixo da tabela);
+            responsive: true,
+        } );
+    });
     </script>
 @endsection

@@ -19,7 +19,22 @@ class GaleriaController extends Controller
     public function index()
     {
         $albuns = DB::table('album_galerias')->paginate(10);
-        return view('admin.galeria.index', compact('albuns'));
+        $imagens = DB::table('img_album_galerias')->get();
+
+foreach($albuns as $album){
+    foreach($imagens as $img){
+        if($img->album_id == $album->id){
+            $imagem[] = $img->nome;
+            break;
+        }
+    }
+}
+// return $imagem;
+
+
+
+        // return $imagens;
+        return view('admin.galeria.index', compact('albuns','imagem'));
     }
 
 
@@ -172,7 +187,7 @@ class GaleriaController extends Controller
 
         /*Voltando para a galeria */
         $mensagem = 'Album cadastrada com Sucesso!';
-        return redirect('/admin/galeria')->with('mensagem',$mensagem);
+        return redirect('/admin/galeria/edit/'.$id)->with('mensagem',$mensagem);
     }
 
     public function destroy($id)
