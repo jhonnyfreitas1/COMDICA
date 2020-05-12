@@ -278,7 +278,6 @@ class InstituicoesController extends Controller
         $ex = "upload_imagem/instituicoes/".$instituicao[0]->name.$instituicao[0]->id.'/';
         $img1 = $instituicao[0]->imagem_princ;
         $img2 = $instituicao[0]->imagem_sec;
-        $img3 = $instituicao[0]->imagem_ter;
 
         // Vê se existe a imagem/pasta para exclui-lá
         if (File::exists($ex.$img1)) {

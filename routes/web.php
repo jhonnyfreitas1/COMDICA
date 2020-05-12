@@ -59,7 +59,8 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 		Route::get('/show/{id}', ['as' => 'usuario.show', 'uses' => 'Admin\UserController@show']);
 		Route::get('/edit/{id}', ['as' => 'usuario.edit', 'uses' => 'Admin\UserController@edit']);
 		Route::put('/update/{id}', ['as' => 'usuario.update', 'uses' => 'Admin\UserController@update']);
-		Route::post('/destroy/{id}', ['as' => 'usuario.destroy', 'uses' => 'Admin\UserController@destroy']);
+		Route::get('/destroy/{id}', ['as' => 'usuario.destroy', 'uses' => 'Admin\UserController@destroy']);
+
 	});
 
 	//Rotas de instituições

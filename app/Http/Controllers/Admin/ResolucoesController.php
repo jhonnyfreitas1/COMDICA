@@ -277,8 +277,8 @@ class ResolucoesController extends Controller
        $nome = $resolucao[0]->nome_pdf;
 
        // Vê se existe o arquivo pdf para exclui-lo
-       if (File::exists($diretorio.$nome_pdf)) {
-           File::delete($diretorio.$nome_pdf);
+       if (File::exists($diretorio.$nome)) {
+           File::delete($diretorio.$nome);
        }
        // Deleta as tabelas e redireciona
        $query->delete();
