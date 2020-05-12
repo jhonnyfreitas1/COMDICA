@@ -50,12 +50,12 @@
                     <a href="{{route('usuario.show', $usuario->id)}}" class="text-dark">{{$usuario->name}}</a>
                 </strong>
 		      </td>
-		      <!-- @can('admin') -->
+		      @can('admin')
 			      <td>
 			      	<a href="{{route('usuario.edit', $usuario->id)}}" class="btn btn-outline-info btn-sm mr-2">Editar</a>
                     <a href="#" id="{{$usuario->id}}" url="{{ route('usuario.destroy', $usuario->id)}}"   class="btn btn-outline-danger btn-sm mr-2" onClick="confirmExclusao({{$usuario->id}}, 'esse usuário')">Excluir</a>
                   </td>
-		      <!-- @endcan -->
+		      @endcan
 		    </tr>
 
 	    @endforeach
