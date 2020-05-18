@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ImgAlbumGaleriaSeeder::class);
         $this->call(AtaSeeder::class);
         $this->call(ResolucaoSeeder::class);
+        $this->call(CampanhaSeeder::class);
     }
 }

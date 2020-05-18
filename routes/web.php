@@ -111,6 +111,20 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 		Route::get('/destroy/{id}',['as' => 'galeria.destroy', 'uses' => 'Admin\GaleriaController@destroy']);
         //Rotas de excluir imagem da galeria
 		Route::get('imagem/destroy/{id}',['as' => 'galeria.destroyImagem', 'uses' => 'Admin\GaleriaController@destroyImagem']);
+    });
+
+    //Rotas de campanha
+	Route::group(['prefix' => '/campanha', 'middleware'=> 'admin-comdica'],function(){
+        Route::get('', ['as' => 'campanha.index', 'uses' => 'Admin\CampanhaController@index']);
+		Route::get('/create',['as' => 'campanha.create', 'uses' => 'Admin\CampanhaController@create']);
+		Route::post('/store',['as' => 'campanha.store', 'uses' => 'Admin\CampanhaController@store']);
+		Route::get('/{id}',['as' => 'campanha.show', 'uses' => 'Admin\CampanhaController@show']);
+		Route::get('/edit/{id}',['as' => 'campanha.edit', 'uses' => 'Admin\CampanhaController@edit']);
+		Route::put('/update/{id}',['as' => 'campanha.update', 'uses' => 'Admin\CampanhaController@update']);
+		Route::get('/destroy/{id}',['as' => 'campanha.destroy', 'uses' => 'Admin\CampanhaController@destroy']);
+        //Rotas de excluir imagem e video da campanha
+		Route::get('imagem/destroy/{id}',['as' => 'campanha.destroyImagem', 'uses' => 'Admin\CampanhaController@destroyImagem']);
+		Route::get('video/destroy/{id}',['as' => 'campanha.destroyVideo', 'uses' => 'Admin\CampanhaController@destroyVideo']);
 	});
 
 // --------------------------------------------------------------------------------------------------------------------

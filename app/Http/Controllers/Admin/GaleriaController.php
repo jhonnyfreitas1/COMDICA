@@ -108,7 +108,7 @@ foreach($albuns as $album){
             }
 
             // Adiciona ao diretorio
-            imagejpeg($image, $destination_path.$imagem->nome,1);
+            imagejpeg($image, $destination_path.$imagem->nome,20);
         }
 
         /*Voltando para a pagina e listar instituições*/
