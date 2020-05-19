@@ -35,8 +35,8 @@ class HomeController extends Controller
             }
     }
     public function postList(){
-        $posts = DB::table('postagens')->orderBy('created_at')->paginate(1);
-        $postRecent = DB::table('postagens')->orderBy('created_at')->first();
+        $posts = DB::table('postagens')->orderBy('id', 'desc')->paginate(4);
+        $postRecent = DB::table('postagens')->find(DB::table('postagens')->max('id'));
         return view('newFront.postagens')->with(compact('posts', 'postRecent'));  
     }
     public function entidadeList(){

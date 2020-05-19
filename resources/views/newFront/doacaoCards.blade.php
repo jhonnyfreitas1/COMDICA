@@ -90,14 +90,14 @@
                 <div class="grid-4 cardLink img1">
                     <h1>Doar - Declaração</h1>
                     <blockquote class="quote-externo">
-                        <p>Aqui você poderá fazer a doação de acordo com o seu imposto de renda. Você sabia que pode destinar até 6% para ajudar o conselho ? ;)</p>                    
+                        <p>Aqui você fica sabendo como doar diretamente em sua declaração</p>                    
                     </blockquote>
-                    <a href="{{route('comdicaGaleria')}}" class="btn-full">Doar</a>                    
+                    <a href="{{route('doacaoFlyer')}}" class="btn-full">Doar</a>                    
                 </div>
                 <div class="grid-4 cardLink img2">
                     <h1>Doar - Projetos</h1>                    
                     <blockquote class="quote-externo">
-                        <p>Temos projetos específicos a qual você também poderá está doando para uma determinada fundação ou para as próprias ideias internas do COMDICA.</p>                    
+                        <p>Aqui você fica sabendo como doar no período de maio a dezembro, através de nossa calculadora. Dessa forma, você ajuda nossos projetos sociais, o FUNDECA.</p>                    
                     </blockquote>
                     <a href="{{route('portifolio')}}" class="btn-full">Doar</a>                    
                 </div>

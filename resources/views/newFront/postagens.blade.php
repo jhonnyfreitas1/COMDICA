@@ -45,7 +45,8 @@
                             alt="">
                 </div>
                 <h3>{{$post->titulo}}</h3>
-                <p>{{$post->descricao}}</p>
+                <br><br>
+                {{-- <p>{{$post->descricao}}</p> --}}
                 <a href="/postagem/{{encrypt($post->id)}}" class="btn-full">Ver Tópico</a>
             </li>
             @endforeach

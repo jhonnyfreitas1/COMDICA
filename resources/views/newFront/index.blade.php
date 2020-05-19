@@ -6,6 +6,9 @@
         height:100vh;
         margin:0 auto
     }
+    .slick-slide{
+        height: auto !important;
+    }
     .image-back{
         max-height: calc(100vh - 25px);
         position: relative;
@@ -52,7 +55,7 @@
                         <img src="{{asset('img/Denun.png')}} "alt="">
                     </div>
                     <h3>Denúncias</h3>
-                    <p>O Comdica tem um sistema único de denúncias para adultos e crianças de todas as idades.</p>
+                    <p>O COMDICA ARAÇOIABA tem uma ferramenta de denúncia, contra a violação de direitos de Crianças e Adolescentes no municípoio de Araçoiaba/PE.</p>
                 </li>
             </a>
             <a href="{{route('doacaoCards')}}">
@@ -61,7 +64,7 @@
                         <img src="{{asset('img/calculadora.png')}}" alt="">
                     </div>
                     <h3>Doar</h3>
-                    <p>Você sabia que você pode doar até 6% do seu imposto de renda para o nosso fundo de projetos?. Nossa calculadora Facilita tudo isso para você :)</p>
+                    <p>Você sabia que você pode doar até 6% do seu imposto de renda para o nosso fundo de projetos?. Nossa calculadora Facilita tudo isso para você de forma rápida e intuitiva :)</p>
                 </li>
             </a>
             <a href="{{route('comdicaEC')}}">

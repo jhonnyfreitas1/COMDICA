@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\campanha;
+use App\Campanha;
 use Illuminate\Http\Request;
 
 class CampanhaController extends Controller
@@ -14,7 +14,8 @@ class CampanhaController extends Controller
      */
     public function index()
     {
-        //
+        $campanha = Campanha::all();
+        return view('newFront.doacaoIndex');
     }
 
     /**
