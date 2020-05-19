@@ -116,7 +116,7 @@ class CampanhaController extends Controller
 
             // Adicionando o Imagem no banco
             $video             = new VideoCampanha;
-            $video->nome_video   = 'video_'.bin2hex(random_bytes(2)).'.'.$ex;
+            $video->nome_video   = 'video'.$ex;
             $video->campanha_id  = $campanha->id;
             $video->save();
 
@@ -139,8 +139,10 @@ class CampanhaController extends Controller
 
     public function edit($id)
     {
-        $campanha      = DB::table('campanhas')->where('id','=', $id)->first();
-        return view('admin.campanha.add-edit', compact('campanha'));
+       $campanha      = DB::table('campanhas')->where('id','=', $id)->first();
+       $imagens      = DB::table('img_campanhas')->where('campanha_id','=', $id)->get();
+       $video      = VideoCampanha::where('campanha_id','=', $id)->first();
+       return view('admin.campanha.add-edit', compact('campanha','imagens','video'));
     }
 
 
@@ -161,7 +163,6 @@ class CampanhaController extends Controller
         $titulo = $request['titulo'];
         $descricao = $request['desc'];
 
-
         // Adicionando o Album no banco
         $campanha           = Campanha::where('id',$id)->first();
         $campanha->titulo   = $titulo;
@@ -169,28 +170,25 @@ class CampanhaController extends Controller
         $campanha->user_id  = Auth::id();
         $campanha->save();
 
-
-
         // Diretorio dos arquivos
         $destination_path = "upload_imagem/campanhas/".$campanha->id.'/';
 
         // Verifica se existe arqivos no diretorio
-        // $scan =scandir($destination_path);
-        // for ($j=0; $j < count($scan); $j++) {
-        //     $name_file = explode('.',$scan[$j]);
+        $scan =scandir($destination_path);
+        $c=0;
+        $k=0;
+        for ($j=0; $j < count($scan); $j++) {
+            $name_file = explode('.',$scan[$j]);
+            if($name_file[0] == 'img_0' or $name_file[0] == 'img_1'){
+                if($name_file[0] == 'img_0'){
+                    $k=1;
+                }else{
+                    $k=2;
+                }
+                $c++;
+            }
+        }
 
-        //     if($name_file[0] == 'img_0' or $name_file[0] == 'img_1'){
-        //         return "Já existe o limite de imagens para essa campanha!";
-        //     }elseif ($name_file[0] == 'img_0'){
-        //         $exist = 0;
-        //     }elseif($name_file[0] == 'img_1'){
-        //         $exist = 1;
-        //     }else{
-        //         $exist = 3;
-
-        //     }
-
-        // }
         // Verifica se enviou imagem
         if ( isset($request->allFiles()['imagem']) ) {
             // Faz a verificação para entrar apenas duas vezes no loop
@@ -199,41 +197,84 @@ class CampanhaController extends Controller
             // ADICIONANDO IMAGEM
             // Fazendo o loop e entrando em cada imagem
             for($i = 0; $i < $count ;$i++){
-                // arquivo e extensão
-                $file1 = $request->allFiles()['imagem'][$i];
-                $ex = $file1->extension();
 
-                // Adicionando o Imagem no banco
-                $imagem             = new ImgCampanha;
-                $imagem->nome_img       = 'img_'.$i.'.'.$ex;
-                $imagem->campanha_id  = $campanha->id;
-                $imagem->save();
-
-                // Comprimindo imagem
-                $source_path = $request->File()['imagem'][$i];
-                $quality = 6;
-                $info = getimagesize($source_path);
-
-                // Verifica qual o tipo de imagem
-                if ($info['mime'] == 'image/jpeg') {
-                    $image = imagecreatefromjpeg($source_path);
-                } elseif ($info['mime'] == 'image/jpg') {
-                    $image = imagecreatefromjpg($source_path);
-                } elseif ($info['mime'] == 'image/png') {
-                    $image = imagecreatefrompng($source_path);
-                } elseif ($info['mime'] == 'image/bmp') {
-                    $image = imagecreatefrombmp($source_path);
+                if($c == 2){
+                    return back()->withErrors(['imagem'=>'Já existe o máximo de imagens para essa campanha, exclua uma das existentes!']);
                 }else{
-                    return back()->withErrors(['imagem'=>'Adicione arquivos com formato de imagem']);
-                };
+                    if($k != 1){
+                        // arquivo e extensão
+                        $file1 = $request->allFiles()['imagem'][$i];
+                        $ex = $file1->extension();
 
-                // Verifica se existe esse diretorio
-                if(!is_dir($destination_path)){
-                    mkdir($destination_path);
+                        // Adicionando o Imagem no banco
+                        $imagem             = new ImgCampanha;
+                        $imagem->nome_img       = 'img_0.'.$ex;
+                        $imagem->campanha_id  = $campanha->id;
+                        $imagem->save();
+
+                        // Comprimindo imagem
+                        $source_path = $request->File()['imagem'][$i];
+                        $quality = 6;
+                        $info = getimagesize($source_path);
+
+                        // Verifica qual o tipo de imagem
+                        if ($info['mime'] == 'image/jpeg') {
+                            $image = imagecreatefromjpeg($source_path);
+                        } elseif ($info['mime'] == 'image/jpg') {
+                            $image = imagecreatefromjpg($source_path);
+                        } elseif ($info['mime'] == 'image/png') {
+                            $image = imagecreatefrompng($source_path);
+                        } elseif ($info['mime'] == 'image/bmp') {
+                            $image = imagecreatefrombmp($source_path);
+                        }else{
+                            return back()->withErrors(['imagem'=>'Adicione arquivos com formato de imagem']);
+                        };
+
+                        // Verifica se existe esse diretorio
+                        if(!is_dir($destination_path)){
+                            mkdir($destination_path);
+                        }
+
+                        // Adiciona ao diretorio
+                        imagejpeg($image, $destination_path.$imagem->nome_img,20);
+                       }else{
+                        // arquivo e extensão
+                        $file1 = $request->allFiles()['imagem'][$i];
+                        $ex = $file1->extension();
+
+                        // Adicionando o Imagem no banco
+                        $imagem             = new ImgCampanha;
+                        $imagem->nome_img       = 'img_1'.$ex;
+                        $imagem->campanha_id  = $campanha->id;
+                        $imagem->save();
+
+                        // Comprimindo imagem
+                        $source_path = $request->File()['imagem'][$i];
+                        $quality = 6;
+                        $info = getimagesize($source_path);
+
+                        // Verifica qual o tipo de imagem
+                        if ($info['mime'] == 'image/jpeg') {
+                            $image = imagecreatefromjpeg($source_path);
+                        } elseif ($info['mime'] == 'image/jpg') {
+                            $image = imagecreatefromjpg($source_path);
+                        } elseif ($info['mime'] == 'image/png') {
+                            $image = imagecreatefrompng($source_path);
+                        } elseif ($info['mime'] == 'image/bmp') {
+                            $image = imagecreatefrombmp($source_path);
+                        }else{
+                            return back()->withErrors(['imagem'=>'Adicione arquivos com formato de imagem']);
+                        };
+
+                        // Verifica se existe esse diretorio
+                        if(!is_dir($destination_path)){
+                            mkdir($destination_path);
+                        }
+
+                        // Adiciona ao diretorio
+                        imagejpeg($image, $destination_path.$imagem->nome_img,20);
+                    }
                 }
-
-                // Adiciona ao diretorio
-                imagejpeg($image, $destination_path.$imagem->nome_img,20);
             }
         }
 
@@ -246,7 +287,7 @@ class CampanhaController extends Controller
 
             // Adicionando o Imagem no banco
             $video             = new VideoCampanha;
-            $video->nome_video   = 'video_'.bin2hex(random_bytes(2)).'.'.$ex;
+            $video->nome_video   = 'video.'.$ex;
             $video->campanha_id  = $campanha->id;
             $video->save();
 
@@ -299,6 +340,7 @@ class CampanhaController extends Controller
 
     public function destroyImagem($id)
     {
+        // return $id;
         // Consulta ao banco
         $query = DB::table('img_campanhas')->where('id',$id);
         $imagem = $query->get();
