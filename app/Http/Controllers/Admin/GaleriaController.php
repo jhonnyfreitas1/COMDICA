@@ -34,7 +34,7 @@ foreach($albuns as $album){
 
 
         // return $imagens;
-        return view('admin.galeria.index', compact('albuns','imagem'));
+        return view('admin.galeria.index', compact('albuns','imagens'));
     }
 
 
