@@ -53,7 +53,7 @@
                 <th scope="row">{{$campanha->id}}</th>
                 <td>
                     <strong>
-                        <a href="{{route('campanha.show', $campanha->id)}}" class="text-dark">{{ $campanha->titulo }}</a>
+                        <a class="text-dark">{{ $campanha->titulo }}</a>
                     </strong>
                 </td>
                 <td>
