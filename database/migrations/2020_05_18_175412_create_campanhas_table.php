@@ -17,6 +17,9 @@ class CreateCampanhasTable extends Migration
             $table->increments('id');
             $table->string('titulo');
             $table->string('desc',150);
+            $table->string('imagem')->nullable();
+            $table->string('pdf')->nullable();
+            $table->string('video')->nullable();
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

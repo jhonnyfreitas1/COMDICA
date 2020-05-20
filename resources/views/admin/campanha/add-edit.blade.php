@@ -82,7 +82,7 @@
                             <!-- Imagem -->
                             <label for="imagem" class="text-dark col-form-label text-md-right">{{ __('Imagem*') }}</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" multiple id="imagem" accept="image/*" lang="br" name="imagem[]" @empty($campanha) required onClick="addImage()" @endisset>
+                                <input type="file" class="custom-file-input" id="imagem" accept="image/*" lang="br" name="imagem" @empty($campanha) required onClick="addImage()" @endisset>
                                 <label class="custom-file-label" for="imagem">Ache o arquivo</label>
                                 @error('imagem')
                                     <span class="invalid-feedback" role="alert">
@@ -96,7 +96,7 @@
                             <!-- Vídeo -->
                             <label for="imagem" class="text-dark col-form-label text-md-right">{{ __('Vídeo*') }}</label>
                             <div class="custom-file">
-                                <input type="file" onClick="addVideo()" class="custom-file-input" id="video" accept="video/*" lang="br" name="video" @empty($campanha) required  @endisset>
+                                <input type="file" onClick="addVideo()" class="custom-file-input" id="video" accept="video/*" lang="br" name="video" @empty($campanha)  @endisset>
                                 <label class="custom-file-label" for="video">Ache o arquivo</label>
                                 @error('video')
                                     <span class="invalid-feedback" role="alert">
@@ -105,6 +105,19 @@
                                 @enderror
                             </div>
                         </div>
+                    </div>
+                    <div class="form-row col">
+                        <!-- PDF -->
+                        <label for="pdf" class="text-dark col-form-label text-md-right">{{ __('PDF*') }}</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="pdf" accept="application/pdf" lang="br" name="pdf" @empty($campanha) onClick="addPDF()" @endisset>
+                                <label class="custom-file-label" for="pdf">Ache o arquivo</label>
+                                @error('pdf')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                     </div>
                     <div class="form-group col">
                     <br>
@@ -120,35 +133,47 @@
 
 
 
-                    <div class="col-6" >
-                        <div class="d-inline-block" id="imgs" style="width:200px; height:330px;">
-                    @isset($imagens)
-                        @foreach($imagens as $count => $imagem)
-                            <!-- Img{{$count}} -->
-                            <div class="d-block" id="i{{$count}}" style="">
-                                <a id="{{$imagem->id}}" href="#" url="{{route('campanha.destroyImagem',$imagem->id)}}" onClick="confirmExclusao({{$imagem->id}}, 'essa imagem')">
-                                    <img id="visu{{$count}}" class="rounded float-left excluir verifImg img" src="/upload_imagem/campanhas/{{$campanha->id}}/{{$imagem->nome_img}}"style="@if($count ==1) margin-top:15px;@endif border: none; display: block;">
-                                </a>
-                            </div>
-                        @endforeach
-                    @endisset
-                        </div>
-                        <!-- Video -->
-                        <div class="d-inline-block" id="movie" style="margin-left:10px;margin-top:-50px; width:280px; height:300px; ">
-                            @isset($video)
+                <div class="col-6" >
+                    <div class="d-inline-block" id="imgs" style="width:200px; height:330px;">
+                        <div class="d-block">
+                            <!-- Imagem -->
+                            @if(isset($campanha->imagem) and $campanha->imagem != '' )
                                 <div class="d-block">
-                                        <!-- <video width="280" height="300" controls="controls" autoplay="autoplay"> -->
-                                        <video width="280" height="300" controls="controls" id="viddeo" >
-                                            <source src="/upload_imagem/campanhas/{{$campanha->id}}/{{$video->nome_video}}" type="video/mp4">
-                                        </video>
+                                    <img id="imagem" class="rounded float-left excluir verifImg img" src="/upload_imagem/campanhas/{{$campanha->id}}/{{$campanha->imagem}}"style="border: none; display: block;">
                                 </div>
                                 <div class="d-block mt-1" >
-                                    <button type="button" class="btn btn-labeled btn-danger" id="{{$video->id}}" href="#" url="{{route('campanha.destroyVideo',$video->id)}}" onClick="confirmExclusao({{$video->id}}, 'esse vídeo')">
-                                    <span class="btn-label"><i class="fas fa-trash"></i></span> Apagar vídeo</button>
+                                    <button type="button" class="btn btn-labeled btn-danger" id="img" href="#" url="{{route('campanha.destroyImagem',$campanha->id)}}" onClick="exclusao('img', 'essa imagem')">
+                                    <span class="btn-label"><i class="fas fa-trash"></i></span> Apagar Imagem</button>
                                 </div>
-                            @endisset
+                            @endif
                         </div>
-                    <!-- </div> -->
+                        <div class="d-block">
+                            <!-- PDF -->
+                            @if(isset($campanha->pdf) and $campanha->pdf != '' )
+                                <div class="d-block">
+                                    <iframe id="pdfFrame"  src="\upload_pdf\campanhas\{{$campanha->id}}\{{$campanha->pdf}}" style="width:100%;height:100%;border:none"></iframe>
+                                </div>
+                                <div class="d-block mt-1" >
+                                    <button type="button" class="btn btn-labeled btn-danger" id="delPdf" href="#" url="{{route('campanha.destroyPdf',$campanha->id)}}" onClick="exclusao('delPdf', 'esse pdf')">
+                                    <span class="btn-label"><i class="fas fa-trash"></i></span> Apagar PDF</button>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                    <!-- Video -->
+                    <div class="d-inline-block" id="movie" style="margin-left:10px;margin-top:-50px; width:280px; height:300px; ">
+                    @if(isset($campanha->video) and $campanha->video != '' )
+                            <div class="d-block">
+                                <video width="280" height="300" controls="controls" id="viddeo" >
+                                    <source src="/upload_video/campanhas/{{$campanha->id}}/{{$campanha->video}}" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="d-block mt-1" >
+                                <button type="button" class="btn btn-labeled btn-danger" id="delVideo" href="#" url="{{route('campanha.destroyVideo',$campanha->id)}}" onClick="exclusao('delVideo', 'esse vídeo')">
+                                <span class="btn-label"><i class="fas fa-trash"></i></span> Apagar vídeo</button>
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -242,6 +267,20 @@
             }
         });
     }
+
+
+// Chama o modal e confirma ao excluir
+function exclusao(tipo, nome) {
+        tipo = '#'+tipo;
+        var message = "Tem certeza que deseja excluir "+nome+"?";
+        if ( confirm(message) ) {
+            url = $(tipo).attr('url');
+            window.location.href = url;
+        } else {
+            return false;
+        }
+    }
+
     $(document).ready(function(){
 
         // Corrigindo um erro que deu no HTML

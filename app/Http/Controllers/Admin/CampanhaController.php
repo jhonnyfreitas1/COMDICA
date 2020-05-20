@@ -19,10 +19,8 @@ class CampanhaController extends Controller
 {
     public function index()
     {
-        $campanhas = Campanha::all();
+        $campanhas = Campanha::orderBy('id', 'DESC')->get();
 
-
-        // return $imagens;
         return view('admin.campanha.index', compact('campanhas'));
     }
 
@@ -34,11 +32,11 @@ class CampanhaController extends Controller
 
     public function store(Request $request)
     {
+        // return $_FILES['pdf'];
         $validar            =   $request->validate([
             'titulo'          =>  'required | max:30',
             'desc'          =>  'required | max:255',
             'imagem'        =>  'required',
-            'video'        =>  'required ',
 
         ],[
             'titulo.required'     => 'Preencha o titulo do álbum',
@@ -46,7 +44,6 @@ class CampanhaController extends Controller
             'desc.required'     => 'Preencha a descrição do álbum',
             'desc.max'          => 'Digite no máximo 255 caracteres na descrição',
             'imagem.required'   => 'Adicione alguma imagem',
-            'video.required'   => 'Adicione algum video',
         ]);
 
         // Nomeando as variaveis do request
@@ -59,29 +56,29 @@ class CampanhaController extends Controller
         $campanha->titulo    = $titulo;
         $campanha->desc = $descricao;
         $campanha->user_id   = Auth::id();
+        // salvando fake para depois alterar
+        $campanha->imagem   = '';
+        $campanha->video   = '';
+        $campanha->pdf   = '';
         $campanha->save();
-
-        // Faz a verificação para entrar apenas duas vezes no loop
-        $count = ( count($request->allFiles()['imagem']) < 2 )? 1 : 2;
 
         // Diretorio dos arquivos
         $destination_path = "upload_imagem/campanhas/".$campanha->id.'/';
+        $destination_path_video = "upload_video/campanhas/".$campanha->id.'/';
+        $destination_path_pdf = "upload_pdf/campanhas/".$campanha->id.'/';
 
         // ADICIONANDO IMAGEM
-        // Fazendo o loop e entrando em cada imagem
-        for($i = 0; $i < $count ;$i++){
+        if( isset($_FILES['imagem']) and $_FILES['imagem']['name'] != "" ){
+
             // arquivo e extensão
-            $file1 = $request->allFiles()['imagem'][$i];
+            $file1 = $request->allFiles()['imagem'];
             $ex = $file1->extension();
 
-            // Adicionando o Imagem no banco
-            $imagem             = new ImgCampanha;
-            $imagem->nome_img       = 'img_'.$i.'.'.$ex;
-            $imagem->campanha_id  = $campanha->id;
-            $imagem->save();
+            // Nome da Imagem
+            $nomeImagem     = 'img.'.$ex;
 
             // Comprimindo imagem
-            $source_path = $request->File()['imagem'][$i];
+            $source_path = $request->File()['imagem'];
             $quality = 6;
             $info = getimagesize($source_path);
 
@@ -104,25 +101,48 @@ class CampanhaController extends Controller
             }
 
             // Adiciona ao diretorio
-            imagejpeg($image, $destination_path.$imagem->nome_img,20);
+            imagejpeg($image, $destination_path.$nomeImagem,20);
         }
 
         // ADICIONANDO VÍDEO
-        if( isset($_FILES['video']) ){
+        if( isset($_FILES['video']) and $_FILES['video']['name'] != "" ){
 
             // arquivo e extensão
             $file2 = $request->allFiles()['video'];
             $ex = pathinfo($file2->getClientOriginalName(), PATHINFO_EXTENSION);
 
-            // Adicionando o Imagem no banco
-            $video             = new VideoCampanha;
-            $video->nome_video   = 'video'.$ex;
-            $video->campanha_id  = $campanha->id;
-            $video->save();
+            // Nome do Vídeo
+            $nomeVideo   = 'video.'.$ex;
+
+            // Verifica se existe esse diretorio
+            if(!is_dir($destination_path_video)){
+                mkdir($destination_path_video);
+            }
 
             // Adiciona ao diretorio
-            move_uploaded_file($_FILES['video']['tmp_name'],$destination_path.$video->nome_video);
+            move_uploaded_file($_FILES['video']['tmp_name'],$destination_path_video.$nomeVideo);
         }
+
+
+        // ADICIONANDO PDF
+        if( isset($_FILES['pdf']) and $_FILES['pdf']['name'] != "" ){
+
+            // Verifica se existe esse diretorio
+            if(!is_dir($destination_path_pdf)){
+                mkdir($destination_path_pdf);
+            }
+
+            // Adicionar pdf no diretorio
+            $nomePdf = 'pdf.pdf';
+            $request->file()['pdf']->move($destination_path_pdf,$nomePdf);
+        }
+
+        // Alterando dados que foram salvos
+        $campanha->imagem   = isset($nomeImagem)? $nomeImagem : '';
+        $campanha->video   = isset($nomeVideo)? $nomeVideo : '';
+        $campanha->pdf   = isset($nomePdf)? $nomePdf : '';
+        $campanha->save();
+
 
         /*Voltando para a pagina e listar campanhas*/
         $mensagem = 'Campanha cadastrada com Sucesso!';
@@ -130,19 +150,17 @@ class CampanhaController extends Controller
     }
 
 
-    public function show($id)
-    {
-        // $album = DB::table('album_galerias');
-        // return view('admin.galeria.show', compact('album'));
-    }
+    // public function show($id)
+    // {
+    //     $campanhas = Campanha::all();
+    //     return view('admin.campanha.index', compact('campanhas'));
+    // }
 
 
     public function edit($id)
     {
-       $campanha      = DB::table('campanhas')->where('id','=', $id)->first();
-       $imagens      = DB::table('img_campanhas')->where('campanha_id','=', $id)->get();
-       $video      = VideoCampanha::where('campanha_id','=', $id)->first();
-       return view('admin.campanha.add-edit', compact('campanha','imagens','video'));
+       $campanha      = Campanha::where('id','=', $id)->first();
+       return view('admin.campanha.add-edit', compact('campanha'));
     }
 
 
@@ -167,115 +185,53 @@ class CampanhaController extends Controller
         $campanha           = Campanha::where('id',$id)->first();
         $campanha->titulo   = $titulo;
         $campanha->desc     = $descricao;
-        $campanha->user_id  = Auth::id();
+        $campanha->user_id  = $campanha->user_id;
+        // salvando fake para depois alterar
+        $campanha->imagem   = '';
+        $campanha->video   = '';
+        $campanha->pdf   = '';
         $campanha->save();
 
         // Diretorio dos arquivos
         $destination_path = "upload_imagem/campanhas/".$campanha->id.'/';
+        $destination_path_video = "upload_video/campanhas/".$campanha->id.'/';
+        $destination_path_pdf = "upload_pdf/campanhas/".$campanha->id.'/';
 
-        // Verifica se existe arqivos no diretorio
-        $scan =scandir($destination_path);
-        $c=0;
-        $k=0;
-        for ($j=0; $j < count($scan); $j++) {
-            $name_file = explode('.',$scan[$j]);
-            if($name_file[0] == 'img_0' or $name_file[0] == 'img_1'){
-                if($name_file[0] == 'img_0'){
-                    $k=1;
-                }else{
-                    $k=2;
-                }
-                $c++;
+        // ADICIONANDO IMAGEM
+        if( isset($_FILES['imagem']) and $_FILES['imagem']['name'] != "" ){
+
+            // arquivo e extensão
+            $file1 = $request->allFiles()['imagem'];
+            $ex = $file1->extension();
+
+            // Nome da Imagem
+            $nomeImagem     = 'img.'.$ex;
+
+            // Comprimindo imagem
+            $source_path = $request->File()['imagem'];
+            $quality = 6;
+            $info = getimagesize($source_path);
+
+            // Verifica qual o tipo de imagem
+            if ($info['mime'] == 'image/jpeg') {
+                $image = imagecreatefromjpeg($source_path);
+            } elseif ($info['mime'] == 'image/jpg') {
+                $image = imagecreatefromjpg($source_path);
+            } elseif ($info['mime'] == 'image/png') {
+                $image = imagecreatefrompng($source_path);
+            } elseif ($info['mime'] == 'image/bmp') {
+                $image = imagecreatefrombmp($source_path);
+            }else{
+                return back()->withErrors(['imagem'=>'Adicione arquivos com formato de imagem']);
+            };
+
+            // Verifica se existe esse diretorio
+            if(!is_dir($destination_path)){
+                mkdir($destination_path);
             }
-        }
 
-        // Verifica se enviou imagem
-        if ( isset($request->allFiles()['imagem']) ) {
-            // Faz a verificação para entrar apenas duas vezes no loop
-            $count = ( count($request->allFiles()['imagem']) < 2 )? 1 : 2;
-
-            // ADICIONANDO IMAGEM
-            // Fazendo o loop e entrando em cada imagem
-            for($i = 0; $i < $count ;$i++){
-
-                if($c == 2){
-                    return back()->withErrors(['imagem'=>'Já existe o máximo de imagens para essa campanha, exclua uma das existentes!']);
-                }else{
-                    if($k != 1){
-                        // arquivo e extensão
-                        $file1 = $request->allFiles()['imagem'][$i];
-                        $ex = $file1->extension();
-
-                        // Adicionando o Imagem no banco
-                        $imagem             = new ImgCampanha;
-                        $imagem->nome_img       = 'img_0.'.$ex;
-                        $imagem->campanha_id  = $campanha->id;
-                        $imagem->save();
-
-                        // Comprimindo imagem
-                        $source_path = $request->File()['imagem'][$i];
-                        $quality = 6;
-                        $info = getimagesize($source_path);
-
-                        // Verifica qual o tipo de imagem
-                        if ($info['mime'] == 'image/jpeg') {
-                            $image = imagecreatefromjpeg($source_path);
-                        } elseif ($info['mime'] == 'image/jpg') {
-                            $image = imagecreatefromjpg($source_path);
-                        } elseif ($info['mime'] == 'image/png') {
-                            $image = imagecreatefrompng($source_path);
-                        } elseif ($info['mime'] == 'image/bmp') {
-                            $image = imagecreatefrombmp($source_path);
-                        }else{
-                            return back()->withErrors(['imagem'=>'Adicione arquivos com formato de imagem']);
-                        };
-
-                        // Verifica se existe esse diretorio
-                        if(!is_dir($destination_path)){
-                            mkdir($destination_path);
-                        }
-
-                        // Adiciona ao diretorio
-                        imagejpeg($image, $destination_path.$imagem->nome_img,20);
-                       }else{
-                        // arquivo e extensão
-                        $file1 = $request->allFiles()['imagem'][$i];
-                        $ex = $file1->extension();
-
-                        // Adicionando o Imagem no banco
-                        $imagem             = new ImgCampanha;
-                        $imagem->nome_img       = 'img_1'.$ex;
-                        $imagem->campanha_id  = $campanha->id;
-                        $imagem->save();
-
-                        // Comprimindo imagem
-                        $source_path = $request->File()['imagem'][$i];
-                        $quality = 6;
-                        $info = getimagesize($source_path);
-
-                        // Verifica qual o tipo de imagem
-                        if ($info['mime'] == 'image/jpeg') {
-                            $image = imagecreatefromjpeg($source_path);
-                        } elseif ($info['mime'] == 'image/jpg') {
-                            $image = imagecreatefromjpg($source_path);
-                        } elseif ($info['mime'] == 'image/png') {
-                            $image = imagecreatefrompng($source_path);
-                        } elseif ($info['mime'] == 'image/bmp') {
-                            $image = imagecreatefrombmp($source_path);
-                        }else{
-                            return back()->withErrors(['imagem'=>'Adicione arquivos com formato de imagem']);
-                        };
-
-                        // Verifica se existe esse diretorio
-                        if(!is_dir($destination_path)){
-                            mkdir($destination_path);
-                        }
-
-                        // Adiciona ao diretorio
-                        imagejpeg($image, $destination_path.$imagem->nome_img,20);
-                    }
-                }
-            }
+            // Adiciona ao diretorio
+            imagejpeg($image, $destination_path.$nomeImagem,20);
         }
 
         // ADICIONANDO VÍDEO
@@ -285,15 +241,26 @@ class CampanhaController extends Controller
             $file2 = $request->allFiles()['video'];
             $ex = pathinfo($file2->getClientOriginalName(), PATHINFO_EXTENSION);
 
-            // Adicionando o Imagem no banco
-            $video             = new VideoCampanha;
-            $video->nome_video   = 'video.'.$ex;
-            $video->campanha_id  = $campanha->id;
-            $video->save();
+            // Nome do Vídeo
+            $nomeVideo   = 'video.'.$ex;
 
             // Adiciona ao diretorio
-            move_uploaded_file($_FILES['video']['tmp_name'],$destination_path.$video->nome_video);
+            move_uploaded_file($_FILES['video']['tmp_name'],$destination_path_video.$nomeVideo);
         }
+
+
+        // ADICIONANDO PDF
+        if( isset($_FILES['pdf']) and $_FILES['pdf']['name'] != "" ){
+            // Adicionar pdf no diretorio
+            $nomePdf = 'pdf.pdf';
+            $request->file()['pdf']->move($destination_path_pdf,$nomePdf);
+        }
+
+        // Alterando dados que foram salvos
+        $campanha->imagem   = isset($nomeImagem)? $nomeImagem : '';
+        $campanha->video   = isset($nomeVideo)? $nomeVideo : '';
+        $campanha->pdf   = isset($nomePdf)? $nomePdf : '';
+        $campanha->save();
 
         /*Voltando para a pagina e listar instituições*/
         $mensagem = 'Campanha editada com Sucesso!';
@@ -303,26 +270,26 @@ class CampanhaController extends Controller
     public function destroy($id)
     {
         // Consulta ata no banco
-        $query1 = DB::table('campanhas')->where('id',$id);
-        $query2 = DB::table('img_campanhas')->where('campanha_id',$id);
-        $query3 = DB::table('video_campanhas')->where('campanha_id',$id);
-        $campanha = $query1->get();
-        $imagens= $query2->get();
-        $video= $query3->get();
+        $campanha = Campanha::where('id',$id)->first();
+        return $campanha;
 
         // diretorio e nome
-        $diretorio = "upload_imagem/campanhas/".$campanha[0]->id.'/';
-        for($i = 0;$i < count($imagens);$i++ ){
-            $nome_img = $imagens[$i]->nome_img;
+        $diretorio = "upload_imagem/campanhas/".$campanha->id.'/';
+        $diretorioPDF = "upload_pdf/campanhas/".$campanha->id.'/';
+        $diretorioVideo = "upload_video/campanhas/".$campanha->id.'/';
 
-            // Vê se existe a imagem para exclui-lo
-            if (File::exists($diretorio.$nome_img)) {
-                $f = File::delete($diretorio.$nome_img);
-            }
+
+        // Vê se existe a imagem para exclui-lo
+        if (File::exists($diretorio.$campanha->imagem)) {
+            $f = File::delete($diretorio.$campanha->imagem);
         }
         // Vê se existe o video para exclui-lo
-        if (File::exists($diretorio. $video[0]->nome_video)) {
-            $f = File::delete($diretorio. $video[0]->nome_video);
+        if (File::exists($diretorioVideo.$campanha->video)) {
+            $f = File::delete($diretorioVideo.$campanha->video);
+        }
+        // Vê se existe o pdf para exclui-lo
+        if (File::exists($diretorioPDF.$campanha->pdf)) {
+            $f = File::delete($diretorioPDF.$campanha->pdf);
         }
 
         // Vê se existe a pasta para exclui-lo
@@ -331,53 +298,66 @@ class CampanhaController extends Controller
         }
 
         // Deleta as tabelas e redireciona
-        $query1->delete();
-        $query2->delete();
-        $query3->delete();
+        $campanha->delete();
         $mensagem = 'Campanha excluida com Sucesso!';
         return redirect('/admin/campanha')->with('mensagem',$mensagem);
     }
 
     public function destroyImagem($id)
     {
-        // return $id;
         // Consulta ao banco
-        $query = DB::table('img_campanhas')->where('id',$id);
-        $imagem = $query->get();
+        $campanha = Campanha::where('id',$id)->first();
 
         // diretorio e nome
-        $diretorio = "upload_imagem/campanhas/".$imagem[0]->campanha_id.'/';
-        $nome_img = $imagem[0]->nome_img;
+        $diretorio = "upload_imagem/campanhas/".$campanha->id.'/';
 
         // Vê se existe a imagem para exclui-lo
-        if (File::exists($diretorio.$nome_img)) {
-            $f = File::delete($diretorio.$nome_img);
+        if (File::exists($diretorio.$campanha->imagem)) {
+            $f = File::delete($diretorio.$campanha->imagem);
         }
 
-        // Deleta a tabela e redireciona
-        $query->delete();
+        // Retirando o nome da imagem da tabela
+        $campanha->imagem = '';
+        $campanha->save();
         $mensagem = 'Imagem excluida com Sucesso!';
-        return redirect('/admin/campanha/edit/'.$imagem[0]->campanha_id)->with('mensagem',$mensagem);
+        return redirect('/admin/campanha/edit/'.$campanha->id)->with('mensagem',$mensagem);
     }
     public function destroyVideo($id)
     {
-
         // Consulta ao banco
-        $query = DB::table('video_campanhas')->where('id',$id);
-        $video = $query->get();
+        $campanha = Campanha::where('id',$id)->first();
 
         // diretorio e nome
-        $diretorio = "upload_imagem/campanhas/".$video[0]->campanha_id.'/';
-        $nome_video = $video[0]->nome_video;
+        $diretorio = "upload_video/campanhas/".$campanha->id.'/';
 
         // Vê se existe a imagem para exclui-lo
-        if (File::exists($diretorio.$nome_video)) {
-            $f = File::delete($diretorio.$nome_video);
+        if (File::exists($diretorio.$campanha->video)) {
+            $f = File::delete($diretorio.$campanha->video);
         }
 
-        // Deleta a tabela e redireciona
-        $query->delete();
+        // Retirando o nome do vídeo da tabela
+        $campanha->video = '';
+        $campanha->save();
         $mensagem = 'Vídeo excluido com Sucesso!';
-        return redirect('/admin/campanha/edit/'.$video[0]->campanha_id)->with('mensagem',$mensagem);
+        return redirect('/admin/campanha/edit/'.$campanha->id)->with('mensagem',$mensagem);
+    }
+    public function destroyPdf($id)
+    {
+        // Consulta ao banco
+        $campanha = Campanha::where('id',$id)->first();
+
+        // diretorio e nome
+        $diretorio = "upload_pdf/campanhas/".$campanha->id.'/';
+
+        // Vê se existe a pdf para exclui-lo
+        if (File::exists($diretorio.$campanha->pdf)) {
+            $f = File::delete($diretorio.$campanha->pdf);
+        }
+
+        // Retirando o nome do pdf da tabela
+        $campanha->pdf = '';
+        $campanha->save();
+        $mensagem = 'Pdf excluido com Sucesso!';
+        return redirect('/admin/campanha/edit/'.$campanha->id)->with('mensagem',$mensagem);
     }
 }

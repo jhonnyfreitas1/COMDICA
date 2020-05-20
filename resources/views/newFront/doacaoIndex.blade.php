@@ -19,19 +19,19 @@
 </style>
 <section class="introducao-interna interna_sobre">
     <div class="container">
-        <h1 data-anime="400" class="fadeInDown">( Nome )</h1>
+        <h1 data-anime="400" class="fadeInDown">{{$campanha->titulo}}</h1>
         <p data-anime="800" class="fadeInDown">É a intenção, e não a doação, que faz o doador</p>
     </div>
 </section>
 <section class="missao_sobre container fadeInDown" data-anime="1200">
     <a href="">
         <div class="grid-6" style="width:60%">
-            <img src="/img/about.jpeg" alt="">
+            <img src="upload_imagem/campanhas/{{$campanha->id}}/{{$campanha->imagem}}" alt="">
         </div>
     </a>
     <div class="grid-6 margin">
-        <h2 class="subtitulo-interno">Campanha : (Nome)</h2>
-        <p>Descrição</p>
+        <h2 class="subtitulo-interno">Campanha : {{$campanha->titulo}}</h2>
+        <p>{{$campanha->desc}}</p>
     </div>
 </section>
 <section class="missao_sobre container fadeInDown" data-anime="1200">
@@ -40,7 +40,7 @@
             <h2 class="subtitulo">Vídeo</h2>
         </div>
         <video width="100%" controls>
-            <source src="{{asset('video/teste.mp4')}}" type="video/mp4">
+            <source src="upload_imagem/campanhas/{{$campanha->id}}/{{$campanha->video}}" type="video/mp4">
         <video>
     </div>
     <section class="quebra">

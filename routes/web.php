@@ -127,6 +127,7 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
         //Rotas de excluir imagem e video da campanha
 		Route::get('imagem/destroy/{id}',['as' => 'campanha.destroyImagem', 'uses' => 'Admin\CampanhaController@destroyImagem']);
 		Route::get('video/destroy/{id}',['as' => 'campanha.destroyVideo', 'uses' => 'Admin\CampanhaController@destroyVideo']);
+		Route::get('pdf/destroy/{id}',['as' => 'campanha.destroyPdf', 'uses' => 'Admin\CampanhaController@destroyPdf']);
 	});
 
 // --------------------------------------------------------------------------------------------------------------------

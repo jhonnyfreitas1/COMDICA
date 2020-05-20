@@ -15,7 +15,7 @@ class Campanha extends Model
 	protected $primaryKey = 'id';
 
 	/*nome dos atributos que poderão ser alterados*/
-	protected $fillable = ['titulo', 'desc'];
+	protected $fillable = ['titulo', 'desc','imagem','pdf','video'];
 
     public function user_id(){
         return $this->belongsTo(User::class);
