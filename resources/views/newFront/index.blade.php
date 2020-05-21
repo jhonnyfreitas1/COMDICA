@@ -27,6 +27,11 @@
             margin-top: 40%;
         }
     }
+    a{
+        cursor: pointer;
+        text-decoration: none;
+        color: black;
+    }
 </style>
 @section('content')
     <!-- Fundeca Pulsando -->
@@ -89,18 +94,20 @@
         <section class="variable slider">
             @foreach($postagens as $postagem)
             <ul class="produtos_lista">
-                <li class="grid-1-3">
-                    <div class="produtos_icone">
-                        <img src=@if($postagem->imagem_principal)
-                                    "/upload_imagem/postagens/{{$postagem->id}}/{{$postagem->imagem_principal}}"
-                                @else
-                                    {{asset('img/fundo_criancas.jpg')}}
-                                @endisset
-                                    alt="">
-                    </div>
-                    <h3>{{$postagem->titulo}}</h3>
-                    <p>{{$postagem->descricao}}</p>
-                </li>
+                <a href="/postagem/{{encrypt($postagem->id)}}">
+                    <li class="grid-1-3">
+                        <div class="produtos_icone">
+                            <img src=@if($postagem->imagem_principal)
+                            "/upload_imagem/postagens/{{$postagem->id}}/{{$postagem->imagem_principal}}"
+                            @else
+                            {{asset('img/fundo_criancas.jpg')}}
+                            @endisset
+                            alt="">
+                        </div>
+                        <h3>{{$postagem->titulo}}</h3>
+                        <p>{{$postagem->descricao}}</p>
+                    </li>
+                </a>
             </ul>
             @endforeach
         </section>
