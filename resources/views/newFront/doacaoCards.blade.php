@@ -99,7 +99,7 @@
                     <blockquote class="quote-externo">
                         <p>Aqui você fica sabendo como doar no período de maio a dezembro, através de nossa calculadora. Dessa forma, você ajuda nossos projetos sociais, o FUNDECA.</p>                    
                     </blockquote>
-                    <a href="{{route('portifolio')}}" class="btn-full">Doar</a>                    
+                    <a href="{{route('projetoSociais')}}" class="btn-full">Doar</a>                    
                 </div>
             {{-- @foreach ($inst as $instData)
                 <li class="grid-4">

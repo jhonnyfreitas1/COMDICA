@@ -45,8 +45,10 @@
     @isset($album)
         <form method="post" action="{{route('galeria.update', $album->id)}}" enctype="multipart/form-data">
             @method('put')
+            @csrf
     @else
         <form method="post" action="{{route('galeria.store')}}" enctype="multipart/form-data">
+            @csrf
     @endisset
     @csrf
     <div class="card">
