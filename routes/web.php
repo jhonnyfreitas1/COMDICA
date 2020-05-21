@@ -27,6 +27,7 @@ Route::view('portifolioComdica', 'newFront.portifolioComdica')->name('comdica');
 Route::view('portifolioComdicaEntidadesCards', 'newFront.portifolioComdicaEntidadesCards')->name('comdicaEC');
 Route::view('portifolioComdicaGaleria', 'newFront.portifolioGaleria')->name('comdicaGaleria');
 Route::view('doacaoCards', 'newFront.doacaoCards')->name('doacaoCards');
+Route::view('projetoSociais', 'newFront.projetoSociais')->name('projetoSociais');
 //Rota do Flyer e do vídeo
 Route::get('doacaoFlyer', 'CampanhaController@index')->name('doacaoFlyer');
 
