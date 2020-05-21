@@ -23,7 +23,7 @@ Route::view('denuncias', 'newFront.denuncias')->name('denuncias');
 Route::get('sobre', ['as' => 'sobre', 'uses' => 'HomeController@sobre']);
 Route::get('postagens', 'HomeController@postList')->name('postagens');
 Route::view('postagemVer', 'newFront.verPostagem')->name('postagemVer');
-Route::view('portifolioComdica', 'newFront.portifolioComdica')->name('comdica');
+Route::get('portifolioComdica/{id}', 'HomeController@galeriaShow')->name('comdicaGaleriaShow');
 Route::view('portifolioComdicaEntidadesCards', 'newFront.portifolioComdicaEntidadesCards')->name('comdicaEC');
 Route::view('portifolioComdicaGaleria', 'newFront.portifolioGaleria')->name('comdicaGaleria');
 Route::view('doacaoCards', 'newFront.doacaoCards')->name('doacaoCards');

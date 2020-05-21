@@ -41,12 +41,18 @@ class HomeController extends Controller
     }
     public function entidadeList(){
         $inst = DB::table('instituicoes')->join('imgs_insts', 'inst_img', '=', 'img_id')->paginate(4);
-        // dd($inst);
         return view('newFront.portifolio')->with(compact('inst'));
     }
     public function entidade($id){
         $instVer = DB::table('instituicoes')->join('imgs_insts', 'inst_img', '=', 'img_id')->where('id', $id)->first();
-        return view ('newFront.portifolioVer')->with(compact('instVer'));
+        $albumWithImgs = DB::table('album_galerias')->join('img_album_galerias', 'album_galerias.id', '=', 'img_album_galerias.album_id')->paginate(6);
+        return view ('newFront.portifolioVer')->with(compact('instVer', 'albumWithImgs'));
+    }
+    public function galeriaShow($id){
+        //Já está trazendo as imagens, só listar agora.
+        $albumWithImgs = DB::table('album_galerias')->join('img_album_galerias', 'album_galerias.id', '=', 'img_album_galerias.album_id')->where('img_album_galerias.album_id', $id)->get();
+        // dd($albumWithImgs);
+        return view('newFront.portifolioComdica')->with(compact('albumWithImgs'));
     }
     public function sobre()
     {

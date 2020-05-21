@@ -5,6 +5,9 @@
     .margin{
         margin-bottom: 20px;
     }
+    .t{
+        margin-top: 40px;
+    }
     .t a{
         margin-left: -50px;
     }
@@ -14,6 +17,9 @@
         }
         .t p{
             margin-left: 50px;
+        }
+        .t{
+        margin-top: 0px;
         }
     }
 </style>
@@ -46,8 +52,7 @@
     <section class="quebra">
         <blockquote class="quote-externo container">
             <div class="t">
-                <p class="">“Gostou do que viu? então ajude-nos a manter nossos projetos ;)”</p>
-                <a href="{{route('doacaoCards')}}" class="btn-full" style="">Doar</a>
+                <p class="">Viu como é simples? então ajude-nos a manter nossos projetos ;)</p>
             </div>
             </blockquote>
     </section>

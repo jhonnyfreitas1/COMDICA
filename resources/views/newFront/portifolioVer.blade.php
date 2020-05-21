@@ -3,8 +3,15 @@
 @section('content')
     <style>
         .produtos_list:hover{
-            border: 2px dotted #0a5429;
+            border: 2px dotted black;
             cursor: pointer;
+        }
+        .album{
+            font-family: Comdica;
+            font-size: 18px;
+            text-align: center;
+            color: #5BA479;
+            
         }
     </style>
     <br><br>
@@ -36,36 +43,25 @@
         </div>
     </section>
     @if($instVer->id === 1)
-    <section class="introducao-interna" style="color:#5BA479; background-color: #f7fffa">
-        <div class="container">
-            <h1 data-anime="400" class="fadeInDown">Nosso Portifólio</h1>
-            <p data-anime="800" class="fadeInDown">Veja aqui nossas atas e resoluções.</p>
-        </div>
-    </section>
-    <section class="container produto_item">
-        <ul class="produtos_lista">
-            <a href="{{route('comdica')}}" >
-                <li class="grid-5 produtos_list">
-                    <div class="produtos_icone">
-                        <img src="/img/about.jpeg"alt="">
-                    </div>
-                </li>
-            </a>
-            <a href="" >
-                <li class="grid-5 produtos_list">
-                    <div class="produtos_icone">
-                        <img src="/img/about.jpeg"alt="">
-                    </div>
-                </li>
-            </a>
-            <a href="" >
-                <li class="grid-5 produtos_list">
-                    <div class="produtos_icone">
-                        <img src="/img/about.jpeg"alt="">
-                    </div>
-                </li>
-            </a>
-        </ul>
-    </section>
+        <section class="introducao-interna" style="color:#5BA479; background-color: #f7fffa">
+            <div class="container">
+                <h1 data-anime="400" class="fadeInDown">Nossos Albuns</h1>
+                <p data-anime="800" class="fadeInDown">Veja aqui nossos albuns de fotos.</p>
+            </div>
+        </section>
+        <section class="container produto_item">
+            <ul class="produtos_lista">
+                @foreach ($albumWithImgs as $album)
+                    <a href="{{route('comdicaGaleriaShow', ['id' => $album->id])}}" >
+                        <li class="grid-5 produtos_list">
+                            <div class="produtos_icone">
+                                <p class="album">{{$album->titulo}}</p>
+                                <img src="/img/about.jpeg"alt="">
+                            </div>
+                        </li>
+                    </a>
+                @endforeach
+            </ul>
+        </section>
     @endif
 @endsection
