@@ -27,11 +27,7 @@
             margin-top: 40%;
         }
     }
-    a{
-        cursor: pointer;
-        text-decoration: none;
-        color: black;
-    }
+
 </style>
 @section('content')
     <!-- Fundeca Pulsando -->

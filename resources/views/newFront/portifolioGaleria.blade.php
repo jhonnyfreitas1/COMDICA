@@ -104,7 +104,7 @@
                     <blockquote class="quote-externo">
                         <p></p>
                     </blockquote>
-                    <a href="{{route('portifolio')}}" class="btn-full">Ver mais</a>                    
+                    <a href="{{route('atas')}}" class="btn-full">Ver mais</a>                    
                 </div>
             {{-- @foreach ($inst as $instData)
                 <li class="grid-4">

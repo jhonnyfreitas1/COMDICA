@@ -28,6 +28,8 @@ Route::view('portifolioComdicaEntidadesCards', 'newFront.portifolioComdicaEntida
 Route::view('portifolioComdicaGaleria', 'newFront.portifolioGaleria')->name('comdicaGaleria');
 Route::view('doacaoCards', 'newFront.doacaoCards')->name('doacaoCards');
 Route::view('projetoSociais', 'newFront.projetoSociais')->name('projetoSociais');
+//Rota de atas para exibir para os usuários.
+Route::get('atasExibir', 'AtasController@index')->name('atas');
 //Rota do Flyer e do vídeo
 Route::get('doacaoFlyer', 'CampanhaController@index')->name('doacaoFlyer');
 
