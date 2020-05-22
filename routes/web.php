@@ -184,7 +184,7 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 Route::get('/email/verify/{email}', ['as' => 'status', 'uses' => 'EmailsController@verificar']);
 
 //Rotas de Denuncia
-Route::put('/denuncia/store', ['as' => 'denuncia.store', 'uses' => 'DenunciaController@store']);
+Route::post('/denuncia/store', ['as' => 'denuncia.store', 'uses' => 'DenunciaController@store']);
 Route::get('/denuncia', ['as' => 'denuncia', 'uses' => 'DenunciaController@denuncia']);
 Route::get('/offline', ['as' => 'offline', 'uses' => 'DenunciaController@offline']);
 Route::get('/success', ['as' => 'success', 'uses' => 'DenunciaController@success']);

@@ -46,7 +46,7 @@ if ('serviceWorker' in navigator) {
             </button>
         </div>
         <div class="modal-body">
-            Confirmo que as informações prestadas nesse formulario de denuncia são verdadeiras e estou ciente de que 
+            Confirmo que as informações prestadas nesse formulario de denuncia são verdadeiras e estou ciente de que
             o uso inapropriado da ferramenta de denuncias pode causar prisão com base no artigo
              340 – A ao Decreto Lei nº 2.848 de
                 07 de dezembro de 1940 (Código Penal):
@@ -396,7 +396,7 @@ if ('serviceWorker' in navigator) {
                                 Denunciar <i class="fa fa-correct"></i>
                             </button>
                             {{ csrf_field() }}
-                            @method('put')
+                            @method('post')
                         </form>
                     </div>
                     <div class="card-footer" style="background-color: white;">
@@ -418,7 +418,7 @@ if ('serviceWorker' in navigator) {
 $(document).ready(function(){
             $('.step').hide()
             $('.step').first().show()
-            $('#modaldenuncia').modal('show'); 
+            $('#modaldenuncia').modal('show');
             //Passo exibido
             var showStep= function(){
                 var step = parseInt($(".step:visible").index());
