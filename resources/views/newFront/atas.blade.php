@@ -41,6 +41,7 @@
     </style>
     <br><br><br><br><br>
     <section class="produtos container">
+        <h2 class="subtitulo">Atas</h2>
         <table class="display" style="width:100%" id="table">
             <thead>
                 <tr  class="bg-info text-light">
@@ -57,24 +58,26 @@
                     <th scope="row">{{$ata->id}}</th>
                     <td>
                         <strong>
-                            <a href="{{route('atas.show', $ata->id)}}" class="text-dark">{{ $ata->nome }}</a>
+                            <a href="{{route('showAtas', ['id' => $ata->id])}}" class="text-dark">{{ $ata->nome }}</a>
                         </strong>
                     </td>
                     <td>
                         <strong>
-                            <a href="{{route('atas.show', $ata->id)}}" class="text-dark">{{ $ata->ano }}</a>
+                            <a href="{{route('showAtas', ['id' => $ata->id])}}" class="text-dark">{{ $ata->ano }}</a>
                         </strong>
                     </td>
                     <td style="display:none">
                         <strong>
-                            <a href="{{route('atas.show', $ata->id)}}" class="text-dark">@if($ata->tipo == "ordinaria") 1 @else 2 @endif</a>
+                            <a href="{{route('showAtas', ['id' => $ata->id])}}" class="text-dark">@if($ata->tipo == "ordinaria") 1 @else 2 @endif</a>
                         </strong>
                     </td>
                     @endforeach
                 </tbody>
                 @endif
             </table>
+            <br><br>
             <!-- Import Js Datatables -->
+            <a href="{{route('resolucao')}}" class="btn">Ver Resoluções</a>
     </section>
             <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
             <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
@@ -88,7 +91,7 @@
                 dom: 'Bfrtip',
                 buttons: [
                     {
-                        text: 'Ordinaria',
+                        text: 'Ordinária',
                         action: function ( e, dt, node, config ) {
                             this
                             .columns( 3 )

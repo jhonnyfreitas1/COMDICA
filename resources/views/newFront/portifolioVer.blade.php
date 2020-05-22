@@ -3,7 +3,7 @@
 @section('content')
     <style>
         .produtos_list:hover{
-            border: 2px dotted black;
+            border: none;
             cursor: pointer;
         }
         .album{

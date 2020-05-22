@@ -10,4 +10,8 @@ class AtasController extends Controller
         $atas = Ata::all();
         return view('newFront.atas', compact('atas'));
     }
+    public function showAtas($id){
+        $ata = Ata::where('id',$id)->first();
+        return redirect('/upload_pdf/atas/'.$ata->ano.'/'.$ata->nome_pdf);
+    }
 }

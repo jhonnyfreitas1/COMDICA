@@ -30,6 +30,10 @@ Route::view('doacaoCards', 'newFront.doacaoCards')->name('doacaoCards');
 Route::view('projetoSociais', 'newFront.projetoSociais')->name('projetoSociais');
 //Rota de atas para exibir para os usuários.
 Route::get('atasExibir', 'AtasController@index')->name('atas');
+Route::get('atasExibir/{id}', 'AtasController@showAtas')->name('showAtas');
+//Rota de Resoluções para exibir ao usuário
+Route::get('resolucaoExibir', 'ResolucoesController@index')->name('resolucao');
+Route::get('resolucaoExibir/{id}', 'ResolucoesController@showResolucao')->name('showResolucao');
 //Rota do Flyer e do vídeo
 Route::get('doacaoFlyer', 'CampanhaController@index')->name('doacaoFlyer');
 

@@ -94,9 +94,9 @@
                         <div class="grid-4 footer_redes">
                             <h3>Redes Sociais</h3>
                             <ul>
-                                <li><a href="http://facebook.com" target="_blank"><img src="img/redes-sociais/Facebook.png"></a></li>
-                                <li><a href="http://instagram.com" target="_blank"><img src="img/redes-sociais/Instagram.png"></a></li>
-                                <li><a href="http://twitter.com" target="_blank"><img src="img/redes-sociais/Twiiter.png"></a></li>
+                                <li><a href="https://www.facebook.com/cmdcaaracoiabape" target="_blank"><img src="{{asset('img/redes-sociais/Facebook.png')}}"></a></li>
+                                <li><a href="http://instagram.com" target="_blank"><img src="{{asset('img/redes-sociais/Instagram.png')}}"></a></li>
+                                <li><a href="http://twitter.com" target="_blank"><img src="{{asset('img/redes-sociais/Twiiter.png')}}"></a></li>
                             </ul>
                         </div>
 

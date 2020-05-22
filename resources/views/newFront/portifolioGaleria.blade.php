@@ -102,7 +102,7 @@
                 <div class="grid-4 cardLink img2">
                     <h1>ATAS</h1>                    
                     <blockquote class="quote-externo">
-                        <p></p>
+                        <p>Veja aqui nossas atas de reuniões e nossas últimas resoluções.</p>
                     </blockquote>
                     <a href="{{route('atas')}}" class="btn-full">Ver mais</a>                    
                 </div>
