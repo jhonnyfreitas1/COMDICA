@@ -50,24 +50,64 @@
             </div>
         </section>
         <section class="container produto_item">
-            <ul class="produtos_lista">
+                @php($j = 0)
                 @foreach ($galerias as $galeria)
                 @php($c = 0)
-                    <a href="{{route('comdicaGaleriaShow', ['id' => $galeria->id])}}" >
-                        <li class="grid-5 produtos_list">
-                            <div class="produtos_icone">
-                                <p class="album">{{$galeria->titulo}}</p>
-                                @foreach($imagens as $imagem)
-                                    @if($c == 0)
-                                        @if($imagem->album_id == $galeria->id)
-                                            <img src="/upload_imagem/albuns/{{$galeria->id}}/{{$imagem->nome}}"alt="">
-                                            @php($c++)
+                    @if($j == 0)
+                    <ul class="produtos_lista">
+                        <a href="{{route('comdicaGaleriaShow', ['id' => $galeria->id])}}" >
+                            <li class="grid-5 produtos_list">
+                                <div class="produtos_icone">
+                                    <p class="album">{{$galeria->titulo}}</p>
+                                    @foreach($imagens as $imagem)
+                                        @if($c == 0)
+                                            @if($imagem->album_id == $galeria->id)
+                                                <img src="/upload_imagem/albuns/{{$galeria->id}}/{{$imagem->nome}}"alt="">
+                                                @php($c++)
+                                            @endif
                                         @endif
-                                    @endif
-                                @endforeach
-                            </div>
-                        </li>
-                    </a>
+                                    @endforeach
+                                </div>
+                            </li>
+                        </a>
+                        @php($j++)
+                    @elseif($j == 3)
+                        <a href="{{route('comdicaGaleriaShow', ['id' => $galeria->id])}}" >
+                            <li class="grid-5 produtos_list">
+                                <div class="produtos_icone">
+                                    <p class="album">{{$galeria->titulo}}</p>
+                                    @foreach($imagens as $imagem)
+                                        @if($c == 0)
+                                            @if($imagem->album_id == $galeria->id)
+                                                <img src="/upload_imagem/albuns/{{$galeria->id}}/{{$imagem->nome}}"alt="">
+                                                @php($c++)
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </li>
+                        </a>
+                    </ul>
+                    @php($j = 0)
+                    @else
+                    <a href="{{route('comdicaGaleriaShow', ['id' => $galeria->id])}}" >
+                            <li class="grid-5 produtos_list">
+                                <div class="produtos_icone">
+                                    <p class="album">{{$galeria->titulo}}</p>
+                                    @foreach($imagens as $imagem)
+                                        @if($c == 0)
+                                            @if($imagem->album_id == $galeria->id)
+                                                <img src="/upload_imagem/albuns/{{$galeria->id}}/{{$imagem->nome}}"alt="">
+                                                @php($c++)
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </li>
+                        </a>
+                        @php($j++)
+
+                    @endif
                 @endforeach
             </ul>
         </section>
