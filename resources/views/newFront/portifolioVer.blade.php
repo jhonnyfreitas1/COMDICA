@@ -11,7 +11,7 @@
             font-size: 18px;
             text-align: center;
             color: #5BA479;
-            
+
         }
     </style>
     <br><br>
@@ -51,12 +51,20 @@
         </section>
         <section class="container produto_item">
             <ul class="produtos_lista">
-                @foreach ($albumWithImgs as $album)
-                    <a href="{{route('comdicaGaleriaShow', ['id' => $album->id])}}" >
+                @foreach ($galerias as $galeria)
+                @php($c = 0)
+                    <a href="{{route('comdicaGaleriaShow', ['id' => $galeria->id])}}" >
                         <li class="grid-5 produtos_list">
                             <div class="produtos_icone">
-                                <p class="album">{{$album->titulo}}</p>
-                                <img src="/img/about.jpeg"alt="">
+                                <p class="album">{{$galeria->titulo}}</p>
+                                @foreach($imagens as $imagem)
+                                    @if($c == 0)
+                                        @if($imagem->album_id == $galeria->id)
+                                            <img src="/upload_imagem/albuns/{{$galeria->id}}/{{$imagem->nome}}"alt="">
+                                            @php($c++)
+                                        @endif
+                                    @endif
+                                @endforeach
                             </div>
                         </li>
                     </a>

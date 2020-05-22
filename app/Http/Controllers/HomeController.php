@@ -37,7 +37,7 @@ class HomeController extends Controller
     public function postList(){
         $posts = DB::table('postagens')->orderBy('id', 'desc')->paginate(4);
         $postRecent = DB::table('postagens')->find(DB::table('postagens')->max('id'));
-        return view('newFront.postagens')->with(compact('posts', 'postRecent'));  
+        return view('newFront.postagens')->with(compact('posts', 'postRecent'));
     }
     public function entidadeList(){
         $inst = DB::table('instituicoes')->join('imgs_insts', 'inst_img', '=', 'img_id')->paginate(4);
@@ -45,19 +45,20 @@ class HomeController extends Controller
     }
     public function entidade($id){
         $instVer = DB::table('instituicoes')->join('imgs_insts', 'inst_img', '=', 'img_id')->where('id', $id)->first();
-        $albumWithImgs = DB::table('album_galerias')->join('img_album_galerias', 'album_galerias.id', '=', 'img_album_galerias.album_id')->paginate(6);
-        return view ('newFront.portifolioVer')->with(compact('instVer', 'albumWithImgs'));
+        $imagens = DB::table('img_album_galerias')->get();
+        $galerias = DB::table('album_galerias')->get();
+        return view ('newFront.portifolioVer')->with(compact('instVer', 'imagens','galerias'));
     }
     public function galeriaShow($id){
         //Já está trazendo as imagens, só listar agora.
         $albumWithImgs = DB::table('album_galerias')->join('img_album_galerias', 'album_galerias.id', '=', 'img_album_galerias.album_id')->where('img_album_galerias.album_id', $id)->get();
-        // dd($albumWithImgs);
+        // return $albumWithImgs;
         return view('newFront.portifolioComdica')->with(compact('albumWithImgs'));
     }
     public function sobre()
     {
         return view('newFront.sobre');
-    }   
+    }
 
     public function postagem($id)
     {
@@ -73,7 +74,7 @@ class HomeController extends Controller
          }else{
             return redirect('/notfound');
         }
-        
+
 
     }
     public function pq_doar()
@@ -92,14 +93,14 @@ class HomeController extends Controller
     }
 
     public function status(Request $request)
-    {   
+    {
         $status_boleto = DB::table('doacao_boleto')->where('doador_cpf',$request->cpf)->where('metodo_pagamento','boleto')->paginate(5);
         $status_carne = DB::table('doacao_carne')->where('doador_cpf',$request->cpf)->paginate(5);
 
         if(count($status_carne) || count($status_boleto)){
 
             return view('home.status')->with(compact('status_boleto','status_carne'));
-       
+
         }
             $mensagem  = "esse cpf não foi encontrado !";
         return redirect()->route('soudoador')->with('mensagem',compact('mensagem'));
@@ -236,8 +237,8 @@ class HomeController extends Controller
                     return view('home.recibo_valido',compact('recibo' , 'boleto'));
 
                 }
-                else if($recibo->metodo_pagamento == "carne") {   
-                
+                else if($recibo->metodo_pagamento == "carne") {
+
 
                     $boleto = Doacao_carne::where('carne_id' , $recibo->cod_boleto)->first();
                     return view('home.recibo_valido',compact('recibo' , 'boleto'));
@@ -268,12 +269,12 @@ class HomeController extends Controller
     }
      public function valorPorExtenso( $valor = 0, $bolExibirMoeda = true, $bolPalavraFeminina = false )
     {
- 
+
         $valor = self::removerFormatacaoNumero( $valor );
- 
+
         $singular = null;
         $plural = null;
- 
+
         if ( $bolExibirMoeda )
         {
             $singular = array("centavo", "real", "mil", "milhão", "bilhão", "trilhão", "quatrilhão");
@@ -284,45 +285,45 @@ class HomeController extends Controller
             $singular = array("", "", "mil", "milhão", "bilhão", "trilhão", "quatrilhão");
             $plural = array("", "", "mil", "milhões", "bilhões", "trilhões","quatrilhões");
         }
- 
+
         $c = array("", "cem", "duzentos", "trezentos", "quatrocentos","quinhentos", "seiscentos", "setecentos", "oitocentos", "novecentos");
         $d = array("", "dez", "vinte", "trinta", "quarenta", "cinquenta","sessenta", "setenta", "oitenta", "noventa");
         $d10 = array("dez", "onze", "doze", "treze", "quatorze", "quinze","dezesseis", "dezessete", "dezoito", "dezenove");
         $u = array("", "um", "dois", "três", "quatro", "cinco", "seis","sete", "oito", "nove");
- 
- 
+
+
         if ( $bolPalavraFeminina )
         {
-        
-            if ($valor == 1) 
+
+            if ($valor == 1)
             {
                 $u = array("", "uma", "duas", "três", "quatro", "cinco", "seis","sete", "oito", "nove");
             }
-            else 
+            else
             {
                 $u = array("", "um", "duas", "três", "quatro", "cinco", "seis","sete", "oito", "nove");
             }
-            
-            
+
+
             $c = array("", "cem", "duzentas", "trezentas", "quatrocentas","quinhentas", "seiscentas", "setecentas", "oitocentas", "novecentas");
-            
-            
+
+
         }
- 
- 
+
+
         $z = 0;
- 
+
         $valor = number_format( $valor, 2, ".", "." );
         $inteiro = explode( ".", $valor );
- 
-        for ( $i = 0; $i < count( $inteiro ); $i++ ) 
+
+        for ( $i = 0; $i < count( $inteiro ); $i++ )
         {
-            for ( $ii = mb_strlen( $inteiro[$i] ); $ii < 3; $ii++ ) 
+            for ( $ii = mb_strlen( $inteiro[$i] ); $ii < 3; $ii++ )
             {
                 $inteiro[$i] = "0" . $inteiro[$i];
             }
         }
- 
+
         // $fim identifica onde que deve se dar junção de centenas por "e" ou por "," ;)
         $rt = null;
         $fim = count( $inteiro ) - ($inteiro[count( $inteiro ) - 1] > 0 ? 1 : 2);
@@ -332,7 +333,7 @@ class HomeController extends Controller
             $rc = (($valor > 100) && ($valor < 200)) ? "cento" : $c[$valor[0]];
             $rd = ($valor[1] < 2) ? "" : $d[$valor[1]];
             $ru = ($valor > 0) ? (($valor[1] == 1) ? $d10[$valor[2]] : $u[$valor[2]]) : "";
- 
+
             $r = $rc . (($rc && ($rd || $ru)) ? " e " : "") . $rd . (($rd && $ru) ? " e " : "") . $ru;
             $t = count( $inteiro ) - 1 - $i;
             $r .= $r ? " " . ($valor > 1 ? $plural[$t] : $singular[$t]) : "";
@@ -340,26 +341,26 @@ class HomeController extends Controller
                 $z++;
             elseif ( $z > 0 )
                 $z--;
-                
+
             if ( ($t == 1) && ($z > 0) && ($inteiro[0] > 0) )
                 $r .= ( ($z > 1) ? " de " : "") . $plural[$t];
-                
+
             if ( $r )
                 $rt = $rt . ((($i > 0) && ($i <= $fim) && ($inteiro[0] > 0) && ($z < 1)) ? ( ($i < $fim) ? ", " : " e ") : " ") . $r;
         }
- 
+
         $rt = mb_substr( $rt, 1 );
- 
+
         return($rt ? trim( $rt ) : "zero");
- 
-        
+
+
 
     }
     public function removerFormatacaoNumero( $strNumero )
         {
-     
+
             $strNumero = trim( str_replace( "R$", null, $strNumero ) );
-     
+
             $vetVirgula = explode( ",", $strNumero );
             if ( count( $vetVirgula ) == 1 )
             {
@@ -371,15 +372,15 @@ class HomeController extends Controller
             {
                 return $strNumero;
             }
-     
+
             $strNumero = $vetVirgula[0];
             $strDecimal = mb_substr( $vetVirgula[1], 0, 2 );
-     
+
             $acentos = array(".");
             $resultado = str_replace( $acentos, "", $strNumero );
             $resultado = $resultado . "." . $strDecimal;
-     
+
             return $resultado;
-     
+
         }
 }

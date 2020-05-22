@@ -19,28 +19,34 @@
 </section>
 <section class="missao_sobre container fadeInDown" data-anime="1200">
     <section class="container produto_item">
-        <ul class="produtos_lista">
+    @php($c=0)
+    @foreach($albumWithImgs as $imagem)
+        @if($c == 0)
+            <ul class="produtos_lista">
+                <li class="grid-8 produtos_list">
+                    <div class="produtos_icone">
+                        <img src="/upload_imagem/albuns/{{$imagem->album_id}}/{{$imagem->nome}}"alt="">
+                    </div>
+                </li>
+                @php($c++)
+        @elseif($c == 3)
+                <li class="grid-8 produtos_list">
+                    <div class="produtos_icone">
+                        <img src="/upload_imagem/albuns/{{$imagem->album_id}}/{{$imagem->nome}}"alt="">
+                    </div>
+                </li>
+            </ul>
+            @php($c=0)
+
+        @else
             <li class="grid-8 produtos_list">
                 <div class="produtos_icone">
-                    <img src="/img/about.jpeg"alt="">
+                    <img src="/upload_imagem/albuns/{{$imagem->album_id}}/{{$imagem->nome}}"alt="">
                 </div>
             </li>
-            <li class="grid-8 produtos_list">
-                <div class="produtos_icone">
-                    <img src="/img/about.jpeg"alt="">
-                </div>
-            </li>
-            <li class="grid-8 produtos_list">
-                <div class="produtos_icone">
-                    <img src="/img/about.jpeg"alt="">
-                </div>
-            </li>
-            <li class="grid-8 produtos_list">
-                <div class="produtos_icone">
-                    <img src="/img/about.jpeg"alt="">
-                </div>
-            </li>
-        </ul>
+                @php($c++)
+        @endif
+    @endforeach
     </section>
 </section>
 @endsection
