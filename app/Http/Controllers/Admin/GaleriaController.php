@@ -211,7 +211,7 @@ foreach($albuns as $album){
         }
         // Vê se existe a pasta para exclui-lo
         if (is_dir($diretorio)) {
-            $v = rmdir($diretorio);
+            rmdir($diretorio);
         }
 
         // Deleta as tabelas e redireciona
