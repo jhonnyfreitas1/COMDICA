@@ -187,9 +187,9 @@ class CampanhaController extends Controller
         $campanha->desc     = $descricao;
         $campanha->user_id  = $campanha->user_id;
         // salvando fake para depois alterar
-        $campanha->imagem   = '';
-        $campanha->video   = '';
-        $campanha->pdf   = '';
+        $campanha->imagem   = $campanha->imagem;
+        $campanha->video   = $campanha->video;
+        $campanha->pdf   = $campanha->pdf;
         $campanha->save();
 
         // Diretorio dos arquivos
@@ -257,9 +257,10 @@ class CampanhaController extends Controller
         }
 
         // Alterando dados que foram salvos
-        $campanha->imagem   = isset($nomeImagem)? $nomeImagem : '';
-        $campanha->video   = isset($nomeVideo)? $nomeVideo : '';
-        $campanha->pdf   = isset($nomePdf)? $nomePdf : '';
+        // return $campanha->video;
+        $campanha->imagem   = isset($nomeImagem)? $nomeImagem : $campanha->imagem;
+        $campanha->video   = isset($nomeVideo)? $nomeVideo : $campanha->video;
+        $campanha->pdf   = isset($nomePdf)? $nomePdf : $campanha->pdf;
         $campanha->save();
 
         /*Voltando para a pagina e listar instituições*/

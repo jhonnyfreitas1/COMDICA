@@ -53,7 +53,7 @@
         <div class="card-header">
             Informações da Campanha
         </div>
-        <div class="card-body">
+        <div class="card-body pb-0">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group col">
@@ -92,23 +92,8 @@
                             </div>
                         </div>
                         <div class="col-6">
-
-                            <!-- Vídeo -->
-                            <label for="imagem" class="text-dark col-form-label text-md-right">{{ __('Vídeo*') }}</label>
-                            <div class="custom-file">
-                                <input type="file" onClick="addVideo()" class="custom-file-input" id="video" accept="video/*" lang="br" name="video" @empty($campanha)  @endisset>
-                                <label class="custom-file-label" for="video">Ache o arquivo</label>
-                                @error('video')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row col">
-                        <!-- PDF -->
-                        <label for="pdf" class="text-dark col-form-label text-md-right">{{ __('PDF*') }}</label>
+                            <!-- PDF -->
+                            <label for="pdf" class="text-dark col-form-label text-md-right">{{ __('PDF*') }}</label>
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="pdf" accept="application/pdf" lang="br" name="pdf" @empty($campanha) onClick="addPDF()" @endisset>
                                 <label class="custom-file-label" for="pdf">Ache o arquivo</label>
@@ -118,6 +103,20 @@
                                     </span>
                                 @enderror
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-row col">
+                        <!-- Vídeo -->
+                        <label for="imagem" class="text-dark col-form-label text-md-right">{{ __('Vídeo*') }}</label>
+                        <div class="custom-file">
+                            <input type="file" onClick="addVideo()" class="custom-file-input" id="video" accept="video/*" lang="br" name="video" @empty($campanha)  @endisset>
+                            <label class="custom-file-label" for="video">Ache o arquivo</label>
+                            @error('video')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="form-group col">
                     <br>
@@ -134,42 +133,43 @@
 
 
                 <div class="col-6" >
-                    <div class="d-inline-block" id="imgs" style="width:200px; height:330px;">
-                        <div class="d-block">
+                    <div class="d-block" id="imgs" style=" height:200px;">
                             <!-- Imagem -->
+                        <div class="d-inline-block p-0 m-0" style="width:249px;height:200px">
                             @if(isset($campanha->imagem) and $campanha->imagem != '' )
-                                <div class="d-block">
-                                    <img id="imagem" class="rounded float-left excluir verifImg img" src="/upload_imagem/campanhas/{{$campanha->id}}/{{$campanha->imagem}}"style="border: none; display: block;">
+                                <div class="d-block" style="height:160px;background-color:yellow">
+                                    <img id="imagem" class="rounded border border-secondary excluir verifImg img" src="/upload_imagem/campanhas/{{$campanha->id}}/{{$campanha->imagem}}"style="">
                                 </div>
-                                <div class="d-block mt-1" >
-                                    <button type="button" class="btn btn-labeled btn-danger" id="img" href="#" url="{{route('campanha.destroyImagem',$campanha->id)}}" onClick="exclusao('img', 'essa imagem')">
-                                    <span class="btn-label"><i class="fas fa-trash"></i></span> Apagar Imagem</button>
+                                <div class="d-block" style="height:40px">
+                                    <button type="button" class="btn btn-labeled btn-danger mt-1" id="img" href="#" url="{{route('campanha.destroyImagem',$campanha->id)}}" onClick="exclusao('img', 'essa imagem')" style="height:30px;font-size:12px">
+                                        <span class="btn-label"><i class="fas fa-trash"></i></span> Apagar Imagem
+                                    </button>
                                 </div>
                             @endif
                         </div>
-                        <div class="d-block">
                             <!-- PDF -->
+                        <div class="d-inline-block p-0 ml-0" style="width:249px;height:100%">
                             @if(isset($campanha->pdf) and $campanha->pdf != '' )
-                                <div class="d-block">
+                                <div class="d-block" style="height:170px;background-color:yellow">
                                     <iframe id="pdfFrame"  src="\upload_pdf\campanhas\{{$campanha->id}}\{{$campanha->pdf}}" style="width:100%;height:100%;border:none"></iframe>
                                 </div>
-                                <div class="d-block mt-1" >
-                                    <button type="button" class="btn btn-labeled btn-danger" id="delPdf" href="#" url="{{route('campanha.destroyPdf',$campanha->id)}}" onClick="exclusao('delPdf', 'esse pdf')">
+                                <div class="d-block" style="height:40px">
+                                    <button type="button"  class="btn btn-labeled btn-danger mt-1" id="delPdf" href="#" url="{{route('campanha.destroyPdf',$campanha->id)}}" onClick="exclusao('delPdf', 'esse pdf')" style="height:30px;font-size:12px">
                                     <span class="btn-label"><i class="fas fa-trash"></i></span> Apagar PDF</button>
                                 </div>
                             @endif
                         </div>
                     </div>
                     <!-- Video -->
-                    <div class="d-inline-block" id="movie" style="margin-left:10px;margin-top:-50px; width:280px; height:300px; ">
+                    <div class="d-block mt-2" id="movie" style="height:226px">
                     @if(isset($campanha->video) and $campanha->video != '' )
-                            <div class="d-block">
-                                <video width="280" height="300" controls="controls" id="viddeo" >
+                            <div class="d-block" style="height:186px;">
+                                <video width="500" height="186"autoplay="autoplay" loop="loop" controls="controls" tabindex="0" id="viddeo" >
                                     <source src="/upload_video/campanhas/{{$campanha->id}}/{{$campanha->video}}" type="video/mp4">
                                 </video>
                             </div>
-                            <div class="d-block mt-1" >
-                                <button type="button" class="btn btn-labeled btn-danger" id="delVideo" href="#" url="{{route('campanha.destroyVideo',$campanha->id)}}" onClick="exclusao('delVideo', 'esse vídeo')">
+                            <div class="d-block" style="height:40px">
+                                <button type="button" class="btn btn-labeled btn-danger mt-1" id="delVideo" href="#" url="{{route('campanha.destroyVideo',$campanha->id)}}" onClick="exclusao('delVideo', 'esse vídeo')" style="height:30px;font-size:12px">
                                 <span class="btn-label"><i class="fas fa-trash"></i></span> Apagar vídeo</button>
                             </div>
                         @endif
@@ -181,8 +181,8 @@
 </form>
 <style>
     .img{
-        width:200px;
-        height:150px;
+        width:249px;
+        height:160px;
     }
 
     .scroll-me{
@@ -192,9 +192,9 @@
         overflow-x: hidden;
         font-size: 18px;
     }
-    .excluir:hover{
+    /* .excluir:hover{
         filter: grayscale(1);
-    }
+    } */
     .novas{
         border: 1px solid red;
     }
@@ -204,17 +204,17 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-    function fileReader(file,t){
-        const fileReader = new FileReader();
-        fileReader.onloadend = function(){
-            let visu = '#visu'+t;
-            let img = '#img'+t;
-            $(visu).attr('src',fileReader.result).css('display','block');
-            $(img).val(fileReader.result);
-        }
-        fileReader.readAsDataURL(file);
+    // function fileReader(file,t){
+    //     const fileReader = new FileReader();
+    //     fileReader.onloadend = function(){
+    //         let visu = '#visu'+t;
+    //         let img = '#img'+t;
+    //         $(visu).attr('src',fileReader.result).css('display','block');
+    //         $(img).val(fileReader.result);
+    //     }
+    //     fileReader.readAsDataURL(file);
 
-    }
+    // }
     function addImage(){
         //Mostrando as imagens
         $('#imagem').change(function(){
@@ -226,45 +226,45 @@
             if(quantFile>1){
                 quantFile=2;
             }
-            let j = verifImg;
-            let r=0;
-            for(let i=0 ; i < quantFile; i++){
-                let t = i+verifImg;
-                const file = $(this)[0].files[i];
+            // let j = verifImg;
+            // let r=0;
+            // for(let i=0 ; i < quantFile; i++){
+            //     let t = i+verifImg;
+            //     const file = $(this)[0].files[i];
 
-                if($('#i0').length > 0 && $('#i1').length > 0){
-                    // OS DOIS ESTÃO PREENCHIDOS
-                    // Modificando o html
-                    $("#visu"+t).removeClass();
-                    // alert()
-                    $('#i'+r).remove();
-                    $('#imgs').append("<div id='i"+r+"' class='d-block'></div>");
-                    $('#i'+r).append("<img id='visu"+r+"' class='rounded float-left'></img>");
-                    if(r == 1 ){
-                        $('#i1').css({"margin-top":"15px"});
-                    }
-                    $('#visu'+r).addClass('rounded float-left verifImg img');
-                    fileReader(file,r);
-                    r++;
-                }else {
-                    if($('#i0').length == 0){
-                        // Modificando o html
-                        $("#visu"+t).removeClass();
-                        $('#imgs').append("<div id='i0' class='d-block'></div>");
-                        $('#i0').append("<img id='visu"+t+"' class='rounded float-left'></img>");
-                        $('#visu'+t).addClass('rounded float-left verifImg img');
-                        fileReader(file,t);
-                    }else{
-                        // Modificando o html
-                        $("#visu"+t).removeClass();
-                        $('#imgs').append("<div id='i1' class='d-block'></div>");
-                        $('#i1').append("<img id='visu"+t+"' class='rounded float-left'></img>");
-                        $('#visu'+t).addClass('rounded float-left verifImg img');
-                        $('#visu'+t).css({"margin-top":"15px"});
-                        fileReader(file,t);
-                    }
-                }
-            }
+            //     if($('#i0').length > 0 && $('#i1').length > 0){
+            //         // OS DOIS ESTÃO PREENCHIDOS
+            //         // Modificando o html
+            //         $("#visu"+t).removeClass();
+            //         // alert()
+            //         $('#i'+r).remove();
+            //         $('#imgs').append("<div id='i"+r+"' class='d-block'></div>");
+            //         $('#i'+r).append("<img id='visu"+r+"' class='rounded float-left'></img>");
+            //         if(r == 1 ){
+            //             $('#i1').css({"margin-top":"15px"});
+            //         }
+            //         $('#visu'+r).addClass('rounded float-left verifImg img');
+            //         // fileReader(file,r);
+            //         r++;
+            //     }else {
+            //         if($('#i0').length == 0){
+            //             // Modificando o html
+            //             $("#visu"+t).removeClass();
+            //             $('#imgs').append("<div id='i0' class='d-block'></div>");
+            //             $('#i0').append("<img id='visu"+t+"' class='rounded float-left'></img>");
+            //             $('#visu'+t).addClass('rounded float-left verifImg img');
+            //             // fileReader(file,t);
+            //         }else{
+            //             // Modificando o html
+            //             $("#visu"+t).removeClass();
+            //             $('#imgs').append("<div id='i1' class='d-block'></div>");
+            //             $('#i1').append("<img id='visu"+t+"' class='rounded float-left'></img>");
+            //             $('#visu'+t).addClass('rounded float-left verifImg img');
+            //             $('#visu'+t).css({"margin-top":"15px"});
+            //             // fileReader(file,t);
+            //         }
+            //     }
+            // }
         });
     }
 
