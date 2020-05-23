@@ -65,7 +65,7 @@
                         <img src="{{asset('img/calculadora.png')}}" alt="">
                     </div>
                     <h3>Doar</h3>
-                    <p>Você sabia que você pode doar até 6% do seu imposto de renda para o nosso fundo de projetos?. Nossa calculadora Facilita tudo isso para você de forma rápida e intuitiva :)</p>
+                    <p>Você sabia que você pode doar até 3% do seu imposto de renda para o nosso fundo de projetos?. Nossa calculadora Facilita tudo isso para você de forma rápida e intuitiva :)</p>
                 </li>
             </a>
             <a href="{{route('comdicaEC')}}">
@@ -114,14 +114,14 @@
         </div>
     </section>
     <!-- Fecha Produtos -->
-    <section class="quebra">
+    {{-- <section class="quebra">
         <blockquote class="quote-externo container">
             <p class="">“É a intenção, e não a doação, que faz o doador.”</p>
             <div class="font">Gotthold Lessing</div>
             <br><br>
             <a href="{{route('doacaoCards')}}" class="btn-full">Doar</a>
         </blockquote>
-    </section>
+    </section> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <script type="text/javascript">

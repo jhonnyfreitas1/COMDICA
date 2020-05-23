@@ -38,11 +38,11 @@
     }
 
     .img1{
-        background: url("/img/child6.jpeg") no-repeat center;
-        background-size: cover;
-        background-color: #3E4095;
+        width: 500px;
+        margin: auto;
+        height: 600px;
     }
-    .img1:before{
+    /* .img1:before{
         margin-top: 168px;
         position: absolute;
         top:0;
@@ -51,21 +51,18 @@
         height: 330px;
         content: '';
         background-color: rgba(0, 0, 0, 0.5);
-    }
+    } */
     .btn-full{
         position: relative;
     }
 </style>
 <section class="produtos container">
     <br><br><br><br><br><br>
-        <div class="cardLink img1">
-            <h1 style="text-align: center">Doação através de projetos sociais.</h1>
-            <blockquote class="quote-externo">
-                <p>Com a escolha de projetos Sociais, você irá efetuar a doação através da nossa calculadora interna.</p>                    
-            </blockquote>
+        <div>
+            <img src="/img/projetos.jpeg" class="cardLink img1">
             <div style="text-align: center;">
                 <a href="/calculadora" class="btn-full">Doar</a>                    
-            </div>
+            </div>    
         </div>
 </section>
 @endsection

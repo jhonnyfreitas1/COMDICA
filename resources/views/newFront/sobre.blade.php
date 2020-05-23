@@ -42,10 +42,10 @@ para esclarecer: esses recursos não são destinados à prefeitura, como as pess
         </p>
         <p>
             Em Araçoiaba / PE, ele recebe o nome de “FUNDECA”. 
+            Criado pela lei municipal nº 0305 de 30 de dezembro de 2014.
         </p>
         <p class="text">
-            criado pela lei municipal nº 0305 de 30 de dezembro de 2014.
-            para esclarecer: esses recursos não são destinados à prefeitura, como as pessoas acreditam. são recursos depositados no FUNDECA, que possuem personalidade jurídica própria (CNPJ) e passam pelo controle social do COMDICA – conselho municipal de defesa dos direitos de criança e adolescentes. além de estarem sujeitos à aprovação de um plano de investimento e sua destinação é feita através de editais públicos, ambos apresentados e aprovados por este conselho.
+            Para esclarecer: esses recursos não são destinados à prefeitura, como as pessoas acreditam. são recursos depositados no FUNDECA, que possuem personalidade jurídica própria (CNPJ) e passam pelo controle social do COMDICA – conselho municipal de defesa dos direitos de criança e adolescentes. além de estarem sujeitos à aprovação de um plano de investimento e sua destinação é feita através de editais públicos, ambos apresentados e aprovados por este conselho.
         </p>
     </div>
     <div class="grid-6 foto-equipe">

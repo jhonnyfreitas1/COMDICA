@@ -100,7 +100,7 @@
                     </blockquote>
                 </div>
                 <div class="grid-4 cardLink img2">
-                    <h1>ATAS</h1>                    
+                    <h1>Ordem do Dia</h1>                    
                     <blockquote class="quote-externo">
                         <p>Veja aqui nossas atas de reuniões e nossas últimas resoluções.</p>
                     </blockquote>
