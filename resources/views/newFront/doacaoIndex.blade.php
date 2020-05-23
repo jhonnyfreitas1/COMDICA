@@ -25,21 +25,32 @@
 </style>
 <section class="introducao-interna interna_sobre">
     <div class="container">
-        <h1 data-anime="400" class="fadeInDown">{{$campanha->titulo}}</h1>
+        <h1 data-anime="400" class="fadeInDown">
+        @if(isset($campanha->titulo) && $campanha->titulo != '')
+                {{$campanha->titulo}}
+        @endisset
+        </h1>
         <p data-anime="800" class="fadeInDown">É a intenção, e não a doação, que faz o doador</p>
     </div>
 </section>
 <section class="missao_sobre container fadeInDown" data-anime="1200">
+@if(isset($campanha->imagem) && $campanha->imagem != '')
     <a href="">
         <div class="grid-6" style="width:60%">
             <img src="upload_imagem/campanhas/{{$campanha->id}}/{{$campanha->imagem}}" alt="">
         </div>
     </a>
+        @endisset
     <div class="grid-6 margin">
-        <h2 class="subtitulo-interno">Campanha : {{$campanha->titulo}}</h2>
-        <p>{{$campanha->desc}}</p>
+    @if(isset($campanha->titulo) && $campanha->titulo != '')
+            <h2 class="subtitulo-interno">Campanha : {{$campanha->titulo}}</h2>
+        @endisset
+        @if(isset($campanha->desc) && $campanha->desc != '')
+            <p>{{$campanha->desc}}</p>
+        @endisset
     </div>
 </section>
+        @if(isset($campanha->video) && $campanha->video != '')
 <section class="missao_sobre container fadeInDown" data-anime="1200">
     <div class=" margin">
         <div style="text-align: center">
@@ -57,4 +68,5 @@
             </blockquote>
     </section>
 </section>
+        @endisset
 @endsection
