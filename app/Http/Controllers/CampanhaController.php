@@ -12,6 +12,7 @@ class CampanhaController extends Controller
     public function index()
     {
         $campanha = Campanha::orderBy('id', 'DESC')->first();
+        // return $campanha;
         return view('newFront.doacaoIndex',compact('campanha'));
     }
 
