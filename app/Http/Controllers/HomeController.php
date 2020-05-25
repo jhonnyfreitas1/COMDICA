@@ -46,7 +46,7 @@ class HomeController extends Controller
     public function entidade($id){
         $instVer = DB::table('instituicoes')->join('imgs_insts', 'inst_img', '=', 'img_id')->where('id', $id)->first();
         $imagens = DB::table('img_album_galerias')->get();
-        $galerias = DB::table('album_galerias')->get();
+        $galerias = DB::table('album_galerias')->paginate(6);
         return view ('newFront.portifolioVer')->with(compact('instVer', 'imagens','galerias'));
     }
     public function galeriaShow($id){

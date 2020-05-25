@@ -35,7 +35,7 @@
 </section>
 <section class="missao_sobre container fadeInDown" data-anime="1200">
 @if(isset($campanha->imagem) && $campanha->imagem != '')
-    <a href="">
+    <a href="upload_pdf/campanhas/{{$campanha->id}}/{{$campanha->pdf}}">
         <div class="grid-6" style="width:60%">
             <img src="upload_imagem/campanhas/{{$campanha->id}}/{{$campanha->imagem}}" alt="">
         </div>
