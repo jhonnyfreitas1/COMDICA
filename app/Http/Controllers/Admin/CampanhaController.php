@@ -35,7 +35,7 @@ class CampanhaController extends Controller
         // return $_FILES['pdf'];
         $validar            =   $request->validate([
             'titulo'          =>  'required | max:30',
-            'desc'          =>  'required | max:255',
+            'desc'          =>  'required | max:500',
             'imagem'        =>  'required',
 
         ],[
@@ -166,9 +166,11 @@ class CampanhaController extends Controller
 
     public function update(Request $request, $id)
     {
+                return $_FILES['pdf'];
+
         $validar            =   $request->validate([
             'titulo'        =>  'required | max:30',
-            'desc'          =>  'required | max:255',
+            'desc'          =>  'required | max:500',
 
         ],[
             'titulo.required'     => 'Preencha o titulo do álbum',
@@ -244,6 +246,11 @@ class CampanhaController extends Controller
             // Nome do Vídeo
             $nomeVideo   = 'video.'.$ex;
 
+            // cria o diretorio caso não exista
+            if (!is_dir($destination_path_video)) {
+                mkdir($destination_path_video);
+            }
+
             // Adiciona ao diretorio
             move_uploaded_file($_FILES['video']['tmp_name'],$destination_path_video.$nomeVideo);
         }
@@ -251,6 +258,12 @@ class CampanhaController extends Controller
 
         // ADICIONANDO PDF
         if( isset($_FILES['pdf']) and $_FILES['pdf']['name'] != "" ){
+
+            // Verifica se existe esse diretorio
+            if(!is_dir($destination_path_pdf)){
+                mkdir($destination_path_pdf);
+            }
+
             // Adicionar pdf no diretorio
             $nomePdf = 'pdf.pdf';
             $request->file()['pdf']->move($destination_path_pdf,$nomePdf);
@@ -272,7 +285,7 @@ class CampanhaController extends Controller
     {
         // Consulta ata no banco
         $campanha = Campanha::where('id',$id)->first();
-        return $campanha;
+        // return $campanha;
 
         // diretorio e nome
         $diretorio = "upload_imagem/campanhas/".$campanha->id.'/';

@@ -16,7 +16,7 @@ class CreateCampanhasTable extends Migration
         Schema::create('campanhas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('titulo');
-            $table->string('desc',150);
+            $table->string('desc',500);
             $table->string('imagem')->nullable();
             $table->string('pdf')->nullable();
             $table->string('video')->nullable();
