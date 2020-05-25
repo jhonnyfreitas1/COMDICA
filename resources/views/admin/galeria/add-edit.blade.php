@@ -81,7 +81,7 @@
                         <!-- Imagem -->
                         <label for="imagem" class="text-dark col-form-label text-md-right">{{ __('Imagem*') }}</label>
                         <div class="custom-file">
-                            <input type="file" multiple class="custom-file-input" id="images" lang="br" name="images[]" @empty($album) required @endisset>
+                            <input type="file"  accept="image/png, image/jpeg"  multiple class="custom-file-input" id="images" lang="br" name="images[]" @empty($album) required @endisset>
                             <label class="custom-file-label" for="imagem">Ache o arquivo</label>
                             @error('imagem')
                                 <span class="invalid-feedback" role="alert">
@@ -161,6 +161,7 @@
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
+const allImgs= [];
 
     $(document).ready(function(){
 
@@ -170,32 +171,36 @@
         };
 
         $('#images').change(function(){
+            $(".ts").remove();
             const verifImg = $('.verifImg').length;
-            console.log('verif: '+verifImg);
             const quantFile = $(this)[0].files.length;
-            let j = verifImg;
-            let r=0;
+            let quantLinhas = verifImg/4;
+            let j = (verifImg%4);
+            let r=Math.trunc(quantLinhas);
+            let todasImgs = [];
+            let imgg = [];
+
             for(let i=0 ; i < quantFile; i++){
                 let t = i+verifImg;
-                console.log('t: t'+t);
                 const file = $(this)[0].files[i];
+                // imgg.push(file)
                 const fileReader = new FileReader();
 
                 // Modificando o html
                 if(j == 0){
                     $("#visu"+t).removeClass();
                     $('#cards').append("<div id='r"+r+"' class='row mt-3'></div>");
-                    $('#r'+r).append("<img id='visu"+t+"' class='rounded float-left'></img>");
+                    $('#r'+r).append("<img id='visu"+t+"' class='rounded float-left ts'></img>");
                     $('#visu'+t).css({"width":"150px","height":"100px","margin-left":"5px","border": "1px solid red","display":"none"});
                     $('#visu'+t).addClass('verifImg mt-1');
                     j++;
                 }else{
                     $("#visu"+t).removeClass();
-                    $('#r'+r).append("<img id='visu"+t+"' class='rounded float-left'></img>");
-                    console.log('visu'+t);
+                    $('#r'+r).append("<img id='visu"+t+"' class='rounded float-left ts'></img>");
                     $('#visu'+t).css({"width":"150px","height":"100px","margin-left":"5px","border": "1px solid red","display":"none"});
                     $('#visu'+t).addClass('verifImg mt-1');
                     j++;
+
                     if(j == 4){
                         j=0;
                         r++;
@@ -207,8 +212,14 @@
                     let img = '#img'+t;
                     $(visu).attr('src',fileReader.result).css('display','block');
                     $(img).val(fileReader.result);
+                        todasImgs.push(fileReader.result);
                 }
                 fileReader.readAsDataURL(file);
+            }
+
+            for (let index = 0; index < imgg.length; index++) {
+                allImgs.unshift(imgg[index]);
+
             }
         });
     });
