@@ -57,7 +57,7 @@
             <h2 class="subtitulo">Vídeo</h2>
         </div>
         <video width="100%" controls>
-            <source src="upload_imagem/campanhas/{{$campanha->id}}/{{$campanha->video}}" type="video/mp4">
+            <source src="upload_video/campanhas/{{$campanha->id}}/{{$campanha->video}}" type="video/mp4">
         <video>
     </div>
     <section class="quebra">
