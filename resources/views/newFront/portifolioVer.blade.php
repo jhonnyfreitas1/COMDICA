@@ -42,13 +42,13 @@
             </ul>
         </div>
     </section>
+    <section class="introducao-interna" style="color:#5BA479; background-color: #f7fffa">
+        <div class="container">
+            <h1 data-anime="400" class="fadeInDown">Nossos Albuns</h1>
+            <p data-anime="800" class="fadeInDown">Veja aqui nossos albuns de fotos.</p>
+        </div>
+    </section>
     @if($instVer->id === 1)
-        <section class="introducao-interna" style="color:#5BA479; background-color: #f7fffa">
-            <div class="container">
-                <h1 data-anime="400" class="fadeInDown">Nossos Albuns</h1>
-                <p data-anime="800" class="fadeInDown">Veja aqui nossos albuns de fotos.</p>
-            </div>
-        </section>
         <section class="container produto_item">
             <ul>
                 @foreach ($galerias as $galeria)
@@ -69,6 +69,38 @@
                             </li>
                         </a>
                 @endforeach
+            </ul>
+        </section>
+    @else
+        <section class="missao_sobre container fadeInDown" data-anime="1200">
+            <div class=" margin">
+                <video width="100%" controls>
+                    <source src="" type="video/mp4">
+                </video>
+            </div>
+        </section>
+        <section class="container produto_item">
+            <ul class="produtos_lista">
+                <li class="grid-8">
+                    <div class="produtos_icone">
+                        <img src="/img/about.jpeg"alt="">
+                    </div>
+                </li>
+                <li class="grid-8">
+                    <div class="produtos_icone">
+                        <img src="/img/about.jpeg"alt="">
+                    </div>
+                </li>
+                <li class="grid-8">
+                    <div class="produtos_icone">
+                        <img src="/img/about.jpeg"alt="">
+                    </div>
+                </li>
+                <li class="grid-8">
+                    <div class="produtos_icone">
+                        <img src="/img/about.jpeg"alt="">
+                    </div>
+                </li>
             </ul>
         </section>
     @endif
