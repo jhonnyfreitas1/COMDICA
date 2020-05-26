@@ -52,8 +52,9 @@ class HomeController extends Controller
     public function galeriaShow($id){
         //Já está trazendo as imagens, só listar agora.
         $albumWithImgs = DB::table('album_galerias')->join('img_album_galerias', 'album_galerias.id', '=', 'img_album_galerias.album_id')->where('img_album_galerias.album_id', $id)->get();
+        $idAlbum = $id;
         // return $albumWithImgs;
-        return view('newFront.portifolioComdica')->with(compact('albumWithImgs'));
+        return view('newFront.portifolioComdica')->with(compact('albumWithImgs', 'idAlbum'));
     }
     public function sobre()
     {

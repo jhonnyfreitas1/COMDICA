@@ -9,12 +9,21 @@
         .produtos_lista{
             margin-top: -100px;
         }
+    .text{
+        text-align: center;
+        width: 800px;
+        margin: auto;   
+        height: auto;
+        padding: 20px;
+    }
 </style>
 <br>
-<section class="introducao-interna" style="color:#5BA479; background-color: #f7fffa">
+<section class="introducao-interna" style="color:#5BA479;">
     <div class="container">
         <h1 data-anime="400" class="fadeInDown">Fotos</h1>
-        <p data-anime="800" class="fadeInDown">Veja todas as fotos do projeto abaixo</p>
+        <div class="text">
+            <p data-anime="800" class="fadeInDown">{{$albumWithImgs[$idAlbum]->descricao}}</p>
+        </div>
     </div>
 </section>
 <section class="missao_sobre container fadeInDown" data-anime="1200">
