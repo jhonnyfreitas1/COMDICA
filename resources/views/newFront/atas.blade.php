@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="{{asset('css/datatables.css')}}">
     </head>
     <style>
-        
+
        .dt-button{
            background-color:white;
            outline:none;
@@ -29,7 +29,7 @@
            cursor: pointer;
        }
        .even{
-           background-color:#F7FFFA; 
+           background-color:#F7FFFA;
        }
        label{
            font-family: Comdica;
@@ -88,6 +88,7 @@
 
             // Datatables
             $('#table').DataTable( {
+                "order": [[ 2, "asc" ]],
                 dom: 'Bfrtip',
                 buttons: [
                     {

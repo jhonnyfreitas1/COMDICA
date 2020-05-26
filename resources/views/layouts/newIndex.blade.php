@@ -85,7 +85,7 @@
                         <div class="grid-4 footer_contato">
                             <h3>Contato</h3>
                             <ul>
-                                <li>- (81) 9999-999</li>
+                                <li>- (81) 3543-8079</li>
                                 <li>- cmdcaaracoiabape@gmail.com</li>
                                 <li>- Araçoiaba, n 10012 - PE</li>
                             </ul>

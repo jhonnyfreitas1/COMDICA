@@ -37,21 +37,21 @@ class InstituicoesController extends Controller
 
         /*Validando os dados*/
         $validar            =   $request->validate([
-            'name'           => 'required | max:30',
+            'name'           => 'required | max:256',
             'desc'           => 'required | max:500',
-            'telefone'           => 'max:20',
-            'endereco'           => 'max:50',
-            'email'           => 'max:50',
-            'site'           => 'max:50',
+            'telefone'           => 'max:256',
+            'endereco'           => 'max:256',
+            'email'           => 'max:256',
+            'site'           => 'max:256',
         ],[
             'name.required' => 'Preencha o nome da instituição',
-            'name.max'      => 'Digite no máximo 30 caracteres neste campo',
+            'name.max'      => 'Digite no máximo 256 caracteres neste campo',
             'desc.required' => 'Preencha a descrição da instituição',
             'desc.max'      => 'Digite no máximo 500 caracteres neste campo',
-            'telefone.max' => 'Digite no máximo 20 caracteres neste campo',
-            'endereco.max'      => 'Digite no máximo 50 caracteres neste campo',
-            'email.max' => 'Digite no máximo 50 caracteres neste campo',
-            'site.max'      => 'Digite no máximo 50 caracteres neste campo',
+            'telefone.max' => 'Digite no máximo 256 caracteres neste campo',
+            'endereco.max'      => 'Digite no máximo 256 caracteres neste campo',
+            'email.max' => 'Digite no máximo 256 caracteres neste campo',
+            'site.max'      => 'Digite no máximo 256 caracteres neste campo',
         ]);
 
          // Verificando se são realmente imagens
@@ -154,21 +154,21 @@ class InstituicoesController extends Controller
     {
    /*Validando os dados*/
         $validar            =   $request->validate([
-            'name'           => 'required | max:30',
+            'name'           => 'required | max:256',
             'desc'           => 'required | max:500',
-            'telefone'           => 'max:20',
-            'endereco'           => 'max:50',
-            'email'           => 'max:50',
-            'site'           => 'max:50',
+            'telefone'           => 'max:256',
+            'endereco'           => 'max:256',
+            'email'           => 'max:256',
+            'site'           => 'max:256',
         ],[
             'name.required' => 'Preencha o nome da instituição',
-            'name.max'      => 'Digite no máximo 30 caracteres neste campo',
+            'name.max'      => 'Digite no máximo 256 caracteres neste campo',
             'desc.required' => 'Preencha a descrição da instituição',
             'desc.max'      => 'Digite no máximo 500 caracteres neste campo',
-            'telefone.max' => 'Digite no máximo 20 caracteres neste campo',
-            'endereco.max'      => 'Digite no máximo 50 caracteres neste campo',
-            'email.max' => 'Digite no máximo 50 caracteres neste campo',
-            'site.max'      => 'Digite no máximo 50 caracteres neste campo',
+            'telefone.max' => 'Digite no máximo 256 caracteres neste campo',
+            'endereco.max'      => 'Digite no máximo 256 caracteres neste campo',
+            'email.max' => 'Digite no máximo 256 caracteres neste campo',
+            'site.max'      => 'Digite no máximo 256 caracteres neste campo',
         ]);
 
         // Verificando se são realmente imagens

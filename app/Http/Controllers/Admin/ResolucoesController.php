@@ -19,7 +19,7 @@ class ResolucoesController extends Controller
 {
     public function index()
     {
-        $resolucoes = DB::table('resolucoes')->paginate(10);
+        $resolucoes = DB::table('resolucoes')->orderBy('ano','DESC')->paginate(10);
         return view('admin.resolucao.index', compact('resolucoes'));
     }
 
