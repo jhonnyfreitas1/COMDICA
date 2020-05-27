@@ -32,7 +32,6 @@ class CampanhaController extends Controller
 
     public function store(Request $request)
     {
-        // return $_FILES['pdf'];
         $validar            =   $request->validate([
             'titulo'          =>  'required | max:30',
             'desc'          =>  'required | max:500',
@@ -92,7 +91,7 @@ class CampanhaController extends Controller
             } elseif ($info['mime'] == 'image/bmp') {
                 $image = imagecreatefrombmp($source_path);
             }else{
-                return back()->withErrors(['imagem'=>'Adicione arquivos com formato de imagem']);
+                return back()->withErrors(['imagem'=>'Formato incorreto do arquivo!']);
             };
 
             // Verifica se existe esse diretorio
@@ -224,7 +223,7 @@ class CampanhaController extends Controller
             } elseif ($info['mime'] == 'image/bmp') {
                 $image = imagecreatefrombmp($source_path);
             }else{
-                return back()->withErrors(['imagem'=>'Adicione arquivos com formato de imagem']);
+                return back()->withErrors(['imagem'=>'Formato incorreto do arquivo!']);
             };
 
             // Verifica se existe esse diretorio

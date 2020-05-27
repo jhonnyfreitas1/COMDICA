@@ -32,8 +32,8 @@ class AtasController extends Controller
     {
         $validar            =   $request->validate([
             'nome'           => 'required | max:30',
-            'pdf'           => 'required',
             'data'           => 'required',
+            'pdf'           => 'required',
             'tipo'           => 'required',
 
         ],[
