@@ -58,9 +58,9 @@
                 <div class="col-6">
                     <div class="form-group col">
                         <!-- nome -->
-                        <label for="titulo">{{ __('Titulo do Campanha') }}</label>
+                        <label for="titulo">{{ __('Titulo do Campanha') }}<h11>*</h11></label>
                         <input  id="titulo" type="text" class="form-control @error('titulo') is-invalid @enderror" value="{{ old('titulo') ||  isset($campanha->titulo) ? $campanha->titulo : '' }}" required autocomplete="titulo" name="titulo" autofocus>
-                        @error('name')
+                        @error('titulo')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -68,8 +68,8 @@
                     </div>
                     <div class="form-group col">
                         <!-- descricao -->
-                        <label for="desc" >{{ __('Descrição') }}</label>
-                        <textarea id="desc"class="form-control" name="desc" autocomplete="desc" rows="3" required autofocus>{{ isset($campanha->desc) ? $campanha->desc : '' }}
+                        <label for="desc" >{{ __('Descrição') }}<h11>*</h11></label>
+                        <textarea id="desc" class="form-control  @error('desc') is-invalid @enderror" name="desc" autocomplete="desc" rows="3" required autofocus>{{ isset($campanha->desc) ? $campanha->desc : '' }}
                         </textarea>
                         @error('desc')
                             <span class="invalid-feedback" role="alert">
@@ -80,9 +80,9 @@
                     <div class="form-row col">
                         <div class="col-6">
                             <!-- Imagem -->
-                            <label for="imagem" class="text-dark col-form-label text-md-right">{{ __('Imagem*') }}</label>
+                            <label for="imagem" class="text-dark col-form-label text-md-right">{{ __('Imagem') }}</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="imagem" accept="image/*" lang="br" name="imagem" @empty($campanha) required onClick="addImage()" @endisset>
+                                <input type="file" class="custom-file-input @error('imagem') is-invalid @enderror" id="imagem" accept="image/*" lang="br" name="imagem" @empty($campanha) onClick="addImage()" @endisset>
                                 <label class="custom-file-label" for="imagem">Ache o arquivo</label>
                                 @error('imagem')
                                     <span class="invalid-feedback" role="alert">
@@ -93,9 +93,9 @@
                         </div>
                         <div class="col-6">
                             <!-- PDF -->
-                            <label for="pdf" class="text-dark col-form-label text-md-right">{{ __('PDF*') }}</label>
+                            <label for="pdf" class="text-dark col-form-label text-md-right">{{ __('PDF') }}</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="pdf" accept="application/pdf" lang="br" name="pdf" @empty($campanha) onClick="addPDF()" @endisset>
+                                <input type="file" class="custom-file-input @error('pdf') is-invalid @enderror" id="pdf" accept="application/pdf" lang="br" name="pdf" @empty($campanha) onClick="addPDF()" @endisset>
                                 <label class="custom-file-label" for="pdf">Ache o arquivo</label>
                                 @error('pdf')
                                     <span class="invalid-feedback" role="alert">
@@ -105,11 +105,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-row col">
+                    <div class="form-row col mt-3">
                         <!-- Vídeo -->
-                        <label for="imagem" class="text-dark col-form-label text-md-right">{{ __('Vídeo*') }}</label>
+                        <label for="imagem" class="text-dark col-form-label text-md-right">{{ __('Vídeo') }}</label>
                         <div class="custom-file">
-                            <input type="file" onClick="addVideo()" class="custom-file-input" id="video" accept="video/*" lang="br" name="video" @empty($campanha)  @endisset>
+                            <input type="file" onClick="addVideo()" class="custom-file-input @error('video') is-invalid @enderror" id="video" accept="video/*" lang="br" name="video" @empty($campanha)  @endisset>
                             <label class="custom-file-label" for="video">Ache o arquivo</label>
                             @error('video')
                                 <span class="invalid-feedback" role="alert">
@@ -118,7 +118,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group col">
+                    <div class="form-group col mt-2">
                     <br>
                         <!-- Botão -->
                         @isset($campanha)

@@ -47,7 +47,7 @@
 		      <th scope="row">{{$usuario->id}}</th>
 		      <td>
                 <strong>
-                    <a href="{{route('usuario.show', $usuario->id)}}" class="text-dark">{{$usuario->name}}</a>
+                    <a class="text-dark">{{$usuario->name}}</a>
                 </strong>
 		      </td>
 		      @can('admin')

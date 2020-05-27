@@ -59,7 +59,7 @@
                     <div class="form-row">
                         <!-- nome -->
                         <div class="form-group col">
-                            <label for="nome">{{ __('Numero da Ata*') }}</label>
+                            <label for="nome">{{ __('Numero da Ata') }}<h11>*</h11></label>
                             <input  id="nome" type="number" class="form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome') ||  isset($ata->nome) ? $ata->nome : '' }}" required autocomplete="nome" autofocus>
                             @error('nome')
                                 <span class="invalid-feedback" role="alert">
@@ -70,7 +70,7 @@
 
                         <!-- data -->
                         <div class="form-group col">
-                            <label for="data">{{ __('Mês/Ano da Ata*') }}</label>
+                            <label for="data">{{ __('Mês/Ano da Ata') }}<h11>*</h11></label>
                             <!-- Corrigindo a data para o input -->
                             @isset($ata->data)
                                 @php( $data =  explode('-',$ata->data) )
@@ -89,9 +89,9 @@
 
                         <!-- pdf -->
                         <div class="form-group col ">
-                            <label for="pdf" class="text-dark col-form-label text-md-center mt-n1">{{ __('PDF*') }}</label>
+                            <label for="pdf" class="text-dark col-form-label text-md-center mt-n1">{{ __('PDF') }}<h11>*</h11></label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input"  accept="application/pdf" id="pdf" name="pdf" value="{{ isset($ata->pdf) ? $ata->pdf : '' }}" lang="br" @empty($ata) required @endisset>
+                                <input type="file" class="custom-file-input  @error('pdf') is-invalid @enderror"  accept="application/pdf" id="pdf" name="pdf" value="{{ isset($ata->pdf) ? $ata->pdf : '' }}" lang="br" @empty($ata) required @endisset>
                                 <label class="custom-file-label" for="pdf">Ache o arquivo</label>
                                 @error('pdf')
                                     <span class="invalid-feedback" role="alert">
@@ -105,9 +105,9 @@
                     <div class="form-row">
 
                         <!-- tipo -->
-                        <div class="form-group col">
-                            <label for="tipo" class="">{{ __('Tipo de Ata*') }}</label>
-                            <select name="tipo" class="custom-select" id="tipo">
+                        <div class="form-group col mt-3">
+                            <label for="tipo" class="">{{ __('Tipo de Ata') }}<h11>*</h11></label>
+                            <select name="tipo" class="custom-select  @error('tipo') is-invalid @enderror" id="tipo" required>
                                 <option value="ordinaria"
                                     @isset($ata)
                                         @if($ata->tipo == 'ordinaria')

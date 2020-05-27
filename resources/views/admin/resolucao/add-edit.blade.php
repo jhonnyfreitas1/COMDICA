@@ -58,7 +58,7 @@
                 <div class="col-6">
                     <!-- nome -->
                     <div class="form-group col">
-                        <label for="nome">{{ __('Numero da Resolução*') }}</label>
+                        <label for="nome">{{ __('Numero da Resolução') }}<h11>*</h11></label>
                         <input  id="nome" type="number" class="form-control @error('nome') is-invalid @enderror" name="nome" value="{{ old('nome') ||  isset($resolucao->nome) ? $resolucao->nome : '' }}" required autocomplete="nome" autofocus>
                         @error('nome')
                             <span class="invalid-feedback" role="alert">
@@ -69,9 +69,9 @@
 
                     <!-- pdf -->
                     <div class="form-group col ">
-                        <label for="pdf" class="text-dark col-form-label text-md-center mt-n1">{{ __('PDF*') }}</label>
+                        <label for="pdf" class="text-dark col-form-label text-md-center mt-n1">{{ __('PDF') }}<h11>*</h11></label>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input"  accept="application/pdf" id="pdf" name="pdf" value="{{ isset($resolucao->pdf) ? $resolucao->pdf : '' }}" lang="br" @empty($resolucao) required @endisset>
+                            <input type="file" class="custom-file-input @error('pdf') is-invalid @enderror"  accept="application/pdf" id="pdf" name="pdf" value="{{ isset($resolucao->pdf) ? $resolucao->pdf : '' }}" lang="br" @empty($resolucao) required @endisset>
                             <label class="custom-file-label" for="pdf">Ache o arquivo</label>
                             @error('pdf')
                                 <span class="invalid-feedback" role="alert">
@@ -83,7 +83,7 @@
 
                     <!-- data -->
                     <div class="form-group col">
-                        <label for="data">{{ __('Mês/Ano da Resolução*') }}</label>
+                        <label for="data" class="mt-3">{{ __('Mês/Ano da Resolução') }}<h11>*</h11></label>
                         <!-- Corrigindo a data para o input -->
                         @isset($resolucao->data)
                             @php( $data =  explode('-',$resolucao->data) )

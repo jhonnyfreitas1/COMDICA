@@ -49,7 +49,7 @@
         <div class="form-row">
             <!-- nome -->
             <div class="form-group col-md-4">
-                <label for="name" >{{ __('Nome') }}</label>
+                <label for="name" >{{ __('Nome') }}<h11>*</h11></label>
                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ isset($usuario->name) ? $usuario->name : '' }}" required autocomplete="name" autofocus>
                 @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -60,7 +60,7 @@
 
             <!-- e-mail -->
             <div class="form-group col-md-4">
-                <label for="email" >{{ __('Endereço de e-mail') }}</label>
+                <label for="email" >{{ __('Endereço de e-mail') }}<h11>*</h11></label>
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ isset($usuario->email) ? $usuario->email : '' }}" required autocomplete="email">
                 @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -72,8 +72,8 @@
             <!-- Tipo Usuário -->
             @can('admin-comdica')
                 <div class="form-group col-md-4">
-                    <label for="tipo_user" class="my-1 mr-2">{{ __('Tipo de Usuario ') }}</label>
-                    <select name="tipo_user" class="custom-select my-1 mr-sm-2" id="tipo_user">
+                    <label for="tipo_user" class="my-1 mr-2">{{ __('Tipo de Usuario ') }}<h11>*</h11></label>
+                    <select name="tipo_user" class="custom-select my-1 mr-sm-2" id="tipo_user" required>
                         @foreach ($tipos as $tipo)
                             @if(Auth::user()->tipo_user == 1)
                                 <option value="{{$tipo->id}}"
@@ -110,7 +110,7 @@
         <div class="form-row">
         <!-- Senha -->
             <div class="form-group col-md-4">
-                <label for="password" >{{ __('Senha') }}</label>
+                <label for="password" >{{ __('Senha') }}<h11>*</h11></label>
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                 @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -121,8 +121,13 @@
 
         <!-- Confirmação de Senha -->
             <div class="form-group col-md-4">
-                <label for="password-confirm" >{{ __('Confirme a senha') }}</label>
-                    <input id="password-confirm" type="password" class="form-control" name="password2" required autocomplete="new-password">
+                <label for="password-confirm" >{{ __('Confirme a senha') }}<h11>*</h11></label>
+                <input id="password-confirm" type="password" class="form-control  @error('password2') is-invalid @enderror" name="password2" required autocomplete="new-password">
+                @error('password2')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
 

@@ -62,7 +62,7 @@
 
                         <!-- nome -->
                         <div class="form-group col-md-6">
-                            <label for="name">{{ __('Nome*') }}</label>
+                            <label for="name">{{ __('Nome') }}<h11>*</h11></label>
                             <input  id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ||  isset($instituicoes->name) ? $instituicoes->name : '' }}" required autocomplete="name" autofocus>
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -73,7 +73,7 @@
 
                         <!-- email-->
                         <div class="form-group col-md-6">
-                            <label for="name">{{ __('E-mail*') }}</label>
+                            <label for="email">{{ __('E-mail') }}<h11>*</h11></label>
                             <input required id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ isset($instituicoes->email) ? $instituicoes->email : '' }}" autocomplete="email" autofocus>
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -88,7 +88,7 @@
 
                     <!-- telefone -->
                     <div class="form-group col-md-4">
-                            <label for="telefone">{{ __('Telefone*') }}</label>
+                            <label for="telefone">{{ __('Telefone') }}<h11>*</h11></label>
                             <input required id="telefone" type="text"  class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ isset($instituicoes->telefone) ? $instituicoes->telefone : '' }}" autocomplete="telefone" autofocus maxlength="14" placeholder="(__) ____-____"
                                 onkeyup="maskTel()"
                                 />
@@ -116,7 +116,7 @@
                         <div class="form-group col-md-12">
                             <label for="endereco">{{ __('Endereço') }}</label>
                             <input id="endereco" type="text" class="form-control @error('endereco') is-invalid @enderror" name="endereco" value="{{ isset($instituicoes->endereco) ? $instituicoes->endereco : '' }}" autocomplete="endereco" autofocus>
-                            @error('desc')
+                            @error('endereco')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -128,9 +128,9 @@
 
                         <!-- Img1 -->
                         <div class="form-group col-md-6">
-                        <label for="img1" class="text-dark col-form-label text-md-center">{{ __('Imagem Principal*') }}</label>
+                        <label for="img1" class="text-dark col-form-label text-md-center">{{ __('Imagem Principal') }}<h11>*</h11></label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" accept="image/*" id="img1" name="img1" value="{{ isset($instituicoes->img1) ? $instituicoes->img1 : '' }}" lang="br" @empty($instituicoes) required @endisset>
+                                <input type="file" class="custom-file-input  @error('img1') is-invalid @enderror" accept="image/*" id="img1" name="img1" value="{{ isset($instituicoes->img1) ? $instituicoes->img1 : '' }}" lang="br" @empty($instituicoes) required @endisset>
                                 <label class="custom-file-label" for="img1">Ache o arquivo</label>
                                 @error('img1')
                                     <span class="invalid-feedback" role="alert">
@@ -142,9 +142,9 @@
 
                         <!-- Img2 -->
                         <div class="form-group col-md-6">
-                        <label for="img2" class="text-dark col-form-label text-md-right">{{ __('Imagem Secundária*') }}</label>
+                        <label for="img2" class="text-dark col-form-label text-md-right">{{ __('Imagem Secundária') }}<h11>*</h11></label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" accept="img2/*" id="img2" lang="br" name="img2" value="{{ isset($instituicoes->img2) ? $instituicoes->img2 : '' }}" @empty($instituicoes) required @endisset>
+                                <input type="file" class="custom-file-input @error('img2') is-invalid @enderror" accept="image/*" id="img2" lang="br" name="img2" value="{{ isset($instituicoes->img2) ? $instituicoes->img2 : '' }}" @empty($instituicoes) required @endisset>
                                 <label class="custom-file-label" for="img2">Ache o arquivo</label>
                                 @error('img2')
                                     <span class="invalid-feedback" role="alert">
@@ -154,13 +154,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row mt-1">
 
                         <!-- Imagens -->
                         <div class="form-group col-md-6">
                         <label for="img1" class="text-dark col-form-label text-md-center">{{ __('Imagens') }}</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" accept="image/*" multiple id="imagens" name="imagens[]" value="{{ isset($instituicoes->imagens) ? $instituicoes->imagens : '' }}" lang="br" @empty($instituicoes) onClick="addImage()" @endisset>
+                                <input type="file" class="custom-file-input @error('imagens') is-invalid @enderror" accept="image/*" multiple id="imagens" name="imagens[]" value="{{ isset($instituicoes->imagens) ? $instituicoes->imagens : '' }}" lang="br" @empty($instituicoes) onClick="addImage()" @endisset>
                                 <label class="custom-file-label" for="imagens">Ache o arquivo</label>
                                 <small id="passwordHelpBlock" class="form-text text-muted">
                                     Limite máximo de 6 imagens
@@ -177,7 +177,7 @@
                         <div class="form-group col-md-6">
                         <label for="video" class="text-dark col-form-label text-md-right">{{ __('Vídeo') }}</label>
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" accept="video/*" id="video" lang="br" name="video" value="{{ isset($instituicoes->video) ? $instituicoes->video : '' }}">
+                                <input type="file" class="custom-file-input @error('video') is-invalid @enderror" accept="video/*" id="video" lang="br" name="video" value="{{ isset($instituicoes->video) ? $instituicoes->video : '' }}">
                                 <label class="custom-file-label" for="video">Ache o arquivo</label>
                                 @error('video')
                                     <span class="invalid-feedback" role="alert">
@@ -192,7 +192,7 @@
                         <!-- descricao -->
                         <div class="form-group col-md-12">
                                 <label for="desc" >{{ __('Descrição') }}</label>
-                                <textarea id="desc"class="form-control" name="desc" id="desc" rows="3" autocomplete="desc" autofocus>{{ isset($instituicoes->name) ? $instituicoes->name : '' }}
+                                <textarea id="desc"class="form-control  @error('desc') is-invalid @enderror" name="desc" id="desc" rows="3" autocomplete="desc" autofocus>{{ isset($instituicoes->name) ? $instituicoes->name : '' }}
                                 </textarea>
                                 @error('desc')
                                     <span class="invalid-feedback" role="alert">

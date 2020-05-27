@@ -55,12 +55,12 @@
                 <th scope="row">{{$ata->id}}</th>
                 <td>
                     <strong>
-                        <a href="{{route('atas.show', $ata->id)}}" class="text-dark">{{ $ata->nome }}</a>
+                        <a class="text-dark">{{ $ata->nome }}</a>
                     </strong>
                 </td>
                 <td>
                     <strong>
-                        <a href="{{route('atas.show', $ata->id)}}" class="text-dark">{{ $ata->ano }}</a>
+                        <a class="text-dark">{{ $ata->ano }}</a>
                     </strong>
                 </td>
                 <td style="display:none">
