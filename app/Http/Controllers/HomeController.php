@@ -40,21 +40,31 @@ class HomeController extends Controller
         return view('newFront.postagens')->with(compact('posts', 'postRecent'));
     }
     public function entidadeList(){
-        $inst = DB::table('instituicoes')->join('imgs_insts', 'inst_img', '=', 'img_id')->paginate(4);
+        $inst = DB::table('instituicoes')->join('galeria_insts', 'instituicoes.id', '=', 'galeria_insts.instituicao_id')->paginate(4);
         return view('newFront.portifolio')->with(compact('inst'));
     }
     public function entidade($id){
-        $instVer = DB::table('instituicoes')->join('imgs_insts', 'inst_img', '=', 'img_id')->where('id', $id)->first();
-        $imagens = DB::table('img_album_galerias')->get();
-        $galerias = DB::table('album_galerias')->paginate(6);
-        return view ('newFront.portifolioVer')->with(compact('instVer', 'imagens','galerias'));
+        $instVer = DB::table('instituicoes')->join('galeria_insts', 'instituicoes.id', '=', 'galeria_insts.instituicao_id')->where('id',$id)->first();
+        // return var_dump($instVer);
+        // $imgs = DB::table('imgs_insts')->where('galeria_id',$instVer->gal_id)->get();
+        if($id == 1){
+            $imagens = DB::table('img_album_galerias')->get();
+            $galerias = DB::table('album_galerias')->paginate(6);
+            return view ('newFront.portifolioVer')->with(compact('instVer','imagens','galerias'));
+        }else{
+            $imgs = DB::table('imgs_insts')->where('galeria_id',$instVer->gal_id)->get();;
+            $video = DB::table('video_insts')->where('galeria_id',$instVer->gal_id)->first();
+            // return $imgs;
+            return view ('newFront.portifolioVer')->with(compact('instVer','imgs','video'));
+        }
+        // return var_dump($imagens);
     }
     public function galeriaShow($id){
         //Já está trazendo as imagens, só listar agora.
         $albumWithImgs = DB::table('album_galerias')->join('img_album_galerias', 'album_galerias.id', '=', 'img_album_galerias.album_id')->where('img_album_galerias.album_id', $id)->get();
-        $idAlbum = $id;
         // return $albumWithImgs;
-        return view('newFront.portifolioComdica')->with(compact('albumWithImgs', 'idAlbum'));
+        // $idAlbum = $id;
+        return view('newFront.portifolioComdica')->with(compact('albumWithImgs'));
     }
     public function sobre()
     {

@@ -79,8 +79,13 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
 		Route::post('/store',['as' => 'instituicao.store', 'uses' => 'Admin\InstituicoesController@store']);
 		Route::get('/{id}',['as' => 'instituicao.show', 'uses' => 'Admin\InstituicoesController@show']);
 		Route::get('/edit/{id}',['as' => 'instituicao.edit', 'uses' => 'Admin\InstituicoesController@edit']);
-		Route::put('/update/{id}',['as' => 'instituicao.update', 'uses' => 'Admin\InstituicoesController@update']);
-		Route::get('/destroy/{id}',['as' => 'instituicao.destroy', 'uses' => 'Admin\InstituicoesController@destroy']);
+        Route::put('/update/{id}',['as' => 'instituicao.update', 'uses' => 'Admin\InstituicoesController@update']);
+        Route::get('/destroy/{id}',['as' => 'instituicao.destroy', 'uses' => 'Admin\InstituicoesController@destroy']);
+        //Rotas de excluir imagem e video da instituicao
+        Route::get('imagem/destroy/{id}',['as' => 'instituicao.destroyImagem', 'uses' => 'Admin\InstituicoesController@destroyImagem']);
+        Route::get('video/destroy/{id}',['as' => 'instituicao.destroyVideo', 'uses' => 'Admin\InstituicoesController@destroyVideo']);
+
+
     });
 // --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------

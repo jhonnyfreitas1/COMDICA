@@ -395,3 +395,20 @@ alter table
   `resolucoes` 
 add 
   constraint `resolucoes_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete cascade;
+
+-- migration:2020_05_18_175412_create_campanhas_table --
+create table `campanhas` (
+  `id` int unsigned not null auto_increment primary key, 
+  `titulo` varchar(255) not null, 
+  `desc` varchar(150) not null, 
+  `imagem` varchar(255) null, 
+  `pdf` varchar(255) null, 
+  `video` varchar(255) null, 
+  `user_id` bigint unsigned not null, 
+  `created_at` timestamp null, 
+  `updated_at` timestamp null
+) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table 
+  `campanhas` 
+add 
+  constraint `campanhas_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete cascade;

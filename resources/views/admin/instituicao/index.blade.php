@@ -46,7 +46,7 @@
                 <th scope="row">{{$instituicao->id}}</th>
                 <td>
                     <strong>
-                        <a href="{{route('instituicao.show', $instituicao->id)}}" class="text-dark">{{$instituicao->name}}</a>
+                        <a class="text-dark">{{$instituicao->name}}</a>
                     </strong>
                 </td>
                 <td>

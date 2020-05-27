@@ -27,10 +27,10 @@
             <h2>{{$instVer->name}}</h2>
         </div>
         <div class="grid-5 produto_icone">
-            <img src="/upload_imagem/instituicoes/{{$instVer->name.$instVer->id}}/{{$instVer->imagem_princ}}">
+            <img src="/upload_imagem/instituicoes/{{$instVer->id}}/{{$instVer->img1}}">
         </div>
         <div class="grid-8">
-            <img src="/upload_imagem/instituicoes/{{$instVer->name.$instVer->id}}/{{$instVer->imagem_sec}}">
+            <img src="/upload_imagem/instituicoes/{{$instVer->id}}/{{$instVer->img2}}">
         </div>
         <div class="grid-8 produto_info">
             <p style="color:black">{{$instVer->desc}}</p>
@@ -42,12 +42,15 @@
             </ul>
         </div>
     </section>
-    <section class="introducao-interna" style="color:#5BA479; background-color: #f7fffa">
-        <div class="container">
-            <h1 data-anime="400" class="fadeInDown">Nossos Albuns</h1>
-            <p data-anime="800" class="fadeInDown">Veja aqui nossos albuns de fotos.</p>
-        </div>
-    </section>
+
+    @if($instVer->id != 1 or !isset($video) and !isset($imgs))
+        <section class="introducao-interna" style="color:#5BA479; background-color: #f7fffa">
+            <div class="container">
+                <h1 data-anime="400" class="fadeInDown">Nossos Albuns</h1>
+                <p data-anime="800" class="fadeInDown">Veja aqui nossos albuns de fotos.</p>
+            </div>
+        </section>
+    @endif
     @if($instVer->id === 1)
         <section class="container produto_item">
             <ul>
@@ -72,36 +75,29 @@
             </ul>
         </section>
     @else
-        <section class="missao_sobre container fadeInDown" data-anime="1200">
-            <div class=" margin">
-                <video width="100%" controls>
-                    <source src="" type="video/mp4">
-                </video>
-            </div>
-        </section>
+
+        @isset($video)
+            <section class="missao_sobre container fadeInDown" data-anime="1200">
+                <div class=" margin">
+                    <video width="100%" controls>
+                        <source src="/upload_video/instituicoes/{{$instVer->gal_id}}/{{$video->nome}}" type="video/mp4">
+                    </video>
+                </div>
+            </section>
+        @endisset
+        @isset($imgs)
         <section class="container produto_item">
             <ul class="produtos_lista">
+            @foreach($imgs as $img)
                 <li class="grid-8">
                     <div class="produtos_icone">
-                        <img src="/img/about.jpeg"alt="">
+                        <img src="/upload_imagem/instituicoes/{{$instVer->gal_id}}/{{$img->nome}}"alt="">
                     </div>
                 </li>
-                <li class="grid-8">
-                    <div class="produtos_icone">
-                        <img src="/img/about.jpeg"alt="">
-                    </div>
-                </li>
-                <li class="grid-8">
-                    <div class="produtos_icone">
-                        <img src="/img/about.jpeg"alt="">
-                    </div>
-                </li>
-                <li class="grid-8">
-                    <div class="produtos_icone">
-                        <img src="/img/about.jpeg"alt="">
-                    </div>
-                </li>
+            @endforeach
             </ul>
         </section>
+        @endisset
     @endif
 @endsection
+

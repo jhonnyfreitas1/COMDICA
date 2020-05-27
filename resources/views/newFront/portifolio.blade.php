@@ -12,7 +12,7 @@
         width: 40px;
         height: 40px;
         padding-bottom: 1px;
-        color: #75C587; 
+        color: #75C587;
         font-size: 30px;
         background-color: white;
         border: 5px solid ;
@@ -36,7 +36,7 @@
             @foreach ($inst as $instData)
                 <li class="grid-4">
                     <div class="produtos_icone">
-                        <img src="/upload_imagem/instituicoes/{{$instData->name.$instData->id}}/{{$instData->imagem_princ}}"alt="">
+                        <img src="/upload_imagem/instituicoes/{{$instData->gal_id}}/{{$instData->img1}}"alt="">
                     </div>
                         <h3>{{$instData->name}}</h3>
                     <br><br>
@@ -45,6 +45,6 @@
                 </li>
             @endforeach
         </ul>
-        {!! $inst->Links()!!} 
+        {!! $inst->Links()!!}
     </section>
 @endsection

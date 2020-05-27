@@ -9,10 +9,11 @@
         .produtos_lista{
             margin-top: -100px;
         }
-    .text{
+
+        .text{
         text-align: center;
         width: 800px;
-        margin: auto;   
+        margin: auto;
         height: auto;
         padding: 20px;
     }
@@ -22,7 +23,7 @@
     <div class="container">
         <h1 data-anime="400" class="fadeInDown">Fotos</h1>
         <div class="text">
-            <p data-anime="800" class="fadeInDown">{{$albumWithImgs[$idAlbum]->descricao}}</p>
+            <p data-anime="800" class="fadeInDown">{{$albumWithImgs[0]->descricao}}</p>
         </div>
     </div>
 </section>
