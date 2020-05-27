@@ -130,7 +130,7 @@
                 $("#loading").show();
 
                 setTimeout(() => {
-                    $('#loading').delay(2000).fadeOut("slow");
+                    $('#loading').fadeOut("slow");
                     $('#conteudo').show();
                 }, 2000);
 
