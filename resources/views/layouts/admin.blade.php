@@ -45,20 +45,20 @@
         <div class="list-group list-group-flush">
           @can('admin-comdica')
           <a href="{{route('postagens.create')}}" id='postagem' class="list-group-item bg-info border list-group-item-action" onClick="activate('postagem')">Nova postagem <i class="fas fa-plus-square"></i> </a>
-          <a href="{{route('postagens.minhas_postagens')}}" id='minhas_postagens'  class="list-group-item bg-info border list-group-item-action ">Minhas postagens <i class="fas fa-user"></i></a>
+          <a href="{{route('postagens.minhas_postagens')}}" id='minhas_postagens'  class="list-group-item bg-info border list-group-item-action ">Minhas postagens <i class="fas fa-file-image"></i></a>
           @endcan
           @can('admin-comdica')
-            <a href="{{route('postagens.index')}}" id='todas_postagens'  class="list-group-item bg-info border list-group-item-action ">Todas as postagens <i class="fas fa-user"></i></a>
-            <a href="{{route('postagens.arquivadas')}}" id='postagens_arquivadas'  class="list-group-item bg-info border list-group-item-action ">Postagens Arquivadas <i class="fas fa-user"></i></a>
+            <a href="{{route('postagens.index')}}" id='todas_postagens'  class="list-group-item bg-info border list-group-item-action ">Todas as postagens <i class="fas fa-mail-bulk"></i></a>
+            <a href="{{route('postagens.arquivadas')}}" id='postagens_arquivadas'  class="list-group-item bg-info border list-group-item-action ">Postagens Arquivadas <i class="fas fa-archive"></i></a>
           @endcan
-          <a href="{{route('denuncias.index')}}" id='denuncias'  class="list-group-item bg-info border list-group-item-action ">Todas as denúncias <i class="fas fa-user"></i></a>
+          <a href="{{route('denuncias.index')}}" id='denuncias'  class="list-group-item bg-info border list-group-item-action ">Todas as denúncias <i class="fas fa-th-list"></i></a>
           @can('admin-comdica')
           <a href="{{route('instituicao.index')}}" id='instituicoes'  class="list-group-item bg-info border list-group-item-action ">Instituições <i class="fas fa-warehouse"></i></a>
           <a href="{{route('usuario.index')}}" id='users' class="list-group-item list-group-item-action bg-info border">Usuarios <i class="fas fa-users"></i></a>
           <a href="{{route('atas.index')}}" id='atas' class="list-group-item list-group-item-action bg-info border">Atas <i class="fas fa-file-pdf"></i></a>
           <a href="{{route('resolucao.index')}}" id='resolucoes' class="list-group-item list-group-item-action bg-info border">Resoluções <i class="fas fa-file"></i></a>
           <a href="{{route('galeria.index')}}" id='galeria' class="list-group-item list-group-item-action bg-info border">Galeria <i class="fas fa-images"></i></a>
-          <a href="{{route('campanha.index')}}" id='campanhas' class="list-group-item list-group-item-action bg-info border">Campanhas <i class="fas fa-images"></i></a>
+          <a href="{{route('campanha.index')}}" id='campanhas' class="list-group-item list-group-item-action bg-info border">Campanhas <i class="fas fa-paste"></i></a>
           <a href="/admin/doacoes" id='doacao_imposto' class="list-group-item bg-info border list-group-item-action ">Doações por boleto <i class="fas fa-file-invoice-dollar"></i></a>
           <a href="/admin/contato" class="list-group-item list-group-item-action bg-info border">Mensagens de contato <i class="far fa-comments"></i>
             @isset($contato)
@@ -103,6 +103,11 @@
 
       </div>
     </div>
+    <style>
+        h11{
+            color:red;
+        }
+    </style>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/dashboard.js"></script>
