@@ -15,34 +15,4 @@ class CampanhaController extends Controller
         // return $campanha;
         return view('newFront.doacaoIndex',compact('campanha'));
     }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(campanha $campanha)
-    {
-        //
-    }
-
-    public function edit(campanha $campanha)
-    {
-        //
-    }
-
-    public function update(Request $request, campanha $campanha)
-    {
-        //
-    }
-
-    public function destroy(campanha $campanha)
-    {
-        //
-    }
 }
