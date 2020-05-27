@@ -18,13 +18,12 @@ class CreateInstituicoesTable extends Migration
             $table->string('name');
             $table->string('desc');
             $table->string('telefone');
-            $table->string('endereco');
-            $table->string('email');
-            $table->string('site');
+            $table->string('endereco')->nullable();
+            $table->string('email')->nullable();
+            $table->string('site')->nullable();
 
-            /** Chave Estrangeira do banco insts_imgs*/          
-            $table->Integer('inst_img')->unsigned();
-            $table->foreign('inst_img')->references('img_id')->on('imgs_insts')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });
