@@ -11,6 +11,7 @@ use App\Tipo_user;
 use App\Resolucao;
 use App\Ata;
 use App\AlbumGaleria;
+use App\Instituicao;
 
 class User extends Authenticatable
 {
@@ -45,8 +46,13 @@ class User extends Authenticatable
         return $this->hasMany(AlbumGaleria::class);
     }
 
+    /*Função que representa o relacionamento de um para muitos*/
+    public function user_instituicao(){
+        return $this->hasMany(Instituicao::class);
+    }
+
     /*Função que representa o relacionamento de muitos para um*/
     public function user_postagem(){
-        return $this->BelongsTo(Postagens::class);
+        return $this->hasMany(Postagens::class);
     }
 }

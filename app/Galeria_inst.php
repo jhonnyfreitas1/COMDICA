@@ -5,26 +5,26 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\belongsTo;
 use Illuminate\Database\Eloquent\Relations\hasMany;
-use App\Galeria_inst;
-use App\User;
+use App\Img_inst;
+use App\Instituicao;
 
-class Instituicao extends Model
+class Galeria_inst extends Model
 {
     /*nome da tabela*/
-	protected $table 	= 	"instituicoes";
+	protected $table 	= 	"galeria_insts";
 
     /*nome da chave primaria da tabela*/
-	protected $primaryKey = 'id';
+	protected $primaryKey = 'gal_id';
 
 	/*nome dos atributos que poderão ser alterados*/
-	protected $fillable = ['name', 'desc', 'telefone', 'endereco', 'email', 'site', 'user_id'];
+	protected $fillable = ['img1', 'img2', 'instituicao_id'];
 
 	/*Função que representa o relacionamento de muitos para um*/
-	 public function inst_gal(){
-         return $this->hasMany(Galeria_inst::class);
+	 public function galeria_insts(){
+         return $this->belongsTo(Instituicao::class);
     }
 	/*Função que representa o relacionamento de muitos para um*/
-	 public function inst_user(){
-         return $this->belongsTo(User::class);
+	 public function galeria_img(){
+         return $this->hasMany(Img_inst::class);
     }
 }
