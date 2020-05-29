@@ -65,9 +65,8 @@
 	line-height: 20px;
 	float: left;
 	width: 229px;
-	height: 49px;
 	text-align: center;
-	padding-top: 16px;
+	padding: 16px;
 }
 
 .produto_info ul li:nth-child(1), .produto_info ul li:nth-child(2) {
