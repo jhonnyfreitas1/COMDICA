@@ -74,7 +74,7 @@
                         <img src="{{asset('img/Port.png')}}" alt="">
                     </div>
                     <h3>Portifólio</h3>
-                    <p>Portifólio Exclusivo para nossas Entidades, com o intuito de divulgar seu trabalho.</p>
+                    <p>Conheça um pouco do nosso trabalho e o das organizações da sociedade civil de Araçoiaba.</p>
                 </li>
             </a>
         </ul>
