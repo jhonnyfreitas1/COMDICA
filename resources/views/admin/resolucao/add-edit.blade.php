@@ -46,7 +46,7 @@
         <form method="post" action="{{route('resolucao.update', $resolucao->id)}}" enctype="multipart/form-data">
             @method('put')
     @else
-        <form method="post" action="{{route('resolucao.store')}}" enctype="multipart/form-data">
+        <form method="post" id="form" action="{{route('resolucao.store')}}" enctype="multipart/form-data">
     @endisset
     @csrf
     <div class="card">
@@ -102,7 +102,7 @@
                         @isset($resolucao)
                             <button type="submit" class="btn btn-primary col-md-12">Editar Resolucao</button>
                         @else
-                            <button type="submit" class="btn btn-primary col-md-12">Adicionar</button>
+                            <button type="submit" id='button' class="btn btn-primary col-md-12">Adicionar</button>
                         @endisset
                     </div>
                 </div>
@@ -125,6 +125,9 @@
     crossorigin="anonymous"></script>
 <script>
     $(document).ready(function(){
+        $('#form').submit(function(event){
+            $('#button').attr('disabled', 'disabled');
+        });
         $('#pdf').change(function(){
             const file = $(this)[0].files[0];
             const fileReader = new FileReader();
