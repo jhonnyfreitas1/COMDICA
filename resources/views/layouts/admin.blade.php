@@ -43,29 +43,54 @@
       <div class="bg-info  border-right " id="sidebar-wrapper">
         <div class="sidebar-heading"><a href="/"><img src="/img/comdica3.png" style="width: 10em;"></a></div>
         <div class="list-group list-group-flush">
-          @can('admin-comdica')
-          <a href="{{route('postagens.create')}}" id='postagem' class="list-group-item bg-info border list-group-item-action" onClick="activate('postagem')">Nova postagem <i class="fas fa-plus-square"></i> </a>
-          <a href="{{route('postagens.minhas_postagens')}}" id='minhas_postagens'  class="list-group-item bg-info border list-group-item-action ">Minhas postagens <i class="fas fa-file-image"></i></a>
-          @endcan
-          @can('admin-comdica')
-            <a href="{{route('postagens.index')}}" id='todas_postagens'  class="list-group-item bg-info border list-group-item-action ">Todas as postagens <i class="fas fa-mail-bulk"></i></a>
-            <a href="{{route('postagens.arquivadas')}}" id='postagens_arquivadas'  class="list-group-item bg-info border list-group-item-action ">Postagens Arquivadas <i class="fas fa-archive"></i></a>
-          @endcan
-          <a href="{{route('denuncias.index')}}" id='denuncias'  class="list-group-item bg-info border list-group-item-action ">Todas as denúncias <i class="fas fa-th-list"></i></a>
-          @can('admin-comdica')
-          <a href="{{route('instituicao.index')}}" id='instituicoes'  class="list-group-item bg-info border list-group-item-action ">Instituições <i class="fas fa-warehouse"></i></a>
-          <a href="{{route('usuario.index')}}" id='users' class="list-group-item list-group-item-action bg-info border">Usuarios <i class="fas fa-users"></i></a>
-          <a href="{{route('atas.index')}}" id='atas' class="list-group-item list-group-item-action bg-info border">Atas <i class="fas fa-file-pdf"></i></a>
-          <a href="{{route('resolucao.index')}}" id='resolucoes' class="list-group-item list-group-item-action bg-info border">Resoluções <i class="fas fa-file"></i></a>
-          <a href="{{route('galeria.index')}}" id='galeria' class="list-group-item list-group-item-action bg-info border">Galeria <i class="fas fa-images"></i></a>
-          <a href="{{route('campanha.index')}}" id='campanhas' class="list-group-item list-group-item-action bg-info border">Campanhas <i class="fas fa-paste"></i></a>
-          <a href="/admin/doacoes" id='doacao_imposto' class="list-group-item bg-info border list-group-item-action ">Doações por boleto <i class="fas fa-file-invoice-dollar"></i></a>
-          <a href="/admin/contato" class="list-group-item list-group-item-action bg-info border">Mensagens de contato <i class="far fa-comments"></i>
-            @isset($contato)
-            <span class="bg-danger rounded p-1">{{$contato}}</span>
-            @endisset
-          @endcan
-          </a>
+    <nav >
+        <ul>
+            <li>
+                <a href="#" onClick="dropDown()" class="list-group-item bg-info border list-group-item-action">Postagens <i class="fas fa-bars"></i ><span style="margin-left:90px"class="fas fa-caret-down"></span></a>
+                <ul id="posts" style="display:none">
+                    @can('admin-comdica')
+                    <a href="{{route('postagens.create')}}" id='postagem' class="drop-btn list-group-item bg-info border list-group-item-action" onClick="activate('postagem')">Nova postagem <i class="fas fa-plus-square"></i> </a>
+                    <a href="{{route('postagens.minhas_postagens')}}" id='minhas_postagens'  class="drop-btn list-group-item bg-info border list-group-item-action ">Minhas postagens <i class="fas fa-file-image"></i></a>
+                    @endcan
+                    @can('admin-comdica')
+                        <a href="{{route('postagens.index')}}" id='todas_postagens'  class="drop-btn list-group-item bg-info border list-group-item-action ">Todas as postagens <i class="fas fa-mail-bulk"></i></a>
+                        <a href="{{route('postagens.arquivadas')}}" id='postagens_arquivadas'  class="drop-btn list-group-item bg-info border list-group-item-action ">Postagens Arquivadas <i class="fas fa-archive"></i></a>
+                    @endcan
+                    <a href="{{route('denuncias.index')}}" id='denuncias'  class="drop-btn list-group-item bg-info border list-group-item-action ">Todas as denúncias <i class="fas fa-th-list"></i></a>
+                </ul>
+            </li>
+            @can('admin-comdica')
+                <li>
+                    <a href="{{route('instituicao.index')}}" id='instituicoes'  class="list-group-item bg-info border list-group-item-action ">Instituições <i class="fas fa-warehouse"></i></a>
+                </li>
+                <li>
+                    <a href="{{route('usuario.index')}}" id='users' class="list-group-item list-group-item-action bg-info border">Usuarios <i class="fas fa-users"></i></a>
+                </li>
+                <li>
+                    <a href="{{route('atas.index')}}" id='atas' class="list-group-item list-group-item-action bg-info border">Atas <i class="fas fa-file-pdf"></i></a>
+                </li>
+                <li>
+                    <a href="{{route('resolucao.index')}}" id='resolucoes' class="list-group-item list-group-item-action bg-info border">Resoluções <i class="fas fa-file"></i></a>
+                </li>
+                <li>
+                    <a href="{{route('galeria.index')}}" id='galeria' class="list-group-item list-group-item-action bg-info border">Galeria <i class="fas fa-images"></i></a>
+                </li>
+                <li>
+                    <a href="{{route('campanha.index')}}" id='campanhas' class="list-group-item list-group-item-action bg-info border">Campanhas <i class="fas fa-paste"></i></a>
+                </li>
+                <li>
+                <a href="/admin/doacoes" id='doacao_imposto' class="list-group-item bg-info border list-group-item-action ">Doações por boleto <i class="fas fa-file-invoice-dollar"></i></a>
+                </li>
+                <li>
+                    <a href="/admin/contato" class="list-group-item list-group-item-action bg-info border">Mensagens de contato <i class="far fa-comments"></i>
+                @if(isset($contato) && $contato > 0)
+                    <span class="bg-danger rounded p-1">{{$contato}}</span>
+                @endif
+                    </a>
+                </li>
+            @endcan
+        </ul>
+    </nav>
 
         </div>
       </div>
@@ -124,7 +149,16 @@
             return false;
         }
     }
+    function dropDown(){
+        const posts = $('#posts');
+        if(posts.is(':visible') == true){
+            posts.hide();
+        }else{
+            posts.show();
 
+        }
+
+    }
   $(document).on('DOMContentLoaded', () => {
     setInterval(() => {
       const floating = document.getElementById('floating-display');
@@ -166,10 +200,17 @@
     background-color:#77a2b8!important;
     color: gray;
 }
+.drop-btn{
+    padding-right:0px;
+    padding-left: 50px;
+}
 body{
   transition:all 2s;
   text-decoration-color: black;
 }
+nav ul{
+    list-style:none;
+    padding:0px
 }
 label{
     color:black;
