@@ -106,7 +106,7 @@ $(document).ready(function(){
 
                 impostopg = irrfvspg;
                 var impostodevido = (impostopg * -1) - irrf;
-                var porcentagem = impostodevido  * (6/100);     //tira os 6% da para doação
+                var porcentagem = impostodevido  * (3/100);     //tira os 6% da para doação
 
 
                 console.log(impostopg);
