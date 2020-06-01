@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('content')	
+@section('content')
 
 @section('js')
 
@@ -29,7 +29,7 @@
       </small>
     </footer>
   </blockquote>
-</div>  
+</div>
 
 <form style="align-items: center; text-align: center;margin: 0 auto" class="radius col-md-6 m-2 border shadow-lg z-index-1 " action="#">
   <div class="col-md-12">
@@ -38,7 +38,7 @@
   <div class="inputCalc " style=" padding-bottom:1em;">
     <div class="form-row" >
       <div class="form-group col-md-12">
-        <label for="inputEmail4" class="d-flex justify-content-center">Renda anual bruta</label> 
+        <label for="inputEmail4" class="d-flex justify-content-center">Renda anual bruta</label>
         <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius  "  data-toggle="tooltip" data-placement="top" title="Salário, Férias, Ganhos Tributaveis no ano..." id="renda-bruta" placeholder="R$ 0,00" required>
       </div>
       <div class="form-group col-md-6" >
@@ -67,7 +67,7 @@
         <label for="inputEmail4">Despesa anual médica</label>
         <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius " data-toggle="tooltip" data-placement="top" title="Valor de dedução ilimitada" id="desp-medic" placeholder="R$ 0,00">
       </div>
-      <a name="ancora1" id="ancora1"></a>        
+      <a name="ancora1" id="ancora1"></a>
       <div class="form-group col-md-6">
         <label for="inputPassword4">Previdência social (INSS)</label>
         <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius " id="inss" placeholder="R$ 0,00">
@@ -99,49 +99,49 @@
    <table class="fixed-center mt-4 table table-hover col-md-10 border  border-light m-2" id='resultados'>
      <thead class="thead-dark col-10">
 
-       <tr class="col-12">	
+       <tr class="col-12">
          <th class="border border-dark" scope="">Dados</th>
          <th class="border border-dark" class="col-md-8" scope="col">Valores resultantes do calculo</th>
        </tr>
-       <tbody class="col-9"> 
+       <tbody class="col-9">
          <tr>
 
            <th class="border border-dark" scope="row">Renda Anual Bruta</th>
-           <td id="suarendaanual">Calcule</td>  
+           <td id="suarendaanual">Calcule</td>
          </tr>
          <tr>
            <th class="border border-dark" scope="row">IRRF (Imposto de renda retido na fonte)</th>
-           <td  id="irrf"></td>  
+           <td  id="irrf"></td>
          </tr>
          <tr>
            <th class="border border-dark" scope="row"> Rendimentos Debitaveis (-)</th>
-           <td id="seusdebitos">Calcule</td>  
+           <td id="seusdebitos">Calcule</td>
          </tr>
 
          <tr>
            <th class="border border-dark" scope="row">Base para calculo</th>
-           <td id="basedecalculo">Calcule</td>  
+           <td id="basedecalculo">Calcule</td>
          </tr>
          <tr>
            <th  class="border border-dark" scope="row">Alíquota Aplicada</th>
-           <td id="eliquota">Calcule</td>  
+           <td id="eliquota">Calcule</td>
          </tr>
          <tr>
            <th class="border border-dark" scope="row">Imposto de renda</th>
-           <td  id="impostoir">Calcule</td>  
+           <td  id="impostoir">Calcule</td>
          </tr>
          <tr>
            <th class="border border-dark" scope="row">Valor a deduzir (-)</th>
-           <td  id="deducao">Calcule</td>  
+           <td  id="deducao">Calcule</td>
          </tr>
        </tr>
        <tr>
         <th class="border border-dark" scope="row">Imposto devido</th>
-        <td  id="impostodevido">Calcule</td>  
+        <td  id="impostodevido">Calcule</td>
       </tr>
       <tr class="table-light">
-       <th class="border border-dark table-active bg-success" scope="row">Doe 6% do seu imposto para o fundeca</th>
-       <td  class='table-active border border-dark bg-success' id="valor7"></td>  
+       <th class="border border-dark table-active bg-success" scope="row">Doe 3% do seu imposto para o fundeca</th>
+       <td  class='table-active border border-dark bg-success' id="valor7"></td>
      </tr>
    </thead>
  </tbody>
@@ -154,13 +154,13 @@
 </div>
 </center>
 </div>
-         
 
-<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" > 
+
+<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog" role="document">
     <div class="modal-content"  style="" >
       <div class="modal-header bg-light">
-        <h5 class="modal-title" id="exampleModalLabel">Confirmar doação por boleto único</h5> 
+        <h5 class="modal-title" id="exampleModalLabel">Confirmar doação por boleto único</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -189,7 +189,7 @@
       </div>
       <div class="form-row inputCalc">
         <div class="form-group col-md-12" >
-         <label class="text-light bg-success font-weight-bold p-1"> Nome completo:<span class="text-danger">*</span></label> 
+         <label class="text-light bg-success font-weight-bold p-1"> Nome completo:<span class="text-danger">*</span></label>
          <input type="text" class="form-control radius " name="" value="" id="nome" placeholder="EX: jose da silva" required>
        </div>
      </div>
@@ -217,7 +217,7 @@
 </div>
 </form>
 </div>
-<div class="modal fade" id="modalcarne" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" > 
+<div class="modal fade" id="modalcarne" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog" role="document">
     <div class="modal-content"  style="" >
       <div class="modal-header bg-light">
@@ -257,7 +257,7 @@
       </div>
       <div class="form-row inputCalc">
         <div class="form-group col-md-12" >
-         <label class="text-light bg-primary font-weight-bold p-1"> Nome completo:<span class="text-danger">*</span></label> 
+         <label class="text-light bg-primary font-weight-bold p-1"> Nome completo:<span class="text-danger">*</span></label>
          <input type="text" class="form-control radius " name="" value="" id="nome_carne" placeholder="EX: jose da silva"  data-toggle="tooltip" data-placement="top" title="O nome completo do doador é essencial" required>
        </div>
      </div>
@@ -299,13 +299,13 @@
    $('[data-toggle="tooltip"]').tooltip()
 
    $("#mudar").on('click',function(e){
-   
-    if ($("#nome").val() != ""  && $("#user_cpf").val() != "" && $("#valor_doar").maskMoney('unmasked')[0] != "" &&   $("#token").val() != "" && $("#e-mail").val() != "") {  
+
+    if ($("#nome").val() != ""  && $("#user_cpf").val() != "" && $("#valor_doar").maskMoney('unmasked')[0] != "" &&   $("#token").val() != "" && $("#e-mail").val() != "") {
      if($("#check_termo").prop("checked") == true){
 
       gerarBoleto();
        e.preventDefault();
-    }   
+    }
     else{
       alert("Aceite o termo para continuar.");
     }
@@ -313,10 +313,10 @@
 });
    $("#mudar2").on('click',function(){
 
-    if ($("#nome_carne").val() != ""  && $("#cpf_carne").val() != "" && $("#valor_doar_carne").maskMoney('unmasked')[0] != "" &&   $("#token").val() != "" && $("#quantidade_parcelas").children("option:selected").val() != "Selecione" && $("#email_carne").val() != "") {  
+    if ($("#nome_carne").val() != ""  && $("#cpf_carne").val() != "" && $("#valor_doar_carne").maskMoney('unmasked')[0] != "" &&   $("#token").val() != "" && $("#quantidade_parcelas").children("option:selected").val() != "Selecione" && $("#email_carne").val() != "") {
      if($("#check_termo_carne").prop("checked") == true){
       gerarCarne();
-    }   
+    }
     else{
       alert("Aceite o termo para continuar");
     }
@@ -357,7 +357,7 @@
     var valor = $("#valor_doar").maskMoney('unmasked')[0];;
     var token = $("#token").val();
     var email = $("#e-mail").val();
-      
+
       if (valor >= 6) {
           $("#mudar").hide();
           $("#loading1").show();
@@ -382,21 +382,21 @@
         var valor = $("#valor_doar_carne").maskMoney('unmasked')[0];;
         var token = $("#token").val();
         var quantidade_parcelas = $("#quantidade_parcelas").val();
-        
+
         if (valor / quantidade_parcelas >= 6) {
         $("#mudar2").hide();
         $("#loading").show();
         $.post('carne/gerar', {nome:nome , cpf:cpf , valor:valor, _token:token, parcelas:quantidade_parcelas,email:email},function(data){
           console.log(data);
           $("#mudar2").show();
-         
+
           $("#loading").hide();
           $("#resultado_boleto").html(data);
           $("#modalcarne").modal('hide');
           var target_offset = $("#ancora2").offset();
           var target_top = target_offset.top;
           $('html, body').animate({ scrollTop: target_top },50);
-        });      
+        });
       }else{
           alert("O Valor das parcelas deve ser maior ou igual que R$6.00, para poder custiar os gastos terceiros no processo de doação diminua o numero de parcelas ou faça uma doação com boleto único");
       }
@@ -421,7 +421,7 @@
     }
     h5{
       color: black;
-    } 
+    }
     #pulse{
       animation: pulse 0.7s infinite;
       animation-direction: alternate;
@@ -448,7 +448,7 @@
       100% {
         transform: scale(1.0);
         filter: brightness(100%);
-      } 
+      }
 
 
     </style>
