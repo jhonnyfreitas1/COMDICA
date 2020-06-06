@@ -89,7 +89,7 @@ if ('serviceWorker' in navigator) {
                                 <a id="bar4" class="nav-link disabled" href="#">4. Dados da Lesão</a>
                             </li>
                             <li class="nav-item">
-                                <a id="bar5" class="nav-link disabled" href="#">5. Dados da Agressor</a>
+                                <a id="bar5" class="nav-link disabled" href="#">5. Dados do Agressor</a>
                             </li>
                         </ul>
                     </div>
@@ -342,9 +342,24 @@ if ('serviceWorker' in navigator) {
                             </div>
                             <div id="step5" class="step">
                                 <div class="form row">
-                                    <div class="form-group col-md-6">
-                                        <label for="agressorNumber">Número de envolvidos :</label>
-                                        <input type="number" name="agressorNumber" id="agressorNumber" class="form-control" value='0'>
+                                    {{-- Alteracao --}}
+                                    <div class="form-group col-md-4">
+                                        <label for="agressorName">Provavel Nome e(ou) Apelido do Agressor :</label>
+                                        <input type="text" name="agressorName" id="agressorName" class="form-control" placeholder="Ex : Pedro (Pedrão)">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="agressorAge">Idade do Agressor :</label>
+                                        <input type="number" name="agressorAge" min="0" class="form-control" id="agressorAge" placeholder="Ex : 22, 30">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="parent">Sexo do Provável Agressor :</label>
+                                        <select name="parent" id="parent" class="form-control">
+                                            <option value="">Selecione uma opção</option>
+                                            <option value="Feminino">Feminino</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Ambos os Sexos">Ambos os Sexos</option>
+                                            <option value="Outros">Outros</option>
+                                        </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Vínculo Social : </label>
@@ -370,18 +385,6 @@ if ('serviceWorker' in navigator) {
                                             <option value="Outros">Outros</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form row">
-                                    <div class="form-group col-md-6">
-                                        <label for="parent">Sexo do Provável Agressor :</label>
-                                        <select name="parent" id="parent" class="form-control">
-                                            <option value="">Selecione uma opção</option>
-                                            <option value="Feminino">Feminino</option>
-                                            <option value="Masculino">Masculino</option>
-                                            <option value="Ambos os Sexos">Ambos os Sexos</option>
-                                            <option value="Outros">Outros</option>
-                                        </select>
-                                    </div>
                                     <div class="form-group col-md-6">
                                         <label for="alcool">Provável uso de Álcool : </label>
                                         <select name="alcool" id="alcool" class="form-control">
@@ -391,6 +394,7 @@ if ('serviceWorker' in navigator) {
                                         </select>
                                     </div>
                                 </div>
+
                             </div>
                             <button class="btn btn-success mt-2" id='submit'type="submit" hidden>
                                 Denunciar <i class="fa fa-correct"></i>
@@ -422,14 +426,15 @@ $(document).ready(function(){
             //Passo exibido
             var showStep= function(){
                 var step = parseInt($(".step:visible").index());
-                if(step == 0){
+                console.log(step);
+                if(step == 1){
                     $('#prev').prop('disabled', true);
                     $('#bar1').removeClass('disabled')
                     $('#bar1').addClass('active')
                     $('#bar2').removeClass('active')
                     $('#bar2').addClass('disabled')
                     $('#submit').attr('hidden','hidden');
-                }else if(step == 1){
+                }else if(step == 2){
                     $('#bar1').removeClass('active')
                     $('#bar1').addClass('disabled')
                     $('#bar2').removeClass('disabled')
@@ -439,7 +444,7 @@ $(document).ready(function(){
                     $('#prev').prop('disabled', false);
                     $('#next').prop('disabled', false)
                     $('#submit').attr('hidden','hidden');
-                }else if(step == 2){
+                }else if(step == 3){
                     $('#bar2').removeClass('active')
                     $('#bar2').addClass('disabled')
                     $('#bar3').removeClass('disabled')
@@ -447,7 +452,7 @@ $(document).ready(function(){
                     $('#bar4').removeClass('active')
                     $('#bar4').addClass('disabled')
                     $('#submit').attr('hidden','hidden');
-                }else if(step == 3){
+                }else if(step == 4){
                     $('#bar3').removeClass('active')
                     $('#bar3').addClass('disabled')
                     $('#bar4').removeClass('disabled')
@@ -457,7 +462,7 @@ $(document).ready(function(){
                     $('#prev').prop('disabled', false);
                     $('#next').prop('disabled', false)
                     $('#submit').attr('hidden','hidden');
-                }else if(step == 4){
+                }else if(step == 5){
                     $('#bar4').removeClass('active')
                     $('#bar4').addClass('disabled')
                     $('#bar5').removeClass('disabled')

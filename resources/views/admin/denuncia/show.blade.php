@@ -120,6 +120,7 @@
         </div>
         <div class="lista">
           <li class="list-group-item {{ ($denuncia[0]->agressorNumber)? '' : 'list-group-item-danger' }}"><strong>Número de envolvidos</strong> - {{($denuncia[0]->agressorNumber)?: 'Não preencheu'}}</li>
+          <li class="list-group-item {{ ($denuncia[0]->agressorNumber)? '' : 'list-group-item-danger' }}"><strong>Número de envolvidos</strong> - {{($denuncia[0]->agressorNumber)?: 'Não preencheu'}}</li>
           <li class="list-group-item {{ ($denuncia[0]->agressorGender)? '' : 'list-group-item-danger' }}"><strong>Vínculo social</strong> - {{($denuncia[0]->agressorGender)?: 'Não preencheu'}}</li>
           <li class="list-group-item {{ ($denuncia[0]->parent)? '' : 'list-group-item-danger' }}"><strong>Sexo provavel do agressor</strong> - {{($denuncia[0]->parent)?: 'Não preencheu'}}</li>
           <li class="list-group-item {{ ($denuncia[0]->alcool)? '' : 'list-group-item-danger' }}"><strong>Provável uso de Álcool</strong> - {{($denuncia[0]->alcool)?: 'Não preencheu'}}</li>
