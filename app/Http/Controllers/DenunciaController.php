@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 class DenunciaController extends Controller
 {
     public function index(){
-		$denuncias = DB::table('dados_gerais')->paginate(8);
+		$denuncias = DB::table('dados_gerais')->paginate();
         return view('admin.denuncia.index', compact('denuncias'));
      }
 
@@ -64,13 +64,14 @@ class DenunciaController extends Controller
 		$respLesao->bodyPart = isset($request->bodyPart) ? $request->bodyPart : null;
 		$respLesao->save();
 
-    	//Adicionando na tabela resp_agressors
-		($request->alcool == '1') ? $alcool = true : $alcool = false;
+        //Adicionando na tabela resp_agressors
+        ($request->alcool == '1') ? $alcool = 'sim' : (($request->alcool == '0') ? $alcool = 'não' : null);
 		$respAgressor = new respAgressor;
-		$respAgressor->agressorNumber = isset($request->agressorNumber) ? $request->agressorNumber : 0;
+		$respAgressor->agressorName = isset($request->agressorName) ? $request->agressorName : 0;
+		$respAgressor->agressorAge = isset($request->agressorAge) ? $request->agressorAge : 0;
 		$respAgressor->agressorGender = isset($request->agressorGender) ? $request->agressorGender : null;
-		$respAgressor->parent = isset($request->parent) ? $request->parent : null;
-		$respAgressor->alcool = isset($request->alcool) ? $request->alcool : null;
+		$respAgressor->agressorBond = isset($request->agressorBond) ? $request->agressorBond : null;
+		$respAgressor->alcool = isset($alcool) ? $alcool : null;
 		$respAgressor->save();
 
     	//Adicionando na tabela dados_gerais

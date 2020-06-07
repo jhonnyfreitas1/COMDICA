@@ -352,8 +352,8 @@ if ('serviceWorker' in navigator) {
                                         <input type="number" name="agressorAge" min="0" class="form-control" id="agressorAge" placeholder="Ex : 22, 30">
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="parent">Sexo do Provável Agressor :</label>
-                                        <select name="parent" id="parent" class="form-control">
+                                        <label for="agressorGender">Sexo do Provável Agressor :</label>
+                                        <select name="agressorGender" id="agressorGender" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Feminino">Feminino</option>
                                             <option value="Masculino">Masculino</option>
@@ -362,8 +362,8 @@ if ('serviceWorker' in navigator) {
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Vínculo Social : </label>
-                                        <select name="agressorGender" id="" class="form-control">
+                                        <label for="agressorBond">Vínculo Social : </label>
+                                        <select name="agressorBond" id="agressorBond" class="form-control">
                                             <option value="">Selecione uma opção</option>
                                             <option value="Pai">Pai</option>
                                             <option value="Mãe">Mãe</option>

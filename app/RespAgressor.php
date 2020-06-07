@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Relations\hasMany;
 class RespAgressor extends Model
 {
     protected $table = "resp_agressors";
-    
+
     protected $primaryKey = 'id';
 
     protected $fillable = [
-    	'agressorNumber','agressorGender','parent','alcool'
+    	'agressorName','agressorAge','agressorGender','agressorBond','alcool'
     ];
 	protected $date 	= ['created_at','update_at'];
 
