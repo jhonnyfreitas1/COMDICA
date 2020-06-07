@@ -32,15 +32,13 @@ self.addEventListener('activate', function activator(event) {
   );
 });
 
+self.addEventListener('fetch', function(event) {
+    event.respondWith(async function() {
+        try {
+          return await fetch(event.request);
+        } catch (err) {
+            return caches.match('/offline');
+        }
+      }());
 
-self.addEventListener("fetch", event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        return response || fetch(event.request);
-      })
-      .catch(() => {
-        return caches.match('/offline');
-      })
-  )
-});
+  });
