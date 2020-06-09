@@ -1,7 +1,8 @@
-const cache_NAME = 'sw - comdica';
+const cache_NAME = 'SW - comdica';
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
+      self.skipWaiting(),
     caches.open(cache_NAME).then(function(cache) {
       return cache.addAll([
     // './',
@@ -16,21 +17,23 @@ self.addEventListener('install', function(event) {
   );
 });
 
-
 self.addEventListener('activate', function activator(event) {
   event.waitUntil(
-    caches.keys().then(function (keys) {
-      return Promise.all(keys
-        .filter(function (key) {
-          return key.indexOf(cache_NAME) !== 0;
-        })
-        .map(function (key) {
-          return caches.delete(key);
-        })
-      );
-    })
-  );
+      self.clients.claim(),
+      caches.keys().then(function (keys) {
+        return Promise.all(keys
+         .filter(function (key) {
+              return key.indexOf(cache_NAME) !== 0;
+            })
+         .map(function (key) {
+           return caches.delete(key);
+         })
+          );
+      })
+    );
 });
+
+
 
 self.addEventListener('fetch', function(event) {
     event.respondWith(async function() {
@@ -40,5 +43,5 @@ self.addEventListener('fetch', function(event) {
             return caches.match('/offline');
         }
       }());
-
   });
+
