@@ -71,12 +71,22 @@ class PostagemController extends Controller
            $model->save();
         }
 
-
         // validação do link
         if ($request['yt'] != "") {
             $url = explode("watch?v=", $request['yt']);
-            $embed = $url[0]."embed/".$url[1];
 
+            // verificação do link copiado da url
+            if(count($url) > 1){
+                $embed = $url[0]."embed/".$url[1];
+
+            // verificação do link copiado pelo compartilhar
+            }else{
+                $url = explode("https://youtu.be/", $request['yt']);
+                if($url[0] !== '' ){
+                    return back()->withErrors(['yt'=>'O link informado não é do youtube!']);
+                }
+                $embed = "https://www.youtube.com/embed/".$url[1];
+            }
         }else{
             $embed = null;
         }
@@ -168,14 +178,26 @@ class PostagemController extends Controller
             // $model->save();
         }
 
-        // Validação do link
+        // validação do link
         if ($request['yt'] != "") {
             $url = explode("watch?v=", $request['yt']);
-            $embed = $url[0]."embed/".$url[1];
 
+            // verificação do link copiado da url
+            if(count($url) > 1){
+                $embed = $url[0]."embed/".$url[1];
+
+            // verificação do link copiado pelo compartilhar
+            }else{
+                $url = explode("https://youtu.be/", $request['yt']);
+                if($url[0] !== '' ){
+                    return back()->withErrors(['yt'=>'O link informado não é do youtube!']);
+                }
+                $embed = "https://www.youtube.com/embed/".$url[1];
+            }
         }else{
             $embed = null;
         }
+
         // Adicionar o link do youtube no banco
         $model->link_yt = $embed;
 
