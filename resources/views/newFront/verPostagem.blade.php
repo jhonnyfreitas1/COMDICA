@@ -12,8 +12,9 @@
         <h2 class="subtitulo-interno">Links Úteis</h2>
         <ul>
             @foreach($anexosPost  as $anexo)
-                <li>- <a href="/upload_pdf/postagens/{{$postagem->id}}/{{$anexo->src_pdf}}">{{$anexo->nome_pdf}}.pdf</a></li>
-            @endforeach  
+                <li><a href="/upload_pdf/postagens/{{$postagem->id}}/{{$anexo->src_pdf}}">{{$anexo->nome_pdf}}.pdf</a></li>
+            @endforeach
+                <li><a href="{{$postagem->link_yt}}" style="color:blue;">{{$postagem->link_yt}}</a></li>
         </ul>
     </div>
     <div class="divImg grid-4" style="width:60%;">
