@@ -78,6 +78,10 @@ class PostagemController extends Controller
             // verificação do link copiado da url
             if(count($url) > 1){
                 $embed = $url[0]."embed/".$url[1];
+                $final = substr($embed, -17);
+                if($final == '&feature=youtu.be'){
+                    $embed = substr($embed, 0,-17);
+                }
 
             // verificação do link copiado pelo compartilhar
             }else{
@@ -185,6 +189,10 @@ class PostagemController extends Controller
             // verificação do link copiado da url
             if(count($url) > 1){
                 $embed = $url[0]."embed/".$url[1];
+                $final = substr($embed, -17);
+                if($final == '&feature=youtu.be'){
+                    $embed = substr($embed, 0,-17);
+                }
 
             // verificação do link copiado pelo compartilhar
             }else{
