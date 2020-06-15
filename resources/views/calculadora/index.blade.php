@@ -130,15 +130,15 @@
            <th class="border border-dark" scope="row">Imposto de renda</th>
            <td  id="impostoir">Calcule</td>
          </tr>
-         <tr>
+         {{-- <tr>
            <th class="border border-dark" scope="row">Valor a deduzir (-)</th>
            <td  id="deducao">Calcule</td>
-         </tr>
+         </tr> --}}
        </tr>
-       <tr>
+       {{-- <tr>
         <th class="border border-dark" scope="row">Imposto devido</th>
         <td  id="impostodevido">Calcule</td>
-      </tr>
+      </tr> --}}
       <tr class="table-light">
        <th class="border border-dark table-active bg-success" scope="row">Doe 3% do seu imposto para o fundeca</th>
        <td  class='table-active border border-dark bg-success' id="valor7"></td>

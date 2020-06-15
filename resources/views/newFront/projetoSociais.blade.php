@@ -59,7 +59,7 @@
 <section class="produtos container">
     <br><br><br><br><br><br>
         <div>
-            <img src="/img/projetos.jpeg" class="cardLink img1">
+            <img src="/img/projetos.jpg" class="cardLink img1">
             <div style="text-align: center;">
                 <a href="/calculadora" class="btn-full">Doar</a>                    
             </div>    
