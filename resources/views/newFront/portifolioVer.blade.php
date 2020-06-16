@@ -80,7 +80,7 @@
             <section class="missao_sobre container fadeInDown" data-anime="1200">
                 <div class=" margin">
                     <video width="100%" controls>
-                        <source src="/upload_video/instituicoes/{{$instVer->id}}/{{$video->nome}}" type="video/mp4">
+                        <source src="/upload_video/instituicoes/{{$instVer->gal_id}}/{{$video->nome}}" type="video/mp4">
                     </video>
                 </div>
             </section>
