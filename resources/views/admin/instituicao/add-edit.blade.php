@@ -217,7 +217,7 @@
                     @isset($imagens)
                         @foreach($imagens as $count => $imagem)
                             <a href="#" id="img{{$imagem->img_id}}" url="{{route('instituicao.destroyImagem',$imagem->img_id)}}" onClick="confirmExclusao('img{{$imagem->img_id}}', 'essa imagem')">
-                                <img class="mt-2 rounded d-inline-block excluir verifImg" src="/upload_imagem/instituicoes/{{$galeria->gal_id}}/{{$imagem->nome}}"style="width: 150px; height: 100px; margin-left: 5px; border: none; display: block;">
+                                <img class="mt-2 rounded d-inline-block excluir verifImg" src="/upload_imagem/instituicoes/{{$galeria->instituicao_id}}/{{$imagem->nome}}"style="width: 150px; height: 100px; margin-left: 5px; border: none; display: block;">
                             </a>
                         @endforeach
                     @endisset
