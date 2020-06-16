@@ -436,9 +436,12 @@ class InstituicoesController extends Controller
                 File::delete($ex.$imagens[$i]->nome);
             }
         }
+
         // Vê se existe video para exclui-lá
-        if (File::exists($exV.$video->nome)) {
-            File::delete($exV.$video->nome);
+        if($video !== null){
+            if (File::exists($exV.$video->nome)) {
+                File::delete($exV.$video->nome);
+            }
         }
 
         // Vê se existe a img1 para exclui-lá

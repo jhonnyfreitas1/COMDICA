@@ -43,7 +43,7 @@
         </div>
     </section>
 
-    @if($instVer->id != 1 or !isset($video) and !isset($imgs))
+    @if($instVer->id == 1 or ($video != null or sizeof($imgs) >=  1) )
         <section class="introducao-interna" style="color:#5BA479; background-color: #f7fffa">
             <div class="container">
                 <h1 data-anime="400" class="fadeInDown">Nossos Albuns</h1>
@@ -80,7 +80,7 @@
             <section class="missao_sobre container fadeInDown" data-anime="1200">
                 <div class=" margin">
                     <video width="100%" controls>
-                        <source src="/upload_video/instituicoes/{{$instVer->gal_id}}/{{$video->nome}}" type="video/mp4">
+                        <source src="/upload_video/instituicoes/{{$instVer->id}}/{{$video->nome}}" type="video/mp4">
                     </video>
                 </div>
             </section>
@@ -91,7 +91,7 @@
             @foreach($imgs as $img)
                 <li class="grid-8">
                     <div class="produtos_icone">
-                        <img src="/upload_imagem/instituicoes/{{$instVer->gal_id}}/{{$img->nome}}"alt="">
+                        <img src="/upload_imagem/instituicoes/{{$instVer->id}}/{{$img->nome}}"alt="">
                     </div>
                 </li>
             @endforeach

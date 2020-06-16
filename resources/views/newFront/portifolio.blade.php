@@ -36,7 +36,7 @@
             @foreach ($inst as $instData)
                 <li class="grid-4">
                     <div class="produtos_icone">
-                        <img src="/upload_imagem/instituicoes/{{$instData->gal_id}}/{{$instData->img1}}"alt="">
+                        <img src="/upload_imagem/instituicoes/{{$instData->id}}/{{$instData->img1}}"alt="">
                     </div>
                         <h3>{{$instData->name}}</h3>
                     <br><br>
