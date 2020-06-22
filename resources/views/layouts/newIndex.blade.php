@@ -95,8 +95,8 @@
                             <h3>Redes Sociais</h3>
                             <ul>
                                 <li><a href="https://www.facebook.com/cmdcaaracoiabape" target="_blank"><img src="{{asset('img/redes-sociais/Facebook.png')}}"></a></li>
-                                <li><a href="http://instagram.com" target="_blank"><img src="{{asset('img/redes-sociais/Instagram.png')}}"></a></li>
-                                <li><a href="http://twitter.com" target="_blank"><img src="{{asset('img/redes-sociais/Twiiter.png')}}"></a></li>
+                                <li><a target="_blank"><img src="{{asset('img/redes-sociais/Instagram.png')}}"></a></li>
+                                <li><a href="https://twitter.com/comdicaracoiaba" target="_blank"><img src="{{asset('img/redes-sociais/Twiiter.png')}}"></a></li>
                             </ul>
                         </div>
 
