@@ -34,6 +34,7 @@ class InstituicoesController extends Controller
 
     public function store(Request $request)
     {
+
         /*Validando os dados*/
         $validar            =   $request->validate([
             'name'           => 'required | max:256',
@@ -43,7 +44,7 @@ class InstituicoesController extends Controller
             'endereco'       => 'max:256',
             'img1'           => 'required',
             'img2'           => 'required',
-            'desc'           => 'max:500',
+            'desc'           => 'max:1000',
         ],[
             'name.required' => 'Preencha o nome da instituição',
             'name.max'      => 'Digite no máximo 256 caracteres',
@@ -51,7 +52,7 @@ class InstituicoesController extends Controller
             'email.max' => 'Digite no máximo 256 caracteres',
             'telefone.max' => 'Digite no máximo 25 caracteres',
             'telefone.required' => 'Preencha o telefone da instituição',
-            'desc.max'      => 'Digite no máximo 500 caracteres',
+            'desc.max'      => 'Digite no máximo 1000 caracteres',
             'endereco.max'      => 'Digite no máximo 256 caracteres',
             'site.max'      => 'Digite no máximo 256 caracteres',
             'img1.required' => 'Adicione a imagem principal da instituição',
@@ -65,7 +66,6 @@ class InstituicoesController extends Controller
                 $quant = count($request->file('imagens'));
             }
         }
-
 
          // Verificando se são realmente imagens
         $extensoes = ['jpg','jpeg','png'];
@@ -219,11 +219,18 @@ class InstituicoesController extends Controller
 
     public function edit($id)
     {
+        //return $id;
         $instituicoes = Instituicao::where('id','=', $id)->first();
         $galeria = Galeria_inst::where('instituicao_id','=', $id)->first();
-        $imagens = Img_inst::where('galeria_id','=', $galeria->gal_id)->get();
-        $video = Video_inst::where('galeria_id','=', $galeria->gal_id)->first();
-        return view('/admin/instituicao/add-edit', compact('instituicoes','galeria','imagens','video'));
+
+        //return var_dump($galeria);
+        if($galeria != NULL){
+            $imagens = Img_inst::where('galeria_id','=', $galeria->gal_id)->get();
+            $video = Video_inst::where('galeria_id','=', $galeria->gal_id)->first();
+            return view('/admin/instituicao/add-edit', compact('instituicoes','galeria','imagens','video'));
+        }else{
+            return view('/admin/instituicao/add-edit', compact('instituicoes'));
+        }
     }
 
 
@@ -234,7 +241,7 @@ class InstituicoesController extends Controller
             'name'           => 'required | max:256',
             'email'          => 'required | max:256',
             'telefone'       => 'required | max:256',
-            'desc'           => 'max:500',
+            'desc'           => 'max:1000',
             'endereco'       => 'max:256',
             'site'           => 'max:256',
         ],[
@@ -244,7 +251,7 @@ class InstituicoesController extends Controller
             'email.max' => 'Digite no máximo 256 caracteres',
             'telefone.max' => 'Digite no máximo 25 caracteres',
             'telefone.required' => 'Preencha o telefone da instituição',
-            'desc.max'      => 'Digite no máximo 500 caracteres',
+            'desc.max'      => 'Digite no máximo 1000 caracteres',
             'endereco.max'      => 'Digite no máximo 256 caracteres',
             'site.max'      => 'Digite no máximo 256 caracteres',
         ]);
@@ -388,12 +395,17 @@ class InstituicoesController extends Controller
         if( $request->file('imagens') != null ){
 
             $images = Img_inst::where('galeria_id',$galeria->gal_id)->get();
-            if(count($images) >= 6){
+            $quant = count($images);
+            if($quant >= 6){
                 return back()->withErrors(['imagens'=>'Não foi possível adicionar mais imagens, pois já excedeu o limite de imagens para essa instituição!']);
             }else{
                 $quantRequest = count($request->file('imagens'));
-                $quant = count($images);
                 for ($i=0; $i < $quantRequest ; $i++) {
+                    //Vefica a quantidade de imagens no banco
+                    if($quant === 6){
+                        return back()->withErrors(['imagens'=>'Não foi possível adicionar todas as imagens, pois excedeu o limite de imagens para essa instituição. Entretanto adicionamos a quantidade possível!']);
+                    }
+
                     $nomeImagem = 'img_'.bin2hex(random_bytes(2)).'.'.$ex[$i];
 
                     /*Adicionando imagens vazio para depois adicionar os nomes verdadeiros*/
@@ -406,9 +418,6 @@ class InstituicoesController extends Controller
                     $img = $request->file('imagens')[$i];
                     $img->move($dir,$nomeImagem);
                     $quant++;
-                    if($quant >= 6){
-                        return back()->withErrors(['imagens'=>'Não foi possível adicionar todas as imagens, pois excedeu o limite de imagens para essa instituição. Entretanto adicionamos a quantidade possível!']);
-                    }
                 }
             }
         }
@@ -469,8 +478,10 @@ class InstituicoesController extends Controller
     }
     public function destroyImagem($id){
         $imagem = Img_inst::where('img_id',$id)->first();
+        $galeria = Galeria_inst::where('gal_id',$imagem->galeria_id)->first();
+
         $id_gal = $imagem->galeria_id;
-        $ex = "upload_imagem/instituicoes/".$id_gal.'/';
+        $ex = "upload_imagem/instituicoes/".$galeria->instituicao_id.'/';
 
         if (File::exists($ex.$imagem->nome)) {
             File::delete($ex.$imagem->nome);
@@ -478,13 +489,15 @@ class InstituicoesController extends Controller
 
         $imagem->delete();
         $mensagem = 'Imagem excluida com Sucesso!';
-        return redirect('/admin/instituicoes/edit/'.$id_gal)->with('mensagem',$mensagem);
+        return redirect('/admin/instituicoes/edit/'.$galeria->instituicao_id)->with('mensagem',$mensagem);
     }
     public function destroyVideo($id)
     {
         $video = Video_inst::where('video_id',$id)->first();
+        $galeria = Galeria_inst::where('gal_id',$video->galeria_id)->first();
+
         $id_gal = $video->galeria_id;
-        $ex = "upload_video/instituicoes/".$id_gal.'/';
+        $ex = "upload_video/instituicoes/".$galeria->instituicao_id.'/';
 
         if (File::exists($ex.$video->nome)) {
             File::delete($ex.$video->nome);
@@ -492,7 +505,7 @@ class InstituicoesController extends Controller
 
         $video->delete();
         $mensagem = 'Vídeo excluida com Sucesso!';
-        return redirect('/admin/instituicoes/edit/'.$id_gal)->with('mensagem',$mensagem);
+        return redirect('/admin/instituicoes/edit/'.$galeria->instituicao_id)->with('mensagem',$mensagem);
     }
 
 }

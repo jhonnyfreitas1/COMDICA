@@ -16,7 +16,7 @@ class CreateInstituicoesTable extends Migration
         Schema::create('instituicoes', function (Blueprint $table) {
             $table->Increments('id');
             $table->string('name');
-            $table->string('desc');
+            $table->longText('desc');
             $table->string('telefone');
             $table->string('endereco')->nullable();
             $table->string('email')->nullable();
