@@ -43,7 +43,6 @@ class AtasController extends Controller
             'data.required'  => 'Adicione uma data',
             'tipo.required'  => 'Selecione o tipe de ata',
         ]);
-
         // Nomeando as variaveis do request
         $nome       = $request['nome'];
         $tipo       = $request['tipo'];
@@ -76,30 +75,32 @@ class AtasController extends Controller
             return back()->withErrors(['data'=>'Digite uma data válida']);
         }
 
-        // Apenas uma ata ordinária por mês
-        $quantOrdinaria = DB::table('atas')->where('ano', $ano)->where('mes',$mes)->where('tipo', 'ordinaria')->count();
-        if($quantOrdinaria >= 1){
-            return back()->withErrors(['data'=>'Já existe uma ata ordinária neste mês e ano!']);
-        }
+        if($tipo == "ordinaria"){
+            // Apenas uma ata ordinária por mês
+            $quantOrdinaria = DB::table('atas')->where('ano', $ano)->where('mes',$mes)->where('tipo', 'ordinaria')->count();
+            if($quantOrdinaria >= 1){
+                return back()->withErrors(['data'=>'Já existe uma ata ordinária neste mês e ano!']);
+            }
 
-        // Apenas uma ata ordinária com o nome
-        $nomeOrdinaria = DB::table('atas')->where('ano', $ano)->where('nome_pdf',$nome_pdf)->where('tipo', 'ordinaria')->count();
-        if($nomeOrdinaria >= 1){
-            return back()->withErrors(['data'=>'Já existe uma ata ordinária com esse nome neste ano!']);
-        }
+            // Apenas uma ata ordinária com o nome
+            $nomeOrdinaria = DB::table('atas')->where('ano', $ano)->where('nome_pdf',$nome_pdf)->where('tipo', 'ordinaria')->count();
+            if($nomeOrdinaria >= 1){
+                return back()->withErrors(['data'=>'Já existe uma ata ordinária com esse nome neste ano!']);
+            }
+        }else{
+            // Apenas uma ata extraordinária com o nome
+            $nomeExtraordinaria = DB::table('atas')->where('ano', $ano)->where('nome_pdf',$nome_pdf)->where('tipo', 'extraordinaria')->count();
+            if($nomeExtraordinaria >= 1){
+                return back()->withErrors(['data'=>'Já existe uma ata extraordinária com esse nome!']);
+            }
 
-        // Apenas uma ata extraordinária com o nome
-        $nomeExtraordinaria = DB::table('atas')->where('ano', $ano)->where('nome_pdf',$nome_pdf)->where('tipo', 'extraordinaria')->count();
-        if($nomeOrdinaria >= 1){
-            return back()->withErrors(['data'=>'Já existe uma ata extraordinária com esse nome!']);
+            // No máximo três atas extraordinárias por mês;
+            $quantextraordinaria = DB::table('atas')->where('ano', $ano)->where('mes',$mes)->where('tipo', 'extraordinaria')->count();
+            if($nomeExtraordinaria >= 3){
+                return back()->withErrors(['data'=>'Já foram adicionadas três atas extraordinárias no mês solicitado!']);
+            }
         }
-
-        // No máximo três atas extraordinárias por mês;
-        $quantextraordinaria = DB::table('atas')->where('ano', $ano)->where('mes',$mes)->where('tipo', 'extraordinaria')->count();
-        if($quantOrdinaria >= 3){
-            return back()->withErrors(['data'=>'Já foram adicionadas três atas extraordinárias no mês solicitado!']);
-        }
-/*
+        /*
         Roles:
         Data mínima para adicionar uma ata é de 2017;
         Data máxima para adicionar uma ata é a de 1 ano após o ano atual;
@@ -190,40 +191,44 @@ class AtasController extends Controller
             return back()->withErrors(['data'=>'Digite uma data válida']);
         }
 
+        if($tipo == 'ordinaria'){
 
-        // Apenas uma ata ordinária por mês
-        $quantOrdinaria = DB::table('atas')->where('ano', $ano)->where('mes',$mes)->where('tipo', 'ordinaria')->get();
-        if( $quantOrdinaria->count() == 1){
-            if($quantOrdinaria[0]->id != $id){
-                return back()->withErrors(['data'=>'Já existe uma ata ordinária neste mês e ano!']);
+            // Apenas uma ata ordinária por mês
+            $quantOrdinaria = DB::table('atas')->where('ano', $ano)->where('mes',$mes)->where('tipo', 'ordinaria')->get();
+            if( $quantOrdinaria->count() == 1){
+                if($quantOrdinaria[0]->id != $id){
+                    return back()->withErrors(['data'=>'Já existe uma ata ordinária neste mês e ano!']);
+                }
+            }
+
+            // Apenas uma ata ordinária com o nome
+            $nomeOrdinaria = DB::table('atas')->where('ano', $ano)->where('nome_pdf',$nome_pdf)->where('tipo', 'ordinaria')->get();
+            if( $nomeOrdinaria->count() == 1){
+                if($nomeOrdinaria[0]->id != $id){
+                    return back()->withErrors(['data'=>'Já existe uma ata ordinária com esse nome neste ano!']);
+                }
+            }
+
+        }else{
+
+            // No máximo três atas extraordinárias por mês;
+            $quantExtraordinaria = DB::table('atas')->where('ano', $ano)->where('mes',$mes)->where('tipo', 'extraordinaria')->get();
+            if($quantExtraordinaria->count() == 3){
+                if($quantExtraordinaria[0]->id != $id){
+                    return back()->withErrors(['dagta'=>'Já foram adicionadas três atas extraordinárias no mês e ano solicitado!']);
+                }
+            }
+
+            // Apenas uma ata extraordinária com o nome
+            $nomeExtraordinaria = DB::table('atas')->where('ano', $ano)->where('nome_pdf',$nome_pdf)->where('tipo', 'extraordinaria')->get();
+            if($nomeExtraordinaria->count() == 1){
+                if($nomeExtraordinaria[0]->id != $id){
+                    return back()->withErrors(['data'=>'Já existe uma ata extraordinária com esse nome neste ano!']);
+                }
             }
         }
 
-        // Apenas uma ata ordinária com o nome
-        $nomeOrdinaria = DB::table('atas')->where('ano', $ano)->where('nome_pdf',$nome_pdf)->where('tipo', 'ordinaria')->get();
-        if( $nomeOrdinaria->count() == 1){
-            if($nomeOrdinaria[0]->id != $id){
-                return back()->withErrors(['data'=>'Já existe uma ata ordinária com esse nome neste ano!']);
-            }
-        }
-
-        // No máximo três atas extraordinárias por mês;
-        $quantExtraordinaria = DB::table('atas')->where('ano', $ano)->where('mes',$mes)->where('tipo', 'extraordinaria')->get();
-        if($quantExtraordinaria->count() == 3){
-            if($quantExtraordinaria[0]->id != $id){
-                return back()->withErrors(['dagta'=>'Já foram adicionadas três atas extraordinárias no mês e ano solicitado!']);
-            }
-        }
-
-        // Apenas uma ata extraordinária com o nome
-        $nomeExtraordinaria = DB::table('atas')->where('ano', $ano)->where('nome_pdf',$nome_pdf)->where('tipo', 'extraordinaria')->get();
-        if($nomeExtraordinaria->count() == 1){
-            if($nomeExtraordinaria[0]->id != $id){
-                return back()->withErrors(['data'=>'Já existe uma ata extraordinária com esse nome neste ano!']);
-            }
-        }
-
-        //Pegando as informações da ata
+            //Pegando as informações da ata
         $ata = Ata::where('id',$id)->first();
 
 
