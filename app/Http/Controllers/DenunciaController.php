@@ -105,7 +105,10 @@ class DenunciaController extends Controller
                     ->get();
 
          return view('admin.denuncia.show', compact('denuncia'));
-    }
+	}
+	public function Track(){
+		echo "opa";
+	}
     public function denuncia(){
         return view('welcome');
     }

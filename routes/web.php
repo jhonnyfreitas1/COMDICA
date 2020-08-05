@@ -28,6 +28,9 @@ Route::view('portifolioComdicaEntidadesCards', 'newFront.portifolioComdicaEntida
 Route::view('portifolioComdicaGaleria', 'newFront.portifolioGaleria')->name('comdicaGaleria');
 Route::view('doacaoCards', 'newFront.doacaoCards')->name('doacaoCards');
 Route::view('projetoSociais', 'newFront.projetoSociais')->name('projetoSociais');
+Route::view('denunCards', 'newFront.denunCards')->name('denunCards');
+Route::view('denunTrack', 'newFront.denunTrack')->name('denunTrack');
+Route::view('denunPdf', 'newFront.denunciaPdf')->name('denunPdf');
 //Rota de atas para exibir para os usuários.
 Route::get('atasExibir', 'AtasController@index')->name('atas');
 Route::get('atasExibir/{id}', 'AtasController@showAtas')->name('showAtas');
@@ -169,7 +172,7 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
         Route::get('/', ['as' => 'denuncias.index', 'uses' => 'DenunciaController@index']);
         Route::get('/{id}', ['as' => 'denuncias.show', 'uses' => 'DenunciaController@show']);
     });
-
+	
     //Rotas de Auth
     Route::group(['prefix' => '/auth'],function(){
         Route::get('/edit', ['as' => 'admin.auth.edit', 'uses' => 'Admin\AdminController@edit']);

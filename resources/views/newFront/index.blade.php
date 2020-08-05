@@ -50,7 +50,7 @@
     <section class="produtos container" >
         <h2 class="subtitulo">Ideias</h2>
         <ul class="produtos_lista">
-            <a href="{{route('denuncia')}}">
+            <a href="{{route('denunCards')}}">
                 <li class="grid-1-3">
                     <div class="produtos_icone produtos_list">
                         <img src="{{asset('img/Denun.png')}} "alt="">
