@@ -172,7 +172,7 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
         Route::get('/', ['as' => 'denuncias.index', 'uses' => 'DenunciaController@index']);
         Route::get('/{id}', ['as' => 'denuncias.show', 'uses' => 'DenunciaController@show']);
     });
-	
+
     //Rotas de Auth
     Route::group(['prefix' => '/auth'],function(){
         Route::get('/edit', ['as' => 'admin.auth.edit', 'uses' => 'Admin\AdminController@edit']);
@@ -197,6 +197,8 @@ Route::get('/email/verify/{email}', ['as' => 'status', 'uses' => 'EmailsControll
 
 //Rotas de Denuncia
 Route::post('/denuncia/store', ['as' => 'denuncia.store', 'uses' => 'DenunciaController@store']);
+Route::post('denunTrack/rastreio',['as' => 'denuncia.track', 'uses' => 'DenunciaController@track']);
+
 Route::get('/denuncia', ['as' => 'denuncia', 'uses' => 'DenunciaController@denuncia']);
 Route::get('/offline', ['as' => 'offline', 'uses' => 'DenunciaController@offline']);
 Route::get('/success', ['as' => 'success', 'uses' => 'DenunciaController@success']);

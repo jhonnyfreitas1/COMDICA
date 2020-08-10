@@ -12,7 +12,7 @@
         width: 40px;
         height: 40px;
         padding-bottom: 1px;
-        color: #75C587; 
+        color: #75C587;
         font-size: 30px;
         background-color: white;
         border: 5px solid ;
@@ -96,18 +96,19 @@
                 <div class="grid-4 cardLink">
                     <h1>Realizar uma Denúncia</h1>
                     <blockquote class="quote-externo">
-                        <p>Ajude uma criança que está em perigo. Faça sua parte. </p>                    
+                        <p>Ajude uma criança que está em perigo. Faça sua parte. </p>
                     </blockquote>
-                    <a href="{{route('denuncia')}}" class="btn-full">Denunciar</a>                    
+                    <a href="{{route('denuncia')}}" class="btn-full">Denunciar</a>
                 </div>
                 <div class="grid-4 cardLink">
-                    <h1>Rastrear Denúncia em análise</h1>                    
+                    <h1>Rastrear Denúncia em análise</h1>
                     <blockquote class="quote-externo">
-                        <form method="get" action="{{route('denunTrack')}}">
+                        <!-- <form method="get" action="{{route('denunTrack')}}"> -->
+                        <form method="post" action="{{route('denuncia.track')}}">
                             @csrf
-                            <input type="text" class="inp" placeholder="Ex: denun348">
+                            <input type="text" class="inp" name="hash" placeholder="Ex: denun348">
                             <br><br><br>
-                            <button class="btn-full" style="cursor:pointer;">Buscar</button>                    
+                            <button class="btn-full" style="cursor:pointer;">Buscar</button>
                         </form>
                     </blockquote>
                 </div>

@@ -42,23 +42,29 @@
                                 <a id="bar1" class="nav-link active" href="#"><i class="fa fa-thumbs-up"></i> Denúncia Realizada</a>
                             </li>
                             <li class="nav-item font">
-                                <a id="bar2" class="nav-link active" href="#"><i class="fa fa-envelope"></i> Denúncia Encaminhada</a>
+                                <a id="bar2" class="nav-link  @if(count($encaminhamentos) > 0) active @else disabled @endif" href="#"><i class="fa fa-envelope"></i> Denúncia Encaminhada</a>
                             </li>
                             <li class="nav-item font" >
-                                <a id="bar3" class="nav-link disabled" href="#"><i class="fa fa-check-circle"></i> Denúncia Finalizada</a>
+                                <a id="bar3" class="nav-link @if($denuncia->finStatus == true) active @else disabled @endif" href="#"><i class="fa fa-check-circle"></i> Denúncia Finalizada</a>
                             </li>
                         </ul>
                     </div>
                     <div class="fontP">
                         <br><br>
-                        <p>Denúncia Realizada às 00:00</p>
+                        <p>Denúncia Realizada às {{date("H:m - d/m/Y ",strtotime($denuncia->created_at) ) }} </p>
                         <p>Status : <b>Em Análise</b></p>
                         <br>
-                        <p>Denúncia Encaminhada para (Orgão) às 00:00</p>
-                        <p>Status : <b>Encaminhada</b></p>
-                        <br>
-                        <p>Denúncia Finalizada às 00:00, as devidas providências estão sendo tomadas.</p>
-                        <p>Status : <b>Finalizada</b></p>
+                        @if(count($encaminhamentos) > 0)
+                            @foreach($encaminhamentos as $encaminhamento)
+                                <p>Denúncia Encaminhada para {{$encaminhamento->encOrgao}} às {{date("H:m - d/m/Y ",strtotime($encaminhamento->created_at) ) }}</p>
+                                <p>Status : <b>Encaminhada</b></p>
+                             <br>
+                            @endforeach
+                        @endif
+                        @if($denuncia->finStatus == true)
+                            <p>Denúncia Finalizada às {{date("H:m - d/m/Y ",strtotime($denuncia->up_final) ) }}, as devidas providências estão sendo tomadas.</p>
+                            <p>Status : <b>Finalizada</b></p>
+                        @endif
                     </div>
                     <br><br><br>
                     <div class="card-footer" style="background-color: #f2f2f2;">

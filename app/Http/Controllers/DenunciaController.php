@@ -8,6 +8,7 @@ use App\RespOcorrencia;
 use App\RespViolencia;
 use App\RespLesao;
 use App\RespAgressor;
+use App\RespFinalizar;
 use App\DadosGerais;
 use Illuminate\Support\Facades\DB;
 
@@ -62,7 +63,12 @@ class DenunciaController extends Controller
 		$respLesao = new respLesao;
 		$respLesao->nature = isset($request->nature) ? $request->nature : null;
 		$respLesao->bodyPart = isset($request->bodyPart) ? $request->bodyPart : null;
-		$respLesao->save();
+        $respLesao->save();
+
+    	//Adicionando na tabela resp_finalizar
+		$respFinalizar = new respFinalizar;
+		$respFinalizar->finStatus = false;
+        $respFinalizar->save();
 
         //Adicionando na tabela resp_agressors
         ($request->alcool == '1') ? $alcool = 'sim' : (($request->alcool == '0') ? $alcool = 'não' : null);
@@ -82,6 +88,7 @@ class DenunciaController extends Controller
 		$dadosGerais->respViolencia = $respViolencia['id'];
 		$dadosGerais->respLesao = $respLesao['id'];
 		$dadosGerais->respAgressor = $respAgressor['id'];
+		$dadosGerais->respfinalizar = $respFinalizar['id'];
         $dadosGerais->save();
 
         //Adicionando o Hash na denúncia
@@ -106,9 +113,75 @@ class DenunciaController extends Controller
 
          return view('admin.denuncia.show', compact('denuncia'));
 	}
-	public function Track(){
-		echo "opa";
-	}
+	public function track(Request $request){
+
+        $denuncia = DB::table('dados_gerais')
+                    ->join('resp_gerals', 'resp_gerals.id', '=' , 'respGeral')
+            		->join('resp_ocorrencias', 'resp_ocorrencias.id', '=' , 'respOcorrencia')
+            		->join('resp_violencias', 'resp_violencias.id', '=' , 'respViolencia')
+            		->join('resp_lesaos', 'resp_lesaos.id', '=' , 'respLesao')
+            		->join('resp_agressors', 'resp_agressors.id', '=' , 'respAgressor')
+            		->join('resp_finalizar', 'resp_finalizar.id', '=' , 'respFinalizar')
+                    ->select(
+                        'dados_gerais.id',
+                        'dados_gerais.hashDenun',
+                        'dados_gerais.created_at',
+                        'dados_gerais.updated_at',
+                        // dados gerais
+                        'resp_gerals.name',
+                        'resp_gerals.gender',
+                        'resp_gerals.ethnicity',
+                        'resp_gerals.pregnant',
+                        'resp_gerals.responsible',
+                        'resp_gerals.locality',
+                        'resp_gerals.street',
+                        'resp_gerals.complement',
+                        'resp_gerals.residence',
+                        'resp_gerals.number',
+                        'resp_gerals.deficient',
+                        // dados da violencia
+                        'resp_violencias.violence',
+                        'resp_violencias.agression',
+                        'resp_violencias.consOcurrence',
+                        'resp_violencias.violenceType',
+                        'resp_violencias.penetration',
+                        'resp_violencias.penetrationType',
+                        // dados da ocorrencia
+                        'resp_ocorrencias.occurrence',
+                        'resp_ocorrencias.otherOcurrence',
+                        'resp_ocorrencias.autoProvocated',
+                        // dados da lesao
+                        'resp_lesaos.nature',
+                        'resp_lesaos.bodyPart',
+                        // dados do agressor
+                        'resp_agressors.agressorName',
+                        'resp_agressors.agressorAge',
+                        'resp_agressors.agressorGender',
+                        'resp_agressors.agressorBond',
+                        'resp_agressors.alcool',
+                        // dados finais
+                        'resp_finalizar.finStatus',
+                        'resp_finalizar.updated_at as up_final',
+                        )
+        			->where('dados_gerais.hashDenun','=',$request->hash)
+                    ->get();
+
+        $encaminhamentos =  DB::table('resp_encaminhar')->where('dadosGerais_id','=',$denuncia[0]->id)->get();
+
+        // return var_dump($encaminhamentos);
+        // return var_dump($denuncia);
+        // verificando se existe a denuncia
+        if(count($denuncia) == 0){
+            /*Voltando para a pagina denunCard mostrando a menagem que não tem aquela denuncia*/
+            $mensagem = 'Denuncia não existe!';
+            return redirect('denunCards')->with('mensagem',$mensagem);
+        }else{
+            /*redirecionando para o rastreio da denuncia*/
+            $denuncia = $denuncia[0];
+            // return var_dump($denuncia);
+            return view('newFront.denunTrack', compact('denuncia','encaminhamentos'));
+        }
+    }
     public function denuncia(){
         return view('welcome');
     }
