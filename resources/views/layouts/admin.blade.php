@@ -56,10 +56,12 @@
                         <a href="{{route('postagens.index')}}" id='todas_postagens'  class="drop-btn list-group-item bg-info border list-group-item-action ">Todas as postagens <i class="fas fa-mail-bulk"></i></a>
                         <a href="{{route('postagens.arquivadas')}}" id='postagens_arquivadas'  class="drop-btn list-group-item bg-info border list-group-item-action ">Postagens Arquivadas <i class="fas fa-archive"></i></a>
                     @endcan
-                    <a href="{{route('denuncias.index')}}" id='denuncias'  class="drop-btn list-group-item bg-info border list-group-item-action ">Todas as denúncias <i class="fas fa-th-list"></i></a>
                 </ul>
             </li>
             @can('admin-comdica')
+                <li>
+                    <a href="{{route('denuncias.index')}}" id='denuncias'  class="list-group-item bg-info border list-group-item-action ">Todas as denúncias <i class="fas fa-th-list"></i></a>
+                </li>
                 <li>
                     <a href="{{route('instituicao.index')}}" id='instituicoes'  class="list-group-item bg-info border list-group-item-action ">Instituições <i class="fas fa-warehouse"></i></a>
                 </li>

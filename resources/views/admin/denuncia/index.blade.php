@@ -50,7 +50,9 @@
                     </strong>
                 </td>
                 <td>
-                  <a href="{{ route('denuncias.show',$denuncia->id) }}" class="btn btn-outline-info btn-sm mr-2">Detalhe da  denúncia</a>
+                  <a href="{{ route('denuncias.show',$denuncia->id) }}" class="btn btn-outline-info btn-sm mr-2">Detalhe da denúncia</a>
+                  <a href="{{ route('denuncias.encaminhar.conselho',$denuncia->id) }}" class="btn btn-outline-success btn-sm mr-2">Encaminhar para o
+                  Conselho</a>
                 </td>
               </tr>
           @endforeach
@@ -62,7 +64,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
-    <!-- {!! $denuncias -> Links()!!} -->
 
     <script>
     $.noConflict();

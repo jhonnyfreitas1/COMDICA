@@ -10,14 +10,28 @@ use App\RespLesao;
 use App\RespAgressor;
 use App\RespFinalizar;
 use App\DadosGerais;
+use App\respEncaminhar;
 use Illuminate\Support\Facades\DB;
-
-
+use PDF;
 
 class DenunciaController extends Controller
 {
     public function index(){
-		$denuncias = DB::table('dados_gerais')->paginate();
+        $denun = DB::table('dados_gerais')->paginate();
+        $encaminhamentos = DB::table('resp_encaminhar')->get();
+
+        foreach($denun as $denuncia):
+            $c = 0;
+            foreach($encaminhamentos as $encaminhamento):
+                if($denuncia->id == $encaminhamento->dadosGerais_id):
+                    $c++;
+                endif;
+            endforeach;
+            if($c == 0):
+                $denuncias[] = $denuncia;
+            endif;
+        endforeach;
+
         return view('admin.denuncia.index', compact('denuncias'));
      }
 
@@ -111,7 +125,15 @@ class DenunciaController extends Controller
         			->where('dados_gerais.id','=',$id)
                     ->get();
 
-         return view('admin.denuncia.show', compact('denuncia'));
+        $pdf = PDF::loadView('newFront.denunciaPdf',compact('denuncia'));
+        // $pdf->setOptions('isHtml5ParserEnabled', true);
+        $pdf->setOptions(['isHtml5ParserEnabled' => true,'isRemoteEnabled' => true ]);
+        // $pdf->set_option('isRemoteEnabled', true);
+        $pdf->setPaper('L', 'landscape');
+        return $pdf->setPaper('a4')->stream('teste.pdf')->header('Content-Type','application/pdf');
+
+
+        //  return view('admin.denuncia.show', compact('denuncia'));
 	}
 	public function track(Request $request){
 
@@ -181,6 +203,16 @@ class DenunciaController extends Controller
             // return var_dump($denuncia);
             return view('newFront.denunTrack', compact('denuncia','encaminhamentos'));
         }
+    }
+    public function encaminharConselho($id){
+
+        $encaminhar = new respEncaminhar;
+		$encaminhar->encOrgao = 'Conselho Tutelar';
+		$encaminhar->dadosGerais_id = isset($id) ? $id : null;
+        $encaminhar->save();
+
+        $mensagem = 'Encaminhada para o Conselho Tutelar com Sucesso!';
+        return redirect('/admin/denuncia/')->with('mensagem',$mensagem);
     }
     public function denuncia(){
         return view('welcome');

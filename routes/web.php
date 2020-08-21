@@ -171,6 +171,7 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
     Route::group(['prefix' => '/denuncia'],function(){
         Route::get('/', ['as' => 'denuncias.index', 'uses' => 'DenunciaController@index']);
         Route::get('/{id}', ['as' => 'denuncias.show', 'uses' => 'DenunciaController@show']);
+        Route::get('conselho/{id}', ['as' => 'denuncias.encaminhar.conselho', 'uses' => 'DenunciaController@encaminharConselho']);
     });
 
     //Rotas de Auth
