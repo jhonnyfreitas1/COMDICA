@@ -50,7 +50,7 @@
                     </strong>
                 </td>
                 <td>
-                  <a href="{{ route('denuncias.show',$denuncia->id) }}" class="btn btn-outline-info btn-sm mr-2">Detalhe da denúncia</a>
+                  <a href="#" url="{{ route('denuncias.show',$denuncia->id) }}" class="showDenun btn btn-outline-info btn-sm mr-2">Detalhe da denúncia</a>
                   <a href="{{ route('denuncias.encaminhar.conselho',$denuncia->id) }}" class="btn btn-outline-success btn-sm mr-2">Encaminhar para o
                   Conselho</a>
                 </td>
@@ -66,6 +66,7 @@
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
 
     <script>
+
     $.noConflict();
     jQuery( document ).ready(function( $ ) {
 
@@ -98,6 +99,16 @@
             bInfo: false,  //Showing em baixo da tabela);
             responsive: true,
         } );
+
+
+        $('.showDenun').click(function(e){
+            const url = $(this).attr('url');
+            console.log(url);
+            e.preventDefault();
+            $('#floating-display-ts').show();
+            window.location.href = url
+        });
+
     });
     </script>
 	@endsection

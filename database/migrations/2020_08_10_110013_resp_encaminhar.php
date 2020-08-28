@@ -10,11 +10,14 @@ class RespEncaminhar extends Migration
     {
         Schema::create('resp_encaminhar', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('encOrgao');
+            // $table->string('encOrgao');
             $table->string('encStatus')->default('encaminhada');
-            /** Chave Estrangeira da tabela resp_lesaos*/
+            /** Chave Estrangeira da tabela dadosGerais_id*/
             $table->Integer('dadosGerais_id')->unsigned();
             $table->foreign('dadosGerais_id')->references('id')->on('dados_gerais')->onDelete('cascade');
+            /** Chave Estrangeira da tabela encOrgao*/
+            $table->Integer('encOrgao')->unsigned();
+            $table->foreign('encOrgao')->references('id')->on('tipos_users')->onDelete('cascade');
             $table->timestamps();
         });
     }

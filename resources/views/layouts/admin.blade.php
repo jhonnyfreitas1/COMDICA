@@ -19,6 +19,10 @@
   <div style='width:100%; height:100%; align-items:center; justify-content:center; display:flex; z-index:60;background-color:rgba(0,0,0,0.75);position:absolute;' id='floating-display' class='floating-div-carregamento'>
       <img style='position:absolute; z-index:50;' class='admin-carregamento' src='/img/carregamento2.gif'>
   </div>
+
+  <div style='width:100%; height:100%; align-items:center; justify-content:center; display:flex; z-index:60;background-color:rgba(0,0,0,0.75);position:absolute;' id='floating-display-ts' class='floating-div-carregamento'>
+      <img style='position:absolute; z-index:50;' class='admin-carregamento' src='/img/carregamento2.gif'>
+  </div>
   @if(isset($errors) && count($errors) > 0)
           <div class="alert alert-danger alert-dismissible fade show message"  role="alert">
             <ul>
@@ -136,7 +140,8 @@
         }
     </style>
     <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <!-- <script src="/js/bootstrap.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/js/dashboard.js"></script>
 </body>
 <script>
@@ -175,6 +180,8 @@
 
     // Apaga a ensagem após 4 segundos
     $().ready(function() {
+        $('#floating-display-ts').hide();
+
         setTimeout(function()    {
             $('.message').fadeOut(1000, function(){
                 $('.message').hide();

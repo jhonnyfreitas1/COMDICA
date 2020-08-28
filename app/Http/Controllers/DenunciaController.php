@@ -19,6 +19,7 @@ class DenunciaController extends Controller
     public function index(){
         $denun = DB::table('dados_gerais')->paginate();
         $encaminhamentos = DB::table('resp_encaminhar')->get();
+        $denuncias=[];
 
         foreach($denun as $denuncia):
             $c = 0;
@@ -31,6 +32,7 @@ class DenunciaController extends Controller
                 $denuncias[] = $denuncia;
             endif;
         endforeach;
+
 
         return view('admin.denuncia.index', compact('denuncias'));
      }
@@ -107,14 +109,14 @@ class DenunciaController extends Controller
 
         //Adicionando o Hash na denúncia
         $recupDenun = DadosGerais::where('id','=', $dadosGerais->id)->first();
-        $recupDenun->hashDenun = $dadosGerais->hashDenun.$dadosGerais->id;
+        $hash  = str_shuffle($dadosGerais->hashDenun.$dadosGerais->id);
+        $recupDenun->hashDenun = $hash;
         $recupDenun->save();
 
         $hash = $recupDenun->hashDenun;
         return view('success', compact('hash'));
     }
     public function show($id){
-
         $denuncia = DB::table('dados_gerais')
             		->join('resp_gerals', 'resp_gerals.id', '=' , 'respGeral')
             		->join('resp_ocorrencias', 'resp_ocorrencias.id', '=' , 'respOcorrencia')
@@ -124,13 +126,13 @@ class DenunciaController extends Controller
                     ->select('dados_gerais.id','dados_gerais.hashDenun','resp_gerals.*','resp_ocorrencias.*','resp_violencias.*','resp_lesaos.*','resp_agressors.*')
         			->where('dados_gerais.id','=',$id)
                     ->get();
-
         $pdf = PDF::loadView('newFront.denunciaPdf',compact('denuncia'));
         // $pdf->setOptions('isHtml5ParserEnabled', true);
         $pdf->setOptions(['isHtml5ParserEnabled' => true,'isRemoteEnabled' => true ]);
+
         // $pdf->set_option('isRemoteEnabled', true);
         $pdf->setPaper('L', 'landscape');
-        return $pdf->setPaper('a4')->stream('teste.pdf')->header('Content-Type','application/pdf');
+        return $pdf->setPaper('a4')->stream($denuncia[0]->hashDenun.'.pdf')->header('Content-Type','application/pdf');
 
 
         //  return view('admin.denuncia.show', compact('denuncia'));
@@ -188,7 +190,20 @@ class DenunciaController extends Controller
         			->where('dados_gerais.hashDenun','=',$request->hash)
                     ->get();
 
-        $encaminhamentos =  DB::table('resp_encaminhar')->where('dadosGerais_id','=',$denuncia[0]->id)->get();
+
+        $encaminhamentos =  DB::table('resp_encaminhar')
+                            ->join('tipos_users', 'tipos_users.id', '=' , 'encOrgao')
+                            ->where('dadosGerais_id','=',$denuncia[0]->id)
+                            // ->where('tipos_users.id','=',$denuncia[0]->id)
+                            ->select(
+                                'resp_encaminhar.id',
+                                'resp_encaminhar.encStatus',
+                                'resp_encaminhar.dadosGerais_id',
+                                'resp_encaminhar.created_at',
+                                'resp_encaminhar.updated_at',
+                                'tipos_users.name as encOrgao'
+                            )
+                            ->get();
 
         // return var_dump($encaminhamentos);
         // return var_dump($denuncia);
@@ -207,7 +222,8 @@ class DenunciaController extends Controller
     public function encaminharConselho($id){
 
         $encaminhar = new respEncaminhar;
-		$encaminhar->encOrgao = 'Conselho Tutelar';
+		// $encaminhar->encOrgao = 'Conselho Tutelar';
+		$encaminhar->encOrgao = 4;
 		$encaminhar->dadosGerais_id = isset($id) ? $id : null;
         $encaminhar->save();
 
