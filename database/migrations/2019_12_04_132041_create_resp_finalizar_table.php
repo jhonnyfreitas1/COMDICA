@@ -16,6 +16,7 @@ class CreateRespFinalizarTable extends Migration
         Schema::create('resp_finalizar', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('finStatus')->default(false);
+            $table->longText('finDesc')->nullable();
             $table->timestamps();
         });
     }

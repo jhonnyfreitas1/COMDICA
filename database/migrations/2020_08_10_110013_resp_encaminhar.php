@@ -12,6 +12,7 @@ class RespEncaminhar extends Migration
             $table->increments('id');
             // $table->string('encOrgao');
             $table->string('encStatus')->default('encaminhada');
+            $table->longText('encDesc')->nullable();
             /** Chave Estrangeira da tabela dadosGerais_id*/
             $table->Integer('dadosGerais_id')->unsigned();
             $table->foreign('dadosGerais_id')->references('id')->on('dados_gerais')->onDelete('cascade');
