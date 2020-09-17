@@ -7,16 +7,16 @@
     <title>{{ ($denuncia[0]->hashDenun)?: 'Denúncia' }}</title>
     <link rel="stylesheet" type="text/css" href="{{ base_path().'/location/css/bootstrap.min.css' }}">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <!-- <link rel="stylesheet" href={{ asset("bootstrap/css/bootstrap.css") }}> -->
             <!-- Bootstrap core CSS -->
             <!-- <link href="{{ public_path('css/bootstrap.min.css') }}" rel="stylesheet"> -->
-            <link rel="stylesheet" href="<?php echo asset ('css/bootstrap.min.css')?>" type="text/css">
-                        <link rel="stylesheet" href="{{ public_path('css/indexPwa2.css') }}">
+   
         <!-- <link rel="stylesheet" href="/css/app.css"> -->
 
     <style>
+    
         @font-face{
             font-family: Comdica;
             src: url('../fonts/Geometric\ 415\ Black\ BT.ttf');
@@ -52,13 +52,27 @@
         input{
             font-style: italic;
         }
+        .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: none;
+            border-radius: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <br><br>
         <div class="row1" style="text-align: center;">
-            <img src="{{ public_path('img/Denun.png') }}" alt="" width="100px" height="100px">
+            <img src="{{asset('img/Denun.png')}}" alt="" width="100px" height="100px">
+            <img src="{{asset('img/Denun.png')}}" alt="" width="100px" height="100px">
             <br><br>
             <h6 class="fontI"><b>Relatório de Denúncia. Comdica Araçoiaba PE.</b></h6>
             <p class="fontI">”A criança é alegria como raio de sol e estímulo como a esperança.”</p>

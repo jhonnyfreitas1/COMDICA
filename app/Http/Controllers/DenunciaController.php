@@ -126,16 +126,17 @@ class DenunciaController extends Controller
                     ->select('dados_gerais.id','dados_gerais.hashDenun','resp_gerals.*','resp_ocorrencias.*','resp_violencias.*','resp_lesaos.*','resp_agressors.*')
         			->where('dados_gerais.id','=',$id)
                     ->get();
-        $pdf = PDF::loadView('newFront.denunciaPdf',compact('denuncia'));
+        // $pdf = PDF::loadView('newFront.denunciaPdf',compact('denuncia'));
         // $pdf->setOptions('isHtml5ParserEnabled', true);
-        $pdf->setOptions(['isHtml5ParserEnabled' => true,'isRemoteEnabled' => true ]);
+        // $pdf->setOptions(['isHtml5ParserEnabled' => true,'isRemoteEnabled' => true ]);
 
         // $pdf->set_option('isRemoteEnabled', true);
-        $pdf->setPaper('L', 'landscape');
-        return $pdf->setPaper('a4')->stream($denuncia[0]->hashDenun.'.pdf')->header('Content-Type','application/pdf');
+        // $pdf->setPaper('L', 'landscape');
+        // return $pdf->setPaper('a4')->stream($denuncia[0]->hashDenun.'.pdf')->header('Content-Type','application/pdf');
+        
+        // return view('newFront.denunciaPdf', compact('denuncia'));
 
-
-        //  return view('admin.denuncia.show', compact('denuncia'));
+        return view('admin.denuncia.show', compact('denuncia'));
 	}
 	public function track(Request $request){
 
