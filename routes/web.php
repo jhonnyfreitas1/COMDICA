@@ -170,8 +170,9 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
     //Rotas de Denuncia
     Route::group(['prefix' => '/denuncia'],function(){
         Route::get('/', ['as' => 'denuncias.index', 'uses' => 'DenunciaController@index']);
-        Route::get('/{id}', ['as' => 'denuncias.show', 'uses' => 'DenunciaController@show']);
-        Route::get('conselho/{id}', ['as' => 'denuncias.encaminhar.conselho', 'uses' => 'DenunciaController@encaminharConselho']);
+        Route::get('/{hash}', ['as' => 'denuncias.show', 'uses' => 'DenunciaController@show']);
+        Route::post('/encaminhar/{id}', ['as' => 'denuncias.encaminhar', 'uses' => 'DenunciaController@encaminhar']);
+        Route::post('/finalizar/{id}', ['as' => 'denuncias.finalizar', 'uses' => 'DenunciaController@finalizar']);
     });
 
     //Rotas de Auth
@@ -198,7 +199,7 @@ Route::get('/email/verify/{email}', ['as' => 'status', 'uses' => 'EmailsControll
 
 //Rotas de Denuncia
 Route::post('/denuncia/store', ['as' => 'denuncia.store', 'uses' => 'DenunciaController@store']);
-Route::post('denunTrack/rastreio',['as' => 'denuncia.track', 'uses' => 'DenunciaController@track']);
+Route::post('denunTrack/rastreio/',['as' => 'denuncia.track', 'uses' => 'DenunciaController@track']);
 
 Route::get('/denuncia', ['as' => 'denuncia', 'uses' => 'DenunciaController@denuncia']);
 Route::get('/offline', ['as' => 'offline', 'uses' => 'DenunciaController@offline']);
