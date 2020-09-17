@@ -14,18 +14,21 @@ class TypeUserSeeder extends Seeder
     {
         DB::table('tipos_users')->insert([
         	'name' => 'Admin',
-        ]);       
+        ]);
         DB::table('tipos_users')->insert([
         	'name' => 'Comdica',
-        ]);        
-        DB::table('tipos_users')->insert([
-        	'name' => 'Policia',
-        ]);        
+        ]);
         DB::table('tipos_users')->insert([
         	'name' => 'Conselho Tutelar',
         ]);
         DB::table('tipos_users')->insert([
-        	'name' => 'Hospital',
+        	'name' => 'Policia Civil',
+        ]);
+        DB::table('tipos_users')->insert([
+        	'name' => 'Ministério Público',
+        ]);
+        DB::table('tipos_users')->insert([
+        	'name' => 'Judiciário',
         ]);
     }
 }

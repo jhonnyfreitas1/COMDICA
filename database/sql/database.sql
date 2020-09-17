@@ -141,6 +141,14 @@ create table `code_reference_payment` (
   `updated_at` timestamp null
 ) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
 
+-- migration:2019_12_04_122041_create_resp_finalizar_table --
+create table `resp_finalizar` (
+  `id` int unsigned not null auto_increment primary key, 
+  `finStatus` tinyint(1) not null default '0', 
+  `created_at` timestamp null, 
+  `updated_at` timestamp null
+) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+
 -- migration:2019_12_04_191653_create_resp_gerals_table --
 create table `resp_gerals` (
   `id` int unsigned not null auto_increment primary key, 
@@ -242,12 +250,13 @@ create table `resp_lesaos` (
 -- migration:2019_12_04_191835_create_resp_agressors_table --
 create table `resp_agressors` (
   `id` int unsigned not null auto_increment primary key, 
-  `agressorNumber` int null, 
+  `agressorName` varchar(255) null, 
+  `agressorAge` int null, 
   `agressorGender` enum(
     'Masculino', 'Feminino', 'Ambos os Sexos', 
     'Outros'
   ) null, 
-  `parent` enum(
+  `agressorBond` enum(
     'Pai', 'Mãe', 'Padrasto', 'Madrasta', 
     'Cônjuge', 'Ex-Cônjuge', 'Namorado(A)', 
     'Ex-Namorado(A)', 'Filho(A)', 'Irmão(A)', 
@@ -257,7 +266,7 @@ create table `resp_agressors` (
     'Policial/Agente', 'Própria Pessoa', 
     'Outros'
   ) null, 
-  `alcool` tinyint(1) null, 
+  `alcool` varchar(255) null, 
   `created_at` timestamp null, 
   `updated_at` timestamp null
 ) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
@@ -271,6 +280,7 @@ create table `dados_gerais` (
   `respViolencia` int unsigned not null, 
   `respLesao` int unsigned not null, 
   `respAgressor` int unsigned not null, 
+  `respFinalizar` int unsigned not null, 
   `created_at` timestamp null, 
   `updated_at` timestamp null
 ) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
@@ -294,33 +304,10 @@ alter table
   `dados_gerais` 
 add 
   constraint `dados_gerais_respagressor_foreign` foreign key (`respAgressor`) references `resp_agressors` (`id`) on delete cascade;
-
--- migration:2020_02_09_154524_create_imgs_insts_table --
-create table `imgs_insts` (
-  `img_id` int unsigned not null auto_increment primary key, 
-  `imagem_princ` varchar(255) not null, 
-  `imagem_sec` varchar(255) not null, 
-  `created_at` timestamp null, 
-  `updated_at` timestamp null
-) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
-
--- migration:2020_02_09_154525_create_instituicoes_table --
-create table `instituicoes` (
-  `id` int unsigned not null auto_increment primary key, 
-  `name` varchar(255) not null, 
-  `desc` varchar(255) not null, 
-  `telefone` varchar(255) not null, 
-  `endereco` varchar(255) not null, 
-  `email` varchar(255) not null, 
-  `site` varchar(255) not null, 
-  `inst_img` int unsigned not null, 
-  `created_at` timestamp null, 
-  `updated_at` timestamp null
-) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
 alter table 
-  `instituicoes` 
+  `dados_gerais` 
 add 
-  constraint `instituicoes_inst_img_foreign` foreign key (`inst_img`) references `imgs_insts` (`img_id`) on delete cascade;
+  constraint `dados_gerais_respfinalizar_foreign` foreign key (`respFinalizar`) references `resp_finalizar` (`id`) on delete cascade;
 
 -- migration:2020_03_01_152152_create_anexos_pdf_postagem --
 create table `anexos_pdf_postagem` (
@@ -400,7 +387,7 @@ add
 create table `campanhas` (
   `id` int unsigned not null auto_increment primary key, 
   `titulo` varchar(255) not null, 
-  `desc` varchar(150) not null, 
+  `desc` varchar(500) not null, 
   `imagem` varchar(255) null, 
   `pdf` varchar(255) null, 
   `video` varchar(255) null, 
@@ -412,3 +399,79 @@ alter table
   `campanhas` 
 add 
   constraint `campanhas_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete cascade;
+
+-- migration:2020_05_26_104525_create_instituicoes_table --
+create table `instituicoes` (
+  `id` int unsigned not null auto_increment primary key, 
+  `name` varchar(255) not null, 
+  `desc` longtext not null, 
+  `telefone` varchar(255) not null, 
+  `endereco` varchar(255) null, 
+  `email` varchar(255) null, 
+  `site` varchar(255) null, 
+  `user_id` bigint unsigned not null, 
+  `created_at` timestamp null, 
+  `updated_at` timestamp null
+) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table 
+  `instituicoes` 
+add 
+  constraint `instituicoes_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete cascade;
+
+-- migration:2020_05_26_114754_create_galeria_insts_table --
+create table `galeria_insts` (
+  `gal_id` int unsigned not null auto_increment primary key, 
+  `img1` varchar(255) null, 
+  `img2` varchar(255) null, 
+  `instituicao_id` int unsigned not null, 
+  `created_at` timestamp null, 
+  `updated_at` timestamp null
+) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table 
+  `galeria_insts` 
+add 
+  constraint `galeria_insts_instituicao_id_foreign` foreign key (`instituicao_id`) references `instituicoes` (`id`) on delete cascade;
+
+-- migration:2020_05_26_120829_create_imgs_insts --
+create table `imgs_insts` (
+  `img_id` int unsigned not null auto_increment primary key, 
+  `nome` varchar(255) not null, 
+  `galeria_id` int unsigned not null, 
+  `created_at` timestamp null, 
+  `updated_at` timestamp null
+) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table 
+  `imgs_insts` 
+add 
+  constraint `imgs_insts_galeria_id_foreign` foreign key (`galeria_id`) references `galeria_insts` (`gal_id`) on delete cascade;
+
+-- migration:2020_05_26_212204_create_video_insts_table --
+create table `video_insts` (
+  `video_id` int unsigned not null auto_increment primary key, 
+  `nome` varchar(255) not null, 
+  `galeria_id` int unsigned not null, 
+  `created_at` timestamp null, 
+  `updated_at` timestamp null
+) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table 
+  `video_insts` 
+add 
+  constraint `video_insts_galeria_id_foreign` foreign key (`galeria_id`) references `galeria_insts` (`gal_id`) on delete cascade;
+
+-- migration:2020_08_10_110013_resp_encaminhar --
+create table `resp_encaminhar` (
+  `id` int unsigned not null auto_increment primary key, 
+  `encStatus` varchar(255) not null default 'encaminhada', 
+  `dadosGerais_id` int unsigned not null, 
+  `encOrgao` int unsigned not null, 
+  `created_at` timestamp null, 
+  `updated_at` timestamp null
+) default character set utf8mb4 collate 'utf8mb4_unicode_ci';
+alter table 
+  `resp_encaminhar` 
+add 
+  constraint `resp_encaminhar_dadosgerais_id_foreign` foreign key (`dadosGerais_id`) references `dados_gerais` (`id`) on delete cascade;
+alter table 
+  `resp_encaminhar` 
+add 
+  constraint `resp_encaminhar_encorgao_foreign` foreign key (`encOrgao`) references `tipos_users` (`id`) on delete cascade;
