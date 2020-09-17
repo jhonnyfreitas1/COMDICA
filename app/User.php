@@ -55,4 +55,7 @@ class User extends Authenticatable
     public function user_postagem(){
         return $this->hasMany(Postagens::class);
     }
+    public function name(){
+        return "Erickson";
+    }
 }

@@ -12,7 +12,7 @@ class RespFinalizar extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-    	'finStatus'
+    	'finStatus', 'finDesc'
     ];
 	protected $date 	= ['created_at','update_at'];
 
