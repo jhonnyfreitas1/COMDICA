@@ -37,5 +37,11 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             }
         });
+
+        $gate->define('denuncia', function(User $user){
+            if($user->tipo_user == '1' || $user->tipo_user == '2' || $user->tipo_user == '3' ||$user->tipo_user == '4' || $user->tipo_user == '5' || $user->tipo_user == '6'){
+                return true;
+            }
+        });
     }
 }
