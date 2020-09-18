@@ -49,23 +49,23 @@
         <div class="list-group list-group-flush">
     <nav >
         <ul>
-            <li>
-                <a href="#" onClick="dropDown()" class="list-group-item bg-info border list-group-item-action">Postagens <i class="fas fa-bars"></i ><span style="margin-left:90px"class="fas fa-caret-down"></span></a>
-                <ul id="posts" style="display:none">
-                    @can('admin-comdica')
-                    <a href="{{route('postagens.create')}}" id='postagem' class="drop-btn list-group-item bg-info border list-group-item-action" onClick="activate('postagem')">Nova postagem <i class="fas fa-plus-square"></i> </a>
-                    <a href="{{route('postagens.minhas_postagens')}}" id='minhas_postagens'  class="drop-btn list-group-item bg-info border list-group-item-action ">Minhas postagens <i class="fas fa-file-image"></i></a>
-                    @endcan
-                    @can('admin-comdica')
-                        <a href="{{route('postagens.index')}}" id='todas_postagens'  class="drop-btn list-group-item bg-info border list-group-item-action ">Todas as postagens <i class="fas fa-mail-bulk"></i></a>
-                        <a href="{{route('postagens.arquivadas')}}" id='postagens_arquivadas'  class="drop-btn list-group-item bg-info border list-group-item-action ">Postagens Arquivadas <i class="fas fa-archive"></i></a>
-                    @endcan
-                </ul>
-            </li>
             @can('admin-comdica')
+                <li>
+                    <a href="#" onClick="dropDown()" class="list-group-item bg-info border list-group-item-action">Postagens <i class="fas fa-bars"></i ><span style="margin-left:90px"class="fas fa-caret-down"></span></a>
+                    <ul id="posts" style="display:none">
+                        <a href="{{route('postagens.create')}}" id='postagem' class="drop-btn list-group-item bg-info border list-group-item-action" onClick="activate('postagem')">Nova postagem <i class="fas fa-plus-square"></i> </a>
+                        <a href="{{route('postagens.minhas_postagens')}}" id='minhas_postagens'  class="drop-btn list-group-item bg-info border list-group-item-action ">Minhas postagens <i class="fas fa-file-image"></i></a>
+                                <a href="{{route('postagens.index')}}" id='todas_postagens'  class="drop-btn list-group-item bg-info border list-group-item-action ">Todas as postagens <i class="fas fa-mail-bulk"></i></a>
+                            <a href="{{route('postagens.arquivadas')}}" id='postagens_arquivadas'  class="drop-btn list-group-item bg-info border list-group-item-action ">Postagens Arquivadas <i class="fas fa-archive"></i></a>
+                    </ul>
+                </li>
+            @endcan
+            @can('denuncia')
                 <li>
                     <a href="{{route('denuncias.index')}}" id='denuncias'  class="list-group-item bg-info border list-group-item-action ">Todas as denúncias <i class="fas fa-th-list"></i></a>
                 </li>
+            @endcan
+            @can('admin-comdica')
                 <li>
                     <a href="{{route('instituicao.index')}}" id='instituicoes'  class="list-group-item bg-info border list-group-item-action ">Instituições <i class="fas fa-warehouse"></i></a>
                 </li>
@@ -140,7 +140,7 @@
         }
     </style>
     <script src="/js/jquery.min.js"></script>
-    <!-- <script src="/js/bootstrap.min.js"></script> -->
+    <script src="/js/bootstrap.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/js/dashboard.js"></script>
 </body>

@@ -38,24 +38,51 @@
             </tr>
         </thead>
         <tbody>
-          @foreach($denuncias as $denuncia)
+          @for($i=0;sizeOf($denuncias) > $i; $i++ )
 
               <tr>
-                <th scope="row">{{$denuncia->id}}</th>
+                <th scope="row">{{$denuncias[$i]->id}}</th>
                 <td>
                     <strong>
-                        <a href="{{ route('denuncias.show',$denuncia->id) }}" class="text-dark">
-                            {{$denuncia->hashDenun}}
+                        <a href="{{ route('denuncias.show',$denuncias[$i]->hashDenun) }}" class="text-dark">
+                            {{$denuncias[$i]->hashDenun}}
                         </a>
                     </strong>
                 </td>
                 <td>
-                  <a href="#" url="{{ route('denuncias.show',$denuncia->id) }}" class="showDenun btn btn-outline-info btn-sm mr-2">Detalhe da denúncia</a>
-                  <a href="{{ route('denuncias.encaminhar.conselho',$denuncia->id) }}" class="btn btn-outline-success btn-sm mr-2">Encaminhar para o
-                  Conselho</a>
+                  <a href="#" url="{{ route('denuncias.show',$denuncias[$i]->hashDenun) }}" class="showDenun btn btn-outline-info btn-sm mr-2">Detalhe da denúncia</a>
+                    @if(isset($encam) and $encam[$i] != '')
+                        <a href="#" url="{{ route('denuncias.encaminhar',$denuncias[$i]->id) }}" hash="{{$denuncias[$i]->hashDenun}}" onClick="encaminhar(e{{$denuncias[$i]->id}})" id="e{{$denuncias[$i]->id}}" nomeEncaminhar="{{$encam[$i]}}" data-toggle="modal" data-target="#Modal" class="btn btn-outline-success btn-sm mr-2">Encaminhar {{$encam[$i]}}</a>
+                    @endif
+                    @if(isset($finDenun) and$finDenun[$i] != '')
+                        <a  href="#" url="{{ route('denuncias.finalizar',$denuncias[$i]->id) }}" hash="{{$denuncias[$i]->hashDenun}}" onClick="finalizar(f{{$denuncias[$i]->id}})" id="f{{$denuncias[$i]->id}}" nomeEncaminhar="{{$encam[$i]}}" data-toggle="modal" data-target="#Modal"class="btn btn-outline-danger btn-sm mr-2">{{$finDenun[$i]}}</a>
+                    @endif
                 </td>
               </tr>
-          @endforeach
+
+              <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel"></h5>
+                    </div>
+                    <form method="post" id="formSubmit">
+                    @csrf
+                        <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Descrição:</label>
+                                    <textarea class="form-control" name="desc"></textarea>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="submit" id="modal-submit" class="btn btn-success"></button>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                </div>
+          @endfor
         </tbody>
       </table>
     <!-- </div> -->
@@ -66,6 +93,31 @@
     <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
 
     <script>
+        function encaminhar(name){
+            const nomeEncam = ($('#'+name.id).attr('nomeEncaminhar') );
+            $('#modal-submit').html('Encaminhar '+nomeEncam);
+            $('#modal-submit').attr('encham',true);
+            const hash = ($('#'+name.id).attr('hash') );
+            $('#modalLabel').html('Denúncia: <strong>'+hash+'</strong>');
+
+            // alterando a action do form
+            const url = ($('#'+name.id).attr('url') );
+            $('#formSubmit').attr('action',url);
+        }
+        function finalizar(name){
+            $('#modal-submit').attr('encham',false);
+            $('#modal-submit').html('Finalizar denúncia');
+            const hash = ($('#'+name.id).attr('hash') );
+            $('#modalLabel').html('Denúncia: <strong>'+hash+'</strong>');
+
+
+            // alterando a action do form
+            const url = ($('#'+name.id).attr('url') );
+            $('#formSubmit').attr('action',url);
+        }
+        function submitButton(){
+            $('#modal-submit').css({pointerEvents: "none"});
+        }
 
     $.noConflict();
     jQuery( document ).ready(function( $ ) {
