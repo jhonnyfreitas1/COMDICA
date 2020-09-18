@@ -10,9 +10,11 @@ use App\RespLesao;
 use App\RespAgressor;
 use App\RespFinalizar;
 use App\DadosGerais;
-use App\respEncaminhar;
+use App\RespEncaminhar;
+use App\Tipo_user;
 use Illuminate\Support\Facades\DB;
 use PDF;
+use Auth;
 
 class DenunciaController extends Controller
 {
@@ -20,6 +22,11 @@ class DenunciaController extends Controller
         $denun = DB::table('dados_gerais')->paginate();
         $encaminhamentos = DB::table('resp_encaminhar')->get();
         $denuncias=[];
+        $encam=[];
+
+        // Pegando o tipo do usuario
+        $tipoUserId = Auth::user()->tipo_user;
+        $nomeTipo = Tipo_user::where('id',$tipoUserId)->first();
 
         foreach($denun as $denuncia):
             $c = 0;
@@ -28,13 +35,47 @@ class DenunciaController extends Controller
                     $c++;
                 endif;
             endforeach;
-            if($c == 0):
-                $denuncias[] = $denuncia;
+
+            // Verificando se a denúncia foi finalizada
+            $denunFinalizada = RespFinalizar::where('id', $denuncia->respFinalizar)->first();
+
+            if($denunFinalizada->finStatus != true):
+                // return 'oi';
+                if( $nomeTipo->name == 'Comdica' and $c == 0):
+                    $denuncias[] = $denuncia;
+                    $encam[] = 'para o Conselho Tutelar';
+
+                elseif($nomeTipo->name == 'Conselho Tutelar' and $c == 1):
+                    $denuncias[] = $denuncia;
+                    $encam[] = 'para o Ministério Público e a Polícia Cívil';
+
+                elseif($nomeTipo->name == 'Policia Civil'):
+                    if($c == 3):
+                        $denuncias[] = $denuncia;
+                        $encam[] = 'para o Judíciario';
+                        elseif($c > 3):
+                        $denuncias[] = $denuncia;
+                        $encam[] = '';
+                    endif;
+
+                elseif($nomeTipo->name == 'Ministério Público' and $c > 1):
+                    $denuncias[] = $denuncia;
+                    $finDenun[] = 'Finalizar denúncia';
+                    $encam[] = '';
+
+                elseif($nomeTipo->name == 'Judiciário' and $c > 3):
+                    $denuncias[] = $denuncia;
+                    $finDenun[] = 'Finalizar denúncia';
+                    $encam[] = '';
+                endif;
             endif;
         endforeach;
 
-
-        return view('admin.denuncia.index', compact('denuncias'));
+        if(isset($finDenun) and sizeOf($finDenun)>0):
+            return view('admin.denuncia.index', compact('denuncias','encam','finDenun'));
+        else:
+            return view('admin.denuncia.index', compact('denuncias','encam'));
+        endif;
      }
 
     public function store(Request $request){
@@ -116,7 +157,7 @@ class DenunciaController extends Controller
         $hash = $recupDenun->hashDenun;
         return view('success', compact('hash'));
     }
-    public function show($id){
+    public function show($hash){
         $denuncia = DB::table('dados_gerais')
             		->join('resp_gerals', 'resp_gerals.id', '=' , 'respGeral')
             		->join('resp_ocorrencias', 'resp_ocorrencias.id', '=' , 'respOcorrencia')
@@ -124,7 +165,7 @@ class DenunciaController extends Controller
             		->join('resp_lesaos', 'resp_lesaos.id', '=' , 'respLesao')
             		->join('resp_agressors', 'resp_agressors.id', '=' , 'respAgressor')
                     ->select('dados_gerais.id','dados_gerais.hashDenun','resp_gerals.*','resp_ocorrencias.*','resp_violencias.*','resp_lesaos.*','resp_agressors.*')
-        			->where('dados_gerais.id','=',$id)
+        			->where('dados_gerais.hashDenun','=',$hash)
                     ->get();
         // $pdf = PDF::loadView('newFront.denunciaPdf',compact('denuncia'));
         // $pdf->setOptions('isHtml5ParserEnabled', true);
@@ -133,10 +174,10 @@ class DenunciaController extends Controller
         // $pdf->set_option('isRemoteEnabled', true);
         // $pdf->setPaper('L', 'landscape');
         // return $pdf->setPaper('a4')->stream($denuncia[0]->hashDenun.'.pdf')->header('Content-Type','application/pdf');
-        
-        // return view('newFront.denunciaPdf', compact('denuncia'));
 
-        return view('admin.denuncia.show', compact('denuncia'));
+        return view('newFront.denunciaPdf', compact('denuncia'));
+
+        // return view('admin.denuncia.show', compact('denuncia'));
 	}
 	public function track(Request $request){
 
@@ -220,16 +261,67 @@ class DenunciaController extends Controller
             return view('newFront.denunTrack', compact('denuncia','encaminhamentos'));
         }
     }
-    public function encaminharConselho($id){
+    public function encaminhar(Request $request,$id){
+        // Pegando o tipo do usuario
+        $tipoUserId = Auth::user()->tipo_user;
+        $nomeTipo = Tipo_user::where('id',$tipoUserId)->first();
 
-        $encaminhar = new respEncaminhar;
-		// $encaminhar->encOrgao = 'Conselho Tutelar';
-		$encaminhar->encOrgao = 4;
-		$encaminhar->dadosGerais_id = isset($id) ? $id : null;
-        $encaminhar->save();
+        if($nomeTipo->name == 'Comdica'):
+            // Encaminhar para o conselho tutelar
+            $encaminhar = new respEncaminhar;
+            $encaminhar->encOrgao = 3;
+            $encaminhar->encDesc = isset($request->desc) ? $request->desc : NULL;
+            $encaminhar->dadosGerais_id = isset($id) ? $id : null;
+            $encaminhar->save();
 
-        $mensagem = 'Encaminhada para o Conselho Tutelar com Sucesso!';
+            $orgao = 'o Conselho Tutelar';
+
+        elseif($nomeTipo->name == 'Conselho Tutelar'):
+            // Encaminhar para policia civil e ministerio público
+            $encaminhar = new respEncaminhar;
+            $encaminhar->encOrgao = 4;
+            $encaminhar->dadosGerais_id = isset($id) ? $id : null;
+            $encaminhar->save();
+
+            $encaminhar = new respEncaminhar;
+            $encaminhar->encOrgao = 5;
+            $encaminhar->encDesc = isset($request->desc) ? $request->desc : NULL;
+            $encaminhar->dadosGerais_id = isset($id) ? $id : null;
+            $encaminhar->save();
+
+            $orgao= 'a Polícia Cívil e o Ministério Público';
+
+        elseif($nomeTipo->name == 'Policia Civil'):
+            // Encaminhar para o judiciario
+            $encaminhar = new respEncaminhar;
+            $encaminhar->encOrgao = 6;
+            $encaminhar->encDesc = isset($request->desc) ? $request->desc : NULL;
+            $encaminhar->dadosGerais_id = isset($id) ? $id : null;
+            $encaminhar->save();
+
+            $orgao = 'o Judiciário';
+        endif;
+
+        $mensagem = 'Encaminhada para '.$orgao.' com Sucesso!';
         return redirect('/admin/denuncia/')->with('mensagem',$mensagem);
+    }
+    public function finalizar(Request $request, $id){
+
+        $denun = DadosGerais::where('id',$id)->first();
+        $finalizar = RespFinalizar::where('id', $denun->respFinalizar)->first();
+
+        if($finalizar->finStatus == 0):
+            $finalizar->finStatus = true;
+            $finalizar->finDesc = isset($request->desc) ? $request->desc : NULL;
+            $finalizar->save();
+            $mensagem = 'Denúnica finalizada com Sucesso!';
+
+        else:
+            $mensagem = 'Denúncia já foi finalizada!';
+        endif;
+
+       return redirect('/admin/denuncia/')->with('mensagem',$mensagem);
+
     }
     public function denuncia(){
         return view('welcome');
