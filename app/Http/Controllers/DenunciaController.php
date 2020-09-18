@@ -49,7 +49,7 @@ class DenunciaController extends Controller
                     $denuncias[] = $denuncia;
                     $encam[] = 'para o Ministério Público e a Polícia Cívil';
 
-                elseif($nomeTipo->name == 'Policia Civil'):
+                elseif($nomeTipo->name == 'Polícia Cívil'):
                     if($c == 3):
                         $denuncias[] = $denuncia;
                         $encam[] = 'para o Judíciario';
@@ -57,6 +57,7 @@ class DenunciaController extends Controller
                         $denuncias[] = $denuncia;
                         $encam[] = '';
                     endif;
+
 
                 elseif($nomeTipo->name == 'Ministério Público' and $c > 1):
                     $denuncias[] = $denuncia;
@@ -227,7 +228,7 @@ class DenunciaController extends Controller
                         'resp_agressors.alcool',
                         // dados finais
                         'resp_finalizar.finStatus',
-                        'resp_finalizar.updated_at as up_final',
+                        'resp_finalizar.updated_at as up_final'
                         )
         			->where('dados_gerais.hashDenun','=',$request->hash)
                     ->get();
@@ -291,7 +292,7 @@ class DenunciaController extends Controller
 
             $orgao= 'a Polícia Cívil e o Ministério Público';
 
-        elseif($nomeTipo->name == 'Policia Civil'):
+        elseif($nomeTipo->name == 'Polícia Cívil'):
             // Encaminhar para o judiciario
             $encaminhar = new respEncaminhar;
             $encaminhar->encOrgao = 6;
