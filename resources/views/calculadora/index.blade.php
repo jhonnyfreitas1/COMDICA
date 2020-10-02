@@ -15,7 +15,10 @@
 
 <script src="/js/calculo.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/calc.css">
-
+<link rel="stylesheet" href="css/indexPwa.css">
+<style>
+</style>
+<div class="container-flex">
 <div style=" display:flex;" class="row m-2 float-left">
   <div  style="justify-content: left; display: flex; " class="m-4 card col-md-3 m-2 mt-0 float-left bg-info text-white text-center p-3">
     <blockquote class="blockquote mb-0">
@@ -30,6 +33,7 @@
     </footer>
   </blockquote>
 </div>
+
 
 <form style="align-items: center; text-align: center;margin: 0 auto" class="radius col-md-6 m-2 border shadow-lg z-index-1 " action="#">
   <div class="col-md-12">
@@ -77,6 +81,7 @@
     <button type="submit" class="btn text-light col-md-6 mb-2" id='calcular' style="background-color:#01DF74;">Calcular</button>
   </div>
 </form>
+</div>
 <div style="height: 50%; margin: 0;" class="btn-group dropleft">
   <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="fas fa-info"></i>
@@ -141,7 +146,12 @@
       </tr> --}}
       <tr class="table-light">
        <th class="border border-dark table-active bg-success" scope="row">Doe 3% do seu imposto para o fundeca</th>
-       <td  class='table-active border border-dark bg-success' id="valor7"></td>
+       <td  class='table-active border border-dark bg-success'><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="hosted_button_id" value="ZAPXC4CKT6F6Y" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1" />
+        </form></td>
      </tr>
    </thead>
  </tbody>
