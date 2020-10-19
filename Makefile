@@ -7,7 +7,7 @@ conf:
 	$(MAKE) bd-conf
 composer:
 	composer install --no-scripts
-	cp .env.example .env
+	copy .env.example .env
 	php artisan key:generate
 	$(MAKE) bd-conf
 
@@ -23,7 +23,7 @@ bd-conf:
 	mysql -u root -p --execute="drop database if exists comdica; create database comdica; drop user if exists 'comdica'; create user 'comdica' identified by 'comdica'; grant all privileges on comdica.* to 'comdica';"
 	sed -i 's/DB_DATABASE.*/DB_DATABASE=comdica/' .env
 	sed -i 's/DB_USERNAME.*/DB_USERNAME=comdica/' .env
-	sed -i 's/DB_PASSWORD.*/DB_PASSWORD=comdica/' .env	
+	sed -i 's/DB_PASSWORD.*/DB_PASSWORD=comdica/' .env
 	sed -i 's/MAIL_HOST.*/MAIL_HOST=smtp.gmail.com/' .env
 	# sed -i 's/MAIL_PORT.*/MAIL_PORT=587/' .env
 	# sed -i 's/MAIL_USERNAME.*/MAIL_USERNAME=suporte.cticifpe@gmail.com/' .env
