@@ -57,13 +57,18 @@
                         @if(count($encaminhamentos) > 0)
                             @foreach($encaminhamentos as $encaminhamento)
                                 <p><b>Denúncia Encaminhada para {{$encaminhamento->encOrgao}} às {{date("H:i - d/m/Y ",strtotime($encaminhamento->created_at) ) }}</b></p>
-                                <p>Descrição : {{$encaminhamento->encDesc}}</p>
+                                @if(isset($encaminhamento->encDesc) and $encaminhamento->encDesc != NULL)
+                                    <p>Descrição : {{$encaminhamento->encDesc}}</p>
+                                @endif
                                 <p>Status : <b>Encaminhada</b></p>
                              <br>
                             @endforeach
                         @endif
                         @if($denuncia->finStatus == true)
                             <p><b>Denúncia Finalizada às {{date("H:i - d/m/Y ",strtotime($denuncia->up_final) ) }}, as devidas providências estão sendo tomadas.</b></p>
+                            @if(isset($denuncia->finDesc) and $denuncia->finDesc != NULL)
+                                <p>Descrição : {{$encaminhamento->finDesc}}</p>
+                            @endif
                             <p>Status : <b>Finalizada</b></p>
                         @endif
                     </div>

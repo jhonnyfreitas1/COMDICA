@@ -205,6 +205,7 @@ class DenunciaController extends Controller
                         'resp_agressors.alcool',
                         // dados finais
                         'resp_finalizar.finStatus',
+                        'resp_finalizar.finDesc',
                         'resp_finalizar.updated_at as up_final'
                         )
                     ->where('dados_gerais.hashDenun','=',$hash)
@@ -305,6 +306,7 @@ set_time_limit(0);
                         'resp_agressors.alcool',
                         // dados finais
                         'resp_finalizar.finStatus',
+                        'resp_finalizar.finDesc',
                         'resp_finalizar.updated_at as up_final'
                         )
         			->where('dados_gerais.hashDenun','=',$request->hash)

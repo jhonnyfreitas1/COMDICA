@@ -264,8 +264,8 @@
                         @if($denuncia[0]->finStatus == true)
                             <div class="fontP">
                                 <label for="f"><strong>Denúncia Finalizada às {{date("H:i - d/m/Y ",strtotime($denuncia[0]->up_final) ) }}, as devidas providências estão sendo tomadas.<strong></label>
-                                @if(isset($encaminhamento->encDesc) && $encaminhamento->encDesc != NULL)
-                                    <textarea type="text" name="f" class="form-control" disabled style="background-color:white;"  id="name">Descrição: {{$encaminhamento->encDesc}}</textarea>
+                                @if(isset($denuncia[0]->finDesc) && $denuncia[0]->finDesc != NULL)
+                                    <textarea type="text" name="f" class="form-control" disabled style="background-color:white;"  id="name">Descrição: {{$denuncia[0]->finDesc}}</textarea>
                                 @endif
                                 <input type="text" class="form-control" disabled style="background-color:white;" value="Status : Finalizada" >
                                 <hr>
