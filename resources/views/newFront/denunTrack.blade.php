@@ -49,20 +49,21 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="fontP">
+                    <div class="fontP" style="width:75%;">
                         <br><br>
-                        <p>Denúncia Realizada às {{date("H:m - d/m/Y ",strtotime($denuncia->created_at) ) }} </p>
+                        <p><b>Denúncia Realizada às {{date("H:m - d/m/Y ",strtotime($denuncia->created_at) ) }} </b></p>
                         <p>Status : <b>Em Análise</b></p>
                         <br>
                         @if(count($encaminhamentos) > 0)
                             @foreach($encaminhamentos as $encaminhamento)
-                                <p>Denúncia Encaminhada para {{$encaminhamento->encOrgao}} às {{date("H:i - d/m/Y ",strtotime($encaminhamento->created_at) ) }}</p>
+                                <p><b>Denúncia Encaminhada para {{$encaminhamento->encOrgao}} às {{date("H:i - d/m/Y ",strtotime($encaminhamento->created_at) ) }}</b></p>
+                                <p>Descrição : {{$encaminhamento->encDesc}}</p>
                                 <p>Status : <b>Encaminhada</b></p>
                              <br>
                             @endforeach
                         @endif
                         @if($denuncia->finStatus == true)
-                            <p>Denúncia Finalizada às {{date("H:i - d/m/Y ",strtotime($denuncia->up_final) ) }}, as devidas providências estão sendo tomadas.</p>
+                            <p><b>Denúncia Finalizada às {{date("H:i - d/m/Y ",strtotime($denuncia->up_final) ) }}, as devidas providências estão sendo tomadas.</b></p>
                             <p>Status : <b>Finalizada</b></p>
                         @endif
                     </div>

@@ -65,6 +65,11 @@
                     <a href="{{route('denuncias.index')}}" id='denuncias'  class="list-group-item bg-info border list-group-item-action ">Todas as denúncias <i class="fas fa-th-list"></i></a>
                 </li>
             @endcan
+            @can('arquivada')
+                <li>
+                    <a href="{{route('denuncias.arquivadas')}}" id='arquivadas'  class="list-group-item bg-info border list-group-item-action ">Denúncias arquivadas <i class="fas fa-th-list"></i></a>
+                </li>
+            @endcan
             @can('admin-comdica')
                 <li>
                     <a href="{{route('instituicao.index')}}" id='instituicoes'  class="list-group-item bg-info border list-group-item-action ">Instituições <i class="fas fa-warehouse"></i></a>
