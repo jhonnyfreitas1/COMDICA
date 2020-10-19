@@ -18,8 +18,8 @@ class AdminComdica
     {
         if(\Auth::user()->id == 1 || \Auth::user()->id == 2) {
             return $next($request);
-        }else{
-            return back();
         }
+        return back();
+
     }
 }

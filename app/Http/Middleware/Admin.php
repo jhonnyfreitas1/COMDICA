@@ -18,8 +18,8 @@ class Admin
     {
         if(\Auth::user()->id == 1) {
             return $next($request);
-        }else{
-            return back();
         }
+        return back();
+
     }
 }
