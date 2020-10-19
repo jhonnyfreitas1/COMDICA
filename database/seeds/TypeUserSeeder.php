@@ -22,7 +22,7 @@ class TypeUserSeeder extends Seeder
         	'name' => 'Conselho Tutelar',
         ]);
         DB::table('tipos_users')->insert([
-        	'name' => 'Policia Civil',
+        	'name' => 'Polícia Cívil',
         ]);
         DB::table('tipos_users')->insert([
         	'name' => 'Ministério Público',
