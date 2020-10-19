@@ -164,10 +164,66 @@ class DenunciaController extends Controller
             		->join('resp_ocorrencias', 'resp_ocorrencias.id', '=' , 'respOcorrencia')
             		->join('resp_violencias', 'resp_violencias.id', '=' , 'respViolencia')
             		->join('resp_lesaos', 'resp_lesaos.id', '=' , 'respLesao')
-            		->join('resp_agressors', 'resp_agressors.id', '=' , 'respAgressor')
-                    ->select('dados_gerais.id','dados_gerais.hashDenun','resp_gerals.*','resp_ocorrencias.*','resp_violencias.*','resp_lesaos.*','resp_agressors.*')
-        			->where('dados_gerais.hashDenun','=',$hash)
+                    ->join('resp_agressors', 'resp_agressors.id', '=' , 'respAgressor')
+                    ->join('resp_finalizar', 'resp_finalizar.id', '=' , 'respFinalizar')
+                    ->select(
+                        'dados_gerais.id',
+                        'dados_gerais.hashDenun',
+                        'dados_gerais.created_at',
+                        'dados_gerais.updated_at',
+                        // dados gerais
+                        'resp_gerals.name',
+                        'resp_gerals.gender',
+                        'resp_gerals.ethnicity',
+                        'resp_gerals.pregnant',
+                        'resp_gerals.responsible',
+                        'resp_gerals.locality',
+                        'resp_gerals.street',
+                        'resp_gerals.complement',
+                        'resp_gerals.residence',
+                        'resp_gerals.number',
+                        'resp_gerals.deficient',
+                        // dados da violencia
+                        'resp_violencias.violence',
+                        'resp_violencias.agression',
+                        'resp_violencias.consOcurrence',
+                        'resp_violencias.violenceType',
+                        'resp_violencias.penetration',
+                        'resp_violencias.penetrationType',
+                        // dados da ocorrencia
+                        'resp_ocorrencias.occurrence',
+                        'resp_ocorrencias.otherOcurrence',
+                        'resp_ocorrencias.autoProvocated',
+                        // dados da lesao
+                        'resp_lesaos.nature',
+                        'resp_lesaos.bodyPart',
+                        // dados do agressor
+                        'resp_agressors.agressorName',
+                        'resp_agressors.agressorAge',
+                        'resp_agressors.agressorGender',
+                        'resp_agressors.agressorBond',
+                        'resp_agressors.alcool',
+                        // dados finais
+                        'resp_finalizar.finStatus',
+                        'resp_finalizar.updated_at as up_final'
+                        )
+                    ->where('dados_gerais.hashDenun','=',$hash)
                     ->get();
+
+        $encaminhamentos =  DB::table('resp_encaminhar')
+        ->join('tipos_users', 'tipos_users.id', '=' , 'encOrgao')
+        ->where('dadosGerais_id','=',$denuncia[0]->id)
+        // ->where('tipos_users.id','=',$denuncia[0]->id)
+        ->select(
+            'resp_encaminhar.id',
+            'resp_encaminhar.encStatus',
+            'resp_encaminhar.encDesc',
+            'resp_encaminhar.dadosGerais_id',
+            'resp_encaminhar.created_at',
+            'resp_encaminhar.updated_at',
+            'tipos_users.name as encOrgao'
+        )
+        ->get();
         // $pdf = PDF::loadView('newFront.denunciaPdf',compact('denuncia'));
         // $pdf->setOptions('isHtml5ParserEnabled', true);
         // $pdf->setOptions(['isHtml5ParserEnabled' => true,'isRemoteEnabled' => true ]);
@@ -176,10 +232,31 @@ class DenunciaController extends Controller
         // $pdf->setPaper('L', 'landscape');
         // return $pdf->setPaper('a4')->stream($denuncia[0]->hashDenun.'.pdf')->header('Content-Type','application/pdf');
 
-        return view('newFront.denunciaPdf', compact('denuncia'));
+        return view('newFront.denunciaPdf', compact('denuncia', 'encaminhamentos'));
 
         // return view('admin.denuncia.show', compact('denuncia'));
-	}
+    }
+    public function verPdf($hash){
+        $denuncia = DB::table('dados_gerais')
+        ->join('resp_gerals', 'resp_gerals.id', '=' , 'respGeral')
+        ->join('resp_ocorrencias', 'resp_ocorrencias.id', '=' , 'respOcorrencia')
+        ->join('resp_violencias', 'resp_violencias.id', '=' , 'respViolencia')
+        ->join('resp_lesaos', 'resp_lesaos.id', '=' , 'respLesao')
+        ->join('resp_agressors', 'resp_agressors.id', '=' , 'respAgressor')
+        ->select('dados_gerais.id','dados_gerais.hashDenun','resp_gerals.*','resp_ocorrencias.*','resp_violencias.*','resp_lesaos.*','resp_agressors.*')
+        ->where('dados_gerais.hashDenun','=',$hash)
+        ->get();
+
+// return  $denuncia;
+set_time_limit(0);
+        $pdf = PDF::loadView('newFront.denunciaPdf',compact('denuncia'));
+        // $pdf->setOptions('isHtml5ParserEnabled', true);
+        $pdf->setOptions(['isHtml5ParserEnabled' => true,'isRemoteEnabled' => true ]);
+        // $pdf->set_option('isRemoteEnabled', true);
+        $pdf->setPaper('L', 'landscape');
+        return $pdf->setPaper('a4')->stream('teste.pdf')->header('Content-Type','application/pdf');
+    }
+
 	public function track(Request $request){
 
         $denuncia = DB::table('dados_gerais')
@@ -241,6 +318,7 @@ class DenunciaController extends Controller
                             ->select(
                                 'resp_encaminhar.id',
                                 'resp_encaminhar.encStatus',
+                                'resp_encaminhar.encDesc',
                                 'resp_encaminhar.dadosGerais_id',
                                 'resp_encaminhar.created_at',
                                 'resp_encaminhar.updated_at',
@@ -281,6 +359,7 @@ class DenunciaController extends Controller
             // Encaminhar para policia civil e ministerio público
             $encaminhar = new respEncaminhar;
             $encaminhar->encOrgao = 4;
+            $encaminhar->encDesc = isset($request->desc) ? $request->desc : NULL;
             $encaminhar->dadosGerais_id = isset($id) ? $id : null;
             $encaminhar->save();
 
@@ -323,6 +402,48 @@ class DenunciaController extends Controller
 
        return redirect('/admin/denuncia/')->with('mensagem',$mensagem);
 
+    }
+    public function arquivadas(){
+        $denun = DB::table('dados_gerais')->paginate();
+        $encaminhamentos = DB::table('resp_encaminhar')->get();
+        $denuncias=[];
+
+        // Pegando o tipo do usuario
+        $tipoUserId = Auth::user()->tipo_user;
+        $nomeTipo = Tipo_user::where('id',$tipoUserId)->first();
+
+        // dd($encaminhamentos);
+        // dd($denun);
+        foreach($denun as $denuncia):
+            $c = 0;
+            foreach($encaminhamentos as $encaminhamento):
+                if($denuncia->id == $encaminhamento->dadosGerais_id):
+                    $c++;
+                endif;
+            endforeach;
+
+            // Verificando se a denúncia foi finalizada
+            $denunFinalizada = RespFinalizar::where('id', $denuncia->respFinalizar)->first();
+
+            if($denunFinalizada->finStatus != true):
+
+                if( $nomeTipo->name == 'Comdica' and $c == 1):
+                    $denuncias[] = $denuncia;
+
+                elseif($nomeTipo->name == 'Conselho Tutelar' and $c == 3):
+                    $denuncias[] = $denuncia;
+
+                // elseif($nomeTipo->name == 'Polícia Cívil' and $c == 4):
+                //     $denuncias[] = $denuncia;
+                endif;
+            else:
+                if($nomeTipo->name == 'Ministério Público' or $nomeTipo->name == 'Judiciário'):
+                    $denuncias[] = $denuncia;
+                endif;
+            endif;
+        endforeach;
+
+        return view('admin.denuncia.index', compact('denuncias'));
     }
     public function denuncia(){
         return view('welcome');

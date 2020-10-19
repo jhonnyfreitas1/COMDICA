@@ -1,0 +1,13 @@
+*Usuários Criados:*
+conselhotutelar@teste.com
+ministeriopublico@teste.com
+policiacivil@teste.com
+judiciario@teste.com
+
+*Senha:*
+adminComdica522
+
+*Algumas denuncias que fiz para testar:*
+ndune7 -> Está no Judiciário
+unden8 -> finalizada pelo ministério público
+dn9neu -> Está no comdica
