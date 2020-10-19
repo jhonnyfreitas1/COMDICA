@@ -170,9 +170,11 @@ Route::group(['prefix' => '/admin', 'middleware'=> 'auth'],function(){
     //Rotas de Denuncia
     Route::group(['prefix' => '/denuncia'],function(){
         Route::get('/', ['as' => 'denuncias.index', 'uses' => 'DenunciaController@index']);
+        Route::get('/arquivadas', ['as' => 'denuncias.arquivadas', 'uses' => 'DenunciaController@arquivadas'])->middleware('arquivada');
         Route::get('/{hash}', ['as' => 'denuncias.show', 'uses' => 'DenunciaController@show']);
         Route::post('/encaminhar/{id}', ['as' => 'denuncias.encaminhar', 'uses' => 'DenunciaController@encaminhar']);
         Route::post('/finalizar/{id}', ['as' => 'denuncias.finalizar', 'uses' => 'DenunciaController@finalizar']);
+        Route::get('/verpdf/{hash}', ['as' => 'denuncias.verPdf', 'uses' => 'DenunciaController@verPdf']);
     });
 
     //Rotas de Auth
