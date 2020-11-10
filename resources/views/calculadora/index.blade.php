@@ -135,6 +135,10 @@
            <th class="border border-dark" scope="row">Imposto de renda</th>
            <td  id="impostoir">Calcule</td>
          </tr>
+         <tr>
+           <th class="border border-dark" scope="row">3% do imposto de renda</th>
+           <td  id="impostoir3">Calcule</td>
+         </tr>
          {{-- <tr>
            <th class="border border-dark" scope="row">Valor a deduzir (-)</th>
            <td  id="deducao">Calcule</td>

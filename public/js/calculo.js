@@ -74,6 +74,7 @@ $(document).ready(function(){
             var aliquota = Aliquota(rendacalcSujo);
 
             var imposto =  rendacalcSujo * (aliquota/100);
+            var imposto3 =  imposto * 0.03;
 
             if (aliquota =='Isento') {
                $("#isento").html('<h5>Você está Isento do imposto de renda, pós seu salario é inferior a 1903.98 após as deduções.</h5>');
@@ -101,6 +102,8 @@ $(document).ready(function(){
                 $('#basedecalculo').html(rendabase.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 $('#eliquota').html(aliquota+'%');
                 $('#impostoir').html(imposto.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
+                // let imposto3 = parseFloat(imposto.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}).split('$ ')[1]) * 0.03;
+                $('#impostoir3').html( imposto3.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 $('#deducao').html(deducao.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'}));
                 var irrfvspg = impostopg  - irrf;
 
