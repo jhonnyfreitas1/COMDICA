@@ -153,7 +153,7 @@
        <td  class='table-active border border-dark bg-success'><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_s-xclick" />
         <input type="hidden" name="hosted_button_id" value="ZAPXC4CKT6F6Y" />
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+        <input type="image" src="https://lh3.googleusercontent.com/proxy/GgIuqVagQMMS7XZkDpTs5HG2SbyAtKW5_5Euqwag72rHunlGiwnNU9Y0nbun9pfIF91HN1qP1BLNx40T3cmXRM23NCbueMqePqcJ7iFRdNqw-w91iUgL5mFDGLe0R4U" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
         <img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1" />
         </form></td>
      </tr>
