@@ -43,7 +43,7 @@
     <div class="form-row" >
       <div class="form-group col-md-12">
         <label for="inputEmail4" class="d-flex justify-content-center">Renda anual bruta</label>
-        <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius  "  data-toggle="tooltip" data-placement="top" title="Salário, Férias, Ganhos Tributaveis no ano..." id="renda-bruta" placeholder="R$ 0,00" required>
+        <input type="text" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal="," class="form-control radius  "  data-toggle="tooltip" data-placement="top" title="Os 12(doze) salários recebidos no ano, sem gratificação, sem décimo terceiro, sem férias" id="renda-bruta" placeholder="R$ 0,00" required>
       </div>
       <div class="form-group col-md-6" >
         <label for="inputEmail4">IRRF (Imposto retido na fonte)</label>
